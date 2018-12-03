@@ -18,7 +18,7 @@
       <pubDate>Thu, 01 Dec 2016 00:00:00 -0200</pubDate>
       
       <guid>/project/internal-fisfa/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus.</description>
+      <description>About FisFa (or Fiscaliza Fatura) is a software developed in R and a little bit in Python. Its aim is to automate contract management tasks in Fies - the Brazilian Higher Education Fund. Previously to FisFa, contract invoices from banks used to take more than two weeks to be analyzed. After FisFa, the time has drop to roughly 1 minute. The quality of the analysis also have increadibly improved. After the analysis, FisFa provides the user with several reports about the invoice and also indicates possible errors in data.</description>
     </item>
     
     <item>
