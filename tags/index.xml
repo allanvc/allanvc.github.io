@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Allan V. C. Quadros</title>
+    <title>Tags on ALLAN V. C. QUADROS</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on Allan V. C. Quadros</description>
+    <description>Recent content in Tags on ALLAN V. C. QUADROS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
@@ -31,6 +31,24 @@
     </item>
     
     <item>
+      <title>blk&amp;schl</title>
+      <link>/tags/blkschl/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/blkschl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>brwn_mot</title>
+      <link>/tags/brwn_mot/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/brwn_mot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>catdata</title>
       <link>/tags/catdata/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
@@ -40,11 +58,65 @@
     </item>
     
     <item>
+      <title>ccc</title>
+      <link>/tags/ccc/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/ccc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cluster</title>
+      <link>/tags/cluster/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/cluster/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>finance</title>
+      <link>/tags/finance/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/finance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>irt</title>
       <link>/tags/irt/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>/tags/irt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ml</title>
+      <link>/tags/ml/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mst</title>
+      <link>/tags/mst/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/mst/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>or</title>
+      <link>/tags/or/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/or/</guid>
       <description></description>
     </item>
     
@@ -85,11 +157,11 @@
     </item>
     
     <item>
-      <title>stats</title>
-      <link>/tags/stats/</link>
+      <title>stochastic</title>
+      <link>/tags/stochastic/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/stats/</guid>
+      <guid>/tags/stochastic/</guid>
       <description></description>
     </item>
     
@@ -99,6 +171,15 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>/tags/time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unspvd_lrng</title>
+      <link>/tags/unspvd_lrng/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/unspvd_lrng/</guid>
       <description></description>
     </item>
     

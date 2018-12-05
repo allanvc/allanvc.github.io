@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Allan V. C. Quadros</title>
+    <title>Posts on ALLAN V. C. QUADROS</title>
     <link>/post/</link>
-    <description>Recent content in Posts on Allan V. C. Quadros</description>
+    <description>Recent content in Posts on ALLAN V. C. QUADROS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
@@ -11,15 +11,6 @@
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>primeiro</title>
-      <link>/post/primeiro/</link>
-      <pubDate>Sat, 01 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/primeiro/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Academic: the website designer for Hugo</title>

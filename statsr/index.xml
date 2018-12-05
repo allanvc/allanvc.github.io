@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Stats&amp;Rs on Allan V. C. Quadros</title>
+    <title>Stats&amp;Rs on ALLAN V. C. QUADROS</title>
     <link>/statsr/</link>
-    <description>Recent content in Stats&amp;Rs on Allan V. C. Quadros</description>
+    <description>Recent content in Stats&amp;Rs on ALLAN V. C. QUADROS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
@@ -22,11 +22,38 @@
     </item>
     
     <item>
+      <title>Clustering Algorithm</title>
+      <link>/statsr/external-slide_tcc2/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_tcc2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Item Response Theory</title>
       <link>/statsr/external-irt/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-irt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operations Research</title>
+      <link>/statsr/external-slide_or/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_or/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stochastic Processes</title>
+      <link>/statsr/external-slide_stochastic_pro/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_stochastic_pro/</guid>
       <description></description>
     </item>
     

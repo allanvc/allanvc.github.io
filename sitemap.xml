@@ -4,14 +4,6 @@
     
     <url>
     
-      <loc>/post/primeiro/</loc>
-      <lastmod>2018-12-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/tutorial/example/</loc>
       <lastmod>2018-09-09T00:00:00-03:00</lastmod>
     </url>
@@ -36,7 +28,23 @@
     
     <url>
     
+      <loc>/talk/example/</loc>
+      <lastmod>2017-01-01T00:00:00-02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/</loc>
+      <lastmod>2017-01-01T00:00:00-02:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication/</loc>
       <lastmod>2017-01-01T00:00:00-02:00</lastmod>
     </url>
     
@@ -68,7 +76,7 @@
     
     <url>
     
-      <loc>/project/internal-others/</loc>
+      <loc>/statsr/external-slide_tcc2/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
     
@@ -77,6 +85,22 @@
     <url>
     
       <loc>/statsr/external-irt/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-slide_or/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-slide_stochastic_pro/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
     </url>
     
@@ -132,14 +156,6 @@
     
     <url>
     
-      <loc>/publication/</loc>
-      <lastmod>2015-09-01T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/publication_types/1/</loc>
       <lastmod>2013-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
@@ -158,8 +174,8 @@
     
     <url>
     
-      <loc>/tags/academic/</loc>
-      <lastmod>2018-01-13T00:00:00-02:00</lastmod>
+      <loc>/</loc>
+      <lastmod>2017-10-14T23:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -167,8 +183,8 @@
     
     <url>
     
-      <loc>/</loc>
-      <lastmod>2017-10-14T23:00:00-03:00</lastmod>
+      <loc>/tags/academic/</loc>
+      <lastmod>2018-01-13T00:00:00-02:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -253,6 +269,24 @@
     
     <url>
     
+      <loc>/tags/blkschl/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/brwn_mot/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/catdata/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
@@ -262,7 +296,61 @@
     
     <url>
     
+      <loc>/tags/ccc/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/cluster/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/finance/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/irt/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ml/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/mst/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/or/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
@@ -307,7 +395,7 @@
     
     <url>
     
-      <loc>/tags/stats/</loc>
+      <loc>/tags/stochastic/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
@@ -317,6 +405,15 @@
     <url>
     
       <loc>/tags/time/</loc>
+      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/unspvd_lrng/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
