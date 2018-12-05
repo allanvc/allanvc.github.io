@@ -18,12 +18,12 @@
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
       <guid>/tutorial/dwr1/</guid>
-      <description>Topics/slides  Intro &amp;amp; first steps
+      <description> Topics/slides  Intro &amp;amp; first steps
  R Objects creation and manipulation
  Logical operators and control statements
  Base R graphics
  Data read, write and manipulation
-  &amp;hellip;</description>
+  </description>
     </item>
     
     <item>
@@ -38,9 +38,9 @@
  Intro to Tidyverse, strings and REGEX manipulation with stringr
  Dates with lubridate
  Data wrangling with dplyr
- Two table verbs - cont. dplyr
- Accessing SQL databases with dbplyr and dplyr
- Graphics with ggplo2 &amp;hellip;
+ Two table verbs in dplyr
+ Accessing SQL databases with dbplyr
+ Graphics with ggplo2
   </description>
     </item>
     
