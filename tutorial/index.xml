@@ -13,14 +13,35 @@
     
     
     <item>
-      <title>Example Page</title>
-      <link>/tutorial/example/</link>
+      <title>Data Analysis with R (I) - Introductory</title>
+      <link>/tutorial/dwr1/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
-      <guid>/tutorial/example/</guid>
-      <description>In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:
-Tip 1 &amp;hellip;
-Tip 2 &amp;hellip;</description>
+      <guid>/tutorial/dwr1/</guid>
+      <description>Topics/slides  Intro &amp;amp; first steps
+ R Objects creation and manipulation
+ Logical operators and control statements
+ Base R graphics
+ Data read, write and manipulation
+  &amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Data Analysis with R (II) - Intermediary</title>
+      <link>/tutorial/dwr2/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/tutorial/dwr2/</guid>
+      <description> Topics/slides  Review and functions
+ Loops
+ Apply family
+ Intro to Tidyverse, strings and REGEX manipulation with stringr
+ Dates with lubridate
+ Data wrangling with dplyr
+ Two table verbs - cont. dplyr
+ Accessing SQL databases with dbplyr and dplyr
+ Graphics with ggplo2 &amp;hellip;
+  </description>
     </item>
     
   </channel>

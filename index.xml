@@ -11,22 +11,61 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Example Page</title>
-      <link>/tutorial/example/</link>
+      <title>Data Analysis with R (I) - Introductory</title>
+      <link>/tutorial/dwr1/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
-      <guid>/tutorial/example/</guid>
+      <guid>/tutorial/dwr1/</guid>
       <description>
 
-&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+&lt;h3 id=&#34;topics-slides&#34;&gt;Topics/slides&lt;/h3&gt;
 
-&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s1&amp;amp;2/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Intro &amp;amp; first steps&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s3/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R Objects creation and manipulation&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s4/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Logical operators and control statements&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s5/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Base R graphics&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s6/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Data read, write and manipulation&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Analysis with R (II) - Intermediary</title>
+      <link>/tutorial/dwr2/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/tutorial/dwr2/</guid>
+      <description>
 
-&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+&lt;h3 id=&#34;topics-slides&#34;&gt;Topics/slides&lt;/h3&gt;
 
-&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s1/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Review and functions&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s2/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Loops&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s3/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Apply family&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s4/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Intro to Tidyverse, strings and REGEX manipulation with &lt;code&gt;stringr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s5/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Dates with &lt;code&gt;lubridate&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s6/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Data wrangling with &lt;code&gt;dplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s7/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Two table verbs - cont. &lt;code&gt;dplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s8/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Accessing SQL databases with &lt;code&gt;dbplyr&lt;/code&gt; and &lt;code&gt;dplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s9/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Graphics with &lt;code&gt;ggplo2&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;
+&amp;hellip;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -591,16 +630,6 @@ Figure 1: A fancy pie chart.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mobile visual clothing search</title>
-      <link>/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 -0300</pubDate>
-      
-      <guid>/publication/clothing-search/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     
