@@ -105,17 +105,17 @@ vehicle_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div div div main c-
 
 vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;G1&amp;quot;                     &amp;quot;UOL&amp;quot;                   
-##  [3] &amp;quot;Brasil 247&amp;quot;             &amp;quot;Jornal O Globo&amp;quot;        
-##  [5] &amp;quot;InfoMoney&amp;quot;              &amp;quot;Folha de S.Paulo&amp;quot;      
-##  [7] &amp;quot;G1&amp;quot;                     &amp;quot;Estadão&amp;quot;               
-##  [9] &amp;quot;Jornal Cruzeiro do Sul&amp;quot; &amp;quot;UOL&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+##  [3] &amp;quot;Money Times&amp;quot;            &amp;quot;Brasil 247&amp;quot;            
+##  [5] &amp;quot;Folha de S.Paulo&amp;quot;       &amp;quot;Estadão&amp;quot;               
+##  [7] &amp;quot;G1&amp;quot;                     &amp;quot;Folha de S.Paulo&amp;quot;      
+##  [9] &amp;quot;Destak Jornal&amp;quot;          &amp;quot;Jornal Cruzeiro do Sul&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
 time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
 
 time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hoje&amp;quot;          &amp;quot;ontem&amp;quot;         &amp;quot;hoje&amp;quot;          &amp;quot;hoje&amp;quot;         
-##  [5] &amp;quot;hoje&amp;quot;          &amp;quot;5 horas atrás&amp;quot; &amp;quot;hoje&amp;quot;          &amp;quot;4 horas atrás&amp;quot;
-##  [9] &amp;quot;2 horas atrás&amp;quot; &amp;quot;5 horas atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hoje&amp;quot;          &amp;quot;ontem&amp;quot;         &amp;quot;hoje&amp;quot;          &amp;quot;5 horas atrás&amp;quot;
+##  [5] &amp;quot;hoje&amp;quot;          &amp;quot;5 horas atrás&amp;quot; &amp;quot;hoje&amp;quot;          &amp;quot;5 horas atrás&amp;quot;
+##  [9] &amp;quot;5 horas atrás&amp;quot; &amp;quot;3 horas atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
 # and using stringr for cleaning
 headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
@@ -125,16 +125,16 @@ headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the
 
 
 headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Congresso começa a votar Previdência &amp;#39;com toda certeza&amp;#39; em 6 meses, diz Bolsonaro&amp;quot;                                                                                                                                                                                      
-##  [2] &amp;quot;É forte a tendência de a reforma da Previdência ser fatiada, diz Bolsonaro&amp;quot;                                                                                                                                                                                             
-##  [3] &amp;quot;Miriam Leitão diz que &amp;#39;fatiar&amp;#39; reforma da previdência é um erro247 - A jornalista Miriam Leitão afirma que fatiar a reforma da previdência é um erro. Ela diz: \&amp;quot;a reforma não matará idoso, ao contrário do que disse o ...Brasil 247hojebookmark_bordersharemore_vert&amp;quot;
-##  [4] &amp;quot;A reforma não pode esperar&amp;quot;                                                                                                                                                                                                                                             
-##  [5] &amp;quot;Dividir para conquistar? Fatiamento da Previdência pode dificultar caminho da aprovação&amp;quot;                                                                                                                                                                                
-##  [6] &amp;quot;Câmara aprova fim de punição para municípios que estourarem limite de gasto com pessoal&amp;quot;                                                                                                                                                                                
-##  [7] &amp;quot;Câmara aprova permissão para municípios estourarem limite de gastos com pessoal&amp;quot;                                                                                                                                                                                        
-##  [8] &amp;quot;Câmara libera gastos com pessoal em municípios&amp;quot;                                                                                                                                                                                                                         
-##  [9] &amp;quot;Deputados autorizam municípios a gastarem mais com pessoal&amp;quot;                                                                                                                                                                                                             
-## [10] &amp;quot;Câmara aprova projeto que permite a municípios estourarem limite de gastos com pessoal&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Congresso começa a votar Previdência &amp;#39;com toda certeza&amp;#39; em 6 meses, diz Bolsonaro&amp;quot;                                                                                                                                                                                               
+##  [2] &amp;quot;É forte a tendência de a reforma da Previdência ser fatiada, diz Bolsonaro&amp;quot;                                                                                                                                                                                                      
+##  [3] &amp;quot;Fatiar reforma da Previdência, como fez Lula, aumenta chance de sucesso, diz MCMA MCM Consultores avalia que, ao se focar num determinado ponto, são maiores as chances de sucesso de aprovação da Reforma da Previdência, entre ...Money Timeshojebookmark_bordersharemore_vert&amp;quot;
+##  [4] &amp;quot;Bolsonaro quer votar reforma da Previdência no primeiro semestre\&amp;quot;Não adianta apresentarmos uma boa proposta e ela acabar ficando [parada] na Câmara ou no Senado. Este seria o pior dos quadros possíveis. Nosso grande ...Brasil 2475 horas atrásbookmark_bordersharemore_vert&amp;quot;
+##  [5] &amp;quot;Congresso começa a votar proposta da Previdência no primeiro semestre, diz Bolsonaro&amp;quot;                                                                                                                                                                                            
+##  [6] &amp;quot;Câmara libera gastos com pessoal em municípios&amp;quot;                                                                                                                                                                                                                                  
+##  [7] &amp;quot;Câmara aprova permissão para municípios estourarem limite de gastos com pessoal&amp;quot;                                                                                                                                                                                                 
+##  [8] &amp;quot;Câmara aprova fim de punição para municípios que estourarem limite de gasto com pessoal&amp;quot;                                                                                                                                                                                         
+##  [9] &amp;quot;Câmara aprova projeto que afrouxa a Lei de Responsabilidade Fiscal aos municípios&amp;quot;                                                                                                                                                                                               
+## [10] &amp;quot;Deputados autorizam municípios a gastarem mais com pessoal&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary phrases. In some cases we have a phrase ending in uppercase letters such as “SP” collapsed with other phrase initiating with another uppercase letter such as “A” for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
 &lt;p&gt;Before we finish, we have to clean up our data. It is common to colect garbage such as data related to “fake news verification”&amp;quot; aside the page (in the Brazilian page). So, the three vectors we create may have different sizes. We use the smallest of them as the base and just delete the entries above this number.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# finding the smallest vector
@@ -148,20 +148,20 @@ headline_all &amp;lt;- headline_all[1:min]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_news &amp;lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 139 x 3
+&lt;pre&gt;&lt;code&gt;## # A tibble: 135 x 3
 ##    vehicle_all       time_all   headline_all                              
 ##    &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;                                     
 ##  1 G1                hoje       Congresso começa a votar Previdência &amp;#39;com…
 ##  2 UOL               ontem      É forte a tendência de a reforma da Previ…
-##  3 Brasil 247        hoje       &amp;quot;Miriam Leitão diz que &amp;#39;fatiar&amp;#39; reforma d…
-##  4 Jornal O Globo    hoje       A reforma não pode esperar                
-##  5 InfoMoney         hoje       Dividir para conquistar? Fatiamento da Pr…
-##  6 Folha de S.Paulo  5 horas a… Câmara aprova fim de punição para municíp…
+##  3 Money Times       hoje       Fatiar reforma da Previdência, como fez L…
+##  4 Brasil 247        5 horas a… &amp;quot;Bolsonaro quer votar reforma da Previdên…
+##  5 Folha de S.Paulo  hoje       Congresso começa a votar proposta da Prev…
+##  6 Estadão           5 horas a… Câmara libera gastos com pessoal em munic…
 ##  7 G1                hoje       Câmara aprova permissão para municípios e…
-##  8 Estadão           4 horas a… Câmara libera gastos com pessoal em munic…
-##  9 Jornal Cruzeiro … 2 horas a… Deputados autorizam municípios a gastarem…
-## 10 UOL               5 horas a… Câmara aprova projeto que permite a munic…
-## # ... with 129 more rows&lt;/code&gt;&lt;/pre&gt;
+##  8 Folha de S.Paulo  5 horas a… Câmara aprova fim de punição para municíp…
+##  9 Destak Jornal     5 horas a… Câmara aprova projeto que afrouxa a Lei d…
+## 10 Jornal Cruzeiro … 3 horas a… Deputados autorizam municípios a gastarem…
+## # ... with 125 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;hr /&gt;
 &lt;hr /&gt;
 </description>
