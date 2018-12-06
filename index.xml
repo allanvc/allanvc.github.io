@@ -67,6 +67,106 @@
     </item>
     
     <item>
+      <title>Scraping Google News with &#39;rvest&#39;</title>
+      <link>/post/web-scrap/2018-08-21-google_news_scraping/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/web-scrap/2018-08-21-google_news_scraping/</guid>
+      <description>
+
+
+&lt;p&gt;This is an example of how to scrape Google News website with the awesome &lt;code&gt;rvest&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;This work is the result of a question in our great discussion group &lt;a href=&#34;https://therdojo.wordpress.com&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R Dojo&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
+&lt;p&gt;I should advice you that a great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.&lt;/p&gt;
+&lt;p&gt;First off, you should take a look at the Google News (or Google Notícias) website &lt;a href=&#34;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt; which I reproduce below:&lt;/p&gt;
+&lt;!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) --&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png&#34; /&gt;
+
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;p&gt;You may notice in the right side of the page we are using the Google Chrome &lt;strong&gt;dev-tools&lt;/strong&gt; in order to detect all the &lt;em&gt;html nodes&lt;/em&gt;. You can access this tool by hitting the &lt;strong&gt;F12&lt;/strong&gt; key. The html nodes are passed as arguments into the &lt;code&gt;rvest&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).&lt;/p&gt;
+&lt;p&gt;The code and coments are presented below:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# loading the packages:
+library(dplyr) # we want the pipes
+library(rvest) # webscrapping
+library(stringr) # to deal with strings and to clean up our data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the whole website
+google &amp;lt;- read_html(&amp;quot;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the com vehicles
+# we pass the nodes in html_nodes and extract the text from the last one 
+# we use stringr to delete strings that do not matter
+vehicle_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div div div main c-wiz div div div article div div div&amp;quot;) %&amp;gt;% html_text() %&amp;gt;%
+  str_subset(&amp;quot;[^more_vert]&amp;quot;) %&amp;gt;%
+  str_subset(&amp;quot;[^share]&amp;quot;) %&amp;gt;%
+  str_subset(&amp;quot;[^bookmark_border]&amp;quot;)
+
+vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;G1&amp;quot;               &amp;quot;UOL&amp;quot;              &amp;quot;Brasil 247&amp;quot;      
+##  [4] &amp;quot;Jornal O Globo&amp;quot;   &amp;quot;Folha de S.Paulo&amp;quot; &amp;quot;Estadão&amp;quot;         
+##  [7] &amp;quot;G1&amp;quot;               &amp;quot;Folha de S.Paulo&amp;quot; &amp;quot;Destak Jornal&amp;quot;   
+## [10] &amp;quot;Poder360&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
+time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
+
+time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hoje&amp;quot;          &amp;quot;ontem&amp;quot;         &amp;quot;hoje&amp;quot;          &amp;quot;hoje&amp;quot;         
+##  [5] &amp;quot;hoje&amp;quot;          &amp;quot;4 horas atrás&amp;quot; &amp;quot;hoje&amp;quot;          &amp;quot;5 horas atrás&amp;quot;
+##  [9] &amp;quot;5 horas atrás&amp;quot; &amp;quot;4 horas atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
+# and using stringr for cleaning
+headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
+  str_split(&amp;quot;(?&amp;lt;=[a-z0-9áéó!?])(?=[A-Z])&amp;quot;) # also considering portuguese special characters
+
+headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
+
+
+headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Congresso começa a votar Previdência &amp;#39;com toda certeza&amp;#39; em 6 meses, diz Bolsonaro&amp;quot;                                                                                                                                                                                      
+##  [2] &amp;quot;É forte a tendência de a reforma da Previdência ser fatiada, diz Bolsonaro&amp;quot;                                                                                                                                                                                             
+##  [3] &amp;quot;Miriam Leitão diz que &amp;#39;fatiar&amp;#39; reforma da previdência é um erro247 - A jornalista Miriam Leitão afirma que fatiar a reforma da previdência é um erro. Ela diz: \&amp;quot;a reforma não matará idoso, ao contrário do que disse o ...Brasil 247hojebookmark_bordersharemore_vert&amp;quot;
+##  [4] &amp;quot;A reforma não pode esperar&amp;quot;                                                                                                                                                                                                                                             
+##  [5] &amp;quot;Congresso começa a votar proposta da Previdência no primeiro semestre, diz Bolsonaro&amp;quot;                                                                                                                                                                                   
+##  [6] &amp;quot;Câmara libera gastos com pessoal em municípios&amp;quot;                                                                                                                                                                                                                         
+##  [7] &amp;quot;Câmara aprova permissão para municípios estourarem limite de gastos com pessoal&amp;quot;                                                                                                                                                                                        
+##  [8] &amp;quot;Câmara aprova fim de punição para municípios que estourarem limite de gasto com pessoal&amp;quot;                                                                                                                                                                                
+##  [9] &amp;quot;Câmara aprova projeto que afrouxa a Lei de Responsabilidade Fiscal aos municípios&amp;quot;                                                                                                                                                                                      
+## [10] &amp;quot;Câmara libera municípios a extrapolarem limite de gastos com pessoal&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary phrases. In some cases we have a phrase ending in uppercase letters such as “SP” collapsed with other phrase initiating with another uppercase letter such as “A” for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
+&lt;p&gt;Before we finish, we have to clean up our data. It is common to colect garbage such as data related to “fake news verification”&amp;quot; aside the page (in the Brazilian page). So, the three vectors we create may have different sizes. We use the smallest of them as the base and just delete the entries above this number.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# finding the smallest vector
+min &amp;lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
+
+# cutting
+vehicle_all &amp;lt;- vehicle_all[1:min]
+time_all &amp;lt;- time_all[1:min]
+headline_all &amp;lt;- headline_all[1:min]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And we have our final data frame:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_news &amp;lt;- data_frame(vehicle_all, time_all, headline_all)
+
+df_news&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 139 x 3
+##    vehicle_all    time_all    headline_all                                
+##    &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                                       
+##  1 G1             hoje        Congresso começa a votar Previdência &amp;#39;com t…
+##  2 UOL            ontem       É forte a tendência de a reforma da Previdê…
+##  3 Brasil 247     hoje        &amp;quot;Miriam Leitão diz que &amp;#39;fatiar&amp;#39; reforma da …
+##  4 Jornal O Globo hoje        A reforma não pode esperar                  
+##  5 Folha de S.Pa… hoje        Congresso começa a votar proposta da Previd…
+##  6 Estadão        4 horas at… Câmara libera gastos com pessoal em municíp…
+##  7 G1             hoje        Câmara aprova permissão para municípios est…
+##  8 Folha de S.Pa… 5 horas at… Câmara aprova fim de punição para município…
+##  9 Destak Jornal  5 horas at… Câmara aprova projeto que afrouxa a Lei de …
+## 10 Poder360       4 horas at… Câmara libera municípios a extrapolarem lim…
+## # ... with 129 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;hr /&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Privacy Policy</title>
       <link>/privacy/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 -0300</pubDate>
@@ -576,57 +676,6 @@ git submodule update --init --recursive
       
       <guid>/publication/person-re-id/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/post/2015-07-23-r-rmarkdown/</guid>
-      <description>
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     

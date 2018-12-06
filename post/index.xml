@@ -13,6 +13,18 @@
     
     
     <item>
+      <title>Scraping Google News with &#39;rvest&#39;</title>
+      <link>/post/web-scrap/2018-08-21-google_news_scraping/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/web-scrap/2018-08-21-google_news_scraping/</guid>
+      <description>This is an example of how to scrape Google News website with the awesome rvest package.
+This work is the result of a question in our great discussion group R Dojo.
+A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?
+I should advice you that a great deal of the basic ideas comes from his own code.</description>
+    </item>
+    
+    <item>
       <title>Academic: the website designer for Hugo</title>
       <link>/post/getting-started/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 -0300</pubDate>
