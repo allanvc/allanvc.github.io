@@ -16,8 +16,7 @@
     
   
   <meta name="description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question in our great discussion group R Dojo.
-A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?
+This work is the result of a question that appear in the WhatsApp group of our blog R Dojo. A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?
 I should advice you that a great deal of the basic ideas comes from his own code.">
 
   
@@ -110,8 +109,7 @@ I should advice you that a great deal of the basic ideas comes from his own code
   <meta property="og:url" content="/post/web-scrap/2018-08-21-google_news_scraping/">
   <meta property="og:title" content="Scraping Google News with &#39;rvest&#39; | ALLAN V. C. QUADROS">
   <meta property="og:description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question in our great discussion group R Dojo.
-A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?
+This work is the result of a question that appear in the WhatsApp group of our blog R Dojo. A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?
 I should advice you that a great deal of the basic ideas comes from his own code."><meta property="og:image" content="/img/portrait.JPG">
   <meta property="og:locale" content="en-us">
   
@@ -460,17 +458,15 @@ I should advice you that a great deal of the basic ideas comes from his own code
 
 
 <p>This is an example of how to scrape Google News website with the awesome <code>rvest</code> package.</p>
-<p>This work is the result of a question in our great discussion group <a href="https://therdojo.wordpress.com" target="_blank"><strong>R Dojo</strong></a>.</p>
-<p>A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
-<p>I should advice you that a great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</p>
-<p>First off, you should take a look at the Google News (or Google Notícias) website <a href="https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419" target="_blank">HERE</a> which I reproduce below:</p>
+<p>This work is the result of a question that appear in the WhatsApp group of our blog <a href="https://therdojo.wordpress.com" target="_blank"><strong>R Dojo</strong></a>. A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
+<p>I should advice you that a great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website <a href="https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419" target="_blank">HERE</a> which I reproduce below:</p>
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
 <div class="figure">
 <img src="/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png" />
 
 </div>
 <hr />
-<p>You may notice in the right side of the page we are using the Google Chrome <strong>dev-tools</strong> in order to detect all the <em>html nodes</em>. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments into the <code>rvest</code> functions.</p>
+<p>You may notice, on the right side of the page, that we are using the Google Chrome <strong>dev-tools</strong>. We use this to identify the <em>html nodes</em> we will need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
 <p>Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).</p>
 <p>The code and coments are presented below:</p>
 <pre class="r"><code># loading the packages:
@@ -488,18 +484,18 @@ vehicle_all &lt;- google %&gt;% html_nodes(&quot;div div div main c-wiz div div 
   str_subset(&quot;[^bookmark_border]&quot;)
 
 vehicle_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;G1&quot;                     &quot;UOL&quot;                   
-##  [3] &quot;Money Times&quot;            &quot;Brasil 247&quot;            
-##  [5] &quot;Folha de S.Paulo&quot;       &quot;Estadão&quot;               
-##  [7] &quot;G1&quot;                     &quot;Folha de S.Paulo&quot;      
-##  [9] &quot;Destak Jornal&quot;          &quot;Jornal Cruzeiro do Sul&quot;</code></pre>
+<pre><code>##  [1] &quot;G1&quot;                        &quot;UOL&quot;                      
+##  [3] &quot;Terra&quot;                     &quot;G1&quot;                       
+##  [5] &quot;Brasil 247&quot;                &quot;G1&quot;                       
+##  [7] &quot;Folha de S.Paulo&quot;          &quot;Terra&quot;                    
+##  [9] &quot;Diário do Centro do Mundo&quot; &quot;Esmael Morais&quot;</code></pre>
 <pre class="r"><code># extracting the time elapsed
 time_all &lt;- google %&gt;% html_nodes(&quot;div article div div time&quot;) %&gt;% html_text()
 
 time_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;hoje&quot;          &quot;ontem&quot;         &quot;hoje&quot;          &quot;5 horas atrás&quot;
-##  [5] &quot;hoje&quot;          &quot;5 horas atrás&quot; &quot;hoje&quot;          &quot;5 horas atrás&quot;
-##  [9] &quot;5 horas atrás&quot; &quot;3 horas atrás&quot;</code></pre>
+<pre><code>##  [1] &quot;4 horas atrás&quot;  &quot;hoje&quot;           &quot;hoje&quot;           &quot;hoje&quot;          
+##  [5] &quot;hoje&quot;           &quot;5 horas atrás&quot;  &quot;5 horas atrás&quot;  &quot;4 horas atrás&quot; 
+##  [9] &quot;uma hora atrás&quot; &quot;5 horas atrás&quot;</code></pre>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 headline_all &lt;- google %&gt;% html_nodes(&quot;article&quot;) %&gt;% html_text(&quot;span&quot;) %&gt;%
@@ -509,18 +505,18 @@ headline_all &lt;- sapply(headline_all, function(x) x[1]) # extract only the fir
 
 
 headline_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;Congresso começa a votar Previdência &#39;com toda certeza&#39; em 6 meses, diz Bolsonaro&quot;                                                                                                                                                                                               
-##  [2] &quot;É forte a tendência de a reforma da Previdência ser fatiada, diz Bolsonaro&quot;                                                                                                                                                                                                      
-##  [3] &quot;Fatiar reforma da Previdência, como fez Lula, aumenta chance de sucesso, diz MCMA MCM Consultores avalia que, ao se focar num determinado ponto, são maiores as chances de sucesso de aprovação da Reforma da Previdência, entre ...Money Timeshojebookmark_bordersharemore_vert&quot;
-##  [4] &quot;Bolsonaro quer votar reforma da Previdência no primeiro semestre\&quot;Não adianta apresentarmos uma boa proposta e ela acabar ficando [parada] na Câmara ou no Senado. Este seria o pior dos quadros possíveis. Nosso grande ...Brasil 2475 horas atrásbookmark_bordersharemore_vert&quot;
-##  [5] &quot;Congresso começa a votar proposta da Previdência no primeiro semestre, diz Bolsonaro&quot;                                                                                                                                                                                            
-##  [6] &quot;Câmara libera gastos com pessoal em municípios&quot;                                                                                                                                                                                                                                  
-##  [7] &quot;Câmara aprova permissão para municípios estourarem limite de gastos com pessoal&quot;                                                                                                                                                                                                 
-##  [8] &quot;Câmara aprova fim de punição para municípios que estourarem limite de gasto com pessoal&quot;                                                                                                                                                                                         
-##  [9] &quot;Câmara aprova projeto que afrouxa a Lei de Responsabilidade Fiscal aos municípios&quot;                                                                                                                                                                                               
-## [10] &quot;Deputados autorizam municípios a gastarem mais com pessoal&quot;</code></pre>
-<p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary phrases. In some cases we have a phrase ending in uppercase letters such as “SP” collapsed with other phrase initiating with another uppercase letter such as “A” for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
-<p>Before we finish, we have to clean up our data. It is common to colect garbage such as data related to “fake news verification”&quot; aside the page (in the Brazilian page). So, the three vectors we create may have different sizes. We use the smallest of them as the base and just delete the entries above this number.</p>
+<pre><code>##  [1] &quot;Bolsonaro diz a site que depósito de ex-assessor do filho na conta da mulher foi para pagar dívida&quot;
+##  [2] &quot;Bolsonaro diz que ex-assessor tinha dívida com ele e pagou à primeira-dama&quot;                        
+##  [3] &quot;Movimentação atípica de ex-assessor de Flávio Bolsonaro pode levar a investigação&quot;                 
+##  [4] &quot;Relatório do Coaf cita ex-servidora de Jair Bolsonaro, filha de ex-motorista de Flávio Bolsonaro&quot;  
+##  [5] &quot;Perguntado sobre bolsogate, Onyx ataca Coaf e abandona coletiva&quot;                                   
+##  [6] &quot;Temer anuncia intervenção federal em Roraima; interventor será governador eleito&quot;                  
+##  [7] &quot;Após paralisação estadual, Temer anuncia intervenção integral em Roraima&quot;                          
+##  [8] &quot;Temer anuncia intervenção federal em Roraima até o fim do ano&quot;                                     
+##  [9] &quot;Governador eleito de Roraima vai comandar intervenção militar no estado&quot;                           
+## [10] &quot;Temer anuncia intervenção federal em Roraima&quot;</code></pre>
+<p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “SP” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as “A” (a common article in Portuguese) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
+<p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news verification”“, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
 <pre class="r"><code># finding the smallest vector
 min &lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
 
@@ -532,22 +528,20 @@ headline_all &lt;- headline_all[1:min]</code></pre>
 <pre class="r"><code>df_news &lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news</code></pre>
-<pre><code>## # A tibble: 135 x 3
-##    vehicle_all       time_all   headline_all                              
-##    &lt;chr&gt;             &lt;chr&gt;      &lt;chr&gt;                                     
-##  1 G1                hoje       Congresso começa a votar Previdência &#39;com…
-##  2 UOL               ontem      É forte a tendência de a reforma da Previ…
-##  3 Money Times       hoje       Fatiar reforma da Previdência, como fez L…
-##  4 Brasil 247        5 horas a… &quot;Bolsonaro quer votar reforma da Previdên…
-##  5 Folha de S.Paulo  hoje       Congresso começa a votar proposta da Prev…
-##  6 Estadão           5 horas a… Câmara libera gastos com pessoal em munic…
-##  7 G1                hoje       Câmara aprova permissão para municípios e…
-##  8 Folha de S.Paulo  5 horas a… Câmara aprova fim de punição para municíp…
-##  9 Destak Jornal     5 horas a… Câmara aprova projeto que afrouxa a Lei d…
-## 10 Jornal Cruzeiro … 3 horas a… Deputados autorizam municípios a gastarem…
-## # ... with 125 more rows</code></pre>
-<hr />
-<hr />
+<pre><code>## # A tibble: 130 x 3
+##    vehicle_all        time_all    headline_all                            
+##    &lt;chr&gt;              &lt;chr&gt;       &lt;chr&gt;                                   
+##  1 G1                 4 horas at… Bolsonaro diz a site que depósito de ex…
+##  2 UOL                hoje        Bolsonaro diz que ex-assessor tinha dív…
+##  3 Terra              hoje        Movimentação atípica de ex-assessor de …
+##  4 G1                 hoje        Relatório do Coaf cita ex-servidora de …
+##  5 Brasil 247         hoje        Perguntado sobre bolsogate, Onyx ataca …
+##  6 G1                 5 horas at… Temer anuncia intervenção federal em Ro…
+##  7 Folha de S.Paulo   5 horas at… Após paralisação estadual, Temer anunci…
+##  8 Terra              4 horas at… Temer anuncia intervenção federal em Ro…
+##  9 Diário do Centro … uma hora a… Governador eleito de Roraima vai comand…
+## 10 Esmael Morais      5 horas at… Temer anuncia intervenção federal em Ro…
+## # ... with 120 more rows</code></pre>
 
     </div>
 
@@ -625,7 +619,7 @@ df_news</code></pre>
         
       
       <li>
-        <a itemprop="sameAs" href="/files/allanvcq_CV2.pdf" >
+        <a itemprop="sameAs" href="/files/allanvcq_CV3.pdf" >
           <i class="ai ai-cv"></i>
         </a>
       </li>
