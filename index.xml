@@ -78,8 +78,8 @@
 
 
 &lt;p&gt;This is an example of how to scrape Google News website with the awesome &lt;code&gt;rvest&lt;/code&gt; package.&lt;/p&gt;
-&lt;p&gt;This work is the result of a question that appear in the WhatsApp group of our blog &lt;a href=&#34;https://therdojo.wordpress.com&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R Dojo&lt;/strong&gt;&lt;/a&gt;. A user in the group came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
-&lt;p&gt;I should advice you that a great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website &lt;a href=&#34;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt; which I reproduce below:&lt;/p&gt;
+&lt;p&gt;This work is the result of a question that appeared in the WhatsApp group of our blog &lt;a href=&#34;https://therdojo.wordpress.com&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R Dojo&lt;/strong&gt;&lt;/a&gt;. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
+&lt;p&gt;A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website &lt;a href=&#34;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt; which I reproduce below:&lt;/p&gt;
 &lt;!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) --&gt;
 &lt;div class=&#34;figure&#34;&gt;
 &lt;img src=&#34;/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png&#34; /&gt;
@@ -104,18 +104,17 @@ vehicle_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div div div main c-
   str_subset(&amp;quot;[^bookmark_border]&amp;quot;)
 
 vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;G1&amp;quot;                        &amp;quot;UOL&amp;quot;                      
-##  [3] &amp;quot;Terra&amp;quot;                     &amp;quot;G1&amp;quot;                       
-##  [5] &amp;quot;Brasil 247&amp;quot;                &amp;quot;G1&amp;quot;                       
-##  [7] &amp;quot;Folha de S.Paulo&amp;quot;          &amp;quot;Terra&amp;quot;                    
-##  [9] &amp;quot;Diário do Centro do Mundo&amp;quot; &amp;quot;Esmael Morais&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Folha de S.Paulo&amp;quot; &amp;quot;G1&amp;quot;               &amp;quot;Estado de Minas&amp;quot; 
+##  [4] &amp;quot;Jovem Pan&amp;quot;        &amp;quot;Estadão&amp;quot;          &amp;quot;G1&amp;quot;              
+##  [7] &amp;quot;UOL&amp;quot;              &amp;quot;Estadão&amp;quot;          &amp;quot;Revista Fórum&amp;quot;   
+## [10] &amp;quot;Folha de S.Paulo&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
 time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
 
 time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;4 horas atrás&amp;quot;  &amp;quot;hoje&amp;quot;           &amp;quot;hoje&amp;quot;           &amp;quot;hoje&amp;quot;          
-##  [5] &amp;quot;hoje&amp;quot;           &amp;quot;5 horas atrás&amp;quot;  &amp;quot;5 horas atrás&amp;quot;  &amp;quot;4 horas atrás&amp;quot; 
-##  [9] &amp;quot;uma hora atrás&amp;quot; &amp;quot;5 horas atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hoje&amp;quot;           &amp;quot;hoje&amp;quot;           &amp;quot;hoje&amp;quot;           &amp;quot;4 horas atrás&amp;quot; 
+##  [5] &amp;quot;hoje&amp;quot;           &amp;quot;uma hora atrás&amp;quot; &amp;quot;uma hora atrás&amp;quot; &amp;quot;uma hora atrás&amp;quot;
+##  [9] &amp;quot;uma hora atrás&amp;quot; &amp;quot;uma hora atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
 # and using stringr for cleaning
 headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
@@ -125,16 +124,16 @@ headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the
 
 
 headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Bolsonaro diz a site que depósito de ex-assessor do filho na conta da mulher foi para pagar dívida&amp;quot;
-##  [2] &amp;quot;Bolsonaro diz que ex-assessor tinha dívida com ele e pagou à primeira-dama&amp;quot;                        
-##  [3] &amp;quot;Movimentação atípica de ex-assessor de Flávio Bolsonaro pode levar a investigação&amp;quot;                 
-##  [4] &amp;quot;Relatório do Coaf cita ex-servidora de Jair Bolsonaro, filha de ex-motorista de Flávio Bolsonaro&amp;quot;  
-##  [5] &amp;quot;Perguntado sobre bolsogate, Onyx ataca Coaf e abandona coletiva&amp;quot;                                   
-##  [6] &amp;quot;Temer anuncia intervenção federal em Roraima; interventor será governador eleito&amp;quot;                  
-##  [7] &amp;quot;Após paralisação estadual, Temer anuncia intervenção integral em Roraima&amp;quot;                          
-##  [8] &amp;quot;Temer anuncia intervenção federal em Roraima até o fim do ano&amp;quot;                                     
-##  [9] &amp;quot;Governador eleito de Roraima vai comandar intervenção militar no estado&amp;quot;                           
-## [10] &amp;quot;Temer anuncia intervenção federal em Roraima&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Depoimento de João de Deus tem teclado quebrado, gritos, fio queimado e agente ferido&amp;quot; 
+##  [2] &amp;quot;MP e polícia recebem mais de 500 denúncias e investigam se João de Deus lavou dinheiro&amp;quot;
+##  [3] &amp;quot;Defesa de João de Deus apresenta habeas corpus para revogar prisão preventiva&amp;quot;         
+##  [4] &amp;quot;Ministério Público de Goiás recebe mais de 500 denúncias contra João de Deus&amp;quot;          
+##  [5] &amp;quot;Advogada diz que foi abusada por médium na frente do pai&amp;quot;                              
+##  [6] &amp;quot;STF julgará em 10 de abril validade de prisão após condenação em segunda instância&amp;quot;    
+##  [7] &amp;quot;STF julgará em abril prisão após 2ª instância; impacto sobre Lula é incerto&amp;quot;           
+##  [8] &amp;quot;Julgamento sobre prisão em segunda instância vai ser em abril, avisa Toffoli&amp;quot;          
+##  [9] &amp;quot;STF julgará em 10 de abril de 2019 prisão de condenados em segunda instância&amp;quot;          
+## [10] &amp;quot;Toffoli marca para 10 de abril julgamento de ações sobre prisão em 2ª instância&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “SP” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as “A” (a common article in Portuguese) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
 &lt;p&gt;Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news verification”“, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# finding the smallest vector
@@ -148,20 +147,20 @@ headline_all &amp;lt;- headline_all[1:min]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_news &amp;lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 130 x 3
-##    vehicle_all        time_all    headline_all                            
-##    &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                                   
-##  1 G1                 4 horas at… Bolsonaro diz a site que depósito de ex…
-##  2 UOL                hoje        Bolsonaro diz que ex-assessor tinha dív…
-##  3 Terra              hoje        Movimentação atípica de ex-assessor de …
-##  4 G1                 hoje        Relatório do Coaf cita ex-servidora de …
-##  5 Brasil 247         hoje        Perguntado sobre bolsogate, Onyx ataca …
-##  6 G1                 5 horas at… Temer anuncia intervenção federal em Ro…
-##  7 Folha de S.Paulo   5 horas at… Após paralisação estadual, Temer anunci…
-##  8 Terra              4 horas at… Temer anuncia intervenção federal em Ro…
-##  9 Diário do Centro … uma hora a… Governador eleito de Roraima vai comand…
-## 10 Esmael Morais      5 horas at… Temer anuncia intervenção federal em Ro…
-## # ... with 120 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 118 x 3
+##    vehicle_all    time_all    headline_all                                
+##    &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                                       
+##  1 Folha de S.Pa… hoje        Depoimento de João de Deus tem teclado queb…
+##  2 G1             hoje        MP e polícia recebem mais de 500 denúncias …
+##  3 Estado de Min… hoje        Defesa de João de Deus apresenta habeas cor…
+##  4 Jovem Pan      4 horas at… Ministério Público de Goiás recebe mais de …
+##  5 Estadão        hoje        Advogada diz que foi abusada por médium na …
+##  6 G1             uma hora a… STF julgará em 10 de abril validade de pris…
+##  7 UOL            uma hora a… STF julgará em abril prisão após 2ª instânc…
+##  8 Estadão        uma hora a… Julgamento sobre prisão em segunda instânci…
+##  9 Revista Fórum  uma hora a… STF julgará em 10 de abril de 2019 prisão d…
+## 10 Folha de S.Pa… uma hora a… Toffoli marca para 10 de abril julgamento d…
+## # ... with 108 more rows&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
