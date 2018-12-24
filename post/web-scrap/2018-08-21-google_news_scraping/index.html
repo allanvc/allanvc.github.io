@@ -16,7 +16,7 @@
     
   
   <meta name="description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared in the WhatsApp group of our blog R Dojo. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.">
 
   
@@ -109,7 +109,7 @@ A great deal of the basic ideas comes from his own code. I just kept it and adde
   <meta property="og:url" content="/post/web-scrap/2018-08-21-google_news_scraping/">
   <meta property="og:title" content="Scraping Google News with &#39;rvest&#39; | ALLAN V. C. QUADROS">
   <meta property="og:description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared in the WhatsApp group of our blog R Dojo. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working."><meta property="og:image" content="/img/portrait.JPG">
   <meta property="og:locale" content="en-us">
   
@@ -458,20 +458,17 @@ A great deal of the basic ideas comes from his own code. I just kept it and adde
 
 
 <p>This is an example of how to scrape Google News website with the awesome <code>rvest</code> package.</p>
-<p>This work is the result of a question that appeared in the WhatsApp group of our blog <a href="https://therdojo.wordpress.com" target="_blank"><strong>R Dojo</strong></a>. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
+<p>This work is the result of a question that appeared on the WhatsApp group of our site <a href="https://www.blackbeltR.com.br" target="_blank"><strong>blackbeltR</strong></a>. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
 <p>A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website <a href="https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419" target="_blank">HERE</a> which I reproduce below:</p>
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
-<div class="figure">
-<img src="/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png" />
-
-</div>
+<p><img src="/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png" /></p>
 <hr />
-<p>You may notice, on the right side of the page, that we are using the Google Chrome <strong>dev-tools</strong>. We use this to identify the <em>html nodes</em> we will need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
+<p>You may notice, on the right side of the page, that we are using the Google Chrome <strong>dev-tools</strong>. We use this to identify the <em>html nodes</em> we need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
 <p>Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).</p>
 <p>The code and coments are presented below:</p>
 <pre class="r"><code># loading the packages:
 library(dplyr) # we want the pipes
-library(rvest) # webscrapping
+library(rvest) # webscraping
 library(stringr) # to deal with strings and to clean up our data</code></pre>
 <pre class="r"><code># extracting the whole website
 google &lt;- read_html(&quot;https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419&quot;)</code></pre>
@@ -484,17 +481,17 @@ vehicle_all &lt;- google %&gt;% html_nodes(&quot;div div div main c-wiz div div 
   str_subset(&quot;[^bookmark_border]&quot;)
 
 vehicle_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;Folha de S.Paulo&quot; &quot;G1&quot;               &quot;Estado de Minas&quot; 
-##  [4] &quot;Jovem Pan&quot;        &quot;Estadão&quot;          &quot;G1&quot;              
-##  [7] &quot;UOL&quot;              &quot;Estadão&quot;          &quot;Revista Fórum&quot;   
-## [10] &quot;Folha de S.Paulo&quot;</code></pre>
+<pre><code>##  [1] &quot;G1&quot;                &quot;Rondoniaovivo&quot;     &quot;Superinteressante&quot;
+##  [4] &quot;G1&quot;                &quot;UOL&quot;               &quot;Folha de S.Paulo&quot; 
+##  [7] &quot;G1&quot;                &quot;GaúchaZH&quot;          &quot;Folha de S.Paulo&quot; 
+## [10] &quot;Jornal Correio&quot;</code></pre>
 <pre class="r"><code># extracting the time elapsed
 time_all &lt;- google %&gt;% html_nodes(&quot;div article div div time&quot;) %&gt;% html_text()
 
 time_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;hoje&quot;           &quot;hoje&quot;           &quot;hoje&quot;           &quot;4 horas atrás&quot; 
-##  [5] &quot;hoje&quot;           &quot;uma hora atrás&quot; &quot;uma hora atrás&quot; &quot;uma hora atrás&quot;
-##  [9] &quot;uma hora atrás&quot; &quot;uma hora atrás&quot;</code></pre>
+<pre><code>##  [1] &quot;3 horas atrás&quot; &quot;hoje&quot;          &quot;5 horas atrás&quot; &quot;hoje&quot;         
+##  [5] &quot;hoje&quot;          &quot;hoje&quot;          &quot;hoje&quot;          &quot;hoje&quot;         
+##  [9] &quot;ontem&quot;         &quot;hoje&quot;</code></pre>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 headline_all &lt;- google %&gt;% html_nodes(&quot;article&quot;) %&gt;% html_text(&quot;span&quot;) %&gt;%
@@ -504,18 +501,18 @@ headline_all &lt;- sapply(headline_all, function(x) x[1]) # extract only the fir
 
 
 headline_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;Depoimento de João de Deus tem teclado quebrado, gritos, fio queimado e agente ferido&quot; 
-##  [2] &quot;MP e polícia recebem mais de 500 denúncias e investigam se João de Deus lavou dinheiro&quot;
-##  [3] &quot;Defesa de João de Deus apresenta habeas corpus para revogar prisão preventiva&quot;         
-##  [4] &quot;Ministério Público de Goiás recebe mais de 500 denúncias contra João de Deus&quot;          
-##  [5] &quot;Advogada diz que foi abusada por médium na frente do pai&quot;                              
-##  [6] &quot;STF julgará em 10 de abril validade de prisão após condenação em segunda instância&quot;    
-##  [7] &quot;STF julgará em abril prisão após 2ª instância; impacto sobre Lula é incerto&quot;           
-##  [8] &quot;Julgamento sobre prisão em segunda instância vai ser em abril, avisa Toffoli&quot;          
-##  [9] &quot;STF julgará em 10 de abril de 2019 prisão de condenados em segunda instância&quot;          
-## [10] &quot;Toffoli marca para 10 de abril julgamento de ações sobre prisão em 2ª instância&quot;</code></pre>
+<pre><code>##  [1] &quot;Tsunami na Indonésia: morte de integrantes e fãs de banda que teve show devastado por tsunami comove país&quot;          
+##  [2] &quot;GALERIA:Veja as imagens da destruição causada pelo tsunami na Indonésia&quot;                                            
+##  [3] &quot;Quem é o pai do Anak Krakatoa, o vulcão do tsunami na Indonésia&quot;                                                    
+##  [4] &quot;Sobe o número de mortos por tsunami na Indonésia; vulcão ainda está em erupção&quot;                                     
+##  [5] &quot;A erupção de vulcão que causou tsunami na Indonésia explicada em imagens&quot;                                           
+##  [6] &quot;João de Deus acumula 27 imóveis em berço espiritual, no valor de R$ 20 milhões&quot;                                     
+##  [7] &quot;João de Deus relatou à polícia ter &#39;incontáveis&#39; carros, várias casas e lucrar R$ 60 mil com sete fazendas em Goiás&quot;
+##  [8] &quot;Farmácia no centro de atendimento de João de Deus é interditada&quot;                                                    
+##  [9] &quot;Vigilância Sanitária de Goiás interdita farmácia de João de Deus&quot;                                                   
+## [10] &quot;João de Deus diz que é empresário e que sua renda vem de fazendas em Goiás&quot;</code></pre>
 <p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “SP” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as “A” (a common article in Portuguese) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
-<p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news verification”“, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
+<p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news verification”&quot;, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
 <pre class="r"><code># finding the smallest vector
 min &lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
 
@@ -527,20 +524,20 @@ headline_all &lt;- headline_all[1:min]</code></pre>
 <pre class="r"><code>df_news &lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news</code></pre>
-<pre><code>## # A tibble: 118 x 3
-##    vehicle_all    time_all    headline_all                                
-##    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;                                       
-##  1 Folha de S.Pa… hoje        Depoimento de João de Deus tem teclado queb…
-##  2 G1             hoje        MP e polícia recebem mais de 500 denúncias …
-##  3 Estado de Min… hoje        Defesa de João de Deus apresenta habeas cor…
-##  4 Jovem Pan      4 horas at… Ministério Público de Goiás recebe mais de …
-##  5 Estadão        hoje        Advogada diz que foi abusada por médium na …
-##  6 G1             uma hora a… STF julgará em 10 de abril validade de pris…
-##  7 UOL            uma hora a… STF julgará em abril prisão após 2ª instânc…
-##  8 Estadão        uma hora a… Julgamento sobre prisão em segunda instânci…
-##  9 Revista Fórum  uma hora a… STF julgará em 10 de abril de 2019 prisão d…
-## 10 Folha de S.Pa… uma hora a… Toffoli marca para 10 de abril julgamento d…
-## # ... with 108 more rows</code></pre>
+<pre><code>## # A tibble: 97 x 3
+##    vehicle_all     time_all   headline_all                                
+##    &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;                                       
+##  1 G1              3 horas a… Tsunami na Indonésia: morte de integrantes …
+##  2 Rondoniaovivo   hoje       GALERIA:Veja as imagens da destruição causa…
+##  3 Superinteressa… 5 horas a… Quem é o pai do Anak Krakatoa, o vulcão do …
+##  4 G1              hoje       Sobe o número de mortos por tsunami na Indo…
+##  5 UOL             hoje       A erupção de vulcão que causou tsunami na I…
+##  6 Folha de S.Pau… hoje       João de Deus acumula 27 imóveis em berço es…
+##  7 G1              hoje       João de Deus relatou à polícia ter &#39;incontá…
+##  8 GaúchaZH        hoje       Farmácia no centro de atendimento de João d…
+##  9 Folha de S.Pau… ontem      Vigilância Sanitária de Goiás interdita far…
+## 10 Jornal Correio  hoje       João de Deus diz que é empresário e que sua…
+## # ... with 87 more rows</code></pre>
 
     </div>
 
