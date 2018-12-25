@@ -15,8 +15,8 @@
   
     
   
-  <meta name="description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+  <meta name="description" content="This is an example of how to scrape Google News with the awesome rvest package.
+This work is the result of a question that came up on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.">
 
   
@@ -108,8 +108,8 @@ A great deal of the basic ideas comes from his own code. I just kept it and adde
   <meta property="og:site_name" content="ALLAN V. C. QUADROS">
   <meta property="og:url" content="/post/web-scrap/2018-08-21-google_news_scraping/">
   <meta property="og:title" content="Scraping Google News with &#39;rvest&#39; | ALLAN V. C. QUADROS">
-  <meta property="og:description" content="This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+  <meta property="og:description" content="This is an example of how to scrape Google News with the awesome rvest package.
+This work is the result of a question that came up on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working."><meta property="og:image" content="/img/portrait.JPG">
   <meta property="og:locale" content="en-us">
   
@@ -457,13 +457,13 @@ A great deal of the basic ideas comes from his own code. I just kept it and adde
       
 
 
-<p>This is an example of how to scrape Google News website with the awesome <code>rvest</code> package.</p>
-<p>This work is the result of a question that appeared on the WhatsApp group of our site <a href="https://www.blackbeltR.com.br" target="_blank"><strong>blackbeltR</strong></a>. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
-<p>A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website <a href="https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419" target="_blank">HERE</a> which I reproduce below:</p>
+<p>This is an example of how to scrape Google News with the awesome <code>rvest</code> package.</p>
+<p>This work is the result of a question that came up on the WhatsApp group of our site <a href="https://www.blackbeltR.com.br" target="_blank"><strong>blackbeltR</strong></a>. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?</p>
+<p>A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website <a href="https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419" target="_blank">HERE</a>, which I reproduce below:</p>
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
 <p><img src="/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png" /></p>
 <hr />
-<p>You may notice, on the right side of the page, that we are using the Google Chrome <strong>dev-tools</strong>. We use this to identify the <em>html nodes</em> we need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
+<p>You may notice, on the right side of the page, that we are using Google Chrome <strong>dev-tools</strong>. We use this to identify the <em>html nodes</em> we need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
 <p>Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).</p>
 <p>The code and coments are presented below:</p>
 <pre class="r"><code># loading the packages:
@@ -474,45 +474,48 @@ library(stringr) # to deal with strings and to clean up our data</code></pre>
 google &lt;- read_html(&quot;https://news.google.com/?hl=pt-BR&amp;gl=BR&amp;ceid=BR:pt-419&quot;)</code></pre>
 <pre class="r"><code># extracting the com vehicles
 # we pass the nodes in html_nodes and extract the text from the last one 
-# we use stringr to delete strings that do not matter
-vehicle_all &lt;- google %&gt;% html_nodes(&quot;div div div main c-wiz div div div article div div div&quot;) %&gt;% html_text() %&gt;%
+# we use stringr to delete strings that are not important
+vehicle_all &lt;- google %&gt;% 
+  html_nodes(&quot;div div div main c-wiz div div div article div div div&quot;) %&gt;% 
+  html_text() %&gt;%
   str_subset(&quot;[^more_vert]&quot;) %&gt;%
   str_subset(&quot;[^share]&quot;) %&gt;%
   str_subset(&quot;[^bookmark_border]&quot;)
 
 vehicle_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;G1&quot;                &quot;Rondoniaovivo&quot;     &quot;Superinteressante&quot;
-##  [4] &quot;G1&quot;                &quot;UOL&quot;               &quot;Folha de S.Paulo&quot; 
-##  [7] &quot;G1&quot;                &quot;GaúchaZH&quot;          &quot;Folha de S.Paulo&quot; 
-## [10] &quot;Jornal Correio&quot;</code></pre>
+<pre><code>##  [1] &quot;EBC&quot;                       &quot;G1&quot;                       
+##  [3] &quot;UOL&quot;                       &quot;Brasil 247&quot;               
+##  [5] &quot;Estadão&quot;                   &quot;Jornal O Globo&quot;           
+##  [7] &quot;UOL&quot;                       &quot;Jornal Correio&quot;           
+##  [9] &quot;G1&quot;                        &quot;Diário do Centro do Mundo&quot;</code></pre>
 <pre class="r"><code># extracting the time elapsed
 time_all &lt;- google %&gt;% html_nodes(&quot;div article div div time&quot;) %&gt;% html_text()
 
 time_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;3 horas atrás&quot; &quot;hoje&quot;          &quot;5 horas atrás&quot; &quot;hoje&quot;         
-##  [5] &quot;hoje&quot;          &quot;hoje&quot;          &quot;hoje&quot;          &quot;hoje&quot;         
-##  [9] &quot;ontem&quot;         &quot;hoje&quot;</code></pre>
+<pre><code>##  [1] &quot;hoje&quot;           &quot;hoje&quot;           &quot;ontem&quot;          &quot;hoje&quot;          
+##  [5] &quot;uma hora atrás&quot; &quot;3 horas atrás&quot;  &quot;hoje&quot;           &quot;2 horas atrás&quot; 
+##  [9] &quot;5 horas atrás&quot;  &quot;2 horas atrás&quot;</code></pre>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 headline_all &lt;- google %&gt;% html_nodes(&quot;article&quot;) %&gt;% html_text(&quot;span&quot;) %&gt;%
-  str_split(&quot;(?&lt;=[a-z0-9áéó!?])(?=[A-Z])&quot;) # also considering portuguese special characters
+  str_split(&quot;(?&lt;=[a-z0-9áéóí&#39;!?])(?=[A-Z])&quot;) # also considering portuguese special characters
 
 headline_all &lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
 
 
 headline_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;Tsunami na Indonésia: morte de integrantes e fãs de banda que teve show devastado por tsunami comove país&quot;          
-##  [2] &quot;GALERIA:Veja as imagens da destruição causada pelo tsunami na Indonésia&quot;                                            
-##  [3] &quot;Quem é o pai do Anak Krakatoa, o vulcão do tsunami na Indonésia&quot;                                                    
-##  [4] &quot;Sobe o número de mortos por tsunami na Indonésia; vulcão ainda está em erupção&quot;                                     
-##  [5] &quot;A erupção de vulcão que causou tsunami na Indonésia explicada em imagens&quot;                                           
-##  [6] &quot;João de Deus acumula 27 imóveis em berço espiritual, no valor de R$ 20 milhões&quot;                                     
-##  [7] &quot;João de Deus relatou à polícia ter &#39;incontáveis&#39; carros, várias casas e lucrar R$ 60 mil com sete fazendas em Goiás&quot;
-##  [8] &quot;Farmácia no centro de atendimento de João de Deus é interditada&quot;                                                    
-##  [9] &quot;Vigilância Sanitária de Goiás interdita farmácia de João de Deus&quot;                                                   
-## [10] &quot;João de Deus diz que é empresário e que sua renda vem de fazendas em Goiás&quot;</code></pre>
+<pre><code>##  [1] &quot;Passa de 400 número de mortos em tsunami na Indonésia&quot;                   
+##  [2] &quot;Número de mortos no tsunami da Indonésia chega a 429&quot;                    
+##  [3] &quot;A erupção de vulcão que causou tsunami na Indonésia explicada em imagens&quot;
+##  [4] &quot;Indonésia usa drones e cães farejadores em buscas&quot;                       
+##  [5] &quot;Número de mortos em tsunami na Indonésia chega a 429, diz governo&quot;       
+##  [6] &quot;Temer confirma que desistiu de editar decreto de indulto de Natal&quot;       
+##  [7] &quot;Temer não assina indulto de Natal; medida não altera saída de presos&quot;    
+##  [8] &quot;Michel Temer não concederá indulto de Natal&quot;                             
+##  [9] &quot;Palácio do Planalto confirma que não haverá indulto de Natal neste ano&quot;  
+## [10] &quot;Michel Temer confirma que desistiu de editar decreto de indulto de Natal&quot;</code></pre>
 <p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “SP” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as “A” (a common article in Portuguese) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
-<p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news verification”&quot;, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
+<p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news checking”, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
 <pre class="r"><code># finding the smallest vector
 min &lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
 
@@ -524,20 +527,20 @@ headline_all &lt;- headline_all[1:min]</code></pre>
 <pre class="r"><code>df_news &lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news</code></pre>
-<pre><code>## # A tibble: 97 x 3
-##    vehicle_all     time_all   headline_all                                
-##    &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;                                       
-##  1 G1              3 horas a… Tsunami na Indonésia: morte de integrantes …
-##  2 Rondoniaovivo   hoje       GALERIA:Veja as imagens da destruição causa…
-##  3 Superinteressa… 5 horas a… Quem é o pai do Anak Krakatoa, o vulcão do …
-##  4 G1              hoje       Sobe o número de mortos por tsunami na Indo…
-##  5 UOL             hoje       A erupção de vulcão que causou tsunami na I…
-##  6 Folha de S.Pau… hoje       João de Deus acumula 27 imóveis em berço es…
-##  7 G1              hoje       João de Deus relatou à polícia ter &#39;incontá…
-##  8 GaúchaZH        hoje       Farmácia no centro de atendimento de João d…
-##  9 Folha de S.Pau… ontem      Vigilância Sanitária de Goiás interdita far…
-## 10 Jornal Correio  hoje       João de Deus diz que é empresário e que sua…
-## # ... with 87 more rows</code></pre>
+<pre><code>## # A tibble: 99 x 3
+##    vehicle_all        time_all    headline_all                            
+##    &lt;chr&gt;              &lt;chr&gt;       &lt;chr&gt;                                   
+##  1 EBC                hoje        Passa de 400 número de mortos em tsunam…
+##  2 G1                 hoje        Número de mortos no tsunami da Indonési…
+##  3 UOL                ontem       A erupção de vulcão que causou tsunami …
+##  4 Brasil 247         hoje        Indonésia usa drones e cães farejadores…
+##  5 Estadão            uma hora a… Número de mortos em tsunami na Indonési…
+##  6 Jornal O Globo     3 horas at… Temer confirma que desistiu de editar d…
+##  7 UOL                hoje        Temer não assina indulto de Natal; medi…
+##  8 Jornal Correio     2 horas at… Michel Temer não concederá indulto de N…
+##  9 G1                 5 horas at… Palácio do Planalto confirma que não ha…
+## 10 Diário do Centro … 2 horas at… Michel Temer confirma que desistiu de e…
+## # ... with 89 more rows</code></pre>
 
     </div>
 

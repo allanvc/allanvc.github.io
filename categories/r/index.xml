@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Tue, 21 Aug 2018 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 15 Dec 2018 21:13:14 -0500</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Announcing the &#39;emstreeR&#39; package</title>
+      <link>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</link>
+      <pubDate>Sat, 15 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</guid>
+      <description>Everyone who is addicted to R dreams about making his/her first package. An even bigger dream is to make your package available on CRAN - The Comprehensive R Archive Network.
+That being said, I am proud to announce that my first R package, emstreeR is available on CRAN since the beginning of December.
+emstreeR is package for fast and easily computing Euclidean Minimum Spanning Trees, using ‘mlpack’ - the C++ Machine Learning library, which is called on background.</description>
+    </item>
     
     <item>
       <title>Scraping Google News with &#39;rvest&#39;</title>
@@ -18,8 +29,8 @@
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/web-scrap/2018-08-21-google_news_scraping/</guid>
-      <description>This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+      <description>This is an example of how to scrape Google News with the awesome rvest package.
+This work is the result of a question that came up on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</description>
     </item>
     

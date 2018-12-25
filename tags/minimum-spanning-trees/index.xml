@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Minimum Spanning Trees on ALLAN V. C. QUADROS</title>
+    <link>/tags/minimum-spanning-trees/</link>
+    <description>Recent content in Minimum Spanning Trees on ALLAN V. C. QUADROS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
+    <lastBuildDate>Sat, 15 Dec 2018 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/minimum-spanning-trees/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Announcing the &#39;emstreeR&#39; package</title>
+      <link>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</link>
+      <pubDate>Sat, 15 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</guid>
+      <description>Everyone who is addicted to R dreams about making his/her first package. An even bigger dream is to make your package available on CRAN - The Comprehensive R Archive Network.
+That being said, I am proud to announce that my first R package, emstreeR is available on CRAN since the beginning of December.
+emstreeR is package for fast and easily computing Euclidean Minimum Spanning Trees, using ‘mlpack’ - the C++ Machine Learning library, which is called on background.</description>
+    </item>
+    
+  </channel>
+</rss>

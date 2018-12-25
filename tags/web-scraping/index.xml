@@ -18,8 +18,8 @@
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/web-scrap/2018-08-21-google_news_scraping/</guid>
-      <description>This is an example of how to scrape Google News website with the awesome rvest package.
-This work is the result of a question that appeared on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
+      <description>This is an example of how to scrape Google News with the awesome rvest package.
+This work is the result of a question that came up on the WhatsApp group of our site blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
 A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</description>
     </item>
     

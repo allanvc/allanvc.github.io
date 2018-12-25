@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</loc>
+      <lastmod>2018-12-15T21:13:14-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tutorial/dwr1/</loc>
       <lastmod>2018-09-09T00:00:00-03:00</lastmod>
     </url>
@@ -200,6 +208,15 @@
     
     <url>
     
+      <loc>/tags/minimum-spanning-trees/</loc>
+      <lastmod>2018-12-15T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/project/</loc>
       <lastmod>2016-12-01T00:00:00-02:00</lastmod>
       <priority>0</priority>
@@ -219,7 +236,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-08-21T21:13:14-05:00</lastmod>
+      <lastmod>2018-12-15T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -305,6 +322,15 @@
     
     <url>
     
+      <loc>/tags/emstreer/</loc>
+      <lastmod>2018-12-15T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/finance/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
       <priority>0</priority>
@@ -352,6 +378,15 @@
     
       <loc>/tags/ml/</loc>
       <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/mlpack/</loc>
+      <lastmod>2018-12-15T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
     
