@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.2.0">
+  <meta name="generator" content="Hugo 0.52" />
+  <meta name="author" content="Allan V. C. Quadros">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="I am proud to announce emstreeR - my first R package that is available on CRAN since December 6th 2018.
+&lsquo;emstreeR&rsquo; is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010) implemented in &lsquo;mlpack&rsquo; - the C&#43;&#43; Machine Learning library (Curtin, 2005). &lsquo;emstreeR&rsquo; allow R users to benefit from the EMST C&#43;&#43; function without having to deal with the R-Rcpp-C&#43;&#43; integration.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/new_package_emstreer/2018-12-10-new_package_emstreer.utf8/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atelier-cave-light.min.css" crossorigin="anonymous">
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+  <link rel="stylesheet" href="/css/blue.css">
+  
+
+  
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-131372002-1', 'auto');
+      
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="ALLAN V. C. QUADROS">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="ALLAN V. C. QUADROS">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/new_package_emstreer/2018-12-10-new_package_emstreer.utf8/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="ALLAN V. C. QUADROS">
+  <meta property="og:url" content="/post/new_package_emstreer/2018-12-10-new_package_emstreer.utf8/">
+  <meta property="og:title" content="Announcing the new &#39;emstreeR&#39; package | ALLAN V. C. QUADROS">
+  <meta property="og:description" content="I am proud to announce emstreeR - my first R package that is available on CRAN since December 6th 2018.
+&lsquo;emstreeR&rsquo; is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010) implemented in &lsquo;mlpack&rsquo; - the C&#43;&#43; Machine Learning library (Curtin, 2005). &lsquo;emstreeR&rsquo; allow R users to benefit from the EMST C&#43;&#43; function without having to deal with the R-Rcpp-C&#43;&#43; integration."><meta property="og:image" content="/img/portrait.JPG">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-12-10T21:13:14-05:00">
+  
+  <meta property="article:modified_time" content="2018-12-10T21:13:14-05:00">
+  
+
+  
+
+  
+
+  <title>Announcing the new &#39;emstreeR&#39; package | ALLAN V. C. QUADROS</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">ALLAN V. C. QUADROS</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#projects">
+            
+            <span>Projects</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#statsr">
+            
+            <span>Stats & R Misc.</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial/">
+            
+            <span>Courses</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">
+            
+            <span>Contact</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Announcing the new &#39;emstreeR&#39; package</h1>
+
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Allan V. C. Quadros">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2018-12-10 21:13:14 -0500 -0500" itemprop="datePublished">
+    <time datetime="2018-12-10 21:13:14 -0500 -0500" itemprop="dateModified">
+      Dec 10, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Allan V. C. Quadros">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    6 min read
+  </span>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/post/new_package_emstreer/2018-12-10-new_package_emstreer.utf8/#disqus_thread"></a>
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/r/">R</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Announcing%20the%20new%20%27emstreeR%27%20package&amp;url=%2fpost%2fnew_package_emstreer%2f2018-12-10-new_package_emstreer.utf8%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fnew_package_emstreer%2f2018-12-10-new_package_emstreer.utf8%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fnew_package_emstreer%2f2018-12-10-new_package_emstreer.utf8%2f&amp;title=Announcing%20the%20new%20%27emstreeR%27%20package"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fnew_package_emstreer%2f2018-12-10-new_package_emstreer.utf8%2f&amp;title=Announcing%20the%20new%20%27emstreeR%27%20package"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Announcing%20the%20new%20%27emstreeR%27%20package&amp;body=%2fpost%2fnew_package_emstreer%2f2018-12-10-new_package_emstreer.utf8%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p>I am proud to announce <strong>emstreeR</strong> - my first <strong>R</strong> package that is available on CRAN since  December 6th 2018.</p>
+
+<p>&lsquo;emstreeR&rsquo; is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010) implemented in &lsquo;mlpack&rsquo; - the C++ Machine Learning library (Curtin, 2005). &lsquo;emstreeR&rsquo; allow R users to benefit from the EMST C++ function without having to deal with the R-Rcpp-C++ integration. The package also provides functions and an S3 method for readily plotting the Minimum Spanning Trees (MST) using either &lsquo;base&rsquo;, &lsquo;scatterplot3d&rsquo; or &lsquo;ggplot2&rsquo; style.</p>
+
+<p>Working with &lsquo;emstreeR&rsquo; is easy because you just have to pass a matrix or data.frame of points as an argument to the main function <code>computeMST()</code> in order to get things working.</p>
+
+<p>But, before we begin, what exactly is a Minimum Spanning Tree?</p>
+
+<p>I will try to explain that without bringing any graph concept to the discussion.</p>
+
+<p>Imagine you have to connect a group of South American cities with pipelines in order to distribute the natural gas extracted from an offshore platform on the coast of Rio de Janeiro. To optimize your operations, you need to know the most efficient route, e.g. the route that connects all the cities within the minimum distance possible. That optimal route between the cities is a Minimum Spanning Tree. Therefore, the MST problem is, in its essence, an optimization problem.</p>
+
+<p>The distances between the points can be calculated using various methods, such as Manhattan, Euclidean, Minkowski, etc. &lsquo;emstreeR&rsquo; uses Euclidean distances. Hence, the name Euclidean Minimum Spanning Trees.</p>
+
+<p>So, let&rsquo;s try to reproduce the aforementioned example.</p>
+
+<p>First, we are going to use the package &lsquo;ggmap&rsquo;. We will pass the cities names as arguments and then get their latitude and longitude coordinates, using the Data Science Toolkit repository (<code>source = &quot;dsk&quot;</code>).</p>
+
+<pre><code class="language-r">library(ggmap)
+
+## cities:
+cities_location &lt;- data.frame(location = c(&quot;Passo Fundo, Brazil&quot;, 
+                                            &quot;Buenos Aires, Argentina&quot;,
+                                            &quot;Assuncion, Paraguay&quot;,
+                                            &quot;Campinas, Brazil&quot;,
+                                            &quot;Cubatao, Brazil&quot;,
+                                            &quot;Mendoza, Argentina&quot;,
+                                            &quot;Corrientes, Argentina&quot;,
+                                            &quot;Porto Velho, Brazil&quot;,
+                                            &quot;Manaus, Brazil&quot;,
+                                            &quot;Santa Cruz de La Sierra, Bolivia&quot;,
+                                            &quot;Belo Horizonte, Brazil&quot;,
+                                            &quot;Brasília, Brazil&quot;,
+                                            &quot;Rio de Janeiro, Brazil&quot;,
+                                            &quot;Campo Grande, Brazil&quot;,
+                                            &quot;Recife, Brazil&quot;
+                                            ), 
+                                stringsAsFactors = FALSE)
+    
+## get latitude and longitude
+geo_location &lt;- geocode(cities_location$location, source = &quot;dsk&quot;)
+    
+## combine data:
+df_location &lt;- cbind(cities_location, geo_location)
+</code></pre>
+
+<p>Let&rsquo;s plot the map, so we can have an initial notion about what we are dealing with.</p>
+
+<pre><code class="language-r"># coordinates for South America
+map_grid &lt;- c(left = -80, bottom = -40, right = -20, top = 0) 
+
+library(dplyr) # we wanna use pipes
+
+get_stamenmap(map_grid, zoom = 5) %&gt;% ggmap()+
+  geom_point(data = df_location,
+           aes(x = lon, y = lat), size=2)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+
+<p>Now is when <strong>emstreeR</strong> comes in handy. We pass the point columns as the argument to <code>computeMST()</code> and it calculates the minimum route connecting all the points, e.g. the Euclidean minimum spanning tree.</p>
+
+<pre><code class="language-r">## MST:
+library(emstreeR)
+out &lt;- ComputeMST(df_location[,2:3])
+</code></pre>
+
+<pre><code>## 9 edges found so far.
+## 210 cumulative base cases.
+## 0 cumulative node combinations scored.
+## 12 edges found so far.
+## 394 cumulative base cases.
+## 0 cumulative node combinations scored.
+## 14 edges found so far.
+## 542 cumulative base cases.
+## 0 cumulative node combinations scored.
+## Total spanning tree length: 10.012
+</code></pre>
+
+<pre><code class="language-r">out
+</code></pre>
+
+<pre><code>##          lon       lat from to  distance
+## 1  -52.40667 -28.26278    4  5 0.1275521
+## 2  -60.00000 -36.00000    3  7 0.2702386
+## 3  -57.63591 -25.30066   11 13 0.3350650
+## 4  -47.06083 -22.90556    5 13 0.3591768
+## 5  -46.42528 -23.89500    3 14 0.6189752
+## 6  -68.82717 -32.89084   11 12 0.6207409
+## 7  -58.83410 -27.48060    1  3 0.6437908
+## 8  -63.90389  -8.76194    8  9 0.7437005
+## 9  -60.02500  -3.10194    1  5 0.7956373
+## 10 -63.18117 -17.78629    2  7 0.9394038
+## 11 -43.93778 -19.92083   10 14 0.9534939
+## 12 -47.92972 -15.77972    8 10 0.9893601
+## 13 -43.20750 -22.90278    2  6 0.9989068
+## 14 -54.64639 -20.44278   11 15 1.6159137
+## 15 -34.88111  -8.05389    1  1 0.0000000
+</code></pre>
+
+<p>As a result, we have a data.frame containing our original data and three more columns: from, to, and distance. This information is the Minimum Spanning Tree and will be used for plotting.</p>
+
+<p>You can silence the output of the algorithm by setting <code>verbose=FALSE</code> in <code>computeMST()</code>.</p>
+
+<p>To better visualize the result, we plot the map again, but now using the ggplot2&rsquo;s extension provided in &lsquo;emstreeR&rsquo;: <code>stat_MST()</code>.</p>
+
+<pre><code class="language-r">## Plot:
+# we use the same grid map    
+get_stamenmap(map_grid, zoom = 5) %&gt;% ggmap()+
+  stat_MST(data = out,
+           aes(x = lon, y = lat, from=from, to=to), 
+           colour=&quot;red&quot;, linetype = 2)+
+  geom_point(data = out, aes(x = lon, y = lat), size=3)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
+
+<p>Once you have the information about the minimum route, it is easy to see that you will have to install gas distribution hubs in cities that will have more than two leaving or arriving links, such as Assuncion in Paraguay. Based on that information or other criteria such as connectivity or even by cutting the largest edge, you can also define or separate regions of operations. What I mean by this is that you can also use Minimum Spanning Trees in clustering problems. Nonetheless, let&rsquo;s save that topic for another post.</p>
+
+<p>Below, I will present other things you can do with &lsquo;emstreeR&rsquo;.</p>
+
+<p>&lsquo;emstreeR&rsquo; provides an S3 method for the &lsquo;base&rsquo; function <code>plot()</code>. It is easy to make simple 2D plots with that.</p>
+
+<pre><code class="language-r">## artifical data for 2D plots:
+set.seed(1984)
+n &lt;- 15
+c1 &lt;- data.frame(x = rnorm(n,-0.2, sd=0.2), y = rnorm(n,-2,sd=0.2))
+c2 &lt;- data.frame(x = rnorm(n,-1.1, sd=0.15), y = rnorm(n,-2,sd=0.3)) 
+d &lt;- rbind(c1, c2)
+d &lt;- as.data.frame(d)
+  
+## MST:
+#library(emstreeR)
+out &lt;- ComputeMST(d, verbose = FALSE)  
+</code></pre>
+
+<pre><code class="language-r">## simple 2D plot:
+plot(out, col.pts = &quot;red&quot;, col.segts = &quot;blue&quot;)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+
+<p>The <code>stat_MST()</code> extension also makes it easy plotting 2D plots, but in ggplot2 style:</p>
+
+<pre><code class="language-r">## 2D plot with ggplot2:
+library(ggplot2)
+ggplot(data = out, aes(x = x, y = y, from = from, to = to))+ 
+  geom_point()+ 
+  stat_MST(colour=&quot;red&quot;)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+
+<p>If you want something fancier, you can use the <code>geom=curve</code> argument:</p>
+
+<pre><code class="language-r">## 2D plot with ggplot2:
+#library(ggplot2)
+ggplot(data = out, aes(x = x, y = y, from=from, to=to))+ 
+  geom_point()+ 
+  stat_MST(geom=&quot;curve&quot;)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+
+<p>You can also make 3D MST plots with &lsquo;emstreeR&rsquo;. It provides a wrapper for plotting 3D scatter plots, using the &lsquo;scatterplot3d&rsquo; package.</p>
+
+<p>Let&rsquo;s create 3D artificial data and compute the MST.</p>
+
+<pre><code class="language-r">## artificial data for 3D plots:
+n = 99
+set.seed(1984)
+d1&lt;-matrix(rnorm(n,mean=-2,sd=.5), n/3, 3) # 3d
+d2&lt;-matrix(rnorm(n,mean=0,sd=.3), n/3, 3)
+d3&lt;-matrix(rnorm(n,mean=3,sd=.4), n/3, 3)
+d&lt;-rbind(d1,d2,d3) # just to show a matrix input
+  
+## MST:
+library(emstreeR)
+out &lt;- ComputeMST(d, verbose = FALSE)
+</code></pre>
+
+<p>We can do a simple 3D plot using the function <code>plotMST3D()</code>.</p>
+
+<pre><code class="language-r">## simple 3D plot:
+plotMST3D(out, xlab = &quot;xaxis&quot;, main=&quot;Just a MST 3D plot&quot;)
+</code></pre>
+
+<p><img src="2018-12-10-new_package_emstreeR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+
+<p>But, again, if you like fancier plots, we can also make an interactive 3D MST plot using &lsquo;plotly&rsquo;:</p>
+
+<pre><code class="language-r"># some adjusts needed
+ord_id &lt;- Reduce(rbind, rbind(t(out[, c(&quot;from&quot;, &quot;to&quot;)]), NA))
+
+ord_data &lt;- out[ord_id, c(&quot;X1&quot;, &quot;X2&quot;, &quot;X3&quot;)]
+ord_data &lt;- as.data.frame(ord_data)
+
+
+library(dplyr) # we wanna use pipes
+library(plotly)
+
+plot_ly(showlegend = T) %&gt;%
+  add_markers(data=ord_data, x = ~X1, y = ~X2, z = ~X3, 
+              marker=list(opacity=0.5), size = I(3.5), name=&quot;points&quot;) %&gt;%
+  add_paths(data=ord_data, x = ~X1, y = ~X2, z = ~X3, 
+            color = I(&quot;red&quot;), name=&quot;edges&quot;)
+</code></pre>
+
+<p>preserve6ddc6af879ef074c</p>
+
+<p>And that&rsquo;s it! I hope you enjoy <strong>emstreeR</strong>.</p>
+
+<ul>
+<li>CRAN version: <a href="https://cran.r-project.org/package=emstreeR" target="_blank">https://cran.r-project.org/package=emstreeR</a></li>
+<li>Dev version: <a href="https://github.com/allanvc/emstreeR" target="_blank">https://github.com/allanvc/emstreeR</a></li>
+</ul>
+
+<hr />
+
+<h3 id="references">References</h3>
+
+<p>Curtin, R. R. et al. (2005). Mlpack: A scalable C++ machine learning
+library. \emph{Journal of Machine Learning Research}, v. 14, 2013
+(<a href="https://doi:10.1145/1835804.1835882" target="_blank">https://doi:10.1145/1835804.1835882</a>).</p>
+
+<p>March, W. B., and Ram, P., and Gray, A. G. (2010). \emph{Fast euclidian minimum
+spanning tree: algorithm analysis, and applications}. 16th ACM SIGKDD
+International Conference on Knowledge Discovery and Data mining, July
+25-28 2010. Washington, DC, USA (<a href="https://doi:10.21105/joss.00726" target="_blank">https://doi:10.21105/joss.00726</a>).</p>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/emstreer/">emstreeR</a>
+  
+  <a class="badge badge-light" href="/tags/minimum-spanning-trees/">Minimum Spanning Trees</a>
+  
+  <a class="badge badge-light" href="/tags/mlpack/">mlpack</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/portrait.JPG" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Allan V. C. Quadros</a></h5>
+    <h6 class="card-subtitle">Statistician</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      <li>
+        <a itemprop="sameAs" href="mailto:allanvcq@gmail.com" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/allanvc" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://stackoverflow.com/users/8287109/allanvc" target="_blank" rel="noopener">
+          <i class="fab fa-stack-overflow"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://www.linkedin.com/in/allan-vieira/" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/files/allanvcq_CV6.pdf" >
+          <i class="ai ai-cv"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+    <div class="article-widget">
+      <div class="hr-light"></div>
+      <h3>Related</h3>
+      <ul>
+        
+        <li><a href="/post/new_package_emstreer/2018-12-10-new_package_emstreer.knit/">Announcing the new &#39;emstreeR&#39; package</a></li>
+        
+      </ul>
+    </div>
+    
+
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "allanvc" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    &copy; 2018 Allan V. C. Quadros &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//allanvc.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academic.min.d037ee5294b166a79dec317c58aea9cc.js"></script>
+
+    
+
+  </body>
+</html>
+
