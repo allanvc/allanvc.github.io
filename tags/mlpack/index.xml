@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Sat, 15 Dec 2018 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 21:13:14 -0500</lastBuildDate>
     
 	<atom:link href="/tags/mlpack/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,11 +15,11 @@
     <item>
       <title>Announcing the new &#39;emstreeR&#39; package</title>
       <link>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</link>
-      <pubDate>Sat, 15 Dec 2018 21:13:14 -0500</pubDate>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</guid>
       <description>I am proud to announce emstreeR - my first R package that is available on CRAN since the beginning of December 2018.
-‘emstreeR’ is a package for fast and easily computing Euclidean Minimum Spanning Trees. It uses ‘mlpack’ - the C++ Machine Learning library, which is called on background. ‘emstreeR’ works as a wrapper, so that R users can benefit from the C++ function for computing an Euclidean Minimum Spanning Tree without actually touching the C++ code.</description>
+‘emstreeR’ is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm available in ‘mlpack’ - the C++ Machine Learning library. ‘emstreeR’ allow R users to benefit from the EMST C++ function without having to deal with the R/Rcpp/C++ integration.</description>
     </item>
     
   </channel>
