@@ -19,7 +19,7 @@
       
       <guid>/post/new_package_emstreer/2018-12-10-new_package_emstreer/</guid>
       <description>I am proud to announce emstreeR - my first R package that is available on CRAN since December 3rd, 2018.
-‘emstreeR’ is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010) implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin, 2005).</description>
+emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010) implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin, 2005).</description>
     </item>
     
     <item>
