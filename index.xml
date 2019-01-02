@@ -259,28 +259,29 @@ International Conference on Knowledge Discovery and Data mining, July
     
     <item>
       <title>Scraping Google News with &#39;rvest&#39;</title>
-      <link>/post/web-scrap/2018-08-21-google_news_scraping/</link>
+      <link>/post/googlenews_web-scraping/2018-08-21-google_news_scraping/</link>
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
-      <guid>/post/web-scrap/2018-08-21-google_news_scraping/</guid>
+      <guid>/post/googlenews_web-scraping/2018-08-21-google_news_scraping/</guid>
       <description>
 
 
 &lt;p&gt;This is an example of how to scrape Google News with the awesome &lt;code&gt;rvest&lt;/code&gt; package.&lt;/p&gt;
-&lt;p&gt;This work is the result of a question that came up on the WhatsApp group of our site &lt;a href=&#34;https://www.blackbeltR.com.br&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;blackbeltR&lt;/strong&gt;&lt;/a&gt;. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
-&lt;p&gt;A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working. First off, you should take a look at the Google News (or Google Notícias) website &lt;a href=&#34;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt;, which I reproduce below:&lt;/p&gt;
+&lt;p&gt;This work is a solution for a question that appeared in our WhatsApp group, &lt;a href=&#34;https://www.blackbeltR.com.br&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;blackbeltR&lt;/strong&gt;&lt;/a&gt;. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
+&lt;p&gt;A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.&lt;/p&gt;
+&lt;p&gt;First off, you should take a look at the Google News website &lt;a href=&#34;https://news.google.com/&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt;, which I reproduce below:&lt;/p&gt;
 &lt;!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) --&gt;
-&lt;p&gt;&lt;img src=&#34;/post/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/googlenews_web-scraping/2018-08-21-google_news_scraping_files/google_news_screenshot.png&#34; /&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p&gt;You may notice, on the right side of the page, that we are using Google Chrome &lt;strong&gt;dev-tools&lt;/strong&gt;. We use this to identify the &lt;em&gt;html nodes&lt;/em&gt; we need. You can access this tool by hitting the &lt;strong&gt;F12&lt;/strong&gt; key. The html nodes are passed as arguments to the &lt;code&gt;rvest&lt;/code&gt; functions.&lt;/p&gt;
 &lt;p&gt;Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).&lt;/p&gt;
 &lt;p&gt;The code and coments are presented below:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# loading the packages:
-library(dplyr) # we want the pipes
+library(dplyr) # for pipes and the data_frame function
 library(rvest) # webscraping
 library(stringr) # to deal with strings and to clean up our data&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the whole website
-google &amp;lt;- read_html(&amp;quot;https://news.google.com/?hl=pt-BR&amp;amp;gl=BR&amp;amp;ceid=BR:pt-419&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+google &amp;lt;- read_html(&amp;quot;https://news.google.com/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the com vehicles
 # we pass the nodes in html_nodes and extract the text from the last one 
 # we use stringr to delete strings that are not important
@@ -292,39 +293,39 @@ vehicle_all &amp;lt;- google %&amp;gt;%
   str_subset(&amp;quot;[^bookmark_border]&amp;quot;)
 
 vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;EBC&amp;quot;                       &amp;quot;G1&amp;quot;                       
-##  [3] &amp;quot;UOL&amp;quot;                       &amp;quot;Brasil 247&amp;quot;               
-##  [5] &amp;quot;Estadão&amp;quot;                   &amp;quot;Jornal O Globo&amp;quot;           
-##  [7] &amp;quot;UOL&amp;quot;                       &amp;quot;Jornal Correio&amp;quot;           
-##  [9] &amp;quot;G1&amp;quot;                        &amp;quot;Diário do Centro do Mundo&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;CNN&amp;quot;                 &amp;quot;Daily Mail&amp;quot;          &amp;quot;Fox News&amp;quot;           
+##  [4] &amp;quot;National Review&amp;quot;     &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
+##  [7] &amp;quot;The Washington Post&amp;quot; &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
+## [10] &amp;quot;Fox News&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
 time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
 
 time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;hoje&amp;quot;           &amp;quot;hoje&amp;quot;           &amp;quot;ontem&amp;quot;          &amp;quot;hoje&amp;quot;          
-##  [5] &amp;quot;uma hora atrás&amp;quot; &amp;quot;3 horas atrás&amp;quot;  &amp;quot;hoje&amp;quot;           &amp;quot;2 horas atrás&amp;quot; 
-##  [9] &amp;quot;5 horas atrás&amp;quot;  &amp;quot;2 horas atrás&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;3 hours ago&amp;quot;    &amp;quot;3 hours ago&amp;quot;    &amp;quot;today&amp;quot;          &amp;quot;3 hours ago&amp;quot;   
+##  [5] &amp;quot;one hour ago&amp;quot;   &amp;quot;one hour ago&amp;quot;   &amp;quot;one hour ago&amp;quot;   &amp;quot;one hour ago&amp;quot;  
+##  [9] &amp;quot;34 minutes ago&amp;quot; &amp;quot;3 hours ago&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
 # and using stringr for cleaning
 headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
-  str_split(&amp;quot;(?&amp;lt;=[a-z0-9áéóí&amp;#39;!?])(?=[A-Z])&amp;quot;) # also considering portuguese special characters
+  str_split(&amp;quot;(?&amp;lt;=[a-z0-9&amp;#39;!?\\.])(?=[A-Z])&amp;quot;)
 
 headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
 
 
 headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Passa de 400 número de mortos em tsunami na Indonésia&amp;quot;                   
-##  [2] &amp;quot;Número de mortos no tsunami da Indonésia chega a 429&amp;quot;                    
-##  [3] &amp;quot;A erupção de vulcão que causou tsunami na Indonésia explicada em imagens&amp;quot;
-##  [4] &amp;quot;Indonésia usa drones e cães farejadores em buscas&amp;quot;                       
-##  [5] &amp;quot;Número de mortos em tsunami na Indonésia chega a 429, diz governo&amp;quot;       
-##  [6] &amp;quot;Temer confirma que desistiu de editar decreto de indulto de Natal&amp;quot;       
-##  [7] &amp;quot;Temer não assina indulto de Natal; medida não altera saída de presos&amp;quot;    
-##  [8] &amp;quot;Michel Temer não concederá indulto de Natal&amp;quot;                             
-##  [9] &amp;quot;Palácio do Planalto confirma que não haverá indulto de Natal neste ano&amp;quot;  
-## [10] &amp;quot;Michel Temer confirma que desistiu de editar decreto de indulto de Natal&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “SP” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as “A” (a common article in Portuguese) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
-&lt;p&gt;Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fake news checking”, which is a section on the right side of the page (in the Brazilian version). As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Trump fires back at Mitt Romney for scathing op-ed&amp;quot;                                                             
+##  [2] &amp;quot;Mitt is back: Romney cruises to easy senate win in Utah&amp;quot;                                                        
+##  [3] &amp;quot;Mitt Romney rebuked by niece and GOP boss Ronna Mc&amp;quot;                                                             
+##  [4] &amp;quot;Mitt Romney’s Counterproductive Op-Ed&amp;quot;                                                                          
+##  [5] &amp;quot;Let’s hope Mitt Romney can give the GOP some backbone&amp;quot;                                                          
+##  [6] &amp;quot;Shutdown Day 12: Lawmakers to hear wall plea at White House&amp;quot;                                                    
+##  [7] &amp;quot;Trump falsely claims Mexico is paying for wall, demands taxpayer money for wall ahead of meeting with Democrats&amp;quot;
+##  [8] &amp;quot;Trump to Meet Congressional Leaders as Shutdown Stretches On&amp;quot;                                                   
+##  [9] &amp;quot;Doug Schoen: Democrats have Trump backed into a corner as 2019 kicks off&amp;quot;                                       
+## [10] &amp;quot;Trump’s Shutdown Is Not About Border Security&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “NSA” (a Brazilian state) collapsed with other phrase initiating with another uppercase letter such as the word “A” (“…with NSAA agent said…”) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
+&lt;p&gt;The expression &lt;code&gt;?&amp;lt;=&lt;/code&gt; is called “lookbehind”, while &lt;code&gt;?=&lt;/code&gt; is called “lookahead”. Those “lookaround” expressions allow us to look for patterns followed or preceded by something. In our case, the idea is basically to separate a string at the point in which lowercase letters, numbers, exclamation points or question marks (&lt;code&gt;[a-z0-9!?]&lt;/code&gt;) are collapsed with uppercase letters (&lt;code&gt;[A-Z]&lt;/code&gt;), e.g. where lowercase letters, numbers and others are preceded (&lt;code&gt;?&amp;lt;=&lt;/code&gt;) by uppercase letters.&lt;/p&gt;
+&lt;p&gt;Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fact checking”, which is a section on the right side of the page. As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# finding the smallest vector
 min &amp;lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
 
@@ -336,20 +337,20 @@ headline_all &amp;lt;- headline_all[1:min]&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_news &amp;lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## # A tibble: 99 x 3
-##    vehicle_all        time_all    headline_all                            
-##    &amp;lt;chr&amp;gt;              &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                                   
-##  1 EBC                hoje        Passa de 400 número de mortos em tsunam…
-##  2 G1                 hoje        Número de mortos no tsunami da Indonési…
-##  3 UOL                ontem       A erupção de vulcão que causou tsunami …
-##  4 Brasil 247         hoje        Indonésia usa drones e cães farejadores…
-##  5 Estadão            uma hora a… Número de mortos em tsunami na Indonési…
-##  6 Jornal O Globo     3 horas at… Temer confirma que desistiu de editar d…
-##  7 UOL                hoje        Temer não assina indulto de Natal; medi…
-##  8 Jornal Correio     2 horas at… Michel Temer não concederá indulto de N…
-##  9 G1                 5 horas at… Palácio do Planalto confirma que não ha…
-## 10 Diário do Centro … 2 horas at… Michel Temer confirma que desistiu de e…
-## # ... with 89 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 166 x 3
+##    vehicle_all      time_all    headline_all                              
+##    &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;                                     
+##  1 CNN              3 hours ago Trump fires back at Mitt Romney for scath…
+##  2 Daily Mail       3 hours ago Mitt is back: Romney cruises to easy sena…
+##  3 Fox News         today       Mitt Romney rebuked by niece and GOP boss…
+##  4 National Review  3 hours ago Mitt Romney’s Counterproductive Op-Ed     
+##  5 Opinion          one hour a… Let’s hope Mitt Romney can give the GOP s…
+##  6 Opinion          one hour a… Shutdown Day 12: Lawmakers to hear wall p…
+##  7 The Washington … one hour a… Trump falsely claims Mexico is paying for…
+##  8 Opinion          one hour a… Trump to Meet Congressional Leaders as Sh…
+##  9 Opinion          34 minutes… Doug Schoen: Democrats have Trump backed …
+## 10 Fox News         3 hours ago Trump’s Shutdown Is Not About Border Secu…
+## # ... with 156 more rows&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
