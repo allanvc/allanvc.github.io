@@ -296,18 +296,19 @@ vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;CNN&amp;quot;                 &amp;quot;Fox News&amp;quot;            &amp;quot;The Washington Post&amp;quot;
 ##  [4] &amp;quot;The New York Times&amp;quot;  &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
 ##  [7] &amp;quot;Fox News&amp;quot;            &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
-## [10] &amp;quot;Fox News&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+## [10] &amp;quot;POLITICO&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
 time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
 
 time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;2 hours ago&amp;quot;  &amp;quot;4 hours ago&amp;quot;  &amp;quot;2 hours ago&amp;quot;  &amp;quot;today&amp;quot;       
-##  [5] &amp;quot;today&amp;quot;        &amp;quot;2 hours ago&amp;quot;  &amp;quot;4 hours ago&amp;quot;  &amp;quot;2 hours ago&amp;quot; 
+##  [5] &amp;quot;today&amp;quot;        &amp;quot;3 hours ago&amp;quot;  &amp;quot;2 hours ago&amp;quot;  &amp;quot;4 hours ago&amp;quot; 
 ##  [9] &amp;quot;today&amp;quot;        &amp;quot;one hour ago&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
 # and using stringr for cleaning
 headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
   str_split(&amp;quot;(?&amp;lt;=[a-z0-9!?\\.])(?=[A-Z])&amp;quot;)
+  # str_split(&amp;quot;(?&amp;lt;=[a-z0-9áéíóú!?\\.])(?=[A-Z])&amp;quot;) # for Google News in Portuguese
 
 headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
 
@@ -318,9 +319,9 @@ headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
 ##  [3] &amp;quot;Trump falsely claims Mexico is paying for wall, demands taxpayer money for wall in meeting with Democrats&amp;quot;
 ##  [4] &amp;quot;Trump’s Shutdown Is Not About Border Security&amp;quot;                                                            
 ##  [5] &amp;quot;Doug Schoen: Democrats have Trump backed into a corner as 2019 kicks off&amp;quot;                                 
-##  [6] &amp;quot;Romney, answering critics, says country &amp;#39;is as divided as ever&amp;#39; since Trump presidency&amp;quot;                   
-##  [7] &amp;quot;Trump fires back at Mitt Romney for scathing op-ed&amp;quot;                                                       
-##  [8] &amp;quot;Mitt Romney details what bothers him about Trumpvideo_youtube&amp;quot;                                            
+##  [6] &amp;quot;Romney says he won&amp;#39;t run against Trump in 2020&amp;quot;                                                           
+##  [7] &amp;quot;Mitt Romney details what bothers him about Trumpvideo_youtube&amp;quot;                                            
+##  [8] &amp;quot;Trump fires back at Mitt Romney for scathing op-ed&amp;quot;                                                       
 ##  [9] &amp;quot;Mitt Romney’s Counterproductive Op-Ed&amp;quot;                                                                    
 ## [10] &amp;quot;Mitt Romney vs. Donald Trump: If Utah’s New Senator Is Serious, He Should Be Running for President&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “NSA” (The National Security Agency) collapsed with other phrase initiating with another uppercase letter such as the article “A” (“…with NSAA agent said…”) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
@@ -345,11 +346,11 @@ df_news&lt;/code&gt;&lt;/pre&gt;
 ##  3 The Washington … 2 hours a… Trump falsely claims Mexico is paying for …
 ##  4 The New York Ti… today      Trump’s Shutdown Is Not About Border Secur…
 ##  5 Opinion          today      Doug Schoen: Democrats have Trump backed i…
-##  6 Opinion          2 hours a… Romney, answering critics, says country &amp;#39;i…
-##  7 Fox News         4 hours a… Trump fires back at Mitt Romney for scathi…
-##  8 Opinion          2 hours a… Mitt Romney details what bothers him about…
+##  6 Opinion          3 hours a… Romney says he won&amp;#39;t run against Trump in …
+##  7 Fox News         2 hours a… Mitt Romney details what bothers him about…
+##  8 Opinion          4 hours a… Trump fires back at Mitt Romney for scathi…
 ##  9 Opinion          today      Mitt Romney’s Counterproductive Op-Ed      
-## 10 Fox News         one hour … Mitt Romney vs. Donald Trump: If Utah’s Ne…
+## 10 POLITICO         one hour … Mitt Romney vs. Donald Trump: If Utah’s Ne…
 ## # ... with 156 more rows&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>

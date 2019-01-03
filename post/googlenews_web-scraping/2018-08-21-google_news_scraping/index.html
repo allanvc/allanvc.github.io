@@ -504,18 +504,19 @@ vehicle_all[1:10] # take a look at the first ten</code></pre>
 <pre><code>##  [1] &quot;CNN&quot;                 &quot;Fox News&quot;            &quot;The Washington Post&quot;
 ##  [4] &quot;The New York Times&quot;  &quot;Opinion&quot;             &quot;Opinion&quot;            
 ##  [7] &quot;Fox News&quot;            &quot;Opinion&quot;             &quot;Opinion&quot;            
-## [10] &quot;Fox News&quot;</code></pre>
+## [10] &quot;POLITICO&quot;</code></pre>
 <pre class="r"><code># extracting the time elapsed
 time_all &lt;- google %&gt;% html_nodes(&quot;div article div div time&quot;) %&gt;% html_text()
 
 time_all[1:10] # take a look at the first ten</code></pre>
 <pre><code>##  [1] &quot;2 hours ago&quot;  &quot;4 hours ago&quot;  &quot;2 hours ago&quot;  &quot;today&quot;       
-##  [5] &quot;today&quot;        &quot;2 hours ago&quot;  &quot;4 hours ago&quot;  &quot;2 hours ago&quot; 
+##  [5] &quot;today&quot;        &quot;3 hours ago&quot;  &quot;2 hours ago&quot;  &quot;4 hours ago&quot; 
 ##  [9] &quot;today&quot;        &quot;one hour ago&quot;</code></pre>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 headline_all &lt;- google %&gt;% html_nodes(&quot;article&quot;) %&gt;% html_text(&quot;span&quot;) %&gt;%
   str_split(&quot;(?&lt;=[a-z0-9!?\\.])(?=[A-Z])&quot;)
+  # str_split(&quot;(?&lt;=[a-z0-9áéíóú!?\\.])(?=[A-Z])&quot;) # for Google News in Portuguese
 
 headline_all &lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
 
@@ -526,9 +527,9 @@ headline_all[1:10] # take a look at the first ten</code></pre>
 ##  [3] &quot;Trump falsely claims Mexico is paying for wall, demands taxpayer money for wall in meeting with Democrats&quot;
 ##  [4] &quot;Trump’s Shutdown Is Not About Border Security&quot;                                                            
 ##  [5] &quot;Doug Schoen: Democrats have Trump backed into a corner as 2019 kicks off&quot;                                 
-##  [6] &quot;Romney, answering critics, says country &#39;is as divided as ever&#39; since Trump presidency&quot;                   
-##  [7] &quot;Trump fires back at Mitt Romney for scathing op-ed&quot;                                                       
-##  [8] &quot;Mitt Romney details what bothers him about Trumpvideo_youtube&quot;                                            
+##  [6] &quot;Romney says he won&#39;t run against Trump in 2020&quot;                                                           
+##  [7] &quot;Mitt Romney details what bothers him about Trumpvideo_youtube&quot;                                            
+##  [8] &quot;Trump fires back at Mitt Romney for scathing op-ed&quot;                                                       
 ##  [9] &quot;Mitt Romney’s Counterproductive Op-Ed&quot;                                                                    
 ## [10] &quot;Mitt Romney vs. Donald Trump: If Utah’s New Senator Is Serious, He Should Be Running for President&quot;</code></pre>
 <p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “NSA” (The National Security Agency) collapsed with other phrase initiating with another uppercase letter such as the article “A” (“…with NSAA agent said…”) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
@@ -553,11 +554,11 @@ df_news</code></pre>
 ##  3 The Washington … 2 hours a… Trump falsely claims Mexico is paying for …
 ##  4 The New York Ti… today      Trump’s Shutdown Is Not About Border Secur…
 ##  5 Opinion          today      Doug Schoen: Democrats have Trump backed i…
-##  6 Opinion          2 hours a… Romney, answering critics, says country &#39;i…
-##  7 Fox News         4 hours a… Trump fires back at Mitt Romney for scathi…
-##  8 Opinion          2 hours a… Mitt Romney details what bothers him about…
+##  6 Opinion          3 hours a… Romney says he won&#39;t run against Trump in …
+##  7 Fox News         2 hours a… Mitt Romney details what bothers him about…
+##  8 Opinion          4 hours a… Trump fires back at Mitt Romney for scathi…
 ##  9 Opinion          today      Mitt Romney’s Counterproductive Op-Ed      
-## 10 Fox News         one hour … Mitt Romney vs. Donald Trump: If Utah’s Ne…
+## 10 POLITICO         one hour … Mitt Romney vs. Donald Trump: If Utah’s Ne…
 ## # ... with 156 more rows</code></pre>
 
     </div>
