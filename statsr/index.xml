@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 01 Jul 2018 00:00:00 -0300</lastBuildDate>
     
         <atom:link href="/statsr/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Categorical Data Analysis</title>
       <link>/statsr/external-cat_data/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-cat_data/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>Clustering Algorithm</title>
       <link>/statsr/external-slide_tcc2/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-slide_tcc2/</guid>
       <description></description>
@@ -33,7 +33,7 @@
     <item>
       <title>Item Response Theory</title>
       <link>/statsr/external-irt/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-irt/</guid>
       <description></description>
@@ -42,7 +42,7 @@
     <item>
       <title>Operations Research</title>
       <link>/statsr/external-slide_or/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-slide_or/</guid>
       <description></description>
@@ -51,7 +51,7 @@
     <item>
       <title>Stochastic Processes</title>
       <link>/statsr/external-slide_stochastic_pro/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-slide_stochastic_pro/</guid>
       <description></description>
@@ -60,7 +60,7 @@
     <item>
       <title>Time Series Analysis</title>
       <link>/statsr/external-time/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/statsr/external-time/</guid>
       <description></description>

@@ -258,6 +258,15 @@ International Conference on Knowledge Discovery and Data mining, July
     </item>
     
     <item>
+      <title>emstreeR</title>
+      <link>/project/external-emstreer/</link>
+      <pubDate>Thu, 30 Aug 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/project/external-emstreer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Scraping Google News with &#39;rvest&#39;</title>
       <link>/post/googlenews_web-scraping/2018-08-21-google_news_scraping/</link>
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
@@ -356,6 +365,60 @@ df_news&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
+      <title>Categorical Data Analysis</title>
+      <link>/statsr/external-cat_data/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-cat_data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clustering Algorithm</title>
+      <link>/statsr/external-slide_tcc2/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_tcc2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Item Response Theory</title>
+      <link>/statsr/external-irt/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-irt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operations Research</title>
+      <link>/statsr/external-slide_or/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_or/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stochastic Processes</title>
+      <link>/statsr/external-slide_stochastic_pro/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-slide_stochastic_pro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series Analysis</title>
+      <link>/statsr/external-time/</link>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/statsr/external-time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Privacy Policy</title>
       <link>/privacy/</link>
       <pubDate>Thu, 28 Jun 2018 00:00:00 -0300</pubDate>
@@ -392,7 +455,7 @@ df_news&lt;/code&gt;&lt;/pre&gt;
     <item>
       <title>FisFa</title>
       <link>/project/internal-fisfa/</link>
-      <pubDate>Thu, 01 Dec 2016 00:00:00 -0200</pubDate>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 -0300</pubDate>
       
       <guid>/project/internal-fisfa/</guid>
       <description>
@@ -421,69 +484,6 @@ df_news&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;FisFa is registered under the Brazilian Patent &lt;strong&gt;BR 51 2016 000212 3&lt;/strong&gt;.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Categorical Data Analysis</title>
-      <link>/statsr/external-cat_data/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-cat_data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Clustering Algorithm</title>
-      <link>/statsr/external-slide_tcc2/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-slide_tcc2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Item Response Theory</title>
-      <link>/statsr/external-irt/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-irt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Operations Research</title>
-      <link>/statsr/external-slide_or/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-slide_or/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Stochastic Processes</title>
-      <link>/statsr/external-slide_stochastic_pro/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-slide_stochastic_pro/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Time Series Analysis</title>
-      <link>/statsr/external-time/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/statsr/external-time/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emstreeR</title>
-      <link>/project/external-emstreer/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/project/external-emstreer/</guid>
-      <description></description>
     </item>
     
     <item>

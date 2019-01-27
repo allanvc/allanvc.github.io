@@ -36,8 +36,64 @@
     
     <url>
     
+      <loc>/project/external-emstreer/</loc>
+      <lastmod>2018-08-30T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/googlenews_web-scraping/2018-08-21-google_news_scraping/</loc>
       <lastmod>2018-08-21T21:13:14-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-cat_data/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-slide_tcc2/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-irt/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-slide_or/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-slide_stochastic_pro/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/statsr/external-time/</loc>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
     </url>
     
   
@@ -85,63 +141,7 @@
     <url>
     
       <loc>/project/internal-fisfa/</loc>
-      <lastmod>2016-12-01T00:00:00-02:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-cat_data/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-slide_tcc2/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-irt/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-slide_or/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-slide_stochastic_pro/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/statsr/external-time/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/project/external-emstreer/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2016-07-01T00:00:00-03:00</lastmod>
     </url>
     
   
@@ -225,7 +225,7 @@
     <url>
     
       <loc>/project/</loc>
-      <lastmod>2016-12-01T00:00:00-02:00</lastmod>
+      <lastmod>2018-08-30T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -267,7 +267,7 @@
     <url>
     
       <loc>/statsr/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -285,7 +285,7 @@
     <url>
     
       <loc>/tags/blkschl/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -294,7 +294,7 @@
     <url>
     
       <loc>/tags/brwn_mot/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -303,7 +303,7 @@
     <url>
     
       <loc>/tags/catdata/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -312,7 +312,7 @@
     <url>
     
       <loc>/tags/ccc/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -321,7 +321,7 @@
     <url>
     
       <loc>/tags/cluster/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -339,7 +339,7 @@
     <url>
     
       <loc>/tags/finance/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -348,7 +348,7 @@
     <url>
     
       <loc>/tags/irt/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -357,7 +357,7 @@
     <url>
     
       <loc>/tags/log-lin/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -366,7 +366,7 @@
     <url>
     
       <loc>/tags/log-reg/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -375,7 +375,7 @@
     <url>
     
       <loc>/tags/logit/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -384,7 +384,7 @@
     <url>
     
       <loc>/tags/ml/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -402,7 +402,7 @@
     <url>
     
       <loc>/tags/mst/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -411,7 +411,7 @@
     <url>
     
       <loc>/tags/or/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -420,7 +420,7 @@
     <url>
     
       <loc>/tags/other/</loc>
-      <lastmod>2016-12-01T00:00:00-02:00</lastmod>
+      <lastmod>2016-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -429,7 +429,7 @@
     <url>
     
       <loc>/tags/pareto/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -438,7 +438,7 @@
     <url>
     
       <loc>/tags/r-packages/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-08-30T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -456,7 +456,7 @@
     <url>
     
       <loc>/tags/stochastic/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -465,7 +465,7 @@
     <url>
     
       <loc>/tags/time/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -474,7 +474,7 @@
     <url>
     
       <loc>/tags/unspvd_lrng/</loc>
-      <lastmod>2016-04-27T00:00:00-03:00</lastmod>
+      <lastmod>2018-07-01T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
