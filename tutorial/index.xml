@@ -9,7 +9,7 @@
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
     <lastBuildDate>Sun, 09 Sep 2018 00:00:00 -0300</lastBuildDate>
     
-	<atom:link href="/tutorial/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,13 +18,24 @@
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
       <guid>/tutorial/dwr1/</guid>
-      <description> Topics/slides  Intro &amp;amp; first steps
- R Objects creation and manipulation
- Logical operators and control statements
- Base R graphics
- Read, manipulate and write data
- Final assignment (not available)
-  </description>
+      <description>
+
+&lt;h3 id=&#34;topics-slides&#34;&gt;Topics/slides&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s1&amp;amp;2/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Intro &amp;amp; first steps&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s3/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R Objects creation and manipulation&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s4/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Logical operators and control statements&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s5/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Base R graphics&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s6/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Read, manipulate and write data&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Final assignment (not available)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -33,16 +44,30 @@
       <pubDate>Sun, 09 Sep 2018 00:00:00 -0300</pubDate>
       
       <guid>/tutorial/dwr2/</guid>
-      <description> Topics/slides  Review and functions
- Loops
- Apply family
- Intro to Tidyverse, strings and REGEX manipulation with stringr
- Dates with lubridate
- Data wrangling with dplyr
- Two table verbs in dplyr
- Accessing SQL databases with dbplyr
- Graphics with ggplot2
-  </description>
+      <description>
+
+&lt;h3 id=&#34;topics-slides&#34;&gt;Topics/slides&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s1/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Review and functions&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s2/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Loops&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s3/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Apply family&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s4/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Intro to Tidyverse, strings and REGEX manipulation with &lt;code&gt;stringr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s5/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Dates with &lt;code&gt;lubridate&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s6/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Data wrangling with &lt;code&gt;dplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s7/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Two table verbs in &lt;code&gt;dplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s8/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Accessing SQL databases with &lt;code&gt;dbplyr&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s9/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Graphics with &lt;code&gt;ggplot2&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

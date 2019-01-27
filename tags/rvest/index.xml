@@ -9,7 +9,7 @@
     <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
     <lastBuildDate>Tue, 21 Aug 2018 21:13:14 -0500</lastBuildDate>
     
-	<atom:link href="/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/rvest/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,9 +18,96 @@
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
       <guid>/post/googlenews_web-scraping/2018-08-21-google_news_scraping/</guid>
-      <description>This is an example of how to scrape Google News with the awesome rvest package.
-This work is a solution for a question that appeared in our WhatsApp group, blackbeltR. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?
-A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</description>
+      <description>
+
+
+&lt;p&gt;This is an example of how to scrape Google News with the awesome &lt;code&gt;rvest&lt;/code&gt; package.&lt;/p&gt;
+&lt;p&gt;This work is a solution for a question that appeared in our WhatsApp group, &lt;a href=&#34;https://www.blackbeltR.com.br&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;blackbeltR&lt;/strong&gt;&lt;/a&gt;. A user came up with this problem and I decided to help him. It was a cool challenge, so why not?&lt;/p&gt;
+&lt;p&gt;A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.&lt;/p&gt;
+&lt;p&gt;First off, you should take a look at the Google News website &lt;a href=&#34;https://news.google.com/&#34; target=&#34;_blank&#34;&gt;HERE&lt;/a&gt;, which I reproduce below:&lt;/p&gt;
+&lt;!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) --&gt;
+&lt;p&gt;&lt;img src=&#34;/post/googlenews_web-scraping/2018-08-21-google_news_scraping_files/google_news_screenshot.png&#34; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;You may notice, on the right side of the page, that we are using Google Chrome &lt;strong&gt;dev-tools&lt;/strong&gt;. We use this to identify the &lt;em&gt;html nodes&lt;/em&gt; we need. You can access this tool by hitting the &lt;strong&gt;F12&lt;/strong&gt; key. The html nodes are passed as arguments to the &lt;code&gt;rvest&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).&lt;/p&gt;
+&lt;p&gt;The code and coments are presented below:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# loading the packages:
+library(dplyr) # for pipes and the data_frame function
+library(rvest) # webscraping
+library(stringr) # to deal with strings and to clean up our data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the whole website
+google &amp;lt;- read_html(&amp;quot;https://news.google.com/&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the com vehicles
+# we pass the nodes in html_nodes and extract the text from the last one 
+# we use stringr to delete strings that are not important
+vehicle_all &amp;lt;- google %&amp;gt;% 
+  html_nodes(&amp;quot;div div div main c-wiz div div div article div div div&amp;quot;) %&amp;gt;% 
+  html_text() %&amp;gt;%
+  str_subset(&amp;quot;[^more_vert]&amp;quot;) %&amp;gt;%
+  str_subset(&amp;quot;[^share]&amp;quot;) %&amp;gt;%
+  str_subset(&amp;quot;[^bookmark_border]&amp;quot;)
+
+vehicle_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;CNN&amp;quot;                 &amp;quot;Fox News&amp;quot;            &amp;quot;The Washington Post&amp;quot;
+##  [4] &amp;quot;The New York Times&amp;quot;  &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
+##  [7] &amp;quot;Fox News&amp;quot;            &amp;quot;Opinion&amp;quot;             &amp;quot;Opinion&amp;quot;            
+## [10] &amp;quot;HuffPost&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the time elapsed
+time_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;div article div div time&amp;quot;) %&amp;gt;% html_text()
+
+time_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;one hour ago&amp;quot; &amp;quot;one hour ago&amp;quot; &amp;quot;2 hours ago&amp;quot;  &amp;quot;today&amp;quot;       
+##  [5] &amp;quot;today&amp;quot;        &amp;quot;2 hours ago&amp;quot;  &amp;quot;3 hours ago&amp;quot;  &amp;quot;4 hours ago&amp;quot; 
+##  [9] &amp;quot;today&amp;quot;        &amp;quot;one hour ago&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# extracting the headlines
+# and using stringr for cleaning
+headline_all &amp;lt;- google %&amp;gt;% html_nodes(&amp;quot;article&amp;quot;) %&amp;gt;% html_text(&amp;quot;span&amp;quot;) %&amp;gt;%
+  str_split(&amp;quot;(?&amp;lt;=[a-z0-9&amp;#39;!?\\.])(?=[A-Z])&amp;quot;)
+  # str_split(&amp;quot;(?&amp;lt;=[a-z0-9áéíóú!?\\.])(?=[A-Z])&amp;quot;) # for Google News in Portuguese
+
+headline_all &amp;lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
+
+
+headline_all[1:10] # take a look at the first ten&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;Pelosi says Democrats will give &amp;#39;nothing for the wall&amp;#39;&amp;quot;                                                   
+##  [2] &amp;quot;No deal to end shutdown; Trump says &amp;#39;could be a long time&amp;#39;&amp;quot;                                               
+##  [3] &amp;quot;Trump falsely claims Mexico is paying for wall, demands taxpayer money for wall in meeting with Democrats&amp;quot;
+##  [4] &amp;quot;Trump’s Shutdown Is Not About Border Security&amp;quot;                                                            
+##  [5] &amp;quot;Doug Schoen: Democrats have Trump backed into a corner as 2019 kicks off&amp;quot;                                 
+##  [6] &amp;quot;Mitt Romney Pledges Support For Border Wall After Slamming Trump Administration&amp;quot;                          
+##  [7] &amp;quot;Mitt Romney details what bothers him about Trumpvideo_youtube&amp;quot;                                            
+##  [8] &amp;quot;Trump fires back at Mitt Romney for scathing op-ed&amp;quot;                                                       
+##  [9] &amp;quot;Mitt Romney’s Counterproductive Op-Ed&amp;quot;                                                                    
+## [10] &amp;quot;Mitt Romney vs. Donald Trump: If Utah’s New Senator Is Serious, He Should Be Running for President&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “NSA” (The National Security Agency) collapsed with other phrase initiating with another uppercase letter such as the article “A” (“…with NSAA agent said…”) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.&lt;/p&gt;
+&lt;p&gt;The expression &lt;code&gt;?&amp;lt;=&lt;/code&gt; is called “lookbehind”, while &lt;code&gt;?=&lt;/code&gt; is called “lookahead”. Those “lookaround” expressions allow us to look for patterns followed or preceded by something. In our case, the idea is to separate a string at the point in which lowercase letters, numbers, exclamation points, periods or question marks are collapsed with uppercase letters , e.g. where lowercase letters, numbers and others (&lt;code&gt;[a-z0-9&#39;!?\\.]&lt;/code&gt;) are followed (&lt;code&gt;?&amp;lt;=&lt;/code&gt;) by uppercase letters or where uppercase letters (&lt;code&gt;[A-Z]&lt;/code&gt;) are preceded (&lt;code&gt;?=&lt;/code&gt;) by lowercase letters.&lt;/p&gt;
+&lt;p&gt;Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fact checking”, which is a section on the right side of the page. As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# finding the smallest vector
+min &amp;lt;- min(sapply(list(vehicle_all, time_all, headline_all), length))
+
+# cutting
+vehicle_all &amp;lt;- vehicle_all[1:min]
+time_all &amp;lt;- time_all[1:min]
+headline_all &amp;lt;- headline_all[1:min]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And we have our final data frame:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;df_news &amp;lt;- data_frame(vehicle_all, time_all, headline_all)
+
+df_news&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 158 x 3
+##    vehicle_all      time_all   headline_all                               
+##    &amp;lt;chr&amp;gt;            &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;                                      
+##  1 CNN              one hour … Pelosi says Democrats will give &amp;#39;nothing f…
+##  2 Fox News         one hour … No deal to end shutdown; Trump says &amp;#39;could…
+##  3 The Washington … 2 hours a… Trump falsely claims Mexico is paying for …
+##  4 The New York Ti… today      Trump’s Shutdown Is Not About Border Secur…
+##  5 Opinion          today      Doug Schoen: Democrats have Trump backed i…
+##  6 Opinion          2 hours a… Mitt Romney Pledges Support For Border Wal…
+##  7 Fox News         3 hours a… Mitt Romney details what bothers him about…
+##  8 Opinion          4 hours a… Trump fires back at Mitt Romney for scathi…
+##  9 Opinion          today      Mitt Romney’s Counterproductive Op-Ed      
+## 10 HuffPost         one hour … Mitt Romney vs. Donald Trump: If Utah’s Ne…
+## # ... with 148 more rows&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>
