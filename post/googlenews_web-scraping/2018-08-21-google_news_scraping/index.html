@@ -501,36 +501,37 @@ vehicle_all &lt;- google %&gt;%
   str_subset(&quot;[^bookmark_border]&quot;)
 
 vehicle_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;New York Post &quot;      &quot;The Washington Post&quot; &quot;The New York Times&quot; 
-##  [4] &quot;Opinion&quot;             &quot;Opinion&quot;             &quot;Fox News&quot;           
-##  [7] &quot;Opinion&quot;             &quot;Opinion&quot;             &quot;The Hill&quot;           
-## [10] &quot;Opinion&quot;</code></pre>
+<pre><code>##  [1] &quot;The New York Times&quot;  &quot;Vox.com&quot;             &quot;Wall Street Journal&quot;
+##  [4] &quot;The New York Times&quot;  &quot;Opinion&quot;             &quot;Opinion&quot;            
+##  [7] &quot;The Washington Post&quot; &quot;Opinion&quot;             &quot;Opinion&quot;            
+## [10] &quot;CNN&quot;</code></pre>
 <pre class="r"><code># extracting the time elapsed
 time_all &lt;- google %&gt;% html_nodes(&quot;div article div div time&quot;) %&gt;% html_text()
 
 time_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;2 hours ago&quot; &quot;today&quot;       &quot;yesterday&quot;   &quot;today&quot;       &quot;yesterday&quot;  
-##  [6] &quot;3 hours ago&quot; &quot;today&quot;       &quot;today&quot;       &quot;today&quot;       &quot;today&quot;</code></pre>
+<pre><code>##  [1] &quot;2 hours ago&quot;  &quot;today&quot;        &quot;4 hours ago&quot;  &quot;yesterday&quot;   
+##  [5] &quot;yesterday&quot;    &quot;2 hours ago&quot;  &quot;today&quot;        &quot;one hour ago&quot;
+##  [9] &quot;one hour ago&quot; &quot;today&quot;</code></pre>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 headline_all &lt;- google %&gt;% html_nodes(&quot;article&quot;) %&gt;% html_text(&quot;span&quot;) %&gt;%
-  str_split(&quot;(?&lt;=[a-z0-9&#39;!?\\.])(?=[A-Z])&quot;)
+  str_split(&quot;(?&lt;=[a-z0-9!?\\.])(?=[A-Z])&quot;)
   # str_split(&quot;(?&lt;=[a-z0-9áéíóú!?\\.])(?=[A-Z])&quot;) # for Google News in Portuguese
 
 headline_all &lt;- sapply(headline_all, function(x) x[1]) # extract only the first elements
 
 
 headline_all[1:10] # take a look at the first ten</code></pre>
-<pre><code>##  [1] &quot;Roger Stone says he would consider cooperating with Mueller&quot;                 
-##  [2] &quot;Trump advisers lied over and over again, Mueller says. The question is, why?&quot;
-##  [3] &quot;Mueller’s Real Target in the Roger Stone Indictment&quot;                         
-##  [4] &quot;Andrew Mc&quot;                                                                   
-##  [5] &quot;Mueller&#39;s selective prosecution of Stone, Venezuelan-style&quot;                  
-##  [6] &quot;Venezuela&#39;s Maduro rejects EU ultimatum on fresh elections&quot;                  
-##  [7] &quot;Venezuela&#39;s Maduro denounces election call but says ready to talk&quot;           
-##  [8] &quot;Who Is Venezuela&#39;s Juan Guaidó?&quot;                                             
-##  [9] &quot;Trump right to recognize Juan Guaidó, not Maduro, as Venezuela&#39;s president&quot;  
-## [10] &quot;The Observer view on why Venezuela needs consensus, not conflict&quot;</code></pre>
+<pre><code>##  [1] &quot;As Government Reopens, the New Congress Tries to Begin Again&quot;                              
+##  [2] &quot;Government shutdown 2.0: Trump is willing to do it, Mick Mulvaney says&quot;                    
+##  [3] &quot;Federal Employees Head Back to Work With Payday Still Uncertain&quot;                           
+##  [4] &quot;Opinion | The Real Wall Isn&#39;t at the Border&quot;                                               
+##  [5] &quot;Analysis | Why the shutdown ended — and what to watch for now&quot;                             
+##  [6] &quot;Kamala Harris officially launches 2020 presidential campaign&quot;                              
+##  [7] &quot;Extramarital affair with Kamala Harris? Former San Francisco mayor, 84, admits it happened&quot;
+##  [8] &quot;Kamala Harris hits Trump, promises progressive change in presidential campaign kick-off&quot;   
+##  [9] &quot;Kamala Harris emerges as a 2020 front-runner, but is that a good thing?&quot;                   
+## [10] &quot;Will Kamala Harris have the support of black women? Don&#39;t assume that&quot;</code></pre>
 <p>In this last case we used a regular expression (REGEX) to clean up the data. We did this by separating the actual headline phrases from the complementary ones. In some cases, we have a phrase ending with uppercase letters such as “NSA” (The National Security Agency) collapsed with another phrase initiating with a uppercase letter such as the article “A” (“…with NSAA agent said…”) for example. We have to think of a better way to split these cases, but the current result is quite satisfactory for now.</p>
 <p>The expression <code>?&lt;=</code> is called “lookbehind”, while <code>?=</code> is called “lookahead”. Those “lookaround” expressions allow us to look for patterns followed or preceded by something. In our case, the idea is to separate a string at the point in which lowercase letters, numbers, exclamation points, periods or question marks are collapsed with uppercase letters , e.g. where lowercase letters, numbers and others (<code>[a-z0-9'!?\\.]</code>) are followed (<code>?&lt;=</code>) by uppercase letters or where uppercase letters (<code>[A-Z]</code>) are preceded (<code>?=</code>) by lowercase letters.</p>
 <p>Before we finish, we have to clean up our data. It is common to collect garbage in the process such as data related to “fact checking”, which is a section on the right side of the page. As a result, it is possible that the three vectors we have created may have different sizes. Therefore, we use the smallest of them as the base and just delete the entries above this number on the other two vectors.</p>
@@ -545,20 +546,20 @@ headline_all &lt;- headline_all[1:min]</code></pre>
 <pre class="r"><code>df_news &lt;- data_frame(vehicle_all, time_all, headline_all)
 
 df_news</code></pre>
-<pre><code>## # A tibble: 163 x 3
-##    vehicle_all      time_all  headline_all                                
-##    &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;                                       
-##  1 &quot;New York Post &quot; 2 hours … Roger Stone says he would consider cooperat…
-##  2 The Washington … today     Trump advisers lied over and over again, Mu…
-##  3 The New York Ti… yesterday Mueller’s Real Target in the Roger Stone In…
-##  4 Opinion          today     Andrew Mc                                   
-##  5 Opinion          yesterday Mueller&#39;s selective prosecution of Stone, V…
-##  6 Fox News         3 hours … Venezuela&#39;s Maduro rejects EU ultimatum on …
-##  7 Opinion          today     Venezuela&#39;s Maduro denounces election call …
-##  8 Opinion          today     Who Is Venezuela&#39;s Juan Guaidó?             
-##  9 The Hill         today     Trump right to recognize Juan Guaidó, not M…
-## 10 Opinion          today     The Observer view on why Venezuela needs co…
-## # ... with 153 more rows</code></pre>
+<pre><code>## # A tibble: 160 x 3
+##    vehicle_all      time_all   headline_all                               
+##    &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt;                                      
+##  1 The New York Ti… 2 hours a… As Government Reopens, the New Congress Tr…
+##  2 Vox.com          today      Government shutdown 2.0: Trump is willing …
+##  3 Wall Street Jou… 4 hours a… Federal Employees Head Back to Work With P…
+##  4 The New York Ti… yesterday  Opinion | The Real Wall Isn&#39;t at the Border
+##  5 Opinion          yesterday  Analysis | Why the shutdown ended — and wh…
+##  6 Opinion          2 hours a… Kamala Harris officially launches 2020 pre…
+##  7 The Washington … today      Extramarital affair with Kamala Harris? Fo…
+##  8 Opinion          one hour … Kamala Harris hits Trump, promises progres…
+##  9 Opinion          one hour … Kamala Harris emerges as a 2020 front-runn…
+## 10 CNN              today      Will Kamala Harris have the support of bla…
+## # ... with 150 more rows</code></pre>
 
     </div>
 
