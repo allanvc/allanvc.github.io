@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ALLAN V. C. QUADROS</title>
@@ -6,11 +5,47 @@
     <description>Recent content in Tags on ALLAN V. C. QUADROS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2018 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Tue, 21 Aug 2018 21:13:14 -0500</lastBuildDate>
+    <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
+    <lastBuildDate>Mon, 10 Dec 2018 21:13:14 -0500</lastBuildDate>
     
         <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Minimum Spanning Trees</title>
+      <link>/tags/minimum-spanning-trees/</link>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/minimum-spanning-trees/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emstreeR</title>
+      <link>/tags/emstreer/</link>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/emstreer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mlpack</title>
+      <link>/tags/mlpack/</link>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/mlpack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r-packages</title>
+      <link>/tags/r-packages/</link>
+      <pubDate>Thu, 30 Aug 2018 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/r-packages/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>GoogleNews</title>
@@ -22,11 +57,20 @@
     </item>
     
     <item>
-      <title>Minimum Spanning Trees</title>
-      <link>/tags/minimum-spanning-trees/</link>
-      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      <title>rvest</title>
+      <link>/tags/rvest/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
-      <guid>/tags/minimum-spanning-trees/</guid>
+      <guid>/tags/rvest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web scraping</title>
+      <link>/tags/web-scraping/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      
+      <guid>/tags/web-scraping/</guid>
       <description></description>
     </item>
     
@@ -72,15 +116,6 @@
       <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/tags/cluster/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emstreeR</title>
-      <link>/tags/emstreer/</link>
-      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
-      
-      <guid>/tags/emstreer/</guid>
       <description></description>
     </item>
     
@@ -139,15 +174,6 @@
     </item>
     
     <item>
-      <title>mlpack</title>
-      <link>/tags/mlpack/</link>
-      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
-      
-      <guid>/tags/mlpack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>mst</title>
       <link>/tags/mst/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
@@ -166,38 +192,11 @@
     </item>
     
     <item>
-      <title>other</title>
-      <link>/tags/other/</link>
-      <pubDate>Fri, 01 Jul 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/other/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pareto</title>
       <link>/tags/pareto/</link>
       <pubDate>Sun, 01 Jul 2018 00:00:00 -0300</pubDate>
       
       <guid>/tags/pareto/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r-packages</title>
-      <link>/tags/r-packages/</link>
-      <pubDate>Thu, 30 Aug 2018 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/r-packages/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rvest</title>
-      <link>/tags/rvest/</link>
-      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
-      
-      <guid>/tags/rvest/</guid>
       <description></description>
     </item>
     
@@ -229,11 +228,11 @@
     </item>
     
     <item>
-      <title>web scraping</title>
-      <link>/tags/web-scraping/</link>
-      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      <title>other</title>
+      <link>/tags/other/</link>
+      <pubDate>Fri, 01 Jul 2016 00:00:00 -0300</pubDate>
       
-      <guid>/tags/web-scraping/</guid>
+      <guid>/tags/other/</guid>
       <description></description>
     </item>
     
