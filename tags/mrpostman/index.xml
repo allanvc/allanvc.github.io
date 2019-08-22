@@ -6,7 +6,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Thu, 22 Aug 2019 16:30:00 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate>
     
         <atom:link href="/tags/mrpostman/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
       <link>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</link>
-      <pubDate>Thu, 22 Aug 2019 16:30:00 -0500</pubDate>
+      <pubDate>Thu, 22 Aug 2019 17:00:00 +0000</pubDate>
       
       <guid>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</guid>
       <description>
