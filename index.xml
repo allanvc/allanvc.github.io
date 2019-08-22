@@ -6,8 +6,42 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 22 Aug 2019 16:30:00 -0500</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
+      <link>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</link>
+      <pubDate>Thu, 22 Aug 2019 16:30:00 -0500</pubDate>
+      
+      <guid>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</guid>
+      <description>
+
+
+&lt;center&gt;
+&lt;img alt = &#39;hexlogo&#39; width=&#39;200&#39; src=&#39;/post/new_package_mRpostman/2019-08-20-new_package_mRpostman_files/logo.png&#39; /&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;mRpostman&lt;/strong&gt; is an R package to help you to easy connect to your IMAP (Internet Message Access Protocol) server and execute commands, such as listing mailboxes, searching and fetching messages in a tidy way. It calls ‘curl’ in background for issuing the IMAP commands.&lt;/p&gt;
+&lt;p&gt;So far, I have tested &lt;strong&gt;mRpostman&lt;/strong&gt; with Gmail, Yahoo Mail and AOL Mail, but it should also work with other mail providers. I would be happy to hear other successful experiences from users.&lt;/p&gt;
+&lt;p&gt;ATTENTION: Before start using &lt;strong&gt;mRpostman&lt;/strong&gt;, you have to enable &lt;strong&gt;“less secure apps access”&lt;/strong&gt; in the settings of your mail account.&lt;/p&gt;
+&lt;p&gt;Check out a detailed vignette &lt;a href=&#34;https://allanvc.github.io/mRpostman/articles/basics.html&#34;&gt;HERE&lt;/a&gt; to learn how to use ‘mRpostman’!&lt;/p&gt;
+&lt;p&gt;I hope you enjoy &lt;strong&gt;mRpostman&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Official website: &lt;a href=&#34;https://allanvc.github.io/mRpostman&#34; class=&#34;uri&#34;&gt;https://allanvc.github.io/mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CRAN version: &lt;a href=&#34;https://cran.r-project.org/package=mRpostman&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/package=mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dev version: &lt;a href=&#34;https://github.com/allanvc/mRpostman&#34; class=&#34;uri&#34;&gt;https://github.com/allanvc/mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>mRpostman</title>
+      <link>/project/external-mrpostman/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 -0300</pubDate>
+      
+      <guid>/project/external-mrpostman/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Data Analysis in the Public Sector</title>
@@ -447,50 +481,6 @@ df_news&lt;/code&gt;&lt;/pre&gt;
       
       <guid>/privacy/</guid>
       <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>FisFa</title>
-      <link>/project/internal-fisfa/</link>
-      <pubDate>Fri, 01 Jul 2016 00:00:00 -0300</pubDate>
-      
-      <guid>/project/internal-fisfa/</guid>
-      <description>
-
-&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
-
-&lt;p&gt;FisFa (or Fiscaliza Fatura) is a software developed in &lt;strong&gt;R&lt;/strong&gt; and a little bit in Python. Its aim is to automate contract management tasks in Fies - the Brazilian Higher Education Fund. Previously to FisFa, contract invoices from banks used to take more than two weeks to be analyzed by the Fund staff. After FisFa, the time has dropped to roughly 1 minute. The quality of the analysis also has increadibly improved. After the analysis, FisFa provides the user with several reports about the invoice and also indicates possible errors in data. The whole process became highly robust, which is extremely desirable since the monthly values of each invoice are usually beyond US$5 million. Due to monthly errors found by FisFa in the invoices, the Brazilian Government saved more than US$50 million since 2016 until 2018. FisFa is still being used and that number still increases.&lt;/p&gt;
-
-&lt;h1 id=&#34;awards&#34;&gt;Awards&lt;/h1&gt;
-
-&lt;p&gt;As a recognition for the incredible aforementioned results, FisFa received two awards:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Standout Project in Contract Management&lt;/strong&gt;. 4th ANGC Awards - Best Initiatives Of The Year on Contract Management, Sep. 2018.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;1st Place Strengthening Internal Controls in the Public Administration&lt;/strong&gt;. CGU&amp;rsquo;s 4th Good Practices Award, Dec. 2016.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;technical-details&#34;&gt;Technical details&lt;/h1&gt;
-
-&lt;p&gt;FisFa is mainly programmed in R. It is divided in specific functions for each contract and a main function to manage all the other functions. One of the great things (in my opinion) about FisFa is the fact that its GUI is made with &lt;code&gt;gtk+ 2&lt;/code&gt; inside &lt;strong&gt;R&lt;/strong&gt;, which is possible due to the package &lt;code&gt;RGtk2&lt;/code&gt;. FisFa runs as a Windowns application. We use &lt;code&gt;Rscript&lt;/code&gt; to do this. We choose an extension to the GUI file and tell Windows to run it always with &amp;ldquo;RScript.exe&amp;rdquo;. So, it basically runs as an executable file.&lt;/p&gt;
-
-&lt;p&gt;The Python part was used only to hide the functions from users. By doing this, we prevent users that are not versed in R from committing any critical change to the core files by mistake. The communication between the &lt;strong&gt;R&lt;/strong&gt; code and the Python code is made using &lt;code&gt;Rserve&lt;/code&gt; and &lt;code&gt;svScoket&lt;/code&gt; on the &lt;strong&gt;R&lt;/strong&gt; side and &lt;code&gt;pyRserve&lt;/code&gt; on the Python side. The functions are kept in the cloud. The Python interface gets those functions in the beginning of each session and loads them into the &lt;strong&gt;R&lt;/strong&gt; Global Environment.&lt;/p&gt;
-
-&lt;h1 id=&#34;license&#34;&gt;License&lt;/h1&gt;
-
-&lt;p&gt;FisFa is registered under the Brazilian Patent &lt;strong&gt;BR 51 2016 000212 3&lt;/strong&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>/publication/person-re-id/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 -0300</pubDate>
-      
-      <guid>/publication/person-re-id/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
     </item>
     

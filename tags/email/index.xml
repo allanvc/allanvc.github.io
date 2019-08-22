@@ -1,0 +1,24 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>email on ALLAN V. C. QUADROS</title>
+    <link>/tags/email/</link>
+    <description>Recent content in email on ALLAN V. C. QUADROS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
+    <lastBuildDate>Sat, 17 Aug 2019 00:00:00 -0300</lastBuildDate>
+    
+        <atom:link href="/tags/email/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mRpostman</title>
+      <link>/project/external-mrpostman/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 -0300</pubDate>
+      
+      <guid>/project/external-mrpostman/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

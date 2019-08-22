@@ -6,10 +6,35 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Mon, 10 Dec 2018 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 22 Aug 2019 16:30:00 -0500</lastBuildDate>
     
         <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
+      <link>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</link>
+      <pubDate>Thu, 22 Aug 2019 16:30:00 -0500</pubDate>
+      
+      <guid>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</guid>
+      <description>
+
+
+&lt;center&gt;
+&lt;img alt = &#39;hexlogo&#39; width=&#39;200&#39; src=&#39;/post/new_package_mRpostman/2019-08-20-new_package_mRpostman_files/logo.png&#39; /&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;strong&gt;mRpostman&lt;/strong&gt; is an R package to help you to easy connect to your IMAP (Internet Message Access Protocol) server and execute commands, such as listing mailboxes, searching and fetching messages in a tidy way. It calls ‘curl’ in background for issuing the IMAP commands.&lt;/p&gt;
+&lt;p&gt;So far, I have tested &lt;strong&gt;mRpostman&lt;/strong&gt; with Gmail, Yahoo Mail and AOL Mail, but it should also work with other mail providers. I would be happy to hear other successful experiences from users.&lt;/p&gt;
+&lt;p&gt;ATTENTION: Before start using &lt;strong&gt;mRpostman&lt;/strong&gt;, you have to enable &lt;strong&gt;“less secure apps access”&lt;/strong&gt; in the settings of your mail account.&lt;/p&gt;
+&lt;p&gt;Check out a detailed vignette &lt;a href=&#34;https://allanvc.github.io/mRpostman/articles/basics.html&#34;&gt;HERE&lt;/a&gt; to learn how to use ‘mRpostman’!&lt;/p&gt;
+&lt;p&gt;I hope you enjoy &lt;strong&gt;mRpostman&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Official website: &lt;a href=&#34;https://allanvc.github.io/mRpostman&#34; class=&#34;uri&#34;&gt;https://allanvc.github.io/mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CRAN version: &lt;a href=&#34;https://cran.r-project.org/package=mRpostman&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/package=mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dev version: &lt;a href=&#34;https://github.com/allanvc/mRpostman&#34; class=&#34;uri&#34;&gt;https://github.com/allanvc/mRpostman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Announcing the new &#39;emstreeR&#39; package</title>

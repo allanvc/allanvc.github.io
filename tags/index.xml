@@ -6,10 +6,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Mon, 10 Dec 2018 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 22 Aug 2019 16:30:00 -0500</lastBuildDate>
     
         <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IMAP</title>
+      <link>/tags/imap/</link>
+      <pubDate>Thu, 22 Aug 2019 16:30:00 -0500</pubDate>
+      
+      <guid>/tags/imap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mRpostman</title>
+      <link>/tags/mrpostman/</link>
+      <pubDate>Thu, 22 Aug 2019 16:30:00 -0500</pubDate>
+      
+      <guid>/tags/mrpostman/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>email</title>
+      <link>/tags/email/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/email/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r-packages</title>
+      <link>/tags/r-packages/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 -0300</pubDate>
+      
+      <guid>/tags/r-packages/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Minimum Spanning Trees</title>
@@ -35,15 +71,6 @@
       <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
       
       <guid>/tags/mlpack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r-packages</title>
-      <link>/tags/r-packages/</link>
-      <pubDate>Thu, 30 Aug 2018 00:00:00 -0300</pubDate>
-      
-      <guid>/tags/r-packages/</guid>
       <description></description>
     </item>
     

@@ -3,8 +3,96 @@
     
     <url>
     
+      <loc>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/</loc>
-      <lastmod>2019-07-03T00:00:00-03:00</lastmod>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/imap/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/categories/r/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/mrpostman/</loc>
+      <lastmod>2019-08-22T16:30:00-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/project/</loc>
+      <lastmod>2019-08-17T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/email/</loc>
+      <lastmod>2019-08-17T00:00:00-03:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/project/external-mrpostman/</loc>
+      <lastmod>2019-08-17T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/r-packages/</loc>
+      <lastmod>2019-08-17T00:00:00-03:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -28,34 +116,7 @@
     
     <url>
     
-      <loc>/categories/</loc>
-      <lastmod>2018-12-10T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/tags/minimum-spanning-trees/</loc>
-      <lastmod>2018-12-10T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/categories/r/</loc>
-      <lastmod>2018-12-10T21:13:14-05:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/</loc>
       <lastmod>2018-12-10T21:13:14-05:00</lastmod>
       <priority>0</priority>
     </url>
@@ -106,26 +167,8 @@
     
     <url>
     
-      <loc>/project/</loc>
-      <lastmod>2018-08-30T00:00:00-03:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/project/external-emstreer/</loc>
       <lastmod>2018-08-30T00:00:00-03:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/r-packages/</loc>
-      <lastmod>2018-08-30T00:00:00-03:00</lastmod>
-      <priority>0</priority>
     </url>
     
   
