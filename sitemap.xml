@@ -3,17 +3,25 @@
     
     <url>
     
-      <loc>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</loc>
-      <lastmod>2019-08-22T17:00:00+00:00</lastmod>
+      <loc>/</loc>
+      <lastmod>2019-11-29T00:00:00-03:00</lastmod>
+      <priority>0</priority>
     </url>
     
   
     
     <url>
     
-      <loc>/</loc>
+      <loc>/talk/talk_widat2019/</loc>
+      <lastmod>2019-11-29T00:00:00-03:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/new_package_mrpostman/2019-08-20-new_package_mrpostman/</loc>
       <lastmod>2019-08-22T17:00:00+00:00</lastmod>
-      <priority>0</priority>
     </url>
     
   

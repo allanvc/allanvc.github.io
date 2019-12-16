@@ -6,8 +6,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2019 Allan V. C. Quadros</copyright>
-    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 00:00:00 -0300</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Data Science in the Government: sucessful cases at the National Fund for Educational Development</title>
+      <link>/talk/talk_widat2019/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 -0300</pubDate>
+      
+      <guid>/talk/talk_widat2019/</guid>
+      <description>&lt;!-- &lt;div class=&#34;alert alert-note&#34;&gt;
+  
+Click on the **Slides** button above to view the built-in slides feature.
+
+&lt;/div&gt;
+
+
+Slides can be added in a few ways:
+
+- **Create** slides using Academic&#39;s *Slides* feature and link using `url_slides` parameter in the front matter of the talk file
+- **Upload** an existing slide deck to `static/` and link using `url_slides` parameter in the front matter of the talk file
+- **Embed** your slides (e.g. Google Slides) or presentation video on this page using [shortcodes](https://sourcethemes.com/academic/docs/writing-markdown-latex/).
+
+Further talk details can easily be added to this page using *Markdown* and $\rm \LaTeX$ math code.
+--&gt;
+</description>
+    </item>
     
     <item>
       <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
@@ -472,16 +496,6 @@ df_news&lt;/code&gt;&lt;/pre&gt;
       
       <guid>/statsr/external-time/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Privacy Policy</title>
-      <link>/privacy/</link>
-      <pubDate>Thu, 28 Jun 2018 00:00:00 -0300</pubDate>
-      
-      <guid>/privacy/</guid>
-      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
-</description>
     </item>
     
   </channel>
