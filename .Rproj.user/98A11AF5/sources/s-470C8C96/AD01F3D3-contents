@@ -1,0 +1,5 @@
+# for example, create a new site with the anatole theme
+blogdown::new_site(theme = 'ojroques/hugo-researcher')
+
+blogdown::stop_server()
+blogdown::serve_site()
