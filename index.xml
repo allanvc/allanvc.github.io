@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Allan V.C. Quadros</title>
+    <link>https://allanvc.github.io/</link>
+    <description>Recent content on Allan V.C. Quadros</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate><atom:link href="https://allanvc.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
+      <link>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</link>
+      <pubDate>Thu, 22 Aug 2019 17:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</guid>
+      <description>mRpostman - IMAP Tools for R in a Tidy Way   mRpostman is an R package to help you to easy connect to your IMAP (Internet Message Access Protocol) server and execute commands, such as listing mailboxes, fetching and searching for messages in a tidy way. It heavily relies on {curl} for issuing the IMAP commands.
+So far, mRpostman have been tested with Gmail, Yahoo Mail and AOL Mail, but it should also work with other mail providers.</description>
+    </item>
+    
+    <item>
+      <title>Announcing the new &#39;emstreeR&#39; package</title>
+      <link>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</link>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</guid>
+      <description>Announcing the new ‘emstreeR’ package (2020’s {ggmap} update) I am proud to announce emstreeR - my first R package available on CRAN.
+emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)[^1] implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al.</description>
+    </item>
+    
+    <item>
+      <title>Scraping Google News with &#39;rvest&#39;</title>
+      <link>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      
+      <guid>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</guid>
+      <description>Scraping Google News with rvest (2020’s update) This is an example of how to scrape the Google News website with the rvest package.
+This post is a solution for a question from a WhatsApp group, blackbeltR. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.
+First off, you should take a look at the Google News website HERE, which I reproduce below:</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://allanvc.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/about/</guid>
+      <description>About Me  This is a Hugo based resume template. You can find the full source code on GitHub.
+Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
+Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>https://allanvc.github.io/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/contact/</guid>
+      <description>Allan Vieira de Castro Quadros
+ Email: quadros@k-state.edu Phone: +55-19-981661048   Mailing Address  Núcleo de Métodos Quantitativos
+Fundo Nacional de Desenvolvimento da Educação - FNDE
+Setor Bancario Sul, Quadra 2
+Bloco F, Edifício FNDE
+Brasília/DF - CEP: 70070-929
+Brazil
+  Social  LinkedIn Twitter GitHub ResearchGate StackOverflow  </description>
+    </item>
+    
+    <item>
+      <title>Courses</title>
+      <link>https://allanvc.github.io/courses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/courses/</guid>
+      <description>Courses Here you find material from in-company courses I have offered. Please note that the original language of these materials is Brazilian portuguese.
+ Book  Introdução à Programação em R utilizando Tidyverse (2020). A companion text book to my &amp;ldquo;Introduction to R programming using the Tidyverse&amp;rdquo; course.   Slides [2] Course: Data Analysis with R (II)
+Level: Intermediate
+Year: mar. 2018
+   Topic Length     Review + functions 39   Loops 15   Apply family 34   Tidyverse intro + strings and REGEX manipulation with stringr 43   Dates with lubridate 15   Data wrangling with dplyr 27   Two table verbs with dplyr 18   Accessing SQL databases with dbplyr 22   Graphics with ggplot2 31    [1] Course: Data Analysis with R (I)</description>
+    </item>
+    
+    <item>
+      <title>Posts</title>
+      <link>https://allanvc.github.io/posts_old/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/posts_old/</guid>
+      <description>Posts  [3] 2018-08-21 - Scraping Google News with rvest [link].
+Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
+Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
+    </item>
+    
+    <item>
+      <title>Software</title>
+      <link>https://allanvc.github.io/software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/software/</guid>
+      <description>Software Below, you find more information about the main software development projects that I have been working on:
+ R packages:  [1] mRpostman: an IMAP Client for R
+Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
+Examples:</description>
+    </item>
+    
+    <item>
+      <title>Talks</title>
+      <link>https://allanvc.github.io/talks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://allanvc.github.io/talks/</guid>
+      <description>Recent &amp;amp; Upcoming Talks [4] Round Table: Artificial Intelligence &amp;amp; Innovation
+Date: Oct 23, 2020 8:30 PM — 9:30 PM
+Event: SNCTNF 2020
+Venue: Nova Friburgo - RJ, Brazil
+[slides] [video]
+ [3] How to assemble a data science team in the Public Administration
+A walk-through on the experience of assembling and running a successful data science team in the Brazilian Government Area: Innovation Date: Oct 23, 2020 4:30 PM — 5:30 PM</description>
+    </item>
+    
+  </channel>
+</rss>

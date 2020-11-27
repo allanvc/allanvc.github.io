@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</loc>
+    <lastmod>2019-08-22T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/</loc>
+    <lastmod>2019-08-22T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/post/</loc>
+    <lastmod>2019-08-22T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</loc>
+    <lastmod>2018-12-10T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</loc>
+    <lastmod>2018-08-21T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/courses/</loc>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/posts_old/</loc>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/software/</loc>
+  </url>
+  
+  <url>
+    <loc>https://allanvc.github.io/talks/</loc>
+  </url>
+  
+</urlset>

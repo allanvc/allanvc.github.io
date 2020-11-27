@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Scraping Google News with &#39;rvest&#39;</title>
+    <meta name="description" content="My personal website">
+    <meta name="author" content='Allan V.C. Quadros'>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="../../sass/researcher.min.css">
+
+    
+        <link rel="icon" type="image/ico" href="https://allanvc.github.io/favicon.ico">
+    
+
+    
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-131372002-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+</head>
+
+    <body><div class="container mt-5">
+    <nav class="navbar navbar-expand-sm flex-column flex-sm-row p-0">
+        <a class="navbar-brand mr-sm-auto" href="https://allanvc.github.io/">Allan V.C. Quadros</a>
+        <div class="navbar-nav flex-row">
+            
+                
+                
+                    <a class="nav-item nav-link" href="../../">🏛︎</a>
+                    
+                        <span class="nav-item navbar-text mx-1">/</span>
+                    
+                
+                    <a class="nav-item nav-link" href="../../software">Software</a>
+                    
+                        <span class="nav-item navbar-text mx-1">/</span>
+                    
+                
+                    <a class="nav-item nav-link" href="../../post">Posts</a>
+                    
+                        <span class="nav-item navbar-text mx-1">/</span>
+                    
+                
+                    <a class="nav-item nav-link" href="../../talks">Talks</a>
+                    
+                        <span class="nav-item navbar-text mx-1">/</span>
+                    
+                
+                    <a class="nav-item nav-link" href="../../courses">Courses</a>
+                    
+                        <span class="nav-item navbar-text mx-1">/</span>
+                    
+                
+                    <a class="nav-item nav-link" href="../../contact">Contact</a>
+                    
+                
+            
+        </div>
+    </nav>
+</div>
+<hr>
+<div id="content">
+<div class="container">
+    
+<link href="index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="scraping-google-news-with-rvest-2020s-update" class="section level2">
+<h2>Scraping Google News with <code>rvest</code> (2020’s update)</h2>
+<hr />
+<p>This is an example of how to scrape the Google News website with the <code>rvest</code> package.</p>
+<p>This post is a solution for a question from a WhatsApp group, <a href="https://www.blackbeltR.com.br/blog" target="_blank"><strong>blackbeltR</strong></a>. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</p>
+<p>First off, you should take a look at the Google News website <a href="https://news.google.com/" target="_blank">HERE</a>, which I reproduce below:</p>
+<!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
+<p><img src="img/screenshot1.png" style="width:100.0%" /></p>
+<p>You may notice, on the right side of the page, that we are using Google Chrome <strong>dev-tools</strong>. This is necessary in order to identify the <em>html nodes</em> we need. You can access this tool by hitting the <strong>F12</strong> key. The html nodes are passed as arguments to the <code>rvest</code> functions.</p>
+<p>Basically, the idea is to extract the communication vehicle (vehicle), the time elapsed since the news was published (time), and the main headline (headline).</p>
+<p>The code and comments are presented below:</p>
+<pre class="r"><code># loading the packages:
+library(dplyr) # for pipes and the data_frame function
+library(rvest) # webscraping
+library(stringr) # to deal with strings and to clean up our data</code></pre>
+<pre class="r"><code># extracting the whole website
+google &lt;- read_html(&quot;https://news.google.com/&quot;)</code></pre>
+<p>As we can see, he Google News website is divided in rectangular chunks of headlines and other info. Therefore, our strategy is to first scrape the whole chunks, and then, for each chunk scrape the information of interest: vehicle, time, and the headlines.</p>
+<p>We start scraping the whole chunks of articles. By using the “inspect” tool of our browser, we can see that the <code>"article"</code> node is the one that identifies each chunk.</p>
+<p><img src="img/screenshot2.png" style="width:100.0%" /></p>
+<pre class="r"><code># extracting the headlines
+# and using stringr for cleaning
+article_all &lt;- google %&gt;% html_nodes(&quot;article&quot;)
+
+article_all</code></pre>
+<pre><code>## {xml_nodeset (55)}
+##  [1] &lt;article class=&quot; MQsxIb xTewfe R7GTQ keNKEd j7vNaf Cc0Z5d EjqUne&quot; jscont ...
+##  [2] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [3] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [4] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [5] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [6] &lt;article class=&quot; MQsxIb xTewfe R7GTQ keNKEd j7vNaf Cc0Z5d EjqUne&quot; jscont ...
+##  [7] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [8] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+##  [9] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [10] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [11] &lt;article class=&quot; MQsxIb xTewfe R7GTQ keNKEd j7vNaf Cc0Z5d EjqUne&quot; jscont ...
+## [12] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [13] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [14] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [15] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [16] &lt;article class=&quot; MQsxIb xTewfe R7GTQ keNKEd j7vNaf Cc0Z5d EjqUne&quot; jscont ...
+## [17] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [18] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [19] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## [20] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
+## ...</code></pre>
+<p>Having the whole chunks, now we can separately scrape the information of interest:</p>
+<pre class="r"><code>times &lt;- article_all %&gt;%
+  html_node(&quot;time&quot;) %&gt;%
+  html_text()
+
+vehicles &lt;- article_all %&gt;%
+  html_nodes(&quot;a.wEwyrc.AVN2gc.uQIVzc.Sksgp&quot;) %&gt;%
+  html_text()
+
+headlines &lt;- article_all %&gt;%
+  html_nodes(&quot;a.DY5T1d&quot;) %&gt;%
+  html_text()</code></pre>
+<p>Let’s take a look on these vectors:</p>
+<pre class="r"><code># take a look at the first ten
+headlines[1:10]</code></pre>
+<pre><code>##  [1] &quot;Trump announces pardon for Michael Flynn in tweet&quot;                                                           
+##  [2] &quot;Trump grants Michael Flynn a full pardon&quot;                                                                    
+##  [3] &quot;President Trump pardons former National Security Adviser Michael Flynn&quot;                                      
+##  [4] &quot;Andrew McCarthy: Trump’s Flynn pardon justified — adviser should never have been investigated and prosecuted&quot;
+##  [5] &quot;Trump’s pardon of Michael Flynn is a parting disgrace&quot;                                                       
+##  [6] &quot;Trump rants about overturning the election even as administration begins transition to Biden&quot;                
+##  [7] &quot;Trump&#39;s outcasts in the civil and foreign service may get a second chance under Biden&quot;                       
+##  [8] &quot;New New York travel restrictions take effect, NJ and CT stick with advisory&quot;                                 
+##  [9] &quot;Ben Shapiro: Why Biden&#39;s &#39;return to normalcy&#39; is going to be terrible&quot;                                       
+## [10] &quot;Biden soars as leader of the free world | TheHill&quot;</code></pre>
+<pre class="r"><code>vehicles[1:10]</code></pre>
+<pre><code>##  [1] &quot;CNN&quot;                 &quot;Fox News&quot;            &quot;CNN&quot;                
+##  [4] &quot;Fox News&quot;            &quot;The Washington Post&quot; &quot;CNBC&quot;               
+##  [7] &quot;CNN&quot;                 &quot;Yahoo News&quot;          &quot;Fox News&quot;           
+## [10] &quot;The Hill&quot;</code></pre>
+<pre class="r"><code>times[1:10]</code></pre>
+<pre><code>##  [1] &quot;3 hours ago&quot;  &quot;5 hours ago&quot;  &quot;4 hours ago&quot;  &quot;2 hours ago&quot;  &quot;1 hour ago&quot;  
+##  [6] &quot;4 hours ago&quot;  &quot;3 hours ago&quot;  &quot;9 hours ago&quot;  &quot;11 hours ago&quot; &quot;11 hours ago&quot;</code></pre>
+<p>It seems all good!</p>
+<p>Then, we can proceed to generate our final <code>tibble</code>:</p>
+<pre class="r"><code>tb_news &lt;- tibble(headlines, vehicles, times)
+
+tb_news</code></pre>
+<pre><code>## # A tibble: 55 x 3
+##    headlines                                           vehicles        times    
+##    &lt;chr&gt;                                               &lt;chr&gt;           &lt;chr&gt;    
+##  1 Trump announces pardon for Michael Flynn in tweet   CNN             3 hours …
+##  2 Trump grants Michael Flynn a full pardon            Fox News        5 hours …
+##  3 President Trump pardons former National Security A… CNN             4 hours …
+##  4 Andrew McCarthy: Trump’s Flynn pardon justified — … Fox News        2 hours …
+##  5 Trump’s pardon of Michael Flynn is a parting disgr… The Washington… 1 hour a…
+##  6 Trump rants about overturning the election even as… CNBC            4 hours …
+##  7 Trump&#39;s outcasts in the civil and foreign service … CNN             3 hours …
+##  8 New New York travel restrictions take effect, NJ a… Yahoo News      9 hours …
+##  9 Ben Shapiro: Why Biden&#39;s &#39;return to normalcy&#39; is g… Fox News        11 hours…
+## 10 Biden soars as leader of the free world | TheHill   The Hill        11 hours…
+## # … with 45 more rows</code></pre>
+<p>That’s all!</p>
+</div>
+
+</div>
+
+        </div>
+    <div id="footer">
+        <hr>
+        <div class="container text-center mb-2">
+            <a href="https://github.com/ojroques/hugo-researcher"><small>Made with {pkgdown}, based on the Hugo Researcher theme</small></a>
+        </div>
+    </div>
+
+</body>
+</html>
