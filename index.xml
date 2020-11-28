@@ -95,7 +95,7 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       
       <guid>https://allanvc.github.io/software/</guid>
       <description>Software Below, you find more information about the main software development projects that I have been working on:
- R packages:  [1] mRpostman: an IMAP Client for R
+ R packages:  [1] mRpostman: An IMAP Client for R
 Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
 Examples:</description>
     </item>
