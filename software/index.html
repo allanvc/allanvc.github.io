@@ -90,7 +90,7 @@ Description: <code>mRpostman</code> is an easy-to-use IMAP client that provides 
 <p>Examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to download attachment files of selected messages:</span>
 <span style="color:#a6e22e">library</span>(mRpostman)
-<span style="color:#75715e"># configure IMAP connection</span>
+<span style="color:#75715e"># configure the IMAP connection:</span>
 con <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">configure_imap</span>(
   url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;imaps://outlook.office365.com&#34;</span>,
   username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user@company.com&#34;</span>,
@@ -109,7 +109,8 @@ con<span style="color:#f92672">$</span><span style="color:#a6e22e">search_on</sp
 <p>[2] <strong>emstreeR</strong>: an <strong>R</strong> Package for Fast Computing and Plotting Euclidean Minimum Spanning Trees<br>
 Description: <code>emstreeR</code> is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on {RcppMLPACK} and {Rcpp}, working as a wrapper for the fast EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> implemented in <em>mlpack</em> - the C++ Machine Learning library (Curtin, 2013)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. The package also provides functions and an S3 method for readily plotting Minimum Spanning Trees (MST) using either R {base}, {scatterplot3d} or {ggplot2} style. <a href="https://CRAN.R-project.org/package=emstreeR">[CRAN]</a> <a href="https://www.github.com/allanvc/emstreeR">[Github]</a></p>
 <p>Examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># artificial data for a 3D plot:</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># finding an EMST in 3D data:</span>
+<span style="color:#75715e"># generating artificial data</span>
 n <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>
 <span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1984</span>)
 d1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">rnorm</span>(n, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">-2</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">.5</span>), n<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># 3d</span>
@@ -123,7 +124,7 @@ out <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Compute
 <span style="color:#a6e22e">plotMST3D</span>(out, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xaxis&#34;</span>, col.pts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;orange&#34;</span>, col.segts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a simple MST 3D plot&#34;</span>)
 </code></pre></div><hr>
 <p>[3] <strong>onlineretail</strong>: Online Retail Data Set<br>
-Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in the package with permission of the donor, Dr. Daqing Chen<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. <a href="https://CRAN.R-project.org/package=onlineretail">[CRAN]</a> <a href="https://www.github.com/allanvc/onlineretail">[Github]</a></p>
+Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in this package with the donor&rsquo;s permission, Dr. Daqing Chen.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. <a href="https://CRAN.R-project.org/package=onlineretail">[CRAN]</a> <a href="https://www.github.com/allanvc/onlineretail">[Github]</a></p>
 <p>Examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to load the data:</span>
 <span style="color:#a6e22e">library</span>(onlineretail)
@@ -155,13 +156,13 @@ License: FisFa is registered under the Brazilian Patent <strong>BR 51 2016 00021
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p>WB.March, P.Ram, AG.Gray (2010). Fast Euclidian minimum spanning tree: algorithm analysis, and applications. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA, DOI: 10.17487/RFC3501. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>WB.March, P.Ram, AG.Gray (2010). Fast Euclidian minimum spanning tree: algorithm analysis, and applications. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA, <a href="https://doi.org/10.1145/1835804.1835882">doi:10.1145/1835804.1835882</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
 <p>RR.Curtin <em>et al.</em> (2013). Mlpack: A scalable C++ machine learning library. Journal of Machine Learning Research, v. 14, 2013. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:3" role="doc-endnote">
-<p>D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. doi: 10.1057/dbm.2012.17). <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. <a href="https://doi.org/10.1057/dbm.2012.17">doi:10.1057/dbm.2012.17</a>. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
 <p><a href="https://www.researchgate.net/profile/Daqing_Chen">Dr. Dqing&rsquo;s ResearchGate page</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
