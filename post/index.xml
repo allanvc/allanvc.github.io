@@ -23,7 +23,7 @@ So far, mRpostman have been tested with Gmail, Yahoo Mail and AOL Mail, but it s
       
       <guid>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</guid>
       <description>Announcing the new ‘emstreeR’ package (2020’s {ggmap} update) I am proud to announce emstreeR - my first R package available on CRAN.
-emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)[^1] implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al.</description>
+emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)1 implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al.</description>
     </item>
     
     <item>
