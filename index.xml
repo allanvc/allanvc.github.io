@@ -1,19 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Allan V.C. Quadros on Allan V.C. Quadros</title>
+    <title>Allan V.C. Quadros</title>
     <link>https://allanvc.github.io/</link>
-    <description>Recent content in Allan V.C. Quadros on Allan V.C. Quadros</description>
+    <description>Recent content on Allan V.C. Quadros</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate>
-    <atom:link href="/" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate><atom:link href="https://allanvc.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Posts</title>
-      <link>https://allanvc.github.io/post/</link>
+      <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
+      <link>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</link>
       <pubDate>Thu, 22 Aug 2019 17:00:00 +0000</pubDate>
       
-      <guid>https://allanvc.github.io/post/</guid>
-      <description></description>
+      <guid>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</guid>
+      <description>mRpostman - IMAP Tools for R in a Tidy Way   mRpostman is an R package to help you to easy connect to your IMAP (Internet Message Access Protocol) server and execute commands, such as listing mailboxes, fetching and searching for messages in a tidy way. It heavily relies on {curl} for issuing the IMAP commands.
+So far, mRpostman have been tested with Gmail, Yahoo Mail and AOL Mail, but it should also work with other mail providers.</description>
+    </item>
+    
+    <item>
+      <title>Announcing the new &#39;emstreeR&#39; package</title>
+      <link>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</link>
+      <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
+      
+      <guid>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</guid>
+      <description>Announcing the new ‘emstreeR’ package (2020’s {ggmap} update) I am proud to announce emstreeR - my first R package available on CRAN.
+emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)1 implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al.</description>
+    </item>
+    
+    <item>
+      <title>Scraping Google News with &#39;rvest&#39;</title>
+      <link>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</link>
+      <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
+      
+      <guid>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</guid>
+      <description>Scraping Google News with rvest (2020’s update) This is an example of how to scrape the Google News website with the rvest package.
+This post is a solution for a question from a WhatsApp group, blackbeltR. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.
+First off, you should take a look at the Google News website HERE, which I reproduce below:</description>
     </item>
     
     <item>
@@ -22,81 +43,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/about/</guid>
-      <description>&lt;h2 id=&#34;about-me&#34;&gt;About Me&lt;/h2&gt;
-&lt;figure class=&#34;avatar&#34;&gt;
-    &lt;img src=&#34;./avatar.jpg&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;This is a Hugo based resume template. You can find the full source code on
-&lt;a href=&#34;https://github.com/ojroques/hugo-researcher&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;research-interest&#34;&gt;Research Interest&lt;/h2&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum
-ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio
-pharetra quis&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Mauris id urna ante.&lt;/p&gt;
-&lt;p&gt;Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque
-laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;. Nunc
-ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.&lt;/p&gt;
-&lt;h2 id=&#34;publications&#34;&gt;Publications&lt;/h2&gt;
-&lt;p&gt;In chronological order:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;F.Bar, J.Doe: Effects of having a placeholder of a name&lt;/li&gt;
-&lt;li&gt;S.Holmes, J.Watson: Consequences of living with a sociopath in London&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;typography&#34;&gt;Typography&lt;/h2&gt;
-&lt;p&gt;This is a &lt;a href=&#34;http://google.com&#34;&gt;link&lt;/a&gt;. Something &lt;em&gt;italics&lt;/em&gt; and something &lt;strong&gt;bold&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Here is a table:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Year&lt;/th&gt;
-&lt;th&gt;Award&lt;/th&gt;
-&lt;th&gt;Category&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;2014&lt;/td&gt;
-&lt;td&gt;Emmy&lt;/td&gt;
-&lt;td&gt;Won Outstanding Lead Actor in a miniseries or a movie&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2015&lt;/td&gt;
-&lt;td&gt;BAFTA&lt;/td&gt;
-&lt;td&gt;Nominated for Best Leading Actor for Sherlock&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2014&lt;/td&gt;
-&lt;td&gt;Satellite&lt;/td&gt;
-&lt;td&gt;Won Best Actor miniseries or television film&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Here is a horizontal rule:&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Here is a blockquote:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;To a great mind, nothing is little&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here is a &lt;code&gt;code&lt;/code&gt; block:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;is_elementary&lt;/span&gt;():
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Foo Bar: Head of Department, Placeholder Names, Lorem&lt;/li&gt;
-&lt;li&gt;John Doe: Associate Professor, Department of Computer Science, Ipsum&lt;/li&gt;
-&lt;/ul&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;This is the first footnote. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;This is the second footnote. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;
-</description>
+      <description>About Me  This is a Hugo based resume template. You can find the full source code on GitHub.
+Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
+Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
     </item>
     
     <item>
@@ -105,31 +54,14 @@ ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/contact/</guid>
-      <description>&lt;p&gt;Allan Vieira de Castro Quadros&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Email: &lt;a href=&#34;mailto:allanvcq@gmail.com&#34;&gt;allanvcq@gmail.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Phone: &lt;a href=&#34;tel:+55-6120225369&#34;&gt;+55-61-20225369&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;mailing-address&#34;&gt;Mailing Address&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Núcleo de Métodos Quantitativos&lt;br&gt;
-Fundo Nacional de Desenvolvimento da Educação - FNDE&lt;br&gt;
-Setor Bancário Sul, Quadra 2&lt;br&gt;
-Bloco F, Edifício FNDE&lt;br&gt;
-Brasília/DF - CEP: 70070-929&lt;/p&gt;
-&lt;p&gt;Brazil&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;social&#34;&gt;Social&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.linkedin.com/in/allan-vieira/&#34;&gt;LinkedIn&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://twitter.com/allanvcq&#34;&gt;Twitter&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/allanvc&#34;&gt;GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.researchgate.net/profile/Allan_Quadros&#34;&gt;ResearchGate&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/users/8287109/allanvc&#34;&gt;StackOverflow&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
+      <description>Allan Vieira de Castro Quadros
+ Email: allanvcq@gmail.com Phone: +55-61-20225369   Mailing Address  Núcleo de Métodos Quantitativos
+Fundo Nacional de Desenvolvimento da Educação - FNDE
+Setor Bancário Sul, Quadra 2
+Bloco F, Edifício FNDE
+Brasília/DF - CEP: 70070-929
+Brazil
+  Social  LinkedIn Twitter GitHub ResearchGate StackOverflow  </description>
     </item>
     
     <item>
@@ -138,98 +70,11 @@ Brasília/DF - CEP: 70070-929&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/courses/</guid>
-      <description>&lt;h1 id=&#34;courses&#34;&gt;Courses&lt;/h1&gt;
-&lt;p&gt;Here you find material from &lt;em&gt;in-company&lt;/em&gt; courses I have offered. Please note that the original language of these materials is &lt;strong&gt;Brazilian portuguese&lt;/strong&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;book&#34;&gt;Book&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://allanvc.github.io/book_IADR-T&#34;&gt;Introdução à Programação em R utilizando Tidyverse&lt;/a&gt; (2020). A companion text book to my &amp;ldquo;Introduction to R programming using the Tidyverse&amp;rdquo; course.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;slides&#34;&gt;Slides&lt;/h3&gt;
-&lt;p&gt;[2] Course: Data Analysis with R (II)&lt;br&gt;
-Level: Intermediate&lt;br&gt;
-Year: mar. 2018&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Topic&lt;/th&gt;
-&lt;th&gt;Length&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s1/&#34;&gt;Review + functions&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;39&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s2/&#34;&gt;Loops&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s3/&#34;&gt;Apply family&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;34&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s4/&#34;&gt;Tidyverse intro + strings and REGEX manipulation with &lt;code&gt;stringr&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;43&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s5/&#34;&gt;Dates with &lt;code&gt;lubridate&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s6/&#34;&gt;Data wrangling with &lt;code&gt;dplyr&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;27&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M2s7/&#34;&gt;Two table verbs with &lt;code&gt;dplyr&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;18&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s8/&#34;&gt;Accessing SQL databases with &lt;code&gt;dbplyr&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;22&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s8/&#34;&gt;Graphics with &lt;code&gt;ggplot2&lt;/code&gt;&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;31&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;[1] Course: Data Analysis with R (I)&lt;br&gt;
-Level: Introductory&lt;br&gt;
-Year: jan. 2018&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Topic&lt;/th&gt;
-&lt;th&gt;Length&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s1&amp;amp;2/&#34;&gt;Intro &amp;amp; first steps&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;34&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s3/&#34;&gt;Creating and manipulating R objects&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;20&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s4/&#34;&gt;Logical operators &amp;amp; control statements&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;11&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s5/&#34;&gt;Graphics (R base)&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;15&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;https://allanvc.github.io/courses_FNDE/M1s6/&#34;&gt;Read, manipulate, and write data&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;17&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</description>
+      <description>Courses Here you find material from in-company courses I have offered. Please note that the original language of these materials is Brazilian portuguese.
+ Book  Introdução à Programação em R utilizando Tidyverse (2020). A companion text book to my &amp;ldquo;Introduction to R programming using the Tidyverse&amp;rdquo; course.   Slides [2] Course: Data Analysis with R (II)
+Level: Intermediate
+Year: mar. 2018
+   Topic Length     Review + functions 39   Loops 15   Apply family 34   Tidyverse intro + strings and REGEX manipulation with stringr 43   Dates with lubridate 15   Data wrangling with dplyr 27   Two table verbs with dplyr 18   Accessing SQL databases with dbplyr 22   Graphics with ggplot2 31    [1] Course: Data Analysis with R (I)</description>
     </item>
     
     <item>
@@ -238,80 +83,9 @@ Year: jan. 2018&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/posts_old/</guid>
-      <description>&lt;h1 id=&#34;posts&#34;&gt;Posts&lt;/h1&gt;
-&lt;figure class=&#34;avatar&#34;&gt;
-    &lt;img src=&#34;./avatar.jpg&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;[3] 2018-08-21 - &lt;em&gt;Scraping Google News with &lt;code&gt;rvest&lt;/code&gt;&lt;/em&gt; &lt;a href=&#34;./post/2018-08-21-google_news_scraping&#34;&gt;[link]&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;research-interest&#34;&gt;Research Interest&lt;/h2&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum
-ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio
-pharetra quis&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. Mauris id urna ante.&lt;/p&gt;
-&lt;p&gt;Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque
-laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;. Nunc
-ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.&lt;/p&gt;
-&lt;h2 id=&#34;publications&#34;&gt;Publications&lt;/h2&gt;
-&lt;p&gt;In chronological order:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;F.Bar, J.Doe: Effects of having a placeholder of a name&lt;/li&gt;
-&lt;li&gt;S.Holmes, J.Watson: Consequences of living with a sociopath in London&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;typography&#34;&gt;Typography&lt;/h2&gt;
-&lt;p&gt;This is a &lt;a href=&#34;http://google.com&#34;&gt;link&lt;/a&gt;. Something &lt;em&gt;italics&lt;/em&gt; and something &lt;strong&gt;bold&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Here is a table:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Year&lt;/th&gt;
-&lt;th&gt;Award&lt;/th&gt;
-&lt;th&gt;Category&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;2014&lt;/td&gt;
-&lt;td&gt;Emmy&lt;/td&gt;
-&lt;td&gt;Won Outstanding Lead Actor in a miniseries or a movie&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2015&lt;/td&gt;
-&lt;td&gt;BAFTA&lt;/td&gt;
-&lt;td&gt;Nominated for Best Leading Actor for Sherlock&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;2014&lt;/td&gt;
-&lt;td&gt;Satellite&lt;/td&gt;
-&lt;td&gt;Won Best Actor miniseries or television film&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Here is a horizontal rule:&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Here is a blockquote:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;To a great mind, nothing is little&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Here is a &lt;code&gt;code&lt;/code&gt; block:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;is_elementary&lt;/span&gt;():
-  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; True
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Foo Bar: Head of Department, Placeholder Names, Lorem&lt;/li&gt;
-&lt;li&gt;John Doe: Associate Professor, Department of Computer Science, Ipsum&lt;/li&gt;
-&lt;/ul&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;This is the first footnote. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;This is the second footnote. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;
-</description>
+      <description>Posts  [3] 2018-08-21 - Scraping Google News with rvest [link].
+Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
+Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
     </item>
     
     <item>
@@ -320,99 +94,10 @@ ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.&lt;/p&gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/software/</guid>
-      <description>&lt;h1 id=&#34;software&#34;&gt;Software&lt;/h1&gt;
-&lt;p&gt;Below, you find more information about the main software development projects that I have been working on:&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;r-packages&#34;&gt;R packages:&lt;/h2&gt;
-&lt;p&gt;&lt;figure class=&#34;pkg&#34;&gt;
-    &lt;img src=&#34;./img/mRpostman.png&#34;/&gt; 
-&lt;/figure&gt;
- &lt;!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --&gt;&lt;/p&gt;
-&lt;p&gt;[1] &lt;strong&gt;mRpostman&lt;/strong&gt;: An IMAP Client for R&lt;br&gt;
-Description: &lt;code&gt;mRpostman&lt;/code&gt; is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R.  &lt;a href=&#34;https://allanvc.github.io/mRpostman&#34;&gt;[Official website]&lt;/a&gt; &lt;a href=&#34;https://CRAN.R-project.org/package=mRpostman&#34;&gt;[CRAN]&lt;/a&gt; &lt;a href=&#34;https://www.github.com/allanvc/mRpostman&#34;&gt;[Github]&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Examples:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# how to download attachment files of selected messages:&lt;/span&gt;
-&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(mRpostman)
-&lt;span style=&#34;color:#75715e&#34;&gt;# configure the IMAP connection:&lt;/span&gt;
-con &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;configure_imap&lt;/span&gt;(
-  url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;imaps://outlook.office365.com&amp;#34;&lt;/span&gt;,
-  username&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;user@company.com&amp;#34;&lt;/span&gt;,
-  password&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;rstudioapi&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;askForPassword&lt;/span&gt;()
-)
-&lt;span style=&#34;color:#75715e&#34;&gt;# select folder&lt;/span&gt;
-con&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select_folder&lt;/span&gt;(name &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;INBOX&amp;#34;&lt;/span&gt;)
-&lt;span style=&#34;color:#75715e&#34;&gt;# search by date and fetch messages&lt;/span&gt;
-con&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;search_on&lt;/span&gt;(date_char &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;24-Nov-2020&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-  con&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;fetch_attachments&lt;/span&gt;()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
-&lt;p&gt;&lt;figure class=&#34;pkg&#34;&gt;
-    &lt;img src=&#34;./img/emstreeR.png&#34;/&gt; 
-&lt;/figure&gt;
- &lt;!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --&gt;&lt;/p&gt;
-&lt;p&gt;[2] &lt;strong&gt;emstreeR&lt;/strong&gt;: Tools for Fast Computing and Plotting Euclidean Minimum Spanning Trees&lt;br&gt;
-Description: &lt;code&gt;emstreeR&lt;/code&gt; is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on {RcppMLPACK} and {Rcpp}, working as a wrapper for the fast EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; implemented in &lt;em&gt;mlpack&lt;/em&gt; - the C++ Machine Learning library (Curtin, 2013)&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;. The package also provides functions and an S3 method for readily plotting Minimum Spanning Trees (MST) using either R {base}, {scatterplot3d} or {ggplot2} style. &lt;a href=&#34;https://CRAN.R-project.org/package=emstreeR&#34;&gt;[CRAN]&lt;/a&gt; &lt;a href=&#34;https://www.github.com/allanvc/emstreeR&#34;&gt;[Github]&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Examples:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# finding an EMST in 3D data:&lt;/span&gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;# generating artificial data&lt;/span&gt;
-n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;99&lt;/span&gt;
-&lt;span style=&#34;color:#a6e22e&#34;&gt;set.seed&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1984&lt;/span&gt;)
-d1 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;matrix&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;-2&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;.5&lt;/span&gt;), n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;# 3d&lt;/span&gt;
-d2 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;matrix&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;.3&lt;/span&gt;), n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)
-d3 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;matrix&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rnorm&lt;/span&gt;(n, mean &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, sd &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;.4&lt;/span&gt;), n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)
-d &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rbind&lt;/span&gt;(d1,d2,d3) &lt;span style=&#34;color:#75715e&#34;&gt;# showing a matrix input&lt;/span&gt;
-&lt;span style=&#34;color:#75715e&#34;&gt;# MST:&lt;/span&gt;
-&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(emstreeR)
-out &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ComputeMST&lt;/span&gt;(d, verbose &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;FALSE&lt;/span&gt;)
-&lt;span style=&#34;color:#75715e&#34;&gt;# plot:&lt;/span&gt;
-&lt;span style=&#34;color:#a6e22e&#34;&gt;plotMST3D&lt;/span&gt;(out, xlab &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xaxis&amp;#34;&lt;/span&gt;, col.pts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;orange&amp;#34;&lt;/span&gt;, col.segts &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;, main &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a simple MST 3D plot&amp;#34;&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
-&lt;p&gt;[3] &lt;strong&gt;onlineretail&lt;/strong&gt;: Online Retail Data Set&lt;br&gt;
-Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in this package with the donor&amp;rsquo;s permission, Dr. Daqing Chen.&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; &lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;. &lt;a href=&#34;https://CRAN.R-project.org/package=onlineretail&#34;&gt;[CRAN]&lt;/a&gt; &lt;a href=&#34;https://www.github.com/allanvc/onlineretail&#34;&gt;[Github]&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Examples:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# how to load the data:&lt;/span&gt;
-&lt;span style=&#34;color:#a6e22e&#34;&gt;library&lt;/span&gt;(onlineretail)
-&lt;span style=&#34;color:#a6e22e&#34;&gt;data&lt;/span&gt;(onlineretail)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;private-r-packages&#34;&gt;Private R packages:&lt;/h2&gt;
-&lt;p&gt;[4] &lt;strong&gt;proPNLD&lt;/strong&gt;: An R package to forecast the number of students in all Brazilian schools and grades for the PNLD program&lt;br&gt;
-Description: Execute the two-step-forecasting (h=2) on the number of students in each grade in every Brazilian public school, fitting more than 800,000 ETS time-series models. &lt;a href=&#34;https://www.github.com/allanvc/proPNLD&#34;&gt;[Github]&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;other-software&#34;&gt;Other software:&lt;/h2&gt;
-&lt;p&gt;[1] &lt;strong&gt;FisFa&lt;/strong&gt;:  Fiscaliza Fatura - contract invoice analysis automation (discontinued)
-Description: FisFa is a software developed (mostly) in R and Python. Its aim is to automate contract management tasks in Fies - the Brazilian Higher Education Fund. Previously to FisFa, contract invoices from banks used to take more than two weeks to be analyzed by the Fund staff. After FisFa, this time has dropped to roughly 1 minute. The quality of the analysis also has considerably improved. FisFa provides several reports about the invoice and also indicates possible errors in data. Due to monthly errors found by FisFa in the invoices, the Brazilian Government saved more than US$50 million between 2016 and 2018.&lt;br&gt;
-License: FisFa is registered under the Brazilian Patent &lt;strong&gt;BR 51 2016 000212 3&lt;/strong&gt;.
-Awards: As a recognition for the aforementioned results, the software received two national recognition awards:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Standout Project in Contract Management. 4th ANGC Awards - Best Initiatives Of The Year on Contract Management, Sep. 2018.&lt;/li&gt;
-&lt;li&gt;1st Place, Strengthening Internal Controls in the Public Administration. CGU’s 4th Good Practices Award, Dec. 2016.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;figure class=&#34;regimg&#34;&gt;
-    &lt;img src=&#34;./img/fisfa.jpg&#34;
-         alt=&#34;FisFa screenshot&#34;/&gt; &lt;figcaption&gt;
-            &lt;p&gt;FisFa screenshot&lt;/p&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;
- &lt;!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --&gt;&lt;/p&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;WB.March, P.Ram, AG.Gray (2010). Fast Euclidian minimum spanning tree: algorithm analysis, and applications. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA, &lt;a href=&#34;https://doi.org/10.1145/1835804.1835882&#34;&gt;doi:10.1145/1835804.1835882&lt;/a&gt;. &lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;RR.Curtin &lt;em&gt;et al.&lt;/em&gt; (2013). Mlpack: A scalable C++ machine learning library. Journal of Machine Learning Research, v. 14, 2013. &lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. &lt;a href=&#34;https://doi.org/10.1057/dbm.2012.17&#34;&gt;doi:10.1057/dbm.2012.17&lt;/a&gt;. &lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id=&#34;fn:4&#34; role=&#34;doc-endnote&#34;&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.researchgate.net/profile/Daqing_Chen&#34;&gt;Dr. Dqing&amp;rsquo;s ResearchGate page&lt;/a&gt; &lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/section&gt;
-</description>
+      <description>Software Below, you find more information about the main software development projects that I have been working on:
+ R packages:  [1] mRpostman: An IMAP Client for R
+Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
+Examples:</description>
     </item>
     
     <item>
@@ -421,35 +106,15 @@ Awards: As a recognition for the aforementioned results, the software received t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/talks/</guid>
-      <description>&lt;h1 id=&#34;recent--upcoming-talks&#34;&gt;Recent &amp;amp; Upcoming Talks&lt;/h1&gt;
-&lt;p&gt;[4] &lt;strong&gt;Mesa Redonda: Inteligência Artificial e Inovação&lt;/strong&gt;&lt;br&gt;
-Description: Debate on Artificial Intelligence-related themes&lt;br&gt;
-Date: Oct 23, 2020 8:30 PM — 9:30 PM&lt;br&gt;
-Event: SNCTNF 2020&lt;br&gt;
-Venue: Nova Friburgo - RJ, Brazil&lt;br&gt;
-&lt;a href=&#34;https://allanvc.github.io/slide_SNCTNF2020&#34;&gt;[slides]&lt;/a&gt;  &lt;a href=&#34;https://youtu.be/Ko3zUEgxWqc?t=19426&#34;&gt;[video]&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;[3] &lt;strong&gt;Ciência de Dados na Administração Pública&lt;/strong&gt;&lt;br&gt;
-Description: A walk-through on the experience of assembling and running a successful data science team in a Brazilian governmental agency&lt;br&gt;
-Date: Oct 23, 2020 4:30 PM — 5:30 PM&lt;br&gt;
-Event: SNCTNF 2020&lt;br&gt;
-Venue: Nova Friburgo - RJ, Brazil&lt;br&gt;
-&lt;a href=&#34;https://allanvc.github.io/slide_SNCTNF2020&#34;&gt;[slides]&lt;/a&gt;  &lt;a href=&#34;https://youtu.be/Ko3zUEgxWqc?t=7378&#34;&gt;[video]&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;[2] &lt;strong&gt;Ciência de Dados no Setor Público:&lt;/strong&gt; &lt;em&gt;casos de sucesso no Fundo Nacional de Desenvolvimento da Educação&lt;/em&gt;&lt;br&gt;
-Description: Successful data-driven solutions at FNDE&lt;br&gt;
-Date: Nov 27, 2019 2:30 PM — 3:30 PM&lt;br&gt;
-Event: III Workshop on Information, Data and Technology (WIDaT 2019)&lt;br&gt;
-Venue: Information Science Department, University of Brasília, Brasília, Brazil&lt;br&gt;
-&lt;a href=&#34;https://allanvc.github.io/slide_WIDaT2019&#34;&gt;[slides]&lt;/a&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;[1] &lt;strong&gt;Análise de Dados no Setor Público&lt;/strong&gt;&lt;br&gt;
-Description: The importance of Statistics and Data Science at FNDE.&lt;br&gt;
-Date: Jul 3, 2019 2:30 PM — 5:00 PM&lt;br&gt;
-Event: Round Table on Data Science
-Venue: FNDE, Brasília, Brazil&lt;br&gt;
-&lt;a href=&#34;https://allanvc.github.io/talk_DS_FNDE&#34;&gt;[slides]&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>Recent &amp;amp; Upcoming Talks [4] Mesa Redonda: Inteligência Artificial e Inovação
+Description: Debate on Artificial Intelligence-related themes
+Date: Oct 23, 2020 8:30 PM — 9:30 PM
+Event: SNCTNF 2020
+Venue: Nova Friburgo - RJ, Brazil
+[slides] [video]
+ [3] Ciência de Dados na Administração Pública
+Description: A walk-through on the experience of assembling and running a successful data science team in a Brazilian governmental agency
+Date: Oct 23, 2020 4:30 PM — 5:30 PM</description>
     </item>
     
   </channel>
