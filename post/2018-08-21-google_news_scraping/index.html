@@ -84,9 +84,10 @@ if (!doNotTrack) {
 
 <div id="scraping-google-news-with-rvest-2020s-update" class="section level2">
 <h2>Scraping Google News with <code>rvest</code> (2020’s update)</h2>
+<p>Updated on 2020-12-05.
+This is an enhanced and substantially different version of the original article published in R-Bloggers in 2018.</p>
 <hr />
-<p>This is an example of how to scrape the Google News website with the <code>rvest</code> package.</p>
-<p>This post is a solution for a question from a WhatsApp group, <a href="https://www.blackbeltR.com.br/blog" target="_blank"><strong>blackbeltR</strong></a>. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.</p>
+<p>This is an example of how to scrape Google News website with the <code>rvest</code> package.</p>
 <p>First off, you should take a look at the Google News website <a href="https://news.google.com/" target="_blank">HERE</a>, which I reproduce below:</p>
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
 <p><img src="img/screenshot1.png" style="width:100.0%" /></p>
@@ -99,15 +100,15 @@ library(rvest) # webscraping
 library(stringr) # to deal with strings and to clean up our data</code></pre>
 <pre class="r"><code># extracting the whole website
 google &lt;- read_html(&quot;https://news.google.com/&quot;)</code></pre>
-<p>As we can see, he Google News website is divided in rectangular chunks of headlines and other info. Therefore, our strategy is to first scrape the whole chunks, and then, for each chunk scrape the information of interest: vehicle, time, and the headlines.</p>
-<p>We start scraping the whole chunks of articles. By using the “inspect” tool of our browser, we can see that the <code>"article"</code> node is the one that identifies each chunk.</p>
+<p>As we can see, the Google News website is divided in rectangular chunks of headlines and other info. Therefore, our strategy is to first scrape the whole chunks, and then, for each chunk scrape the information of interest: vehicle, time, and headlines.</p>
+<p>We start scraping the whole chunks of articles. By using the “inspect” tool of our browser, we can see that the <em>“article”</em> node is the one that identifies each chunk.</p>
 <p><img src="img/screenshot2.png" style="width:100.0%" /></p>
 <pre class="r"><code># extracting the headlines
 # and using stringr for cleaning
 article_all &lt;- google %&gt;% html_nodes(&quot;article&quot;)
 
 article_all</code></pre>
-<pre><code>## {xml_nodeset (55)}
+<pre><code>## {xml_nodeset (47)}
 ##  [1] &lt;article class=&quot; MQsxIb xTewfe R7GTQ keNKEd j7vNaf Cc0Z5d EjqUne&quot; jscont ...
 ##  [2] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
 ##  [3] &lt;article class=&quot; MQsxIb xTewfe tXImLc R7GTQ keNKEd keNKEd  dIehj EjqUne&quot; ...
@@ -141,46 +142,46 @@ vehicles &lt;- article_all %&gt;%
 headlines &lt;- article_all %&gt;%
   html_nodes(&quot;a.DY5T1d&quot;) %&gt;%
   html_text()</code></pre>
-<p>Let’s take a look on these vectors:</p>
+<p>Let’s take a look at these vectors:</p>
 <pre class="r"><code># take a look at the first ten
 headlines[1:10]</code></pre>
-<pre><code>##  [1] &quot;Trump announces pardon for Michael Flynn in tweet&quot;                                                           
-##  [2] &quot;Trump grants Michael Flynn a full pardon&quot;                                                                    
-##  [3] &quot;President Trump pardons former National Security Adviser Michael Flynn&quot;                                      
-##  [4] &quot;Andrew McCarthy: Trump’s Flynn pardon justified — adviser should never have been investigated and prosecuted&quot;
-##  [5] &quot;Trump’s pardon of Michael Flynn is a parting disgrace&quot;                                                       
-##  [6] &quot;Trump rants about overturning the election even as administration begins transition to Biden&quot;                
-##  [7] &quot;Trump&#39;s outcasts in the civil and foreign service may get a second chance under Biden&quot;                       
-##  [8] &quot;New New York travel restrictions take effect, NJ and CT stick with advisory&quot;                                 
-##  [9] &quot;Ben Shapiro: Why Biden&#39;s &#39;return to normalcy&#39; is going to be terrible&quot;                                       
-## [10] &quot;Biden soars as leader of the free world | TheHill&quot;</code></pre>
+<pre><code>##  [1] &quot;Judge Orders Government to Fully Reinstate DACA Program&quot;                                            
+##  [2] &quot;Federal judge orders restoration of DACA program&quot;                                                   
+##  [3] &quot;Federal court restores DACA program, orders DHS to accept new applicants&quot;                           
+##  [4] &quot;Judge Orders Trump Administration To Restore DACA As It Existed Under Obama&quot;                        
+##  [5] &quot;Federal judge reinstates DACA, orders Homeland Security to quickly accept new applicants&quot;           
+##  [6] &quot;Newsom’s stay-home order set to take effect in SoCal this weekend after ICU capacity drops&quot;         
+##  [7] &quot;California&#39;s Stay-at-Home Orders: What to Know About Newsom&#39;s Measures&quot;                             
+##  [8] &quot;California&#39;s Stay-at-Home Order Explained As Gov. Newsom Puts Severe Regional Restrictions in Place&quot;
+##  [9] &quot;Newsom faces backlash for closing playgrounds in new order&quot;                                         
+## [10] &quot;Map: California&#39;s 5 regions that could fall under stay-at-home order soon&quot;</code></pre>
 <pre class="r"><code>vehicles[1:10]</code></pre>
-<pre><code>##  [1] &quot;CNN&quot;                 &quot;Fox News&quot;            &quot;CNN&quot;                
-##  [4] &quot;Fox News&quot;            &quot;The Washington Post&quot; &quot;CNBC&quot;               
-##  [7] &quot;CNN&quot;                 &quot;Yahoo News&quot;          &quot;Fox News&quot;           
-## [10] &quot;The Hill&quot;</code></pre>
+<pre><code>##  [1] &quot;The New York Times&quot; &quot;CBS News&quot;           &quot;Fox News&quot;          
+##  [4] &quot;NPR&quot;                &quot;Yahoo News&quot;         &quot;KTLA Los Angeles&quot;  
+##  [7] &quot;The New York Times&quot; &quot;Newsweek&quot;           &quot;Los Angeles Times&quot; 
+## [10] &quot;SF Gate&quot;</code></pre>
 <pre class="r"><code>times[1:10]</code></pre>
-<pre><code>##  [1] &quot;3 hours ago&quot;  &quot;5 hours ago&quot;  &quot;4 hours ago&quot;  &quot;2 hours ago&quot;  &quot;1 hour ago&quot;  
-##  [6] &quot;4 hours ago&quot;  &quot;3 hours ago&quot;  &quot;9 hours ago&quot;  &quot;11 hours ago&quot; &quot;11 hours ago&quot;</code></pre>
+<pre><code>##  [1] &quot;8 hours ago&quot;  &quot;9 hours ago&quot;  &quot;9 hours ago&quot;  &quot;8 hours ago&quot;  &quot;10 hours ago&quot;
+##  [6] &quot;3 hours ago&quot;  &quot;20 hours ago&quot; &quot;19 hours ago&quot; &quot;11 hours ago&quot; &quot;11 hours ago&quot;</code></pre>
 <p>It seems all good!</p>
 <p>Then, we can proceed to generate our final <code>tibble</code>:</p>
 <pre class="r"><code>tb_news &lt;- tibble(headlines, vehicles, times)
 
 tb_news</code></pre>
-<pre><code>## # A tibble: 55 x 3
-##    headlines                                           vehicles        times    
-##    &lt;chr&gt;                                               &lt;chr&gt;           &lt;chr&gt;    
-##  1 Trump announces pardon for Michael Flynn in tweet   CNN             3 hours …
-##  2 Trump grants Michael Flynn a full pardon            Fox News        5 hours …
-##  3 President Trump pardons former National Security A… CNN             4 hours …
-##  4 Andrew McCarthy: Trump’s Flynn pardon justified — … Fox News        2 hours …
-##  5 Trump’s pardon of Michael Flynn is a parting disgr… The Washington… 1 hour a…
-##  6 Trump rants about overturning the election even as… CNBC            4 hours …
-##  7 Trump&#39;s outcasts in the civil and foreign service … CNN             3 hours …
-##  8 New New York travel restrictions take effect, NJ a… Yahoo News      9 hours …
-##  9 Ben Shapiro: Why Biden&#39;s &#39;return to normalcy&#39; is g… Fox News        11 hours…
-## 10 Biden soars as leader of the free world | TheHill   The Hill        11 hours…
-## # … with 45 more rows</code></pre>
+<pre><code>## # A tibble: 47 x 3
+##    headlines                                            vehicles       times    
+##    &lt;chr&gt;                                                &lt;chr&gt;          &lt;chr&gt;    
+##  1 Judge Orders Government to Fully Reinstate DACA Pro… The New York … 8 hours …
+##  2 Federal judge orders restoration of DACA program     CBS News       9 hours …
+##  3 Federal court restores DACA program, orders DHS to … Fox News       9 hours …
+##  4 Judge Orders Trump Administration To Restore DACA A… NPR            8 hours …
+##  5 Federal judge reinstates DACA, orders Homeland Secu… Yahoo News     10 hours…
+##  6 Newsom’s stay-home order set to take effect in SoCa… KTLA Los Ange… 3 hours …
+##  7 California&#39;s Stay-at-Home Orders: What to Know Abou… The New York … 20 hours…
+##  8 California&#39;s Stay-at-Home Order Explained As Gov. N… Newsweek       19 hours…
+##  9 Newsom faces backlash for closing playgrounds in ne… Los Angeles T… 11 hours…
+## 10 Map: California&#39;s 5 regions that could fall under s… SF Gate        11 hours…
+## # … with 37 more rows</code></pre>
 <p>That’s all!</p>
 </div>
 
@@ -190,7 +191,7 @@ tb_news</code></pre>
     <div id="footer">
         <hr>
         <div class="container text-center mb-2">
-            <a href="https://github.com/ojroques/hugo-researcher"><small>Made with {pkgdown}, based on the Hugo Researcher theme</small></a>
+            <a href="https://github.com/ojroques/hugo-researcher"><small>Powered by {pkgdown}, based on the Hugo Researcher theme</small></a>
         </div>
     </div>
 

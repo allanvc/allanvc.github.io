@@ -32,9 +32,10 @@ emstreeR is a package for fast and easily computing Euclidean Minimum Spanning T
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
       <guid>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</guid>
-      <description>Scraping Google News with rvest (2020’s update) This is an example of how to scrape the Google News website with the rvest package.
-This post is a solution for a question from a WhatsApp group, blackbeltR. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.
-First off, you should take a look at the Google News website HERE, which I reproduce below:</description>
+      <description>Scraping Google News with rvest (2020’s update) Updated on 2020-12-05. This is an enhanced and substantially different version of the original article published in R-Bloggers in 2018.
+This is an example of how to scrape Google News website with the rvest package.
+First off, you should take a look at the Google News website HERE, which I reproduce below:
+You may notice, on the right side of the page, that we are using Google Chrome dev-tools.</description>
     </item>
     
     <item>
@@ -106,15 +107,13 @@ Examples:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://allanvc.github.io/talks/</guid>
-      <description>Recent &amp;amp; Upcoming Talks [4] Mesa Redonda: Inteligência Artificial e Inovação
-Description: Debate on Artificial Intelligence-related themes
-Date: Oct 23, 2020 8:30 PM — 9:30 PM
-Event: SNCTNF 2020
-Venue: Nova Friburgo - RJ, Brazil
-[slides] [video]
- [3] Ciência de Dados na Administração Pública
-Description: A walk-through on the experience of assembling and running a successful data science team in a Brazilian governmental agency
-Date: Oct 23, 2020 4:30 PM — 5:30 PM</description>
+      <description>Recent &amp;amp; Upcoming Talks [5] Como montar um time de Ciência de Dados na Administração Pública
+Description: An invited lecture at FGV where I walked the audience trough the challeges of assembling a Data Science team in the Public Sector in Brazil.
+Date: Dec 05, 2020 9:00 AM — 10:00 AM
+Event: Information Technology Course, Fundação Getúlio Vargas (FGV)
+Venue: Rio de Janeiro - RJ, Brazil (remote)
+[slides]
+ [4] Mesa Redonda: Inteligência Artificial e Inovação</description>
     </item>
     
   </channel>

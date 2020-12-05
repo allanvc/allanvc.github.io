@@ -32,9 +32,10 @@ emstreeR is a package for fast and easily computing Euclidean Minimum Spanning T
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
       <guid>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</guid>
-      <description>Scraping Google News with rvest (2020’s update) This is an example of how to scrape the Google News website with the rvest package.
-This post is a solution for a question from a WhatsApp group, blackbeltR. A great deal of the basic ideas comes from his own code. I just kept it and added few things in order to get the code working.
-First off, you should take a look at the Google News website HERE, which I reproduce below:</description>
+      <description>Scraping Google News with rvest (2020’s update) Updated on 2020-12-05. This is an enhanced and substantially different version of the original article published in R-Bloggers in 2018.
+This is an example of how to scrape Google News website with the rvest package.
+First off, you should take a look at the Google News website HERE, which I reproduce below:
+You may notice, on the right side of the page, that we are using Google Chrome dev-tools.</description>
     </item>
     
   </channel>
