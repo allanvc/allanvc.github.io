@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Allan V.C. Quadros</title>
-    <link>https://allanvc.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Allan V.C. Quadros</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate><atom:link href="https://allanvc.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way</title>
-      <link>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</link>
+      <link>/post/2019-08-22-new_package_mrpostman/</link>
       <pubDate>Thu, 22 Aug 2019 17:00:00 +0000</pubDate>
       
-      <guid>https://allanvc.github.io/post/2019-08-22-new_package_mrpostman/</guid>
+      <guid>/post/2019-08-22-new_package_mrpostman/</guid>
       <description>mRpostman - IMAP Tools for R in a Tidy Way   mRpostman is an R package to help you to easy connect to your IMAP (Internet Message Access Protocol) server and execute commands, such as listing mailboxes, fetching and searching for messages in a tidy way. It heavily relies on {curl} for issuing the IMAP commands.
 So far, mRpostman have been tested with Gmail, Yahoo Mail and AOL Mail, but it should also work with other mail providers.</description>
     </item>
     
     <item>
       <title>Announcing the new &#39;emstreeR&#39; package</title>
-      <link>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</link>
+      <link>/post/2018-12-10-new_package_emstreer/</link>
       <pubDate>Mon, 10 Dec 2018 21:13:14 -0500</pubDate>
       
-      <guid>https://allanvc.github.io/post/2018-12-10-new_package_emstreer/</guid>
+      <guid>/post/2018-12-10-new_package_emstreer/</guid>
       <description>Announcing the new ‘emstreeR’ package (2020’s {ggmap} update) I am proud to announce emstreeR - my first R package available on CRAN.
 emstreeR is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)1 implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al.</description>
     </item>
     
     <item>
       <title>Scraping Google News with &#39;rvest&#39;</title>
-      <link>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</link>
+      <link>/post/2018-08-21-google_news_scraping/</link>
       <pubDate>Tue, 21 Aug 2018 21:13:14 -0500</pubDate>
       
-      <guid>https://allanvc.github.io/post/2018-08-21-google_news_scraping/</guid>
+      <guid>/post/2018-08-21-google_news_scraping/</guid>
       <description>Scraping Google News with rvest (2020’s update) Updated on 2020-12-05. This is an enhanced and substantially different version of the original article published in R-Bloggers in 2018.
 This is an example of how to scrape Google News website with the rvest package.
 First off, you should take a look at the Google News website HERE, which I reproduce below:
