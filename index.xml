@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Allan V. C. Quadros on Allan V.C. Quadros</title>
+    <title>Allan V. C. Quadros on Allan Quadros</title>
     <link>/</link>
-    <description>Recent content in Allan V. C. Quadros on Allan V.C. Quadros</description>
+    <description>Recent content in Allan V. C. Quadros on Allan Quadros</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 22 Aug 2019 17:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -56,7 +56,7 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       
       <guid>/contact/</guid>
       <description>Allan Vieira de Castro Quadros
- Email: allanvcq@gmail.com | quadros@k-state.edu Phone: +55-61-20225369   Mailing Address  Department of Statistics
+ Email: allanvcq@gmail.com | quadros@k-state.edu Phone: +1(785)576-3130   Mailing Address  Department of Statistics
 Kansas State University
 D009C Dickens Hall
 1116 Mid-Campus Drive N.
@@ -79,6 +79,19 @@ Year: mar. 2018
     </item>
     
     <item>
+      <title>Data Science</title>
+      <link>/software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/software/</guid>
+      <description>Software Below, find more information about the main software projects that I have been working on.
+ R packages:  [1] mRpostman: An IMAP Client for R
+Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
+Examples:
+# how to download attachment files of selected messages: library(mRpostman) # configure the IMAP connection: con &amp;lt;- configure_imap( url=&amp;#34;imaps://outlook.</description>
+    </item>
+    
+    <item>
       <title>Posts</title>
       <link>/posts_old/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -90,16 +103,13 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
     </item>
     
     <item>
-      <title>Software</title>
-      <link>/software/</link>
+      <title>Quantitative Trading</title>
+      <link>/quant/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/software/</guid>
-      <description>Software Below, find more information about the main software development projects that I have been working on.
- R packages:  [1] mRpostman: An IMAP Client for R
-Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
-Examples:
-# how to download attachment files of selected messages: library(mRpostman) # configure the IMAP connection: con &amp;lt;- configure_imap( url=&amp;#34;imaps://outlook.</description>
+      <guid>/quant/</guid>
+      <description>Quantitative Trading Below, find more information about some of the quantitative trading software I have developed.
+ * This page is under construction. I will leave you with some screenshots of the quantitative trading software projects I have bee working on.</description>
     </item>
     
     <item>

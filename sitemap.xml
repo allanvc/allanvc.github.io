@@ -40,11 +40,15 @@
   </url>
   
   <url>
+    <loc>/software/</loc>
+  </url>
+  
+  <url>
     <loc>/posts_old/</loc>
   </url>
   
   <url>
-    <loc>/software/</loc>
+    <loc>/quant/</loc>
   </url>
   
   <url>
