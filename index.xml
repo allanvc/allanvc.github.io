@@ -72,7 +72,7 @@ United States
       
       <guid>/courses/</guid>
       <description>Courses Here you find material from in-company courses I have offered. Please note that the original language of these materials is Brazilian portuguese.
- Book  Introdução à Programação em R utilizando Tidyverse (2020). A companion text book to my &amp;ldquo;Introduction to R programming using the Tidyverse&amp;rdquo; course.   Slides [2] Course: Data Analysis with R (II)
+ Book  Introdução à Análise de Dados em R utilizando Tidyverse (2020). A companion text book to my &amp;ldquo;Introduction to Data Analysis with R using the Tidyverse&amp;rdquo; course.   Slides [2] Course: Data Analysis with R (II)
 Level: Intermediate
 Year: mar. 2018
    Topic Length     Review + functions 39   Loops 15   Apply family 34   Tidyverse intro + strings and REGEX manipulation with stringr 43   Dates with lubridate 15   Data wrangling with dplyr 27   Two table verbs with dplyr 18   Accessing SQL databases with dbplyr 22   Graphics with ggplot2 31    [1] Course: Data Analysis with R (I)</description>
@@ -117,11 +117,12 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>Recent &amp;amp; Upcoming Talks [5] Os desafios de se montar um time de Ciência de Dados na Administração Pública
-Description: An invited lecture at FGV where I walked the audience trough the challenges of assembling and running a successful data science team in the Public Sector in Brazil.
-Date: Dec 05, 2020 9:00 AM — 10:00 AM
-Event: Information Technology Course, Fundação Getúlio Vargas (FGV)
-Venue: Sao Paulo - SP, Brazil (remote)</description>
+      <description>Recent &amp;amp; Upcoming Talks [7] O Potencial da IA na Gestão Pública
+Description: An invited lecture at UCB-Brasilia where I walked the audience trough the challenges of AI in the Public Sector in Brazil.
+Date: Oct 05, 2024 10:00 AM — 12:00 PM
+Event: Artificial Intelligence Course, Universidade Católica de Brasília - UCB
+Venue: Brasília, Brazil (remote)
+ [6] Bayesian approach to estimate failure risk in the lack of previous failure data</description>
     </item>
     
   </channel>
