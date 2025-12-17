@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AON Network Trainer – CPM/Slack/Lags/Hammock</title>
+<style>
+  :root{--green:#217346;--ink:#222;--muted:#6b7280;--bg:#f7f7f7;--ok:#16a34a;--bad:#b91c1c;--warn:#b45309}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:var(--bg);color:var(--ink)}
+  header{background:var(--green);color:#fff;padding:12px 18px;font-weight:600;letter-spacing:.2px}
+  .wrap{max-width:1400px;margin:0 auto;padding:12px}
+  .tabs{display:flex;flex-wrap:wrap;border-bottom:3px solid var(--green);gap:6px}
+  .tab{background:#e5e7eb;border:1px solid #d1d5db;border-bottom:none;border-radius:6px 6px 0 0;padding:8px 12px;font-size:14px;cursor:pointer}
+  .tab.active{background:#fff;color:var(--green);font-weight:700}
+  .panel{display:none;background:#fff;border:1px solid #d1d5db;border-top:none;border-radius:0 8px 8px 8px;padding:16px;min-height:420px}
+  .panel.active{display:block}
+  h2{margin:0 0 10px;color:var(--green)}
+  .row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1 1 480px}
+  .box{background:#fafafa;border:1px solid #e5e7eb;border-radius:8px;padding:12px}
+  .muted{color:var(--muted)}
+  .button{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:14px;cursor:pointer}
+  .button.secondary{background:#374151}
+  .button.ghost{background:transparent;color:var(--green);border:1px solid var(--green)}
+  .button:disabled{opacity:.6;cursor:not-allowed}
+  .pill{display:inline-block;background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;border-radius:999px;padding:2px 8px;font-size:12px;margin-right:6px}
+  .stat{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:8px;font-size:12px}
+  .stat.ok{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+  .stat.bad{background:#fef2f2;color:#7f1d1d;border:1px solid #fecaca}
+  .stat.warn{background:#fffbeb;color:#78350f;border:1px solid #fed7aa}
+  table{width:100%;border-collapse:collapse;font-size:14px;table-layout:auto}
+  th,td{border:1px solid #e5e7eb;padding:8px 10px;text-align:left}
+  th{background:#f3f4f6}
+  input[type=number],input[type=text]{width:100%;padding:7px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;min-width:50px}
+  input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+  input[type=number]{-moz-appearance:textfield}
+  .hint{font-size:12px;color:#374151;margin-top:6px}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));gap:12px}
+  .svgwrap{border:1px dashed #d1d5db;border-radius:8px;padding:8px;overflow:hidden;background:#fff;min-height:480px;position:relative}
+  .svgwrap svg{cursor:grab}
+  .svgwrap.dragging svg{cursor:grabbing}
+  .zoom-controls{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:4px;z-index:10;user-select:none}
+  .zoom-buttons{display:flex;gap:4px}
+  .zoom-level{background:#fff;border:1px solid #d1d5db;border-radius:6px;padding:4px 8px;font-size:11px;color:#6b7280;text-align:center;min-width:60px;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+  .zoom-hint{background:rgba(255,255,255,0.9);border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:10px;color:#6b7280;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.1);margin-top:4px;line-height:1.3}
+  .zoom-btn{background:#fff;border:1px solid #d1d5db;border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:bold;color:#374151;box-shadow:0 1px 3px rgba(0,0,0,0.1);user-select:none}
+  .zoom-btn:hover{background:#f3f4f6;border-color:#9ca3af}
+  .zoom-btn:active{background:#e5e7eb}
+  .footer-note{text-align:center;padding:20px;margin-top:40px;color:#6b7280;font-size:13px;border-top:1px solid #e5e7eb}
+  @media print{
+    header,.tabs,.no-print,.zoom-controls,.zoom-level,.zoom-hint,.footer-note{display:none}
+    body{background:#fff}
+    .panel{display:block;border:none}
+    .svgwrap svg{cursor:default}
+  }
+</style>
+</head>
+<body>
+<header>AON Network Trainer – Forward/Backward Passes, Slack, Lags & Hammock</header>
+<div class="wrap">
+  <nav class="tabs no-print" id="tabs"></nav>
+  <section id="panels"></section>
+</div>
+<div class="footer-note">© 2025 Allan Quadros, Ph.D. All rights reserved. v1.0 (October 2025).</div>
+
+<script>
+const rnd = (a,b)=>{
+  // Non-zero durations only; clamp to [1,50] while preserving caller's intent
+  const lo = Math.max(1, (a|0));
+  const hi = Math.min(50, (b|0));
+  const L = Math.max(1, Math.min(lo, hi));
+  const H = Math.max(L, hi);
+  return Math.floor(Math.random()*(H - L + 1)) + L;
+};
+const sum = arr => arr.reduce((a,b)=>a+b,0);
+const uniq = arr => [...new Set(arr)];
+const fmtPct = x=> (x*100).toFixed(0)+"%";
+
+function addZoomControls(svgWrap, svg){
+  let zoomLevel = 1;
+  let viewBoxX = 0;
+  let viewBoxY = 0;
+  const baseWidth = 900;
+  const baseHeight = 420;
+  
+  // Estado do pan/drag
+  let isPanning = false;
+  let startX = 0;
+  let startY = 0;
+  let startViewBoxX = 0;
+  let startViewBoxY = 0;
+  
+  const controls = document.createElement('div');
+  controls.className = 'zoom-controls';
+  
+  const buttons = document.createElement('div');
+  buttons.className = 'zoom-buttons';
+  
+  const zoomLevel_display = document.createElement('div');
+  zoomLevel_display.className = 'zoom-level';
+  
+  const hint = document.createElement('div');
+  hint.className = 'zoom-hint';
+  hint.innerHTML = '🖱️ Drag to pan<br>🔍 Scroll to zoom';
+  
+  const zoomIn = document.createElement('button');
+  zoomIn.className = 'zoom-btn';
+  zoomIn.innerHTML = '+';
+  zoomIn.title = 'Zoom In (or scroll up)';
+  
+  const zoomOut = document.createElement('button');
+  zoomOut.className = 'zoom-btn';
+  zoomOut.innerHTML = '−';
+  zoomOut.title = 'Zoom Out (or scroll down)';
+  
+  const zoomReset = document.createElement('button');
+  zoomReset.className = 'zoom-btn';
+  zoomReset.innerHTML = '⊙';
+  zoomReset.title = 'Reset Zoom & Pan';
+  zoomReset.style.fontSize = '20px';
+  
+  function updateZoomDisplay(){
+    zoomLevel_display.textContent = `${(zoomLevel * 100).toFixed(0)}%`;
+  }
+  
+  function updateViewBox(){
+    const scale = 1 / zoomLevel;
+    const width = baseWidth * scale;
+    const height = baseHeight * scale;
+    svg.setAttribute('viewBox', `${viewBoxX} ${viewBoxY} ${width} ${height}`);
+    updateZoomDisplay();
+  }
+  
+  zoomIn.onclick = () => {
+    if(zoomLevel < 3){
+      zoomLevel += 0.25;
+      // Ajusta viewBox para manter o centro
+      const scale = 1 / zoomLevel;
+      const oldScale = 1 / (zoomLevel - 0.25);
+      const deltaX = (baseWidth * (oldScale - scale)) / 2;
+      const deltaY = (baseHeight * (oldScale - scale)) / 2;
+      viewBoxX += deltaX;
+      viewBoxY += deltaY;
+      updateViewBox();
+    }
+  };
+  
+  zoomOut.onclick = () => {
+    if(zoomLevel > 0.5){
+      zoomLevel -= 0.25;
+      // Ajusta viewBox para manter o centro
+      const scale = 1 / zoomLevel;
+      const oldScale = 1 / (zoomLevel + 0.25);
+      const deltaX = (baseWidth * (oldScale - scale)) / 2;
+      const deltaY = (baseHeight * (oldScale - scale)) / 2;
+      viewBoxX += deltaX;
+      viewBoxY += deltaY;
+      updateViewBox();
+    }
+  };
+  
+  zoomReset.onclick = () => {
+    zoomLevel = 1;
+    viewBoxX = 0;
+    viewBoxY = 0;
+    svg.setAttribute('viewBox', `0 0 ${baseWidth} ${baseHeight}`);
+    updateZoomDisplay();
+  };
+  
+  // Implementa pan/drag
+  svg.addEventListener('mousedown', (e) => {
+    // Ignora se clicou nos controles de zoom
+    if(e.target.closest('.zoom-controls')) return;
+    
+    isPanning = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startViewBoxX = viewBoxX;
+    startViewBoxY = viewBoxY;
+    svgWrap.classList.add('dragging');
+    e.preventDefault();
+  });
+  
+  svg.addEventListener('mousemove', (e) => {
+    if(!isPanning) return;
+    
+    const scale = 1 / zoomLevel;
+    const deltaX = (e.clientX - startX) * scale;
+    const deltaY = (e.clientY - startY) * scale;
+    
+    viewBoxX = startViewBoxX - deltaX;
+    viewBoxY = startViewBoxY - deltaY;
+    
+    updateViewBox();
+  });
+  
+  svg.addEventListener('mouseup', () => {
+    isPanning = false;
+    svgWrap.classList.remove('dragging');
+  });
+  
+  svg.addEventListener('mouseleave', () => {
+    isPanning = false;
+    svgWrap.classList.remove('dragging');
+  });
+  
+  // Previne seleção de texto durante o drag
+  svg.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+  });
+  
+  // Zoom com scroll do mouse
+  svgWrap.addEventListener('wheel', (e) => {
+    // Ignora se clicou nos controles de zoom
+    if(e.target.closest('.zoom-controls')) return;
+    
+    e.preventDefault();
+    
+    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+    const newZoom = zoomLevel + delta;
+    
+    if(newZoom >= 0.5 && newZoom <= 3){
+      const oldZoom = zoomLevel;
+      zoomLevel = newZoom;
+      
+      // Zoom em direção ao cursor do mouse
+      const rect = svg.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      const scale = 1 / zoomLevel;
+      const oldScale = 1 / oldZoom;
+      
+      const svgMouseX = viewBoxX + mouseX * oldScale;
+      const svgMouseY = viewBoxY + mouseY * oldScale;
+      
+      viewBoxX = svgMouseX - mouseX * scale;
+      viewBoxY = svgMouseY - mouseY * scale;
+      
+      updateViewBox();
+    }
+  }, { passive: false });
+  
+  buttons.append(zoomIn, zoomOut, zoomReset);
+  controls.appendChild(zoomLevel_display);
+  controls.appendChild(buttons);
+  controls.appendChild(hint);
+  svgWrap.appendChild(controls);
+  
+  updateZoomDisplay();
+}
+
+function topoOrder(nodes){
+  const map = Object.fromEntries(nodes.map(n=>[n.id,n]));
+  const indeg = Object.fromEntries(nodes.map(n=>[n.id,0]));
+  nodes.forEach(n=>n.preds?.forEach(p=>{ if(map[p]) indeg[n.id]++ }));
+  const q = nodes.filter(n=>indeg[n.id]===0).map(n=>n.id);
+  const out=[];
+  while(q.length){
+    const u = q.shift(); out.push(u);
+    nodes.forEach(n=>{ if(n.preds?.includes(u)) { indeg[n.id]--; if(indeg[n.id]===0) q.push(n.id) } });
+  }
+  return out;
+}
+
+
+function computeTimes(nodes, withLags=false){
+  const order = topoOrder(nodes);
+  const map = Object.fromEntries(nodes.map(n=>[n.id,n]));
+
+  const isHammock = (n) => {
+    const id = String(n.id).toLowerCase();
+    return id.includes('hammock') || id === 'h' || id.includes('(h)');
+  };
+
+  // 0) Define hammock durations BEFORE forward/backward
+  nodes.forEach(n=>{
+    if(isHammock(n) && Array.isArray(n.covers) && n.covers.length){
+      // Sum of durations of covered activities (default app behavior)
+      n.d = n.covers.reduce((acc, aid)=> acc + (map[aid]?.d ?? 0), 0);
+    }
+  });
+
+  // 1) FORWARD PASS (ES/EF) with lags and relationship types
+  const ES = {}, EF = {};
+  order.forEach(id=>{
+    const n = map[id];
+    if(!n.preds || n.preds.length===0){
+      ES[id] = 0;
+      EF[id] = n.d;
+      return;
+    }
+    let esMax = -Infinity;
+    n.preds.forEach(p=>{
+      const rel = (n.lags && n.lags[p] && n.lags[p].type) ? n.lags[p].type : 'FS';
+      const L   = (n.lags && n.lags[p] && Number.isFinite(n.lags[p].lag)) ? n.lags[p].lag : 0;
+      const Ei  = ES[p] ?? 0;
+      const Fi  = EF[p] ?? (Ei + (map[p]?.d ?? 0));
+      if(rel==='FS') esMax = Math.max(esMax, Fi + L);
+      else if(rel==='SS') esMax = Math.max(esMax, Ei + L);
+      else if(rel==='FF') esMax = Math.max(esMax, Fi + L - n.d);
+      else if(rel==='SF') esMax = Math.max(esMax, Ei + L - n.d);
+      else esMax = Math.max(esMax, Fi + L);
+    });
+    ES[id] = (esMax === -Infinity) ? 0 : esMax;
+    EF[id] = ES[id] + n.d;
+  });
+
+  const makespan = Math.max(...order.map(id=>EF[id]));
+
+  // 2) BACKWARD PASS (LS/LF) – use successors' LS/LF consistently
+  const LS = {}, LF = {};
+  const rev = [...order].reverse();
+  rev.forEach(id=>{
+    const n = map[id];
+    const succs = nodes.filter(m => m.preds?.includes(id));
+    if(succs.length===0){
+      LF[id] = makespan;
+      LS[id] = LF[id] - n.d;
+      return;
+    }
+
+    // Combine constraints as upper bounds on ES_i and EF_i
+    let ESmax =  Infinity;
+    let EFmax =  Infinity;
+
+    succs.forEach(s=>{
+      const rel = (s.lags && s.lags[id] && s.lags[id].type) ? s.lags[id].type : 'FS';
+      const L   = (s.lags && s.lags[id] && Number.isFinite(s.lags[id].lag)) ? s.lags[id].lag : 0;
+
+      const LSs = LS[s.id] ?? ((LF[s.id] ?? makespan) - (map[s.id]?.d ?? 0));
+      const LFs = LF[s.id] ?? makespan;
+
+      if(rel==='FS'){         // EF_i ≤ LS_s − L
+        EFmax = Math.min(EFmax, LSs - L);
+      } else if(rel==='FF'){  // EF_i ≤ LF_s − L
+        EFmax = Math.min(EFmax, LFs - L);
+      } else if(rel==='SS'){  // ES_i ≤ LS_s − L
+        ESmax = Math.min(ESmax, LSs - L);
+      } else if(rel==='SF'){  // ES_i ≤ LF_s − L
+        ESmax = Math.min(ESmax, LFs - L);
+      } else {
+        EFmax = Math.min(EFmax, LSs - L);
+      }
+    });
+
+    let LSi;
+    if(Number.isFinite(ESmax) && Number.isFinite(EFmax)){
+      LSi = Math.min(ESmax, EFmax - n.d);
+    } else if(Number.isFinite(EFmax)){
+      LSi = EFmax - n.d;
+    } else if(Number.isFinite(ESmax)){
+      LSi = ESmax;
+    } else {
+      LSi = makespan - n.d; // fallback for valid DAGs should rarely hit
+    }
+
+    const LFi = LSi + n.d;
+    LS[id] = LSi;
+    LF[id] = LFi;
+  });
+
+  // 3) Total Slack
+  const TS = {};
+  order.forEach(id=>{ TS[id] = LS[id] - ES[id]; });
+
+  // 4) Free Slack generalized for FS/SS/FF/SF with lag
+  const FS = {};
+  order.forEach(id=>{
+    const succs = nodes.filter(m => m.preds?.includes(id));
+    if(succs.length===0){
+      FS[id] = makespan - EF[id]; // terminal
+      return;
+    }
+    let best = Infinity;
+    succs.forEach(s=>{
+      const rel = (s.lags && s.lags[id] && s.lags[id].type) ? s.lags[id].type : 'FS';
+      const L   = (s.lags && s.lags[id] && Number.isFinite(s.lags[id].lag)) ? s.lags[id].lag : 0;
+      if(rel==='FS'){         // EF_i + L ≤ ES_s
+        best = Math.min(best, (ES[s.id] ?? 0) - L - EF[id]);
+      } else if(rel==='SS'){  // ES_i + L ≤ ES_s
+        best = Math.min(best, (ES[s.id] ?? 0) - L - ES[id]);
+      } else if(rel==='FF'){  // EF_i + L ≤ EF_s
+        best = Math.min(best, (EF[s.id] ?? 0) - L - EF[id]);
+      } else if(rel==='SF'){  // ES_i + L ≤ EF_s
+        best = Math.min(best, (EF[s.id] ?? 0) - L - ES[id]);
+      } else {
+        best = Math.min(best, (ES[s.id] ?? 0) - L - EF[id]);
+      }
+    });
+    FS[id] = best;
+  });
+
+  return {ES, EF, LS, LF, TS, FS, makespan};
+}
+
+
+function drawNetwork(svg, nodes, options={}){
+  svg.innerHTML = '';
+  const NS = 'http://www.w3.org/2000/svg';
+  
+  const markerId = 'arrow-' + Math.random().toString(36).substr(2, 9);
+  
+  const defs = document.createElementNS(NS,'defs');
+  const marker = document.createElementNS(NS,'marker');
+  marker.setAttribute('id', markerId);
+  marker.setAttribute('markerWidth','10');
+  marker.setAttribute('markerHeight','10');
+  marker.setAttribute('refX','10'); 
+  marker.setAttribute('refY','3');
+  marker.setAttribute('orient','auto'); 
+  marker.setAttribute('markerUnits','userSpaceOnUse');
+  const mpath = document.createElementNS(NS,'path');
+  mpath.setAttribute('d','M0,0 L10,3 L0,6 Z');
+  mpath.setAttribute('fill','#374151');
+  marker.appendChild(mpath); 
+  defs.appendChild(marker); 
+  svg.appendChild(defs);
+
+  const grid = document.createElementNS(NS,'g');
+  for(let x=0;x<=900;x+=40){
+    const ln = document.createElementNS(NS,'line');
+    ln.setAttribute('x1',x); ln.setAttribute('y1',0); 
+    ln.setAttribute('x2',x); ln.setAttribute('y2',420);
+    ln.setAttribute('stroke','#e5e7eb'); 
+    ln.setAttribute('stroke-width','1');
+    grid.appendChild(ln);
+  }
+  for(let y=0;y<=420;y+=40){
+    const ln = document.createElementNS(NS,'line');
+    ln.setAttribute('x1',0); ln.setAttribute('y1',y); 
+    ln.setAttribute('x2',900); ln.setAttribute('y2',y);
+    ln.setAttribute('stroke','#e5e7eb'); 
+    ln.setAttribute('stroke-width','1');
+    grid.appendChild(ln);
+  }
+  svg.appendChild(grid);
+
+  svg.setAttribute('viewBox','0 0 900 420');
+  svg.setAttribute('width','100%'); 
+  svg.setAttribute('height','380');
+
+  const id2node = Object.fromEntries(nodes.map(n=>[n.id,n]));
+
+  const gArrows = document.createElementNS(NS,'g');
+  nodes.forEach(n=>{
+    (n.preds||[]).forEach(p=>{
+      const from = id2node[p];
+      if(!from) return;
+      const to = n;
+      
+      const toIdLower = String(to.id).toLowerCase();
+      const fromIdLower = String(from.id).toLowerCase();
+      const isHammockConnection = 
+        toIdLower.includes('hammock') || 
+        toIdLower === 'h' ||
+        toIdLower.includes('(h)') ||
+        fromIdLower.includes('hammock') || 
+        fromIdLower === 'h' ||
+        fromIdLower.includes('(h)');
+      
+      let x1, y1, x2, y2;
+      
+      if(isHammockConnection) {
+        x1 = from.x + 80;
+        y1 = from.y + 20;
+        x2 = to.x;
+        y2 = to.y + 20;
+      } else {
+        x1 = from.x + 80;
+        y1 = from.y + 20;
+        x2 = to.x - 10;
+        y2 = to.y + 20;
+      }
+      
+      const path = document.createElementNS(NS,'path');
+      
+      const isMgmtHammock = toIdLower.includes('mgmt') || fromIdLower.includes('mgmt');
+      
+      if(isMgmtHammock && isHammockConnection) {
+        const fromIsHammock = fromIdLower.includes('mgmt') || fromIdLower.includes('(h)');
+        const toIsHammock = toIdLower.includes('mgmt') || toIdLower.includes('(h)');
+        
+        if(y1 > y2) {
+          path.setAttribute('d', `M ${x1} ${y1} L ${x1} ${y2} L ${x2} ${y2}`);
+        } else if(fromIsHammock && !toIsHammock) {
+          const arrivalX = to.x - 10;
+          const arrivalY = to.y + 20;
+          path.setAttribute('d', `M ${x1} ${y1} L ${arrivalX} ${y1} L ${arrivalX} ${arrivalY}`);
+        } else {
+          path.setAttribute('d', `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`);
+        }
+      } else {
+        const midx = (x1+x2)/2;
+        path.setAttribute('d', `M ${x1} ${y1} C ${midx} ${y1}, ${midx} ${y2}, ${x2} ${y2}`);
+      }
+      
+      path.setAttribute('fill','none');
+      path.setAttribute('stroke','#374151');
+      path.setAttribute('stroke-width','2');
+      
+      if(!isHammockConnection) {
+        path.setAttribute('marker-end',`url(#${markerId})`);
+      }
+      
+      gArrows.appendChild(path);
+
+      const rel = (n.lags && n.lags[p]) ? n.lags[p] : {type:'FS',lag:0};
+      if(rel.type !== 'FS' || rel.lag !== 0) {
+        const lbl = document.createElementNS(NS,'text');
+        const midx = (x1+x2)/2;
+        lbl.setAttribute('x', String(midx));
+        lbl.setAttribute('y', String((y1+y2)/2 - 6));
+        lbl.setAttribute('text-anchor','middle');
+        lbl.setAttribute('font-size','11');
+        lbl.setAttribute('fill','#6b7280');
+        lbl.textContent = `${rel.type}${rel.lag?('+'+rel.lag):''}`;
+        gArrows.appendChild(lbl);
+      }
+    });
+  });
+  svg.appendChild(gArrows);
+
+  const gNodes = document.createElementNS(NS,'g');
+  nodes.forEach(n=>{
+    const g = document.createElementNS(NS,'g');
+    g.setAttribute('transform', `translate(${n.x},${n.y})`);
+    g.setAttribute('data-node-id', n.id);
+
+    const rect = document.createElementNS(NS,'rect');
+    rect.setAttribute('x','0'); rect.setAttribute('y','0'); 
+    rect.setAttribute('rx','10'); rect.setAttribute('ry','10');
+    rect.setAttribute('width','80'); rect.setAttribute('height','40');
+    rect.setAttribute('fill','#ffffff'); 
+    rect.setAttribute('stroke','#217346'); 
+    rect.setAttribute('stroke-width','2');
+
+    const esText = document.createElementNS(NS,'text');
+    esText.setAttribute('x','6'); esText.setAttribute('y','12'); 
+    esText.setAttribute('fill','#6b7280'); 
+    esText.setAttribute('font-size','10'); 
+    esText.setAttribute('class','es-value'); 
+    esText.textContent = '';
+
+    const idText = document.createElementNS(NS,'text');
+    idText.setAttribute('x','40'); idText.setAttribute('y','12'); 
+    idText.setAttribute('fill','#222'); 
+    idText.setAttribute('font-weight','700');
+    idText.setAttribute('font-size','11');
+    idText.setAttribute('text-anchor','middle');
+    idText.textContent = n.id;
+
+    const efText = document.createElementNS(NS,'text');
+    efText.setAttribute('x','74'); efText.setAttribute('y','12'); 
+    efText.setAttribute('fill','#6b7280'); 
+    efText.setAttribute('font-size','10'); 
+    efText.setAttribute('text-anchor','end');
+    efText.setAttribute('class','ef-value'); 
+    efText.textContent = '';
+
+    const slText = document.createElementNS(NS,'text');
+    slText.setAttribute('x','6'); slText.setAttribute('y','23'); 
+    slText.setAttribute('fill','#9ca3af'); 
+    slText.setAttribute('font-size','9');
+    slText.setAttribute('class','sl-value'); 
+    slText.textContent = '';
+
+    const descText = document.createElementNS(NS,'text');
+    descText.setAttribute('x','40'); descText.setAttribute('y','23'); 
+    descText.setAttribute('fill','#9ca3af'); 
+    descText.setAttribute('font-size','9'); 
+    descText.setAttribute('text-anchor','middle');
+    descText.textContent = n.desc || '';
+
+    const lsText = document.createElementNS(NS,'text');
+    lsText.setAttribute('x','6'); lsText.setAttribute('y','36'); 
+    lsText.setAttribute('fill','#6b7280'); 
+    lsText.setAttribute('font-size','10');
+    lsText.setAttribute('class','ls-value'); 
+    lsText.textContent = '';
+
+    const durText = document.createElementNS(NS,'text');
+    durText.setAttribute('x','40'); durText.setAttribute('y','36'); 
+    durText.setAttribute('fill','#374151'); 
+    durText.setAttribute('font-size','11'); 
+    durText.setAttribute('text-anchor','middle');
+    durText.setAttribute('font-weight','600');
+    durText.setAttribute('class','dur-value');
+    durText.textContent = String(n.d||0);
+
+    const lfText = document.createElementNS(NS,'text');
+    lfText.setAttribute('x','74'); lfText.setAttribute('y','36'); 
+    lfText.setAttribute('fill','#6b7280'); 
+    lfText.setAttribute('font-size','10'); 
+    lfText.setAttribute('text-anchor','end');
+    lfText.setAttribute('class','lf-value'); 
+    lfText.textContent = '';
+
+    if(String(n.id).toLowerCase().includes('hammock') || String(n.id).toLowerCase()==='h' || String(n.id).toLowerCase().includes('(h)')){
+      rect.setAttribute('stroke','#3b82f6');
+      idText.setAttribute('font-weight','800');
+    }
+
+    g.appendChild(rect); g.appendChild(esText); g.appendChild(idText); 
+    g.appendChild(efText); g.appendChild(slText); g.appendChild(descText);
+    g.appendChild(lsText); g.appendChild(durText); g.appendChild(lfText);
+    gNodes.appendChild(g);
+  });
+  svg.appendChild(gNodes);
+  
+  return svg;
+}
+
+function updateNetworkValues(svg, nodeId, values) {
+  const nodeG = svg.querySelector(`[data-node-id="${nodeId}"]`);
+  if (!nodeG) return;
+  
+  if (values.es !== undefined) {
+    const esText = nodeG.querySelector('.es-value');
+    if (esText) esText.textContent = values.es;
+  }
+  
+  if (values.ef !== undefined) {
+    const efText = nodeG.querySelector('.ef-value');
+    if (efText) efText.textContent = values.ef;
+  }
+  
+  if (values.ls !== undefined) {
+    const lsText = nodeG.querySelector('.ls-value');
+    if (lsText) lsText.textContent = values.ls;
+  }
+  
+  if (values.lf !== undefined) {
+    const lfText = nodeG.querySelector('.lf-value');
+    if (lfText) lfText.textContent = values.lf;
+  }
+  
+  if (values.slstart !== undefined) {
+    const slStartText = nodeG.querySelector('.slstart-value');
+    if (slStartText) slStartText.textContent = values.slstart;
+  }
+  
+  if (values.slfinish !== undefined) {
+    const slFinishText = nodeG.querySelector('.slfinish-value');
+    if (slFinishText) slFinishText.textContent = values.slfinish;
+  }
+  
+  if (values.duration !== undefined) {
+    const durText = nodeG.querySelector('.dur-value');
+    if (durText) durText.textContent = values.duration;
+  }
+}
+
+function tpl_forward_1(){
+  return [
+    {id:'A',d:rnd(2,5),x:90,y:110,preds:[]},
+    {id:'B',d:rnd(3,6),x:260,y:60,preds:['A']},
+    {id:'C',d:rnd(4,7),x:260,y:160,preds:['A']},
+    {id:'D',d:rnd(2,5),x:430,y:60,preds:['B','C']},
+    {id:'E',d:rnd(3,6),x:430,y:160,preds:['C']},
+    {id:'F',d:rnd(2,5),x:600,y:110,preds:['D','E']}
+  ];
+}
+function tpl_forward_2(){
+  return [
+    {id:'A',d:rnd(2,5),x:90,y:210,preds:[]},
+    {id:'B',d:rnd(2,6),x:260,y:140,preds:['A']},
+    {id:'C',d:rnd(2,6),x:260,y:280,preds:['A']},
+    {id:'D',d:rnd(3,7),x:430,y:140,preds:['B']},
+    {id:'E',d:rnd(3,7),x:430,y:280,preds:['B','C']},
+    {id:'H',d:rnd(2,5),x:600,y:210,preds:['D','E']}
+  ];
+}
+function tpl_backward_1(){
+  return [
+    {id:'A',d:rnd(2,4),x:90,y:140,preds:[]},
+    {id:'B',d:rnd(2,5),x:260,y:90,preds:['A']},
+    {id:'C',d:rnd(3,6),x:260,y:190,preds:['A']},
+    {id:'D',d:rnd(2,4),x:430,y:140,preds:['B','C']},
+    {id:'K',d:rnd(2,4),x:600,y:140,preds:['D']}
+  ];
+}
+function tpl_backward_2(){
+  return [
+    {id:'A',d:rnd(1,3),x:90,y:200,preds:[]},
+    {id:'C',d:rnd(2,5),x:260,y:140,preds:['A']},
+    {id:'B',d:rnd(2,5),x:260,y:260,preds:['A']},
+    {id:'E',d:rnd(3,6),x:430,y:140,preds:['C']},
+    {id:'F',d:rnd(2,5),x:430,y:260,preds:['B']},
+    {id:'K',d:rnd(1,3),x:600,y:200,preds:['E','F']}
+  ];
+}
+function tpl_complete_1(){
+  return [
+    {id:'A',d:rnd(2,6),x:90,y:140,preds:[]},
+    {id:'B',d:rnd(2,6),x:260,y:80,preds:['A']},
+    {id:'C',d:rnd(2,6),x:260,y:200,preds:['A']},
+    {id:'D',d:rnd(2,6),x:430,y:80,preds:['B','C']},
+    {id:'E',d:rnd(2,6),x:430,y:200,preds:['C']},
+    {id:'H',d:rnd(2,6),x:600,y:140,preds:['D','E']}
+  ];
+}
+function tpl_complete_2(){
+  return [
+    {id:'S',d:0,x:70,y:160,preds:[]},
+    {id:'A',d:rnd(2,5),x:220,y:110,preds:['S']},
+    {id:'B',d:rnd(2,5),x:220,y:210,preds:['S']},
+    {id:'C',d:rnd(3,6),x:380,y:110,preds:['A']},
+    {id:'D',d:rnd(2,4),x:380,y:210,preds:['B']},
+    {id:'E',d:rnd(2,5),x:540,y:160,preds:['C','D']},
+    {id:'T',d:0,x:700,y:160,preds:['E']}
+  ];
+}
+function tpl_lags_1(){
+  const n=[
+    {id:'A',d:rnd(3,6),x:100,y:160,preds:[]},
+    {id:'B',d:rnd(4,7),x:280,y:100,preds:['A'],lags:{'A':{type:'FS',lag:2}}},
+    {id:'C',d:rnd(3,6),x:280,y:220,preds:['A'],lags:{'A':{type:'FS',lag:1}}},
+    {id:'D',d:rnd(2,5),x:480,y:160,preds:['B','C'],lags:{'B':{type:'FS',lag:0},'C':{type:'FS',lag:3}}}
+  ];
+  return n;
+}
+function tpl_lags_2(){
+  const n=[
+    {id:'A',d:rnd(2,4),x:90,y:160,preds:[]},
+    {id:'X',d:rnd(3,5),x:260,y:100,preds:['A'],lags:{'A':{type:'FS',lag:1}}},
+    {id:'Y',d:rnd(3,5),x:260,y:220,preds:['A'],lags:{'A':{type:'FS',lag:2}}},
+    {id:'Z',d:rnd(2,4),x:430,y:160,preds:['X','Y'],lags:{'X':{type:'FS',lag:0},'Y':{type:'FS',lag:1}}},
+    {id:'K',d:rnd(1,3),x:600,y:160,preds:['Z']}
+  ];
+  return n;
+}
+function tpl_hammock_1(){
+  const n=[
+    {id:'A',d:rnd(2,4),x:110,y:120,preds:[]},
+    {id:'B',d:rnd(2,4),x:110,y:220,preds:[]},
+    {id:'C',d:rnd(3,6),x:320,y:120,preds:['A']},
+    {id:'D',d:rnd(3,6),x:320,y:220,preds:['B']},
+    {id:'E',d:rnd(2,5),x:520,y:170,preds:['C','D','Hammock']},
+    {id:'Hammock',d:0,x:320,y:30,preds:['A'],covers:['C']}
+  ];
+  return n;
+}
+function tpl_hammock_2(){
+  const n=[
+    {id:'S',d:0,x:80,y:170,preds:[]},
+    {id:'A',d:rnd(2,5),x:220,y:120,preds:['S']},
+    {id:'B',d:rnd(2,5),x:220,y:220,preds:['S']},
+    {id:'C',d:rnd(3,6),x:380,y:120,preds:['A']},
+    {id:'D',d:rnd(3,6),x:380,y:220,preds:['B']},
+    {id:'E',d:rnd(2,4),x:540,y:170,preds:['C','D','Mgmt(H)']},
+    {id:'Mgmt(H)',d:0,x:270,y:15,preds:['S'],covers:['A','C']}
+  ];
+  return n;
+}
+
+const EXS=[
+  {code:'fwd1', label:'Forward #1',  type:'forward', tpl:tpl_forward_1},
+  {code:'fwd2', label:'Forward #2',  type:'forward', tpl:tpl_forward_2},
+  {code:'bwd1', label:'Backward #1', type:'backward', tpl:tpl_backward_1},
+  {code:'bwd2', label:'Backward #2', type:'backward', tpl:tpl_backward_2},
+  {code:'cmp1', label:'Complete #1', type:'complete', tpl:tpl_complete_1},
+  {code:'cmp2', label:'Complete #2', type:'complete', tpl:tpl_complete_2},
+  {code:'lag1', label:'Multiple Lags #1', type:'lags', tpl:tpl_lags_1},
+  {code:'lag2', label:'Multiple Lags #2', type:'lags', tpl:tpl_lags_2},
+  {code:'ham1', label:'Hammock #1', type:'hammock', tpl:tpl_hammock_1},
+  {code:'ham2', label:'Hammock #2', type:'hammock', tpl:tpl_hammock_2}
+];
+
+const EXTRA_TABS=[
+  {code:'wp2net', label:'WPs → Network'},
+  {code:'results', label:'Results & Export'}
+];
+
+function mountTabs(){
+  const nav=document.getElementById('tabs');
+  [...EXS, ...EXTRA_TABS].forEach((t,i)=>{
+    const b=document.createElement('button'); b.className='tab'+(i===0?' active':''); b.textContent=t.label; b.dataset.code=t.code;
+    b.onclick=()=>switchTab(t.code);
+    nav.appendChild(b);
+  });
+}
+
+function switchTab(code){
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active', el.dataset.code===code));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===`panel-${code}`));
+}
+
+function mountPanels(){
+  const root=document.getElementById('panels');
+  EXS.forEach(ex=>root.appendChild(buildExercisePanel(ex)));
+  root.appendChild(buildWPPanel());
+  root.appendChild(buildResultsPanel());
+}
+
+const SCORE = {};
+
+function buildExercisePanel(ex){
+  const wrap=document.createElement('section'); wrap.className='panel'+(ex.code==='fwd1'?' active':''); wrap.id=`panel-${ex.code}`;
+
+  const nodes = ex.tpl();
+  const withLags = ex.type==='lags';
+  const comp = computeTimes(nodes, withLags);
+  
+  let givenLF = null;
+  if (ex.type === 'backward') {
+    const endNodes = nodes.filter(n => {
+      const hasSucc = nodes.some(m => m.preds?.includes(n.id));
+      return !hasSucc;
+    });
+    if (endNodes.length > 0) {
+      const endNode = endNodes[0];
+      givenLF = { nodeId: endNode.id, value: comp.LF[endNode.id] };
+    }
+  }
+
+  const title=document.createElement('h2'); title.textContent = `${ex.label} – Fill in ES/EF/LS/LF/TS/FS`;
+  const meta=document.createElement('div'); meta.className='muted'; 
+  let metaHtml = `<span class="pill">Type: ${ex.type}</span>`;
+  if (givenLF) {
+    metaHtml += ` <span class="stat ok">Given: LF(${givenLF.nodeId}) = ${givenLF.value}</span>`;
+  }
+  meta.innerHTML = metaHtml;
+
+  const row=document.createElement('div'); row.className='row';
+  const left=document.createElement('div'); left.className='col';
+  const right=document.createElement('div'); right.className='col';
+
+  const svgWrap=document.createElement('div'); svgWrap.className='svgwrap';
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg'); svgWrap.appendChild(svg);
+  left.appendChild(svgWrap);
+
+  const tbl=document.createElement('table');
+  const thead=`<tr><th>Activity</th><th>d</th><th>ES</th><th>EF</th><th>LS</th><th>LF</th><th>TS</th><th>FS</th></tr>`;
+  const rows = nodes.map(n=>{
+    const isEndNode = givenLF && n.id === givenLF.nodeId;
+    return `<tr data-id="${n.id}"><td><strong>${n.id}</strong></td><td class="dur-cell">${n.d}</td>
+      <td><input type="number" class="es" data-field="es"></td>
+      <td><input type="number" class="ef" data-field="ef"></td>
+      <td><input type="number" class="ls" data-field="ls"></td>
+      <td><input type="number" class="lf" data-field="lf" ${isEndNode ? `value="${givenLF.value}" readonly style="background:#f0f0f0"` : ''}></td>
+      <td><input type="number" class="ts" data-field="ts"></td>
+      <td><input type="number" class="fs" data-field="fs"></td></tr>`;
+  }).join('');
+  tbl.innerHTML = `<thead>${thead}</thead><tbody>${rows}</tbody>`;
+
+  const btns=document.createElement('div'); btns.style.display='flex'; btns.style.gap='8px'; btns.style.margin='10px 0';
+  const grade=document.createElement('button'); grade.className='button'; grade.textContent='✓ Grade';
+  const refill=document.createElement('button'); refill.className='button ghost'; refill.textContent='🔄 Generate new data';
+  const conclude=document.createElement('button'); conclude.className='button secondary'; conclude.textContent='Complete exercise'; conclude.disabled=true;
+  const msg=document.createElement('div'); msg.className='hint';
+  btns.append(grade, refill, conclude);
+
+  right.appendChild(tbl); right.appendChild(btns); right.appendChild(msg);
+  row.append(left,right);
+
+  wrap.append(title, meta, row);
+
+  drawNetwork(svg,nodes,{withLags});
+  
+  // Adiciona controles de zoom
+  addZoomControls(svgWrap, svg);
+  
+  // Atualiza a duração dos hammocks no SVG
+  nodes.forEach(n => {
+    const isHammock = String(n.id).toLowerCase().includes('hammock') || 
+                     String(n.id).toLowerCase() === 'h' || 
+                     String(n.id).toLowerCase().includes('(h)');
+    if (isHammock) {
+      updateNetworkValues(svg, n.id, { duration: n.d });
+    }
+  });
+  
+  if (givenLF) {
+    updateNetworkValues(svg, givenLF.nodeId, { lf: givenLF.value });
+  }
+  
+  tbl.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const tr = e.target.closest('tr');
+      const nodeId = tr.dataset.id;
+      const field = e.target.dataset.field;
+      const value = e.target.value;
+      
+      const values = {};
+      values[field] = value;
+      updateNetworkValues(svg, nodeId, values);
+    });
+  });
+
+  function evaluate(){
+    const body=[...tbl.querySelectorAll('tbody tr')];
+    let correct=0, incorrect=0;
+    body.forEach(tr=>{
+      const id=tr.dataset.id;
+      const want={
+        ES:comp.ES[id], 
+        EF:comp.EF[id], 
+        LS:comp.LS[id], 
+        LF:comp.LF[id], 
+        TS:comp.TS[id],
+        FS:comp.FS[id]
+      };
+      const got={
+        ES:Number(tr.querySelector('.es').value),
+        EF:Number(tr.querySelector('.ef').value),
+        LS:Number(tr.querySelector('.ls').value),
+        LF:Number(tr.querySelector('.lf').value),
+        TS:Number(tr.querySelector('.ts').value),
+        FS:Number(tr.querySelector('.fs').value)
+      };
+      ['ES','EF','LS','LF','TS','FS'].forEach(k=>{
+        const td = tr.querySelector('.'+k.toLowerCase());
+        const inputValue = td.value;
+        const expected = want[k];
+        
+        if(inputValue === '' || !Number.isFinite(got[k]) || got[k] !== expected){ 
+          td.style.background='#fef2f2'; td.style.borderColor='#fecaca';
+          incorrect++;
+        } else { 
+          td.style.background='#ecfdf5'; td.style.borderColor='#34d399';
+          correct++;
+        }
+      });
+    });
+    const total = correct + incorrect;
+    const pct = total > 0 ? correct/total : 0;
+    const note = pct===1? 'Perfect!': (pct>=.7? 'Good! Review minor errors.':'Needs review.');
+    msg.innerHTML = `<span class="stat ${pct===1?'ok':pct>=.7?'warn':'bad'}">Correct: ${correct} | Incorrect: ${incorrect} | Score: ${(pct*100).toFixed(0)}% · ${note}</span> | Project duration (max EF): <strong>${comp.makespan}</strong>`;
+    SCORE[ex.code] = {pct, correct, incorrect, total, makespan:comp.makespan, type:ex.type, timestamp:Date.now()};
+    conclude.disabled=false;
+  }
+
+  grade.onclick=evaluate;
+  conclude.onclick=()=>{ conclude.disabled=true; grade.disabled=true; msg.innerHTML += ' · Exercise completed.'; updateGlobalScore(); };
+  refill.onclick=()=>{
+    const fresh = ex.tpl();
+    const comp2 = computeTimes(fresh, ex.type==='lags');
+    nodes.splice(0,nodes.length,...fresh);
+    Object.assign(comp, comp2);
+    
+    // Remove controles de zoom antigos
+    const oldControls = svgWrap.querySelector('.zoom-controls');
+    if(oldControls) oldControls.remove();
+    
+    drawNetwork(svg,nodes,{withLags});
+    
+    // Re-adiciona controles de zoom
+    addZoomControls(svgWrap, svg);
+    
+    // Atualiza a duração dos hammocks no SVG
+    nodes.forEach(n => {
+      const isHammock = String(n.id).toLowerCase().includes('hammock') || 
+                       String(n.id).toLowerCase() === 'h' || 
+                       String(n.id).toLowerCase().includes('(h)');
+      if (isHammock) {
+        updateNetworkValues(svg, n.id, { duration: n.d });
+      }
+    });
+    
+    if (ex.type === 'backward') {
+      const endNodes = nodes.filter(n => {
+        const hasSucc = nodes.some(m => m.preds?.includes(n.id));
+        return !hasSucc;
+      });
+      if (endNodes.length > 0) {
+        const endNode = endNodes[0];
+        givenLF = { nodeId: endNode.id, value: comp2.LF[endNode.id] };
+        meta.innerHTML = `<span class="pill">Type: ${ex.type}</span> <span class="stat ok">Given: LF(${givenLF.nodeId}) = ${givenLF.value}</span>`;
+        updateNetworkValues(svg, givenLF.nodeId, { lf: givenLF.value });
+      }
+    }
+    
+    // Atualiza as células de duração na tabela
+    nodes.forEach(n => {
+      const row = tbl.querySelector(`tr[data-id="${n.id}"]`);
+      if (row) {
+        const durCell = row.querySelector('.dur-cell');
+        if (durCell) {
+          durCell.textContent = n.d;
+        }
+      }
+    });
+    
+    tbl.querySelectorAll('input').forEach(i=>{
+      if(!i.readOnly) {
+        i.value=''; i.style.background=''; i.style.borderColor='#d1d5db';
+      }
+    });
+    
+    if (givenLF) {
+      const lfInput = tbl.querySelector(`tr[data-id="${givenLF.nodeId}"] .lf`);
+      if (lfInput) {
+        lfInput.value = givenLF.value;
+        lfInput.readOnly = true;
+        lfInput.style.background = '#f0f0f0';
+      }
+    }
+    
+    msg.textContent='New durations generated. Fill in again.';
+    grade.disabled=false; conclude.disabled=true;
+    
+    tbl.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', (e) => {
+        const tr = e.target.closest('tr');
+        const nodeId = tr.dataset.id;
+        const field = e.target.dataset.field;
+        const value = e.target.value;
+        
+        const values = {};
+        values[field] = value;
+        updateNetworkValues(svg, nodeId, values);
+      });
+    });
+  };
+
+  return wrap;
+}
+
+function buildWPPanel(){
+  const wrap=document.createElement('section'); wrap.className='panel'; wrap.id='panel-wp2net';
+  wrap.innerHTML = `
+    <h2>Transform Work Packages → Network (AON)</h2>
+    <div class="row">
+      <div class="col box">
+        <p>Enter your work packages (one per line) in the format: <code>ID; duration; predecessors separated by semicolon</code></p>
+        <div class="grid">
+          <textarea id="wpTxt" rows="12" style="width:100%">Clear; 30;
+Demo; 20; Clear
+Setup; 40; Demo
+Piling; 60; Demo
+Bowl; 60; Piling
+Field; 45; Setup,Bowl
+Seats; 70; Bowl
+Roof; 90; Seats
+Lights; 30; Seats
+Inspect; 15; Field,Roof,Lights</textarea>
+          <div>
+            <button class="button" id="wpBuild">Generate Network</button>
+            <button class="button ghost" id="wpClear">Clear</button>
+            <p class="hint">Example shown: Baseball Stadium project (simplified). Leave predecessors empty for starting activities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="svgwrap" id="wpSvgWrap"><svg id="wpSvg"></svg></div>
+      </div>
+    </div>`;
+
+  const svg=wrap.querySelector('#wpSvg');
+  const svgWrap=wrap.querySelector('#wpSvgWrap');
+  wrap.querySelector('#wpBuild').onclick=()=>{
+    const lines = wrap.querySelector('#wpTxt').value.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+    
+    if(lines.length === 0){
+      alert('Please enter at least one work package');
+      return;
+    }
+    
+    const nodes=[]; const idset=new Set();
+    
+    // Parse das linhas
+    for(const line of lines){
+      const parts = line.split(';').map(s=>s.trim());
+      if(parts.length < 2){ 
+        alert(`Invalid format in line: "${line}"\nExpected: ID; duration; predecessors`); 
+        return; 
+      }
+      const id = parts[0];
+      const d = Number(parts[1]);
+      const predRaw = parts[2] || '';
+      const preds = predRaw ? predRaw.split(',').map(s=>s.trim()).filter(Boolean) : [];
+      
+      if(!id){ alert('Activity ID cannot be empty'); return; }
+      if(isNaN(d) || d < 0){ alert(`Invalid duration for activity "${id}": ${parts[1]}`); return; }
+      if(idset.has(id)){ alert(`Duplicate activity ID: "${id}"`); return; }
+      
+      idset.add(id); 
+      nodes.push({id, d, preds});
+    }
+    
+    // Valida predecessores
+    const map = Object.fromEntries(nodes.map(n=>[n.id,n]));
+    for(const n of nodes){
+      for(const p of n.preds){
+        if(!map[p]){
+          alert(`Activity "${n.id}" has invalid predecessor: "${p}"`);
+          return;
+        }
+      }
+    }
+    
+    // Calcula profundidade (layer) de cada nó
+    const depth = {};
+    function getDepth(id){
+      if(depth[id] !== undefined) return depth[id];
+      const node = map[id];
+      if(!node.preds || node.preds.length === 0){
+        return depth[id] = 0;
+      }
+      return depth[id] = 1 + Math.max(...node.preds.map(p => getDepth(p)));
+    }
+    nodes.forEach(n => getDepth(n.id));
+    
+    // Agrupa por layer
+    const layers = {};
+    nodes.forEach(n => {
+      const d = depth[n.id];
+      if(!layers[d]) layers[d] = [];
+      layers[d].push(n);
+    });
+    
+    // Posiciona os nós
+    const layerKeys = Object.keys(layers).map(Number).sort((a,b) => a-b);
+    const maxNodesInLayer = Math.max(...Object.values(layers).map(l => l.length));
+    
+    layerKeys.forEach(layerIdx => {
+      const layerNodes = layers[layerIdx];
+      const ySpacing = 80;
+      const totalHeight = (layerNodes.length - 1) * ySpacing;
+      const startY = (420 - totalHeight) / 2;  // Centraliza verticalmente
+      
+      layerNodes.forEach((n, i) => {
+        n.x = 100 + (layerIdx * 160);  // X baseado na profundidade (esquerda -> direita)
+        n.y = startY + (i * ySpacing);  // Y baseado na posição no layer (cima -> baixo)
+      });
+    });
+    
+    // Calcula tempos (ES, EF, LS, LF)
+    const comp = computeTimes(nodes, false);
+    
+    // Remove controles de zoom antigos se existirem
+    const oldControls = svgWrap.querySelector('.zoom-controls');
+    if(oldControls) oldControls.remove();
+    
+    // Desenha a network
+    drawNetwork(svg, nodes, {});
+    
+    // Adiciona controles de zoom
+    addZoomControls(svgWrap, svg);
+    
+    // Atualiza valores calculados no SVG
+    nodes.forEach(n => {
+      updateNetworkValues(svg, n.id, {
+        es: comp.ES[n.id],
+        ef: comp.EF[n.id],
+        ls: comp.LS[n.id],
+        lf: comp.LF[n.id]
+      });
+    });
+  };
+  wrap.querySelector('#wpClear').onclick=()=>{ 
+    wrap.querySelector('#wpTxt').value=''; 
+    svg.innerHTML='';
+    
+    // Remove controles de zoom
+    const oldControls = svgWrap.querySelector('.zoom-controls');
+    if(oldControls) oldControls.remove();
+    
+    const msg = document.createElement('div');
+    msg.style.cssText = 'padding:40px;text-align:center;color:#6b7280;font-size:14px';
+    msg.textContent = 'Enter your work packages and click "Generate Network"';
+    svgWrap.innerHTML = '';
+    svgWrap.appendChild(svg);
+    svgWrap.appendChild(msg);
+  };
+  return wrap;
+}
+
+function buildResultsPanel(){
+  const wrap=document.createElement('section'); wrap.className='panel'; wrap.id='panel-results';
+  wrap.innerHTML = `
+    <h2>Results – Scoreboard & Export</h2>
+    <div class="box">
+      <div id="scoreBoard" class="hint">No exercises completed yet.</div>
+      <div style="margin-top:10px; display:flex; gap:8px" class="no-print">
+        <button class="button" id="btnCsv">Export CSV</button>
+        <button class="button secondary" id="btnPdf">Export PDF</button>
+      </div>
+    </div>
+    <div class="box" style="margin-top:12px">
+      <h3 style="margin:0 0 6px">How to interpret</h3>
+      <ul class="muted">
+        <li><strong>Score</strong> = proportion of correct ES/EF/LS/LF/TS/FS fields.</li>
+        <li><strong>Duration</strong> = maximum EF of the exercise (makespan).</li>
+        <li><strong>TS (Total Slack)</strong> = LS - ES. Float available without delaying project.</li>
+        <li><strong>FS (Free Slack)</strong> = min(ES of successors) - EF. Float without delaying successors.</li>
+        <li><strong>Critical Path</strong> = activities where TS = 0.</li>
+        <li>For <em>lags</em>, SS/FF/SF relationships are considered in the calculation.</li>
+        <li><strong>Hammock</strong>: special activity whose duration is the <em>sum of durations</em> of the activities it covers. Hammock #1 covers only activity C. Hammock #2 covers activities A and C.</li>
+      </ul>
+    </div>
+  `;
+  wrap.querySelector('#btnCsv').onclick=exportCSV;
+  wrap.querySelector('#btnPdf').onclick=()=>window.print();
+  return wrap;
+}
+
+function updateGlobalScore(){
+  const sb=document.getElementById('scoreBoard');
+  const items=Object.entries(SCORE).map(([code,v])=>({code,...v}));
+  if(items.length===0){ sb.textContent='No exercises completed yet.'; return; }
+  items.sort((a,b)=>a.timestamp-b.timestamp);
+  const lines=[['Exercise','Type','Score','Correct','Total','Duration']]
+    .concat(items.map(r=>[r.code,r.type, (r.pct*100).toFixed(0)+'%', r.correct, r.total, r.makespan]));
+  const html = `<table>${lines.map((row,i)=>'<tr>'+row.map((c,j)=>`<${i? 'td':'th'}>${c}</${i?'td':'th'}>`).join('')+'</tr>').join('')}</table>`;
+  sb.innerHTML = html;
+}
+
+function exportCSV(){
+  const items=Object.entries(SCORE).map(([code,v])=>({code,...v}));
+  if(items.length===0){ alert('No results to export.'); return; }
+  const rows=[['exercise','type','accuracy_pct','correct','total','makespan','timestamp']]
+    .concat(items.map(r=>[r.code,r.type,(r.pct*100).toFixed(0),r.correct,r.total,r.makespan,new Date(r.timestamp).toISOString()]));
+  const csv = rows.map(r=>r.map(x=>`"${String(x).replaceAll('"','""')}"`).join(',')).join('\r\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aon_trainer_results.csv'; a.click();
+}
+
+mountTabs();
+mountPanels();
+
+</script>
+</body>
+</html>

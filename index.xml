@@ -56,11 +56,8 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       
       <guid>/contact/</guid>
       <description>Allan Vieira de Castro Quadros
- Email: allanvcq@gmail.com | quadros@k-state.edu Phone: +1(785)576-3130   Mailing Address  Department of Statistics
-Kansas State University
-D009C Dickens Hall
-1116 Mid-Campus Drive N.
-Manhattan, KS 66506-0802
+ Email: allanvcq@gmail.com | allan.quadros@unf.edu Phone: +1(785)576-3130   Mailing Address  Department of Management - Coggin College of Business University of North Florida 1 UNF Dr, Building 42, Room 1011
+Jacksonville, FL 32224-7699
 United States
   Social  LinkedIn GitHub ResearchGate StackOverflow  </description>
     </item>
@@ -71,11 +68,13 @@ United States
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/courses/</guid>
-      <description>Courses Here you find material from in-company courses I have offered. Please note that the original language of these materials is Brazilian portuguese.
- Book  Introdução à Análise de Dados em R utilizando Tidyverse (2020). A companion text book to my &amp;ldquo;Introduction to Data Analysis with R using the Tidyverse&amp;rdquo; course.   Slides [2] Course: Data Analysis with R (II)
-Level: Intermediate
-Year: mar. 2018
-   Topic Length     Review + functions 39   Loops 15   Apply family 34   Tidyverse intro + strings and REGEX manipulation with stringr 43   Dates with lubridate 15   Data wrangling with dplyr 27   Two table verbs with dplyr 18   Accessing SQL databases with dbplyr 22   Graphics with ggplot2 31    [1] Course: Data Analysis with R (I)</description>
+      <description>Courses Here you find material for courses I taught in the past or have been teaching lately.
+ Data Analytics &amp;amp; Programming Books:
+  Introduction to Data Analysis with R and the Tidyverse (2025).
+  Introdução à Análise de Dados em R utilizando Tidyverse (2020). (Portuguese version)
+    Project Management Practice Apps:
+  Project Management Estimation App (2025)
+  Project Network App (2025)</description>
     </item>
     
     <item>

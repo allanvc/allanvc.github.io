@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UNF Football Team Project Planner</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    :root {
+      --unf-blue: #005587;
+      --unf-gray: #6b7280;
+      --green: #217346;
+      --bg: #f7f7f7;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      padding: 10px;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header {
+      background: var(--unf-blue);
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .tabs {
+      display: flex;
+      background: #e5e7eb;
+      border-bottom: 3px solid var(--unf-blue);
+      overflow-x: auto;
+    }
+    .tab {
+      padding: 12px 24px;
+      cursor: pointer;
+      background: #d1d5db;
+      border-right: 1px solid #9ca3af;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+    .tab:hover {
+      background: #c4c7cc;
+    }
+    .tab.active {
+      background: #fff;
+      color: var(--unf-blue);
+      border-bottom: 3px solid var(--unf-blue);
+      margin-bottom: -3px;
+    }
+    .content {
+      padding: 24px;
+      min-height: 600px;
+    }
+    .panel {
+      display: none;
+    }
+    .panel.active {
+      display: block;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h2 {
+      color: var(--unf-blue);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--unf-blue);
+    }
+    h3 {
+      color: #374151;
+      margin: 20px 0 10px;
+      font-size: 16px;
+    }
+    .info-box {
+      background: #eff6ff;
+      border-left: 4px solid var(--unf-blue);
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    .warning-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    th {
+      background: var(--unf-blue);
+      color: #fff;
+      padding: 12px 10px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      vertical-align: top;
+    }
+    tr:nth-child(even) {
+      background: #f9fafb;
+    }
+    input[type="text"], input[type="number"], textarea, select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid var(--unf-blue);
+      border-color: var(--unf-blue);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    .button {
+      background: var(--unf-blue);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 5px;
+      transition: all 0.3s;
+    }
+    .button:hover {
+      background: #004470;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .button.secondary {
+      background: var(--green);
+    }
+    .button.secondary:hover {
+      background: #1b5e20;
+    }
+    .button.danger {
+      background: #dc2626;
+    }
+    .button.ghost {
+      background: transparent;
+      color: var(--unf-blue);
+      border: 2px solid var(--unf-blue);
+    }
+    .calculated {
+      background: #dcfce7 !important;
+      font-weight: 600;
+      color: #166534;
+    }
+    .toolbar {
+      background: #f3f4f6;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .wbs-item {
+      margin: 10px 0 10px 30px;
+      padding: 10px;
+      border-left: 3px solid var(--unf-blue);
+      background: #f9fafb;
+    }
+    .wbs-level-1 { margin-left: 0; font-weight: 600; }
+    .wbs-level-2 { margin-left: 30px; }
+    .wbs-level-3 { margin-left: 60px; font-size: 13px; }
+    .activity-row {
+      display: grid;
+      grid-template-columns: 50px 200px 1fr 100px 100px 80px;
+      gap: 8px;
+      margin: 8px 0;
+      align-items: center;
+    }
+    .risk-item {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+    }
+    .risk-high { border-left: 4px solid #dc2626; }
+    .risk-medium { border-left: 4px solid #f59e0b; }
+    .risk-low { border-left: 4px solid #16a34a; }
+    .summary-section {
+      background: #f9fafb;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+    .score-box {
+      background: #fff;
+      border: 2px solid var(--unf-blue);
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    .score-box .big-number {
+      font-size: 48px;
+      font-weight: bold;
+      color: var(--unf-blue);
+    }
+    .criteria-table td:first-child {
+      font-weight: 600;
+      width: 250px;
+    }
+    .print-hide {
+      display: block;
+    }
+    @media print {
+      .print-hide, .tabs, .toolbar, header p {
+        display: none !important;
+      }
+      .panel {
+        display: block !important;
+        page-break-after: always;
+      }
+      body {
+        background: #fff;
+      }
+      .viz-print {
+        display: block !important;
+        page-break-before: always;
+        page-break-after: always;
+      }
+      .modal {
+        display: none !important;
+      }
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--unf-gray);
+      font-size: 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .team-info {
+      background: #fff;
+      padding: 16px;
+      border: 2px solid var(--unf-blue);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .team-info input {
+      margin: 8px 0;
+    }
+    .label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #374151;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      overflow: auto;
+    }
+    .modal-content {
+      background: #fff;
+      margin: 3% auto;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 1200px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #9ca3af;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .close:hover {
+      color: #374151;
+    }
+    .viz-container {
+      margin-top: 20px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      background: #fafafa;
+      min-height: 400px;
+    }
+    .wbs-tree-container {
+      display: flex;
+      gap: 30px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+    .wbs-tree-column {
+      flex: 0 0 auto;
+      min-width: 200px;
+      max-width: 250px;
+    }
+    .wbs-tree-node {
+      margin: 8px 0;
+      padding: 8px 12px;
+      background: #fff;
+      border: 2px solid var(--unf-blue);
+      border-radius: 6px;
+      position: relative;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .wbs-tree-level-1 {
+      border-width: 3px;
+      font-weight: 700;
+      font-size: 13px;
+      background: #eff6ff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .wbs-tree-level-2 {
+      margin-left: 20px;
+      border-color: var(--green);
+      font-weight: 600;
+    }
+    .wbs-tree-level-3 {
+      margin-left: 40px;
+      border-color: #9ca3af;
+      font-size: 11px;
+    }
+    .wbs-number {
+      display: inline-block;
+      color: var(--unf-blue);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+    .network-svg-container {
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      min-height: 500px;
+    }
+    .risk-matrix {
+      display: grid;
+      grid-template-columns: 80px repeat(3, 1fr);
+      grid-template-rows: 40px repeat(3, 1fr);
+      gap: 2px;
+      background: #e5e7eb;
+      border: 2px solid #d1d5db;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 500px;
+    }
+    .risk-matrix-cell {
+      background: #fff;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .risk-matrix-header {
+      background: var(--unf-blue);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .risk-matrix-label {
+      background: #f3f4f6;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .risk-matrix-high {
+      background: #fee2e2;
+    }
+    .risk-matrix-medium {
+      background: #fef3c7;
+    }
+    .risk-matrix-low {
+      background: #d1fae5;
+    }
+    .risk-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--unf-blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 10px;
+      margin: 2px;
+      cursor: pointer;
+    }
+    .risk-dot:hover {
+      transform: scale(1.2);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🏈 UNF Football Team Project - Integrated Planning Tool</h1>
+    <p>University of North Florida | Project Management Capstone Exercise</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('charter')">📋 Project Charter</div>
+    <div class="tab" onclick="switchTab('wbs')">📊 WBS</div>
+    <div class="tab" onclick="switchTab('estimates')">⏱️ Estimates</div>
+    <div class="tab" onclick="switchTab('network')">🔗 Network</div>
+    <div class="tab" onclick="switchTab('risks')">⚠️ Risks</div>
+    <div class="tab" onclick="switchTab('summary')">📑 Summary & Export</div>
+    <div class="tab" onclick="switchTab('evaluation')">⭐ Evaluation Criteria</div>
+  </div>
+
+  <div class="content">
+    <!-- PROJECT CHARTER -->
+    <div id="charter" class="panel active">
+      <h2>Project Charter - UNF Football Team Launch</h2>
+      
+      <div class="team-info print-hide">
+        <h3>Team Information</h3>
+        <label class="label">Team Name:</label>
+        <input type="text" id="teamName" placeholder="Enter your team name">
+        <label class="label">Team Members (comma separated):</label>
+        <input type="text" id="teamMembers" placeholder="e.g., John Smith, Jane Doe, Bob Johnson">
+      </div>
+
+      <div class="info-box">
+        <strong>Note:</strong> This Project Charter is standardized for all teams. All groups start from the same baseline. Your planning decisions in the subsequent tabs will differentiate your approach.
+      </div>
+
+      <h3>1. Project Overview</h3>
+      <table>
+        <tr>
+          <td style="width: 200px;"><strong>Project Title</strong></td>
+          <td>Launch of UNF Ospreys Football Program</td>
+        </tr>
+        <tr>
+          <td><strong>Project Manager</strong></td>
+          <td>Athletic Director - UNF Athletics Department</td>
+        </tr>
+        <tr>
+          <td><strong>Sponsor</strong></td>
+          <td>University President & Board of Trustees</td>
+        </tr>
+        <tr>
+          <td><strong>Start Date</strong></td>
+          <td>January 2, 2026</td>
+        </tr>
+        <tr>
+          <td><strong>Target Completion</strong></td>
+          <td>August 25, 2027 (First game day)</td>
+        </tr>
+        <tr>
+          <td><strong>Budget Range</strong></td>
+          <td>$3.5M - $4.2M (including startup and Year 1 operations)</td>
+        </tr>
+      </table>
+
+      <h3>2. Project Justification</h3>
+      <p>UNF is the only public university in Florida without a football program. Peer institutions have demonstrated that football programs:</p>
+      <ul style="margin-left: 30px; line-height: 1.8;">
+        <li>Increase student enrollment by 8-12%</li>
+        <li>Boost alumni engagement and donations by 25-40%</li>
+        <li>Enhance campus spirit and student life quality</li>
+        <li>Generate revenue through ticket sales, sponsorships, and media rights</li>
+        <li>Provide opportunities for 80-100 student-athletes with scholarships</li>
+      </ul>
+
+      <h3>3. Project Objectives</h3>
+      <table>
+        <tr>
+          <th>Objective</th>
+          <th>Success Criteria</th>
+        </tr>
+        <tr>
+          <td>Establish FCS-level football program</td>
+          <td>NCAA compliance and conference membership approval</td>
+        </tr>
+        <tr>
+          <td>Build necessary infrastructure</td>
+          <td>Stadium with 12,000 capacity, practice facilities, locker rooms</td>
+        </tr>
+        <tr>
+          <td>Recruit coaching staff and players</td>
+          <td>Head coach + 9 assistants; 75 recruited players for Year 1</td>
+        </tr>
+        <tr>
+          <td>Launch inaugural season</td>
+          <td>10-game schedule for Fall 2027</td>
+        </tr>
+        <tr>
+          <td>Achieve financial sustainability</td>
+          <td>50% cost recovery through revenues in Year 1</td>
+        </tr>
+      </table>
+
+      <h3>4. Key Stakeholders</h3>
+      <table>
+        <tr>
+          <th>Stakeholder Group</th>
+          <th>Interest/Requirements</th>
+          <th>Influence Level</th>
+        </tr>
+        <tr>
+          <td>University Administration</td>
+          <td>ROI, academic standards, NCAA compliance</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Current Students</td>
+          <td>Campus experience, no tuition increase</td>
+          <td>Medium-High</td>
+        </tr>
+        <tr>
+          <td>Alumni</td>
+          <td>School pride, game attendance opportunities</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>Local Community</td>
+          <td>Economic impact, traffic/noise concerns</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>NCAA & ASUN Conference</td>
+          <td>Regulatory compliance, competitive balance</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Donors & Sponsors</td>
+          <td>Naming rights, brand visibility, ROI</td>
+          <td>High</td>
+        </tr>
+      </table>
+
+      <h3>5. Project Scope</h3>
+      <div class="info-box">
+        <strong>In Scope:</strong>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+          <li>Stadium renovation/expansion (existing Hodges Stadium)</li>
+          <li>Construction of practice facility, locker rooms, and weight room</li>
+          <li>Recruitment and hiring of coaching staff (10 coaches)</li>
+          <li>Player recruitment (target: 75 players)</li>
+          <li>Equipment procurement (uniforms, helmets, training equipment)</li>
+          <li>NCAA compliance and conference membership applications</li>
+          <li>Marketing and branding campaign</li>
+          <li>Ticket sales system and fan engagement programs</li>
+          <li>Medical and training staff hiring</li>
+          <li>Schedule development (10 games for inaugural season)</li>
+        </ul>
+      </div>
+      <div class="warning-box">
+        <strong>Out of Scope:</strong>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+          <li>New standalone stadium (using existing Hodges Stadium)</li>
+          <li>Academic support programs (already exist for student-athletes)</li>
+          <li>Year 2+ operations (only inaugural season included)</li>
+          <li>Other sports program modifications</li>
+        </ul>
+      </div>
+
+      <h3>6. Major Constraints</h3>
+      <table>
+        <tr>
+          <th>Constraint Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Time</strong></td>
+          <td>
+            • Must launch by Fall 2027 (fixed date)<br>
+            • NCAA requires 2-year advance notice for conference play<br>
+            • Construction must avoid Spring 2027 (baseball/soccer season)
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Budget</strong></td>
+          <td>
+            • Total budget cap: $4.2M (no overruns permitted)<br>
+            • 60% from donors/sponsors, 40% from university reserves<br>
+            • Fundraising target: $2.5M (currently $1.8M secured)
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Resources</strong></td>
+          <td>
+            • Limited athletic department staff (must hire project coordinator)<br>
+            • Shared facilities with existing sports during construction<br>
+            • Competition for coaching talent from established programs
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Regulatory</strong></td>
+          <td>
+            • NCAA Division I FCS requirements<br>
+            • ASUN Conference membership approval needed<br>
+            • City zoning and noise ordinances for stadium
+          </td>
+        </tr>
+      </table>
+
+      <h3>7. Key Assumptions</h3>
+      <ul style="margin-left: 30px; line-height: 1.8;">
+        <li>ASUN Conference will approve membership by June 2026</li>
+        <li>Fundraising will reach $2.5M by December 2026</li>
+        <li>Construction permits will be approved within 60 days</li>
+        <li>Head coach hire will attract quality assistant coaches and recruits</li>
+        <li>Existing Hodges Stadium can be renovated to meet NCAA standards</li>
+        <li>Local community will support the program (minimal opposition)</li>
+      </ul>
+
+      <h3>8. Initial Known Risks</h3>
+      <table>
+        <tr>
+          <th>Risk</th>
+          <th>Probability</th>
+          <th>Impact</th>
+        </tr>
+        <tr>
+          <td>Fundraising shortfall</td>
+          <td>Medium</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Construction delays</td>
+          <td>Medium</td>
+          <td>High</td>
+        </tr>
+        <tr>
+          <td>Difficulty recruiting top coaching talent</td>
+          <td>Medium</td>
+          <td>Medium</td>
+        </tr>
+        <tr>
+          <td>NCAA/Conference approval delays</td>
+          <td>Low</td>
+          <td>Very High</td>
+        </tr>
+        <tr>
+          <td>Community opposition to stadium expansion</td>
+          <td>Low-Medium</td>
+          <td>Medium</td>
+        </tr>
+      </table>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="switchTab('wbs')">Next: Build WBS →</button>
+      </div>
+    </div>
+
+    <!-- WBS -->
+    <div id="wbs" class="panel">
+      <h2>Work Breakdown Structure (WBS)</h2>
+      
+      <div class="info-box">
+        <strong>Instructions:</strong> Create a detailed WBS for the UNF Football Program launch. Include at least 3 levels. Consider all major deliverables: infrastructure, staffing, compliance, marketing, and operations setup.
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button secondary" onclick="addWBSItem(1)">+ Add Level 1 (Major Deliverable)</button>
+        <button class="button secondary" onclick="addWBSItem(2)">+ Add Level 2 (Sub-deliverable)</button>
+        <button class="button secondary" onclick="addWBSItem(3)">+ Add Level 3 (Work Package)</button>
+        <button class="button" onclick="showWBSVisualization()">🌳 View WBS Tree</button>
+        <button class="button danger" onclick="clearWBS()">Clear All</button>
+      </div>
+
+      <div id="wbsContainer">
+        <!-- WBS items will be added here -->
+      </div>
+
+      <div class="warning-box" style="margin-top: 20px;">
+        <strong>Evaluation Tip:</strong> A comprehensive WBS should have 5-8 major deliverables (Level 1), with each broken down into 3-5 sub-deliverables (Level 2), and work packages where appropriate (Level 3). Consider deliverables like: Infrastructure, Staffing, Compliance, Marketing, Operations, Equipment, Schedule Development.
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="switchTab('estimates')">Next: Develop Estimates →</button>
+      </div>
+
+      <!-- WBS Visualization for Print -->
+      <div class="viz-print" style="display: none;">
+        <h3>WBS Tree Visualization</h3>
+        <div id="wbsPrintContainer"></div>
+      </div>
+    </div>
+
+    <!-- ESTIMATES -->
+    <div id="estimates" class="panel">
+      <h2>Project Estimates - Time, Cost, and Resources</h2>
+
+      <div class="info-box">
+        <strong>Instructions:</strong> For each major activity, provide estimates for duration, cost, and required resources. Be realistic and consider the constraints from the charter.
+      </div>
+
+      <h3>Activity Estimation Table</h3>
+      <div class="toolbar print-hide">
+        <button class="button secondary" onclick="addActivity()">+ Add Activity</button>
+        <button class="button danger" onclick="clearActivities()">Clear All</button>
+      </div>
+
+      <table id="estimatesTable">
+        <thead>
+          <tr>
+            <th style="width: 50px;">#</th>
+            <th style="width: 250px;">Activity Name</th>
+            <th>Duration (days)</th>
+            <th>Cost ($)</th>
+            <th>Resources Needed</th>
+            <th class="print-hide" style="width: 80px;">Action</th>
+          </tr>
+        </thead>
+        <tbody id="activitiesBody">
+          <!-- Activities will be added here -->
+        </tbody>
+        <tfoot>
+          <tr class="calculated">
+            <td colspan="2"><strong>TOTALS</strong></td>
+            <td id="totalDuration">0 days</td>
+            <td id="totalCost">$0</td>
+            <td>-</td>
+            <td class="print-hide"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="warning-box">
+        <strong>Budget Constraint Check:</strong> Total cost must not exceed $4.2M. Current total: <span id="costCheck" style="font-weight: bold;">$0</span>
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="switchTab('network')">Next: Create Project Network →</button>
+      </div>
+    </div>
+
+    <!-- PROJECT NETWORK -->
+    <div id="network" class="panel">
+      <h2>Project Network & Schedule</h2>
+
+      <div class="info-box">
+        <strong>Instructions:</strong> Define activity dependencies and create a project network. Identify the critical path and calculate slack for non-critical activities.
+      </div>
+
+      <h3>Activity Dependencies</h3>
+      <div class="toolbar print-hide">
+        <button class="button secondary" onclick="addDependency()">+ Add Dependency</button>
+        <button class="button" onclick="showNetworkVisualization()">🔗 View Network Diagram</button>
+        <button class="button danger" onclick="clearDependencies()">Clear All</button>
+      </div>
+
+      <table id="dependenciesTable">
+        <thead>
+          <tr>
+            <th style="width: 50px;">#</th>
+            <th>Activity ID</th>
+            <th>Activity Name</th>
+            <th>Predecessors</th>
+            <th>Duration (days)</th>
+            <th>ES</th>
+            <th>EF</th>
+            <th>LS</th>
+            <th>LF</th>
+            <th>Slack</th>
+            <th class="print-hide" style="width: 80px;">Action</th>
+          </tr>
+        </thead>
+        <tbody id="dependenciesBody">
+          <!-- Dependencies will be added here -->
+        </tbody>
+      </table>
+
+      <div class="summary-section">
+        <h3>Critical Path Analysis</h3>
+        <label class="label">Identify Critical Path (activities with zero slack):</label>
+        <textarea id="criticalPath" rows="3" placeholder="List activity IDs on the critical path, e.g., A → C → F → H → J"></textarea>
+        
+        <label class="label" style="margin-top: 16px;">Project Duration (Critical Path Length):</label>
+        <input type="number" id="projectDuration" placeholder="Total days on critical path">
+        
+        <label class="label" style="margin-top: 16px;">Key Insights:</label>
+        <textarea id="scheduleInsights" rows="4" placeholder="What are the scheduling risks? Which activities have the most slack? How can you compress the schedule if needed?"></textarea>
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="switchTab('risks')">Next: Analyze Risks →</button>
+      </div>
+
+      <!-- Network Visualization for Print -->
+      <div class="viz-print" style="display: none;">
+        <h3>Project Network Diagram</h3>
+        <div style="border: 1px solid #d1d5db; border-radius: 8px; padding: 10px; background: #fff;">
+          <svg id="networkPrintSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- RISKS -->
+    <div id="risks" class="panel">
+      <h2>Risk Analysis & Management</h2>
+
+      <div class="info-box">
+        <strong>Instructions:</strong> Identify at least 8-10 risks specific to this project. For each risk, assess probability and impact, calculate risk score, and develop response strategies.
+      </div>
+
+      <h3>Risk Register</h3>
+      <div class="toolbar print-hide">
+        <button class="button secondary" onclick="addRisk()">+ Add Risk</button>
+        <button class="button" onclick="showRiskMatrix()">📊 View Risk Matrix</button>
+        <button class="button danger" onclick="clearRisks()">Clear All</button>
+      </div>
+
+      <div id="risksContainer">
+        <!-- Risk items will be added here -->
+      </div>
+
+      <div class="summary-section" style="margin-top: 20px;">
+        <h3>Risk Summary & Mitigation Strategy</h3>
+        <label class="label">Overall Risk Management Approach:</label>
+        <textarea id="riskStrategy" rows="5" placeholder="Describe your overall strategy for managing project risks. Which risks require the most attention? How will you monitor and control risks throughout the project?"></textarea>
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="switchTab('summary')">Next: Generate Summary & Export →</button>
+      </div>
+
+      <!-- Risk Matrix for Print -->
+      <div class="viz-print" style="display: none;">
+        <h3>Risk Matrix Visualization</h3>
+        <div id="riskPrintContainer"></div>
+      </div>
+    </div>
+
+    <!-- SUMMARY & EXPORT -->
+    <div id="summary" class="panel">
+      <h2>Project Plan Summary & Export</h2>
+
+      <div class="info-box">
+        <strong>This summary consolidates all your planning work.</strong> Review carefully before exporting. The exported PDF will be used for peer evaluation.
+      </div>
+
+      <div class="team-info">
+        <h3>Team Information</h3>
+        <p><strong>Team Name:</strong> <span id="summaryTeamName">-</span></p>
+        <p><strong>Members:</strong> <span id="summaryTeamMembers">-</span></p>
+      </div>
+
+      <div class="summary-section">
+        <h3>📊 WBS Summary</h3>
+        <p><strong>Level 1 Deliverables:</strong> <span id="summaryWBSL1">0</span></p>
+        <p><strong>Level 2 Sub-deliverables:</strong> <span id="summaryWBSL2">0</span></p>
+        <p><strong>Level 3 Work Packages:</strong> <span id="summaryWBSL3">0</span></p>
+        <p><strong>Total WBS Items:</strong> <span id="summaryWBSTotal">0</span></p>
+      </div>
+
+      <div class="summary-section">
+        <h3>⏱️ Estimates Summary</h3>
+        <p><strong>Total Activities Defined:</strong> <span id="summaryActivities">0</span></p>
+        <p><strong>Total Duration:</strong> <span id="summaryDuration">0</span> days</p>
+        <p><strong>Total Estimated Cost:</strong> <span id="summaryCost">$0</span></p>
+        <p><strong>Budget Utilization:</strong> <span id="summaryBudgetPct">0%</span> of $4.2M cap</p>
+      </div>
+
+      <div class="summary-section">
+        <h3>🔗 Network Summary</h3>
+        <p><strong>Dependencies Defined:</strong> <span id="summaryDeps">0</span></p>
+        <p><strong>Critical Path Length:</strong> <span id="summaryCPLength">-</span> days</p>
+        <p><strong>Critical Path Activities:</strong> <span id="summaryCPActivities">-</span></p>
+      </div>
+
+      <div class="summary-section">
+        <h3>⚠️ Risk Summary</h3>
+        <p><strong>Total Risks Identified:</strong> <span id="summaryRisks">0</span></p>
+        <p><strong>High Priority Risks:</strong> <span id="summaryHighRisks">0</span></p>
+        <p><strong>Medium Priority Risks:</strong> <span id="summaryMediumRisks">0</span></p>
+        <p><strong>Low Priority Risks:</strong> <span id="summaryLowRisks">0</span></p>
+      </div>
+
+      <div class="toolbar print-hide">
+        <button class="button" onclick="updateSummary()">🔄 Refresh Summary</button>
+        <button class="button secondary" onclick="saveProgress()">💾 Save Progress (JSON)</button>
+        <button class="button secondary" onclick="loadProgress()">📂 Load Progress</button>
+        <button class="button" onclick="exportPDF()">📄 Export to PDF</button>
+      </div>
+
+      <input type="file" id="loadFile" accept=".json,.txt" style="display: none;" onchange="handleFileLoad(event)">
+
+      <div class="warning-box" style="margin-top: 20px;">
+        <strong>Before Exporting:</strong> Ensure all sections are complete. The PDF will include all tabs except this summary page. Use "Save Progress" to create a backup of your work before exporting.
+      </div>
+    </div>
+
+    <!-- EVALUATION CRITERIA -->
+    <div id="evaluation" class="panel">
+      <h2>Peer Evaluation Criteria</h2>
+
+      <div class="info-box">
+        <strong>Evaluation Instructions:</strong> After all teams present their plans, use these criteria to evaluate each team (including your own). Rate each criterion on a scale of 1-5.
+      </div>
+
+      <table class="criteria-table">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Description</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WBS Completeness</td>
+            <td>
+              • Comprehensive coverage of all project areas<br>
+              • Proper hierarchical structure (3 levels)<br>
+              • Clear and specific deliverables<br>
+              • 5-8 major deliverables with appropriate breakdown
+            </td>
+            <td>15 pts</td>
+          </tr>
+          <tr>
+            <td>Estimation Accuracy</td>
+            <td>
+              • Realistic time estimates<br>
+              • Cost estimates aligned with budget constraints<br>
+              • Resource assignments are logical<br>
+              • Stays within $4.2M budget
+            </td>
+            <td>15 pts</td>
+          </tr>
+          <tr>
+            <td>Network & Schedule Logic</td>
+            <td>
+              • Dependencies are logical and complete<br>
+              • Critical path correctly identified<br>
+              • Slack calculations are accurate<br>
+              • Schedule is feasible within timeline (Aug 2027)
+            </td>
+            <td>20 pts</td>
+          </tr>
+          <tr>
+            <td>Risk Management Depth</td>
+            <td>
+              • 8-10 relevant risks identified<br>
+              • Probability & impact assessments are reasonable<br>
+              • Response strategies are actionable and specific<br>
+              • Addresses high-priority risks comprehensively
+            </td>
+            <td>20 pts</td>
+          </tr>
+          <tr>
+            <td>Integration & Consistency</td>
+            <td>
+              • WBS items align with activities and network<br>
+              • Estimates are consistent across sections<br>
+              • Risks relate to actual project activities<br>
+              • Overall plan is cohesive
+            </td>
+            <td>15 pts</td>
+          </tr>
+          <tr>
+            <td>Professional Presentation</td>
+            <td>
+              • Clear and organized documentation<br>
+              • Proper use of PM terminology<br>
+              • Attention to detail<br>
+              • Presentation quality and communication
+            </td>
+            <td>10 pts</td>
+          </tr>
+          <tr>
+            <td>Innovation & Insights</td>
+            <td>
+              • Creative solutions to project challenges<br>
+              • Strategic thinking evident<br>
+              • Demonstrates deep understanding<br>
+              • Goes beyond basic requirements
+            </td>
+            <td>5 pts</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="calculated">
+            <td colspan="2"><strong>TOTAL POSSIBLE</strong></td>
+            <td><strong>100 pts</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="summary-section" style="margin-top: 30px;">
+        <h3>Evaluation Form</h3>
+        <label class="label">Team Being Evaluated:</label>
+        <input type="text" id="evalTeamName" placeholder="Enter team name">
+
+        <table style="margin-top: 16px;">
+          <tr>
+            <th>Criterion</th>
+            <th style="width: 150px;">Score (1-5)</th>
+            <th style="width: 100px;">Weighted</th>
+          </tr>
+          <tr>
+            <td>WBS Completeness (×3)</td>
+            <td><input type="number" class="eval-input" data-weight="3" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Estimation Accuracy (×3)</td>
+            <td><input type="number" class="eval-input" data-weight="3" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Network & Schedule Logic (×4)</td>
+            <td><input type="number" class="eval-input" data-weight="4" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Risk Management Depth (×4)</td>
+            <td><input type="number" class="eval-input" data-weight="4" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Integration & Consistency (×3)</td>
+            <td><input type="number" class="eval-input" data-weight="3" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Professional Presentation (×2)</td>
+            <td><input type="number" class="eval-input" data-weight="2" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr>
+            <td>Innovation & Insights (×1)</td>
+            <td><input type="number" class="eval-input" data-weight="1" min="1" max="5" oninput="calculateEvalScore()"></td>
+            <td class="calculated eval-weighted">0</td>
+          </tr>
+          <tr class="calculated">
+            <td colspan="2"><strong>TOTAL SCORE</strong></td>
+            <td><strong id="evalTotalScore">0/100</strong></td>
+          </tr>
+        </table>
+
+        <label class="label" style="margin-top: 16px;">Comments & Feedback:</label>
+        <textarea id="evalComments" rows="4" placeholder="Provide constructive feedback..."></textarea>
+
+        <div class="toolbar">
+          <button class="button" onclick="saveEvaluation()">💾 Save Evaluation</button>
+          <button class="button secondary" onclick="printEvaluation()">🖨️ Print Evaluation</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- WBS Visualization Modal -->
+  <div id="wbsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('wbsModal')">&times;</span>
+      <h2>WBS Tree Visualization</h2>
+      <div class="viz-container" id="wbsVizContainer"></div>
+    </div>
+  </div>
+
+  <!-- Network Visualization Modal -->
+  <div id="networkModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('networkModal')">&times;</span>
+      <h2>Project Network Diagram</h2>
+      <div class="viz-container">
+        <div class="network-svg-container">
+          <svg id="networkSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Risk Matrix Modal -->
+  <div id="riskModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('riskModal')">&times;</span>
+      <h2>Risk Matrix (Probability × Impact)</h2>
+      <div class="viz-container" id="riskMatrixContainer"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 UNF Project Management Course | Developed by Prof. Allan Quadros | For Educational Use Only
+  </div>
+</div>
+
+<script>
+// Global state
+let wbsItems = [];
+let activities = [];
+let dependencies = [];
+let risks = [];
+let activityCounter = 1;
+let riskCounter = 1;
+
+// Tab switching
+function switchTab(tabName) {
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  
+  tabs.forEach(tab => tab.classList.remove('active'));
+  panels.forEach(panel => panel.classList.remove('active'));
+  
+  event.target.classList.add('active');
+  document.getElementById(tabName).classList.add('active');
+}
+
+// WBS Functions
+function getWBSNumber(index) {
+  const item = wbsItems[index];
+  if (!item) return '';
+  
+  if (item.level === 1) {
+    // Count level 1 items up to this point
+    let count = 0;
+    for (let i = 0; i <= index; i++) {
+      if (wbsItems[i].level === 1) count++;
+    }
+    return count + '.0';
+  } else if (item.level === 2) {
+    // Find parent level 1 and count level 2 items under it
+    let parentNum = 0;
+    let count = 0;
+    for (let i = index; i >= 0; i--) {
+      if (wbsItems[i].level === 1) {
+        // Count how many level 1 items up to this parent
+        for (let j = 0; j <= i; j++) {
+          if (wbsItems[j].level === 1) parentNum++;
+        }
+        break;
+      }
+    }
+    // Count level 2 items after the last level 1
+    for (let i = 0; i <= index; i++) {
+      if (wbsItems[i].level === 1) {
+        count = 0; // Reset count when we hit a new level 1
+      } else if (wbsItems[i].level === 2) {
+        count++;
+      }
+    }
+    return parentNum + '.' + count;
+  } else { // level 3
+    // Find parent level 2 and count level 3 items under it
+    let parentL1 = 0;
+    let parentL2 = 0;
+    let count = 0;
+    
+    // Find parent level 1
+    for (let i = index; i >= 0; i--) {
+      if (wbsItems[i].level === 1) {
+        for (let j = 0; j <= i; j++) {
+          if (wbsItems[j].level === 1) parentL1++;
+        }
+        break;
+      }
+    }
+    
+    // Find parent level 2
+    let l2Count = 0;
+    for (let i = 0; i <= index; i++) {
+      if (wbsItems[i].level === 1) {
+        l2Count = 0;
+      } else if (wbsItems[i].level === 2) {
+        l2Count++;
+        parentL2 = l2Count;
+      }
+    }
+    
+    // Count level 3 items after the last level 2
+    for (let i = 0; i <= index; i++) {
+      if (wbsItems[i].level === 2) {
+        count = 0; // Reset count when we hit a new level 2
+      } else if (wbsItems[i].level === 3) {
+        count++;
+      }
+    }
+    
+    return parentL1 + '.' + parentL2 + '.' + count;
+  }
+}
+
+function addWBSItem(level) {
+  const container = document.getElementById('wbsContainer');
+  const id = wbsItems.length + 1;
+  
+  const item = {
+    id: id,
+    level: level,
+    text: ''
+  };
+  
+  wbsItems.push(item);
+  renderWBS();
+}
+
+function updateWBSItem(id, value) {
+  const item = wbsItems.find(i => i.id === id);
+  if (item) item.text = value;
+}
+
+function removeWBSItem(id) {
+  const item = wbsItems.find(i => i.id === id);
+  if (item) {
+    wbsItems = wbsItems.filter(i => i.id !== id);
+    renderWBS();
+  }
+}
+
+function clearWBS() {
+  if (confirm('Clear all WBS items?')) {
+    wbsItems = [];
+    document.getElementById('wbsContainer').innerHTML = '';
+  }
+}
+
+function renderWBS() {
+  const container = document.getElementById('wbsContainer');
+  container.innerHTML = '';
+  wbsItems.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.className = `wbs-item wbs-level-${item.level}`;
+    div.innerHTML = `
+      <strong>${getWBSNumber(index)}</strong>
+      <input type="text" value="${item.text}" placeholder="Enter deliverable/work package name" 
+             oninput="updateWBSItem(${item.id}, this.value)" style="margin: 8px 0;">
+      <button class="button ghost" style="padding: 4px 8px; font-size: 12px;" onclick="removeWBSItem(${item.id})">Remove</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Activities/Estimates Functions
+function addActivity() {
+  const tbody = document.getElementById('activitiesBody');
+  const id = activityCounter++;
+  
+  const activity = {
+    id: id,
+    name: '',
+    duration: 0,
+    cost: 0,
+    resources: ''
+  };
+  
+  activities.push(activity);
+  
+  const row = tbody.insertRow();
+  row.innerHTML = `
+    <td>${id}</td>
+    <td><input type="text" placeholder="Activity name" oninput="updateActivity(${id}, 'name', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" oninput="updateActivity(${id}, 'duration', this.value); calculateTotals()"></td>
+    <td><input type="number" min="0" step="1000" placeholder="0" oninput="updateActivity(${id}, 'cost', this.value); calculateTotals()"></td>
+    <td><input type="text" placeholder="e.g., Project Manager, Engineers" oninput="updateActivity(${id}, 'resources', this.value)"></td>
+    <td class="print-hide"><button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeActivity(${id})">Delete</button></td>
+  `;
+}
+
+function updateActivity(id, field, value) {
+  const activity = activities.find(a => a.id === id);
+  if (activity) {
+    activity[field] = field === 'duration' || field === 'cost' ? parseFloat(value) || 0 : value;
+  }
+}
+
+function removeActivity(id) {
+  activities = activities.filter(a => a.id !== id);
+  renderActivities();
+}
+
+function clearActivities() {
+  if (confirm('Clear all activities?')) {
+    activities = [];
+    activityCounter = 1;
+    document.getElementById('activitiesBody').innerHTML = '';
+    calculateTotals();
+  }
+}
+
+function renderActivities() {
+  const tbody = document.getElementById('activitiesBody');
+  tbody.innerHTML = '';
+  activities.forEach(activity => {
+    const row = tbody.insertRow();
+    row.innerHTML = `
+      <td>${activity.id}</td>
+      <td><input type="text" value="${activity.name}" placeholder="Activity name" oninput="updateActivity(${activity.id}, 'name', this.value)"></td>
+      <td><input type="number" min="0" value="${activity.duration}" placeholder="0" oninput="updateActivity(${activity.id}, 'duration', this.value); calculateTotals()"></td>
+      <td><input type="number" min="0" step="1000" value="${activity.cost}" placeholder="0" oninput="updateActivity(${activity.id}, 'cost', this.value); calculateTotals()"></td>
+      <td><input type="text" value="${activity.resources}" placeholder="e.g., Project Manager, Engineers" oninput="updateActivity(${activity.id}, 'resources', this.value)"></td>
+      <td class="print-hide"><button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeActivity(${activity.id})">Delete</button></td>
+    `;
+  });
+  calculateTotals();
+}
+
+function calculateTotals() {
+  const totalDuration = activities.reduce((sum, a) => sum + (a.duration || 0), 0);
+  const totalCost = activities.reduce((sum, a) => sum + (a.cost || 0), 0);
+  
+  document.getElementById('totalDuration').textContent = totalDuration + ' days';
+  document.getElementById('totalCost').textContent = '$' + totalCost.toLocaleString();
+  
+  const budgetPct = ((totalCost / 4200000) * 100).toFixed(1);
+  const costCheck = document.getElementById('costCheck');
+  costCheck.textContent = '$' + totalCost.toLocaleString() + ' (' + budgetPct + '%)';
+  costCheck.style.color = totalCost > 4200000 ? '#dc2626' : '#16a34a';
+}
+
+// Dependencies/Network Functions
+function addDependency() {
+  const tbody = document.getElementById('dependenciesBody');
+  const id = dependencies.length + 1;
+  
+  const dep = {
+    id: id,
+    activityId: '',
+    activityName: '',
+    predecessors: '',
+    duration: 0,
+    es: 0,
+    ef: 0,
+    ls: 0,
+    lf: 0,
+    slack: 0
+  };
+  
+  dependencies.push(dep);
+  
+  const row = tbody.insertRow();
+  row.innerHTML = `
+    <td>${id}</td>
+    <td><input type="text" placeholder="e.g., A" style="width: 60px;" oninput="updateDependency(${id}, 'activityId', this.value)"></td>
+    <td><input type="text" placeholder="Activity name" oninput="updateDependency(${id}, 'activityName', this.value)"></td>
+    <td><input type="text" placeholder="e.g., A,B" oninput="updateDependency(${id}, 'predecessors', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 80px;" oninput="updateDependency(${id}, 'duration', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 70px;" oninput="updateDependency(${id}, 'es', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 70px;" oninput="updateDependency(${id}, 'ef', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 70px;" oninput="updateDependency(${id}, 'ls', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 70px;" oninput="updateDependency(${id}, 'lf', this.value)"></td>
+    <td><input type="number" min="0" placeholder="0" style="width: 70px;" oninput="updateDependency(${id}, 'slack', this.value)"></td>
+    <td class="print-hide"><button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeDependency(${id})">Delete</button></td>
+  `;
+}
+
+function updateDependency(id, field, value) {
+  const dep = dependencies.find(d => d.id === id);
+  if (dep) {
+    dep[field] = ['duration', 'es', 'ef', 'ls', 'lf', 'slack'].includes(field) ? parseFloat(value) || 0 : value;
+  }
+}
+
+function removeDependency(id) {
+  dependencies = dependencies.filter(d => d.id !== id);
+  renderDependencies();
+}
+
+function clearDependencies() {
+  if (confirm('Clear all dependencies?')) {
+    dependencies = [];
+    document.getElementById('dependenciesBody').innerHTML = '';
+  }
+}
+
+function renderDependencies() {
+  const tbody = document.getElementById('dependenciesBody');
+  tbody.innerHTML = '';
+  dependencies.forEach(dep => {
+    const row = tbody.insertRow();
+    row.innerHTML = `
+      <td>${dep.id}</td>
+      <td><input type="text" value="${dep.activityId}" placeholder="e.g., A" style="width: 60px;" oninput="updateDependency(${dep.id}, 'activityId', this.value)"></td>
+      <td><input type="text" value="${dep.activityName}" placeholder="Activity name" oninput="updateDependency(${dep.id}, 'activityName', this.value)"></td>
+      <td><input type="text" value="${dep.predecessors}" placeholder="e.g., A,B" oninput="updateDependency(${dep.id}, 'predecessors', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.duration}" placeholder="0" style="width: 80px;" oninput="updateDependency(${dep.id}, 'duration', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.es}" placeholder="0" style="width: 70px;" oninput="updateDependency(${dep.id}, 'es', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.ef}" placeholder="0" style="width: 70px;" oninput="updateDependency(${dep.id}, 'ef', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.ls}" placeholder="0" style="width: 70px;" oninput="updateDependency(${dep.id}, 'ls', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.lf}" placeholder="0" style="width: 70px;" oninput="updateDependency(${dep.id}, 'lf', this.value)"></td>
+      <td><input type="number" min="0" value="${dep.slack}" placeholder="0" style="width: 70px;" oninput="updateDependency(${dep.id}, 'slack', this.value)"></td>
+      <td class="print-hide"><button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeDependency(${dep.id})">Delete</button></td>
+    `;
+  });
+}
+
+// Risk Functions
+function addRisk() {
+  const container = document.getElementById('risksContainer');
+  const id = riskCounter++;
+  
+  const risk = {
+    id: id,
+    description: '',
+    probability: 'Medium',
+    impact: 'Medium',
+    score: 0,
+    response: '',
+    owner: ''
+  };
+  
+  risks.push(risk);
+  
+  const div = document.createElement('div');
+  div.className = 'risk-item risk-medium';
+  div.id = `risk-${id}`;
+  div.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <strong>Risk #${id}</strong>
+      <button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeRisk(${id})">Delete</button>
+    </div>
+    <label class="label">Risk Description:</label>
+    <input type="text" placeholder="Describe the risk..." oninput="updateRisk(${id}, 'description', this.value)">
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px;">
+      <div>
+        <label class="label">Probability:</label>
+        <select onchange="updateRisk(${id}, 'probability', this.value); updateRiskClass(${id})">
+          <option value="Low">Low (1-3)</option>
+          <option value="Medium" selected>Medium (4-6)</option>
+          <option value="High">High (7-9)</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Impact:</label>
+        <select onchange="updateRisk(${id}, 'impact', this.value); updateRiskClass(${id})">
+          <option value="Low">Low (1-3)</option>
+          <option value="Medium" selected>Medium (4-6)</option>
+          <option value="High">High (7-9)</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Risk Score:</label>
+        <input type="text" id="riskScore-${id}" value="Medium × Medium" readonly style="background: #f3f4f6;">
+      </div>
+    </div>
+    
+    <label class="label" style="margin-top: 12px;">Response Strategy:</label>
+    <textarea rows="2" placeholder="How will you respond to this risk? (Avoid, Mitigate, Transfer, Accept)" 
+              oninput="updateRisk(${id}, 'response', this.value)"></textarea>
+    
+    <label class="label" style="margin-top: 12px;">Risk Owner:</label>
+    <input type="text" placeholder="Who is responsible for managing this risk?" 
+           oninput="updateRisk(${id}, 'owner', this.value)">
+  `;
+  
+  container.appendChild(div);
+}
+
+function updateRisk(id, field, value) {
+  const risk = risks.find(r => r.id === id);
+  if (risk) {
+    risk[field] = value;
+    if (field === 'probability' || field === 'impact') {
+      document.getElementById(`riskScore-${id}`).value = `${risk.probability} × ${risk.impact}`;
+    }
+  }
+}
+
+function updateRiskClass(id) {
+  const risk = risks.find(r => r.id === id);
+  const div = document.getElementById(`risk-${id}`);
+  
+  div.classList.remove('risk-low', 'risk-medium', 'risk-high');
+  
+  if ((risk.probability === 'High' && risk.impact === 'High') ||
+      (risk.probability === 'High' && risk.impact === 'Medium') ||
+      (risk.probability === 'Medium' && risk.impact === 'High')) {
+    div.classList.add('risk-high');
+  } else if ((risk.probability === 'Low' && risk.impact === 'Low') ||
+             (risk.probability === 'Low' && risk.impact === 'Medium') ||
+             (risk.probability === 'Medium' && risk.impact === 'Low')) {
+    div.classList.add('risk-low');
+  } else {
+    div.classList.add('risk-medium');
+  }
+}
+
+function removeRisk(id) {
+  risks = risks.filter(r => r.id !== id);
+  document.getElementById(`risk-${id}`).remove();
+}
+
+function clearRisks() {
+  if (confirm('Clear all risks?')) {
+    risks = [];
+    riskCounter = 1;
+    document.getElementById('risksContainer').innerHTML = '';
+  }
+}
+
+// Summary Functions
+function updateSummary() {
+  // Team info
+  document.getElementById('summaryTeamName').textContent = 
+    document.getElementById('teamName').value || '-';
+  document.getElementById('summaryTeamMembers').textContent = 
+    document.getElementById('teamMembers').value || '-';
+  
+  // WBS stats
+  const l1 = wbsItems.filter(i => i.level === 1).length;
+  const l2 = wbsItems.filter(i => i.level === 2).length;
+  const l3 = wbsItems.filter(i => i.level === 3).length;
+  document.getElementById('summaryWBSL1').textContent = l1;
+  document.getElementById('summaryWBSL2').textContent = l2;
+  document.getElementById('summaryWBSL3').textContent = l3;
+  document.getElementById('summaryWBSTotal').textContent = wbsItems.length;
+  
+  // Estimates stats
+  const totalDuration = activities.reduce((sum, a) => sum + (a.duration || 0), 0);
+  const totalCost = activities.reduce((sum, a) => sum + (a.cost || 0), 0);
+  const budgetPct = ((totalCost / 4200000) * 100).toFixed(1);
+  
+  document.getElementById('summaryActivities').textContent = activities.length;
+  document.getElementById('summaryDuration').textContent = totalDuration;
+  document.getElementById('summaryCost').textContent = '$' + totalCost.toLocaleString();
+  document.getElementById('summaryBudgetPct').textContent = budgetPct + '%';
+  
+  // Network stats
+  document.getElementById('summaryDeps').textContent = dependencies.length;
+  document.getElementById('summaryCPLength').textContent = 
+    document.getElementById('projectDuration').value || '-';
+  document.getElementById('summaryCPActivities').textContent = 
+    document.getElementById('criticalPath').value || '-';
+  
+  // Risk stats
+  const highRisks = risks.filter(r => 
+    (r.probability === 'High' && r.impact === 'High') ||
+    (r.probability === 'High' && r.impact === 'Medium') ||
+    (r.probability === 'Medium' && r.impact === 'High')
+  ).length;
+  const lowRisks = risks.filter(r => 
+    (r.probability === 'Low' && r.impact === 'Low') ||
+    (r.probability === 'Low' && r.impact === 'Medium') ||
+    (r.probability === 'Medium' && r.impact === 'Low')
+  ).length;
+  const mediumRisks = risks.length - highRisks - lowRisks;
+  
+  document.getElementById('summaryRisks').textContent = risks.length;
+  document.getElementById('summaryHighRisks').textContent = highRisks;
+  document.getElementById('summaryMediumRisks').textContent = mediumRisks;
+  document.getElementById('summaryLowRisks').textContent = lowRisks;
+}
+
+// Save/Load Functions
+function saveProgress() {
+  const data = {
+    version: '1.0',
+    timestamp: new Date().toISOString(),
+    teamName: document.getElementById('teamName').value,
+    teamMembers: document.getElementById('teamMembers').value,
+    wbsItems: wbsItems,
+    activities: activities,
+    dependencies: dependencies,
+    risks: risks,
+    criticalPath: document.getElementById('criticalPath').value,
+    projectDuration: document.getElementById('projectDuration').value,
+    scheduleInsights: document.getElementById('scheduleInsights').value,
+    riskStrategy: document.getElementById('riskStrategy').value,
+    activityCounter: activityCounter,
+    riskCounter: riskCounter
+  };
+  
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `UNF_Football_Project_${data.teamName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  alert('Progress saved successfully!');
+}
+
+function loadProgress() {
+  document.getElementById('loadFile').click();
+}
+
+function handleFileLoad(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      
+      // Load team info
+      document.getElementById('teamName').value = data.teamName || '';
+      document.getElementById('teamMembers').value = data.teamMembers || '';
+      
+      // Load WBS
+      wbsItems = data.wbsItems || [];
+      renderWBS();
+      
+      // Load activities
+      activities = data.activities || [];
+      activityCounter = data.activityCounter || 1;
+      renderActivities();
+      
+      // Load dependencies
+      dependencies = data.dependencies || [];
+      renderDependencies();
+      
+      // Load risks
+      risks = data.risks || [];
+      riskCounter = data.riskCounter || 1;
+      renderRisks();
+      
+      // Load other fields
+      document.getElementById('criticalPath').value = data.criticalPath || '';
+      document.getElementById('projectDuration').value = data.projectDuration || '';
+      document.getElementById('scheduleInsights').value = data.scheduleInsights || '';
+      document.getElementById('riskStrategy').value = data.riskStrategy || '';
+      
+      alert('Progress loaded successfully!');
+      switchTab('charter');
+    } catch (error) {
+      alert('Error loading file: ' + error.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function renderRisks() {
+  const container = document.getElementById('risksContainer');
+  container.innerHTML = '';
+  risks.forEach(risk => {
+    const div = document.createElement('div');
+    div.className = 'risk-item risk-medium';
+    div.id = `risk-${risk.id}`;
+    div.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <strong>Risk #${risk.id}</strong>
+        <button class="button danger" style="padding: 4px 8px; font-size: 11px;" onclick="removeRisk(${risk.id})">Delete</button>
+      </div>
+      <label class="label">Risk Description:</label>
+      <input type="text" value="${risk.description}" placeholder="Describe the risk..." oninput="updateRisk(${risk.id}, 'description', this.value)">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px;">
+        <div>
+          <label class="label">Probability:</label>
+          <select onchange="updateRisk(${risk.id}, 'probability', this.value); updateRiskClass(${risk.id})">
+            <option value="Low" ${risk.probability === 'Low' ? 'selected' : ''}>Low (1-3)</option>
+            <option value="Medium" ${risk.probability === 'Medium' ? 'selected' : ''}>Medium (4-6)</option>
+            <option value="High" ${risk.probability === 'High' ? 'selected' : ''}>High (7-9)</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">Impact:</label>
+          <select onchange="updateRisk(${risk.id}, 'impact', this.value); updateRiskClass(${risk.id})">
+            <option value="Low" ${risk.impact === 'Low' ? 'selected' : ''}>Low (1-3)</option>
+            <option value="Medium" ${risk.impact === 'Medium' ? 'selected' : ''}>Medium (4-6)</option>
+            <option value="High" ${risk.impact === 'High' ? 'selected' : ''}>High (7-9)</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">Risk Score:</label>
+          <input type="text" id="riskScore-${risk.id}" value="${risk.probability} × ${risk.impact}" readonly style="background: #f3f4f6;">
+        </div>
+      </div>
+      
+      <label class="label" style="margin-top: 12px;">Response Strategy:</label>
+      <textarea rows="2" placeholder="How will you respond to this risk? (Avoid, Mitigate, Transfer, Accept)" 
+                oninput="updateRisk(${risk.id}, 'response', this.value)">${risk.response}</textarea>
+      
+      <label class="label" style="margin-top: 12px;">Risk Owner:</label>
+      <input type="text" value="${risk.owner}" placeholder="Who is responsible for managing this risk?" 
+             oninput="updateRisk(${risk.id}, 'owner', this.value)">
+    `;
+    container.appendChild(div);
+    updateRiskClass(risk.id);
+  });
+}
+
+// Export PDF
+function exportPDF() {
+  updateSummary();
+  
+  // Populate print containers with visualizations
+  
+  // WBS Tree
+  if (wbsItems.length > 0) {
+    const wbsPrintContainer = document.getElementById('wbsPrintContainer');
+    wbsPrintContainer.innerHTML = '';
+    
+    // Group items by Level 1 parent
+    const level1Items = [];
+    let currentL1 = null;
+    
+    wbsItems.forEach((item, index) => {
+      const number = getWBSNumber(index);
+      
+      if (item.level === 1) {
+        currentL1 = {
+          number: number,
+          text: item.text || '(No description)',
+          children: []
+        };
+        level1Items.push(currentL1);
+      } else if (item.level === 2 && currentL1) {
+        const l2Item = {
+          number: number,
+          text: item.text || '(No description)',
+          level: 2,
+          children: []
+        };
+        currentL1.children.push(l2Item);
+      } else if (item.level === 3 && currentL1 && currentL1.children.length > 0) {
+        const lastL2 = currentL1.children[currentL1.children.length - 1];
+        if (lastL2.level === 2) {
+          lastL2.children.push({
+            number: number,
+            text: item.text || '(No description)',
+            level: 3
+          });
+        }
+      }
+    });
+    
+    // Create horizontal layout container
+    const treeContainer = document.createElement('div');
+    treeContainer.className = 'wbs-tree-container';
+    
+    // Create column for each Level 1
+    level1Items.forEach(l1 => {
+      const column = document.createElement('div');
+      column.className = 'wbs-tree-column';
+      
+      // Level 1 node
+      const l1Node = document.createElement('div');
+      l1Node.className = 'wbs-tree-node wbs-tree-level-1';
+      l1Node.innerHTML = `<span class="wbs-number">${l1.number}</span>${l1.text}`;
+      column.appendChild(l1Node);
+      
+      // Level 2 and 3 children
+      l1.children.forEach(l2 => {
+        const l2Node = document.createElement('div');
+        l2Node.className = 'wbs-tree-node wbs-tree-level-2';
+        l2Node.innerHTML = `<span class="wbs-number">${l2.number}</span>${l2.text}`;
+        column.appendChild(l2Node);
+        
+        // Level 3 children
+        if (l2.children && l2.children.length > 0) {
+          l2.children.forEach(l3 => {
+            const l3Node = document.createElement('div');
+            l3Node.className = 'wbs-tree-node wbs-tree-level-3';
+            l3Node.innerHTML = `<span class="wbs-number">${l3.number}</span>${l3.text}`;
+            column.appendChild(l3Node);
+          });
+        }
+      });
+      
+      treeContainer.appendChild(column);
+    });
+    
+    wbsPrintContainer.appendChild(treeContainer);
+  }
+  
+  // Network Diagram
+  if (dependencies.length > 0) {
+    const networkPrintSvg = document.getElementById('networkPrintSvg');
+    drawProjectNetwork(networkPrintSvg, dependencies);
+  }
+  
+  // Risk Matrix
+  if (risks.length > 0) {
+    const riskPrintContainer = document.getElementById('riskPrintContainer');
+    riskPrintContainer.innerHTML = '';
+    
+    const matrix = document.createElement('div');
+    matrix.className = 'risk-matrix';
+    matrix.innerHTML = `
+      <div class="risk-matrix-cell risk-matrix-header"></div>
+      <div class="risk-matrix-cell risk-matrix-header">Low Impact<br>(1-3)</div>
+      <div class="risk-matrix-cell risk-matrix-header">Medium Impact<br>(4-6)</div>
+      <div class="risk-matrix-cell risk-matrix-header">High Impact<br>(7-9)</div>
+      
+      <div class="risk-matrix-cell risk-matrix-label">High<br>Prob<br>(7-9)</div>
+      <div class="risk-matrix-cell risk-matrix-medium" data-prob="High" data-impact="Low"></div>
+      <div class="risk-matrix-cell risk-matrix-high" data-prob="High" data-impact="Medium"></div>
+      <div class="risk-matrix-cell risk-matrix-high" data-prob="High" data-impact="High"></div>
+      
+      <div class="risk-matrix-cell risk-matrix-label">Medium<br>Prob<br>(4-6)</div>
+      <div class="risk-matrix-cell risk-matrix-low" data-prob="Medium" data-impact="Low"></div>
+      <div class="risk-matrix-cell risk-matrix-medium" data-prob="Medium" data-impact="Medium"></div>
+      <div class="risk-matrix-cell risk-matrix-high" data-prob="Medium" data-impact="High"></div>
+      
+      <div class="risk-matrix-cell risk-matrix-label">Low<br>Prob<br>(1-3)</div>
+      <div class="risk-matrix-cell risk-matrix-low" data-prob="Low" data-impact="Low"></div>
+      <div class="risk-matrix-cell risk-matrix-low" data-prob="Low" data-impact="Medium"></div>
+      <div class="risk-matrix-cell risk-matrix-medium" data-prob="Low" data-impact="High"></div>
+    `;
+    riskPrintContainer.appendChild(matrix);
+    
+    // Plot risks
+    setTimeout(() => {
+      risks.forEach((risk, index) => {
+        const cell = matrix.querySelector(`[data-prob="${risk.probability}"][data-impact="${risk.impact}"]`);
+        if (cell) {
+          const dot = document.createElement('div');
+          dot.className = 'risk-dot';
+          dot.textContent = index + 1;
+          dot.title = risk.description || `Risk #${index + 1}`;
+          cell.appendChild(dot);
+        }
+      });
+    }, 100);
+    
+    // Add legend
+    const legend = document.createElement('div');
+    legend.style.marginTop = '20px';
+    legend.style.padding = '16px';
+    legend.style.background = '#f9fafb';
+    legend.style.borderRadius = '8px';
+    legend.innerHTML = '<h4 style="margin-bottom: 12px;">Risk Numbers:</h4>';
+    const list = document.createElement('div');
+    list.style.fontSize = '12px';
+    list.style.lineHeight = '1.6';
+    risks.forEach((risk, index) => {
+      const item = document.createElement('div');
+      item.innerHTML = `<strong>${index + 1}.</strong> ${risk.description || 'Risk #' + (index + 1)} <span style="color: #6b7280;">(${risk.probability}/${risk.impact})</span>`;
+      list.appendChild(item);
+    });
+    legend.appendChild(list);
+    riskPrintContainer.appendChild(legend);
+  }
+  
+  alert('To export as PDF:\n\n1. Press Ctrl+P (Cmd+P on Mac)\n2. Select "Save as PDF" as the destination\n3. Click Save\n\nAll tabs and visualizations will be included in the PDF export.');
+  window.print();
+}
+
+// Evaluation Functions
+function calculateEvalScore() {
+  const inputs = document.querySelectorAll('.eval-input');
+  let total = 0;
+  
+  inputs.forEach((input, index) => {
+    const score = parseFloat(input.value) || 0;
+    const weight = parseFloat(input.dataset.weight) || 1;
+    const weighted = score * weight;
+    
+    const weightedCells = document.querySelectorAll('.eval-weighted');
+    if (weightedCells[index]) {
+      weightedCells[index].textContent = weighted;
+    }
+    
+    total += weighted;
+  });
+  
+  document.getElementById('evalTotalScore').textContent = total + '/100';
+}
+
+function saveEvaluation() {
+  const teamName = document.getElementById('evalTeamName').value;
+  if (!teamName) {
+    alert('Please enter the team name being evaluated.');
+    return;
+  }
+  
+  const data = {
+    teamEvaluated: teamName,
+    evaluator: document.getElementById('teamName').value,
+    timestamp: new Date().toISOString(),
+    scores: {
+      wbs: parseFloat(document.querySelectorAll('.eval-input')[0].value) || 0,
+      estimation: parseFloat(document.querySelectorAll('.eval-input')[1].value) || 0,
+      network: parseFloat(document.querySelectorAll('.eval-input')[2].value) || 0,
+      risk: parseFloat(document.querySelectorAll('.eval-input')[3].value) || 0,
+      integration: parseFloat(document.querySelectorAll('.eval-input')[4].value) || 0,
+      presentation: parseFloat(document.querySelectorAll('.eval-input')[5].value) || 0,
+      innovation: parseFloat(document.querySelectorAll('.eval-input')[6].value) || 0
+    },
+    totalScore: document.getElementById('evalTotalScore').textContent,
+    comments: document.getElementById('evalComments').value
+  };
+  
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Evaluation_${teamName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  
+  alert('Evaluation saved successfully!');
+}
+
+function printEvaluation() {
+  window.print();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  calculateTotals();
+});
+
+// Modal Functions
+function closeModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  if (event.target.classList.contains('modal')) {
+    event.target.style.display = 'none';
+  }
+}
+
+// WBS Visualization
+function showWBSVisualization() {
+  if (wbsItems.length === 0) {
+    alert('Please add WBS items first!');
+    return;
+  }
+  
+  const container = document.getElementById('wbsVizContainer');
+  container.innerHTML = '<h3 style="margin-bottom: 20px;">Hierarchical Work Breakdown Structure</h3>';
+  
+  // Group items by Level 1 parent
+  const level1Items = [];
+  let currentL1 = null;
+  
+  wbsItems.forEach((item, index) => {
+    const number = getWBSNumber(index);
+    
+    if (item.level === 1) {
+      currentL1 = {
+        number: number,
+        text: item.text || '(No description)',
+        children: []
+      };
+      level1Items.push(currentL1);
+    } else if (item.level === 2 && currentL1) {
+      const l2Item = {
+        number: number,
+        text: item.text || '(No description)',
+        level: 2,
+        children: []
+      };
+      currentL1.children.push(l2Item);
+    } else if (item.level === 3 && currentL1 && currentL1.children.length > 0) {
+      const lastL2 = currentL1.children[currentL1.children.length - 1];
+      if (lastL2.level === 2) {
+        lastL2.children.push({
+          number: number,
+          text: item.text || '(No description)',
+          level: 3
+        });
+      }
+    }
+  });
+  
+  // Create horizontal layout container
+  const treeContainer = document.createElement('div');
+  treeContainer.className = 'wbs-tree-container';
+  
+  // Create column for each Level 1
+  level1Items.forEach(l1 => {
+    const column = document.createElement('div');
+    column.className = 'wbs-tree-column';
+    
+    // Level 1 node
+    const l1Node = document.createElement('div');
+    l1Node.className = 'wbs-tree-node wbs-tree-level-1';
+    l1Node.innerHTML = `<span class="wbs-number">${l1.number}</span>${l1.text}`;
+    column.appendChild(l1Node);
+    
+    // Level 2 and 3 children
+    l1.children.forEach(l2 => {
+      const l2Node = document.createElement('div');
+      l2Node.className = 'wbs-tree-node wbs-tree-level-2';
+      l2Node.innerHTML = `<span class="wbs-number">${l2.number}</span>${l2.text}`;
+      column.appendChild(l2Node);
+      
+      // Level 3 children
+      if (l2.children && l2.children.length > 0) {
+        l2.children.forEach(l3 => {
+          const l3Node = document.createElement('div');
+          l3Node.className = 'wbs-tree-node wbs-tree-level-3';
+          l3Node.innerHTML = `<span class="wbs-number">${l3.number}</span>${l3.text}`;
+          column.appendChild(l3Node);
+        });
+      }
+    });
+    
+    treeContainer.appendChild(column);
+  });
+  
+  container.appendChild(treeContainer);
+  document.getElementById('wbsModal').style.display = 'block';
+}
+
+// Network Visualization
+function showNetworkVisualization() {
+  if (dependencies.length === 0) {
+    alert('Please add dependencies first!');
+    return;
+  }
+  
+  const svg = document.getElementById('networkSvg');
+  drawProjectNetwork(svg, dependencies);
+  document.getElementById('networkModal').style.display = 'block';
+}
+
+function drawProjectNetwork(svg, deps) {
+  svg.innerHTML = '';
+  const NS = 'http://www.w3.org/2000/svg';
+  
+  svg.setAttribute('viewBox', '0 0 1000 600');
+  svg.setAttribute('width', '100%');
+  svg.setAttribute('height', '500');
+  
+  if (deps.length === 0) return;
+  
+  // Convert dependencies to nodes format
+  const nodes = [];
+  const idMap = {};
+  
+  deps.forEach(dep => {
+    if (dep.activityId && dep.activityId.trim()) {
+      const node = {
+        id: dep.activityId.trim(),
+        desc: dep.activityName || '',
+        d: parseInt(dep.duration) || 0,
+        preds: dep.predecessors ? dep.predecessors.split(',').map(p => p.trim()).filter(Boolean) : [],
+        es: parseInt(dep.es) || 0,
+        ef: parseInt(dep.ef) || 0,
+        ls: parseInt(dep.ls) || 0,
+        lf: parseInt(dep.lf) || 0,
+        slack: parseInt(dep.slack) || 0
+      };
+      nodes.push(node);
+      idMap[node.id] = node;
+    }
+  });
+  
+  if (nodes.length === 0) return;
+  
+  // Calculate depth (layer) for each node based on predecessors
+  const depth = {};
+  function getDepth(id) {
+    if (depth[id] !== undefined) return depth[id];
+    const node = idMap[id];
+    if (!node) return 0;
+    if (!node.preds || node.preds.length === 0) {
+      return depth[id] = 0;
+    }
+    return depth[id] = 1 + Math.max(...node.preds.map(p => getDepth(p)));
+  }
+  nodes.forEach(n => getDepth(n.id));
+  
+  // Group nodes by layer
+  const layers = {};
+  nodes.forEach(n => {
+    const d = depth[n.id];
+    if (!layers[d]) layers[d] = [];
+    layers[d].push(n);
+  });
+  
+  // Position nodes
+  const layerKeys = Object.keys(layers).map(Number).sort((a, b) => a - b);
+  const maxLayer = Math.max(...layerKeys);
+  const xSpacing = maxLayer > 0 ? 800 / maxLayer : 200;
+  
+  layerKeys.forEach(layerIdx => {
+    const layerNodes = layers[layerIdx];
+    const ySpacing = 100;
+    const totalHeight = (layerNodes.length - 1) * ySpacing;
+    const startY = (600 - totalHeight) / 2;
+    
+    layerNodes.forEach((n, i) => {
+      n.x = 80 + (layerIdx * xSpacing);
+      n.y = startY + (i * ySpacing);
+    });
+  });
+  
+  // Create arrow marker
+  const defs = document.createElementNS(NS, 'defs');
+  const marker = document.createElementNS(NS, 'marker');
+  marker.setAttribute('id', 'arrowhead');
+  marker.setAttribute('markerWidth', '10');
+  marker.setAttribute('markerHeight', '10');
+  marker.setAttribute('refX', '9');
+  marker.setAttribute('refY', '3');
+  marker.setAttribute('orient', 'auto');
+  const arrowPath = document.createElementNS(NS, 'path');
+  arrowPath.setAttribute('d', 'M0,0 L0,6 L9,3 z');
+  arrowPath.setAttribute('fill', '#374151');
+  marker.appendChild(arrowPath);
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+  
+  // Background grid
+  for (let x = 0; x <= 1000; x += 50) {
+    const line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', x);
+    line.setAttribute('y1', 0);
+    line.setAttribute('x2', x);
+    line.setAttribute('y2', 600);
+    line.setAttribute('stroke', '#f3f4f6');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+  }
+  for (let y = 0; y <= 600; y += 50) {
+    const line = document.createElementNS(NS, 'line');
+    line.setAttribute('x1', 0);
+    line.setAttribute('y1', y);
+    line.setAttribute('x2', 1000);
+    line.setAttribute('y2', y);
+    line.setAttribute('stroke', '#f3f4f6');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+  }
+  
+  // Draw edges (arrows)
+  const edgesGroup = document.createElementNS(NS, 'g');
+  nodes.forEach(node => {
+    if (node.preds && node.preds.length > 0) {
+      node.preds.forEach(predId => {
+        const from = idMap[predId];
+        if (from) {
+          const x1 = from.x + 80;
+          const y1 = from.y + 25;
+          const x2 = node.x - 10;
+          const y2 = node.y + 25;
+          const midX = (x1 + x2) / 2;
+          
+          const path = document.createElementNS(NS, 'path');
+          path.setAttribute('d', `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`);
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', '#6b7280');
+          path.setAttribute('stroke-width', '2');
+          path.setAttribute('marker-end', 'url(#arrowhead)');
+          edgesGroup.appendChild(path);
+        }
+      });
+    }
+  });
+  svg.appendChild(edgesGroup);
+  
+  // Draw nodes
+  const nodesGroup = document.createElementNS(NS, 'g');
+  nodes.forEach(node => {
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('transform', `translate(${node.x}, ${node.y})`);
+    
+    // Node rectangle
+    const rect = document.createElementNS(NS, 'rect');
+    rect.setAttribute('x', '0');
+    rect.setAttribute('y', '0');
+    rect.setAttribute('rx', '8');
+    rect.setAttribute('width', '80');
+    rect.setAttribute('height', '50');
+    rect.setAttribute('fill', '#ffffff');
+    rect.setAttribute('stroke', node.slack === 0 ? '#dc2626' : '#217346');
+    rect.setAttribute('stroke-width', node.slack === 0 ? '3' : '2');
+    g.appendChild(rect);
+    
+    // ES (top-left)
+    const esText = document.createElementNS(NS, 'text');
+    esText.setAttribute('x', '6');
+    esText.setAttribute('y', '12');
+    esText.setAttribute('font-size', '10');
+    esText.setAttribute('fill', '#6b7280');
+    esText.textContent = node.es;
+    g.appendChild(esText);
+    
+    // Activity ID (center-top)
+    const idText = document.createElementNS(NS, 'text');
+    idText.setAttribute('x', '40');
+    idText.setAttribute('y', '12');
+    idText.setAttribute('text-anchor', 'middle');
+    idText.setAttribute('font-weight', 'bold');
+    idText.setAttribute('font-size', '11');
+    idText.setAttribute('fill', '#222');
+    idText.textContent = node.id;
+    g.appendChild(idText);
+    
+    // EF (top-right)
+    const efText = document.createElementNS(NS, 'text');
+    efText.setAttribute('x', '74');
+    efText.setAttribute('y', '12');
+    efText.setAttribute('text-anchor', 'end');
+    efText.setAttribute('font-size', '10');
+    efText.setAttribute('fill', '#6b7280');
+    efText.textContent = node.ef;
+    g.appendChild(efText);
+    
+    // Description (center)
+    const descText = document.createElementNS(NS, 'text');
+    descText.setAttribute('x', '40');
+    descText.setAttribute('y', '26');
+    descText.setAttribute('text-anchor', 'middle');
+    descText.setAttribute('font-size', '9');
+    descText.setAttribute('fill', '#9ca3af');
+    descText.textContent = node.desc ? (node.desc.length > 10 ? node.desc.substring(0, 10) + '...' : node.desc) : '';
+    g.appendChild(descText);
+    
+    // LS (bottom-left)
+    const lsText = document.createElementNS(NS, 'text');
+    lsText.setAttribute('x', '6');
+    lsText.setAttribute('y', '44');
+    lsText.setAttribute('font-size', '10');
+    lsText.setAttribute('fill', '#6b7280');
+    lsText.textContent = node.ls;
+    g.appendChild(lsText);
+    
+    // Duration (center-bottom)
+    const durText = document.createElementNS(NS, 'text');
+    durText.setAttribute('x', '40');
+    durText.setAttribute('y', '44');
+    durText.setAttribute('text-anchor', 'middle');
+    durText.setAttribute('font-weight', '600');
+    durText.setAttribute('font-size', '11');
+    durText.setAttribute('fill', '#374151');
+    durText.textContent = node.d;
+    g.appendChild(durText);
+    
+    // LF (bottom-right)
+    const lfText = document.createElementNS(NS, 'text');
+    lfText.setAttribute('x', '74');
+    lfText.setAttribute('y', '44');
+    lfText.setAttribute('text-anchor', 'end');
+    lfText.setAttribute('font-size', '10');
+    lfText.setAttribute('fill', '#6b7280');
+    lfText.textContent = node.lf;
+    g.appendChild(lfText);
+    
+    nodesGroup.appendChild(g);
+  });
+  svg.appendChild(nodesGroup);
+  
+  // Legend
+  const legend = document.createElementNS(NS, 'g');
+  legend.setAttribute('transform', 'translate(20, 550)');
+  
+  const criticalRect = document.createElementNS(NS, 'rect');
+  criticalRect.setAttribute('x', 0);
+  criticalRect.setAttribute('y', 0);
+  criticalRect.setAttribute('width', '30');
+  criticalRect.setAttribute('height', '20');
+  criticalRect.setAttribute('fill', '#fff');
+  criticalRect.setAttribute('stroke', '#dc2626');
+  criticalRect.setAttribute('stroke-width', '3');
+  legend.appendChild(criticalRect);
+  
+  const criticalText = document.createElementNS(NS, 'text');
+  criticalText.setAttribute('x', 40);
+  criticalText.setAttribute('y', 15);
+  criticalText.setAttribute('font-size', '12');
+  criticalText.setAttribute('fill', '#374151');
+  criticalText.textContent = 'Critical Path (Slack = 0)';
+  legend.appendChild(criticalText);
+  
+  const normalRect = document.createElementNS(NS, 'rect');
+  normalRect.setAttribute('x', 200);
+  normalRect.setAttribute('y', 0);
+  normalRect.setAttribute('width', '30');
+  normalRect.setAttribute('height', '20');
+  normalRect.setAttribute('fill', '#fff');
+  normalRect.setAttribute('stroke', '#217346');
+  normalRect.setAttribute('stroke-width', '2');
+  legend.appendChild(normalRect);
+  
+  const normalText = document.createElementNS(NS, 'text');
+  normalText.setAttribute('x', 240);
+  normalText.setAttribute('y', 15);
+  normalText.setAttribute('font-size', '12');
+  normalText.setAttribute('fill', '#374151');
+  normalText.textContent = 'Non-Critical';
+  legend.appendChild(normalText);
+  
+  svg.appendChild(legend);
+}
+
+// Risk Matrix Visualization
+function showRiskMatrix() {
+  if (risks.length === 0) {
+    alert('Please add risks first!');
+    return;
+  }
+  
+  const container = document.getElementById('riskMatrixContainer');
+  container.innerHTML = '<h3 style="margin-bottom: 20px;">Risk Probability vs Impact Matrix</h3>';
+  
+  const matrix = document.createElement('div');
+  matrix.className = 'risk-matrix';
+  
+  // Header row
+  matrix.innerHTML = `
+    <div class="risk-matrix-cell risk-matrix-header"></div>
+    <div class="risk-matrix-cell risk-matrix-header">Low Impact<br>(1-3)</div>
+    <div class="risk-matrix-cell risk-matrix-header">Medium Impact<br>(4-6)</div>
+    <div class="risk-matrix-cell risk-matrix-header">High Impact<br>(7-9)</div>
+    
+    <div class="risk-matrix-cell risk-matrix-label">High<br>Prob<br>(7-9)</div>
+    <div class="risk-matrix-cell risk-matrix-medium" data-prob="High" data-impact="Low"></div>
+    <div class="risk-matrix-cell risk-matrix-high" data-prob="High" data-impact="Medium"></div>
+    <div class="risk-matrix-cell risk-matrix-high" data-prob="High" data-impact="High"></div>
+    
+    <div class="risk-matrix-cell risk-matrix-label">Medium<br>Prob<br>(4-6)</div>
+    <div class="risk-matrix-cell risk-matrix-low" data-prob="Medium" data-impact="Low"></div>
+    <div class="risk-matrix-cell risk-matrix-medium" data-prob="Medium" data-impact="Medium"></div>
+    <div class="risk-matrix-cell risk-matrix-high" data-prob="Medium" data-impact="High"></div>
+    
+    <div class="risk-matrix-cell risk-matrix-label">Low<br>Prob<br>(1-3)</div>
+    <div class="risk-matrix-cell risk-matrix-low" data-prob="Low" data-impact="Low"></div>
+    <div class="risk-matrix-cell risk-matrix-low" data-prob="Low" data-impact="Medium"></div>
+    <div class="risk-matrix-cell risk-matrix-medium" data-prob="Low" data-impact="High"></div>
+  `;
+  
+  container.appendChild(matrix);
+  
+  // Plot risks on matrix
+  setTimeout(() => {
+    risks.forEach((risk, index) => {
+      const cell = matrix.querySelector(`[data-prob="${risk.probability}"][data-impact="${risk.impact}"]`);
+      if (cell) {
+        const dot = document.createElement('div');
+        dot.className = 'risk-dot';
+        dot.textContent = index + 1;
+        dot.title = risk.description || `Risk #${index + 1}`;
+        cell.appendChild(dot);
+      }
+    });
+  }, 100);
+  
+  // Add legend
+  const legend = document.createElement('div');
+  legend.style.marginTop = '20px';
+  legend.style.padding = '16px';
+  legend.style.background = '#f9fafb';
+  legend.style.borderRadius = '8px';
+  legend.innerHTML = '<h4 style="margin-bottom: 12px;">Risk Numbers:</h4>';
+  
+  const list = document.createElement('div');
+  list.style.display = 'grid';
+  list.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+  list.style.gap = '8px';
+  
+  risks.forEach((risk, index) => {
+    const item = document.createElement('div');
+    item.innerHTML = `<strong>${index + 1}.</strong> ${risk.description || 'Risk #' + (index + 1)} <span style="color: #6b7280;">(${risk.probability}/${risk.impact})</span>`;
+    item.style.fontSize = '13px';
+    list.appendChild(item);
+  });
+  
+  legend.appendChild(list);
+  container.appendChild(legend);
+  
+  document.getElementById('riskModal').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVM Project Monitoring & Control Simulator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        /* Welcome Screen Styles */
+        .welcome-screen {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .welcome-screen h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .welcome-screen .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .name-input-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .name-input-section label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .name-input-section input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .scenario-selector {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .scenario-selector label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .scenario-selector select {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .story-section {
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 0 auto;
+            max-width: 900px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .story-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .story-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .story-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .story-section ul {
+            margin: 15px 0 15px 30px;
+            line-height: 1.8;
+        }
+
+        .story-section li {
+            font-size: 1.05em;
+            margin-bottom: 10px;
+        }
+
+        .project-info-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .project-info-box strong {
+            color: #667eea;
+        }
+
+        .start-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .start-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Main App Styles */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            color: #333;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .period-selector {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .period-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .period-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .period-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .period-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .metric-card h3 {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .metric-formula {
+            font-size: 0.85em;
+            color: #888;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .chart-wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .chart-wrapper h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .decision-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            padding: 12px 20px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option-btn.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea.text-input {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .score-display h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .score-display .score {
+            font-size: 3em;
+            font-weight: bold;
+        }
+
+        .feedback {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .modal-header h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #999;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .modal-body {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+
+        .modal-body strong {
+            color: #667eea;
+        }
+
+        .calculation-input-group {
+            margin: 15px 0;
+        }
+
+        .calculation-input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .calculation-input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .calculation-input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .formula-hint {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-screen h1 {
+                font-size: 2em;
+            }
+
+            .story-section {
+                padding: 25px;
+            }
+
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="container">
+        <div class="welcome-screen">
+            <h1>🎯 EVM Project Monitoring & Control</h1>
+            <p class="subtitle">Interactive Learning Simulator</p>
+
+            <div class="name-input-section">
+                <label for="studentNameInput">Enter Your Name to Begin:</label>
+                <input type="text" id="studentNameInput" placeholder="Your full name" />
+            </div>
+
+            <div class="scenario-selector">
+                <label for="scenarioSelect">Select a Project Scenario:</label>
+                <select id="scenarioSelect" onchange="loadScenarioStory()">
+                    <option value="0">Cloud Infrastructure Migration</option>
+                    <option value="1">Mobile App Development</option>
+                    <option value="2">Manufacturing Plant Expansion</option>
+                    <option value="3">Hospital Information System Upgrade</option>
+                </select>
+            </div>
+
+            <div class="story-section" id="storySection">
+                <!-- Story will be loaded here -->
+            </div>
+
+            <button class="start-button" id="startButton" onclick="startSimulator()">
+                🚀 Start Simulator
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Application (Hidden Initially) -->
+    <div id="mainApp" class="container hidden">
+        <div class="header">
+            <h1>EVM Project Monitoring & Control</h1>
+            <p>Track, analyze, and optimize project performance using Earned Value Management</p>
+            <p style="margin-top: 10px; font-size: 1.2em;">
+                <strong>Student:</strong> <span id="studentNameDisplay"></span> | 
+                <strong>Scenario:</strong> <span id="scenarioNameDisplay"></span>
+            </p>
+        </div>
+
+        <div class="content">
+            <!-- Project Overview Section -->
+            <div class="section">
+                <h2>📊 Project Overview</h2>
+                <div class="project-info">
+                    <div class="info-card">
+                        <h3>Project Name</h3>
+                        <p id="projectName">-</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Budget at Completion (BAC)</h3>
+                        <p id="projectBAC">-</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Total Duration</h3>
+                        <p id="projectDuration">-</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Current Period</h3>
+                        <p id="currentPeriod">Month 1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Period Selection -->
+            <div class="section">
+                <h2>📅 Select Analysis Period</h2>
+                <div class="period-selector">
+                    <p><strong>Choose a month to analyze:</strong></p>
+                    <div class="period-buttons" id="periodButtons"></div>
+                </div>
+            </div>
+
+            <!-- Current Period Metrics -->
+            <div class="section">
+                <h2>📈 Period Metrics</h2>
+                <div id="currentMetricsDisplay">
+                    <p>Select a period to view metrics</p>
+                </div>
+            </div>
+
+            <!-- Performance Charts -->
+            <div class="section">
+                <h2>📊 Performance Trends</h2>
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <h3>Performance Indices (CPI & SPI)</h3>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <div class="chart-wrapper">
+                        <h3>Cumulative Values (PV, EV, AC)</h3>
+                        <canvas id="cumulativeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decision Making Section -->
+            <div class="section">
+                <h2>💡 Analysis & Decision Making</h2>
+                <div id="decisionSection" class="decision-section">
+                    <p>Select a period above to begin your analysis.</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-success" onclick="exportToPDF()">📄 Export PDF Report</button>
+                <button class="btn btn-primary" onclick="saveProgress()">💾 Save Progress</button>
+                <button class="btn btn-warning" onclick="document.getElementById('loadFile').click()">📂 Load Progress</button>
+                <button class="btn btn-secondary" onclick="changeScenario()">🔄 Change Scenario</button>
+                <input type="file" id="loadFile" accept=".json" style="display: none;" onchange="loadProgress(event)">
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="eventModalTitle">Project Update</h3>
+                <button class="modal-close" onclick="closeEventModal()">×</button>
+            </div>
+            <div id="eventModalBody" class="modal-body"></div>
+            <div style="text-align: right; margin-top: 15px;">
+                <button class="btn btn-success" onclick="closeEventModal()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project Scenarios Data
+        const projectScenarios = [
+            {
+                name: "Cloud Infrastructure Migration",
+                BAC: 300000,
+                duration: 6,
+                industry: "Technology / IT Services",
+                story: {
+                    challenge: "You have been appointed as the Project Manager for a critical cloud infrastructure migration project at TechCorp, a mid-sized software company. The company has decided to move all its legacy on-premises systems to a modern cloud-based infrastructure to improve scalability, reduce operational costs, and enhance disaster recovery capabilities.",
+                    scope: [
+                        "<strong>Infrastructure Assessment:</strong> Comprehensive analysis of current systems (Month 1)",
+                        "<strong>Cloud Architecture Design:</strong> Design of the new cloud-based architecture (Month 2)",
+                        "<strong>Data Migration:</strong> Strategy and execution for critical databases (Months 3-4)",
+                        "<strong>Implementation:</strong> Migration of all business systems (Months 4-5)",
+                        "<strong>Testing & Cutover:</strong> Final testing and production transition (Month 6)"
+                    ],
+                    mission: "Monitor project performance using EVM metrics, analyze variances, calculate performance indices, forecast completion, and make strategic recommendations to keep the project on track."
+                },
+                periods: [
+                    { month: 1, PV: 45000, EV: 42000, AC: 48000, event: "Project kickoff completed. Initial assessment phase has begun, but we're encountering more complexity in the legacy systems than anticipated. The team is working overtime to document all dependencies." },
+                    { month: 2, PV: 95000, EV: 88000, AC: 102000, event: "Architecture design is progressing, but we've had to bring in additional cloud consultants due to specialized requirements. This is increasing costs but should improve quality." },
+                    { month: 3, PV: 150000, EV: 140000, AC: 158000, event: "Data migration planning revealed significant data quality issues that need remediation. We're behind schedule and over budget. Management is concerned about the project trajectory." },
+                    { month: 4, PV: 210000, EV: 205000, AC: 215000, event: "Excellent progress! The team has implemented process improvements and is catching up. Data migration is proceeding smoothly with lessons learned from earlier challenges." },
+                    { month: 5, PV: 265000, EV: 260000, AC: 268000, event: "Implementation phase going well. Minor integration issues discovered but team is addressing them quickly. Budget concerns are lessening." },
+                    { month: 6, PV: 300000, EV: 297000, AC: 299000, event: "Project successfully completed! Final cutover executed with minimal disruption. All systems operational in the cloud. Management considers this a success despite early challenges." }
+                ]
+            },
+            {
+                name: "Mobile App Development",
+                BAC: 180000,
+                duration: 6,
+                industry: "Software Development / Consumer Technology",
+                story: {
+                    challenge: "You are leading the development of a new mobile application for FinanceNow, a fintech startup. The app will provide personal finance management, investment tracking, and automated savings features. Your team must deliver a production-ready app for both iOS and Android platforms within 6 months to meet a critical market window.",
+                    scope: [
+                        "<strong>Requirements & Design:</strong> User research and UI/UX design (Month 1)",
+                        "<strong>Core Development:</strong> Authentication, user profiles, and backend API (Month 2)",
+                        "<strong>Feature Development:</strong> Finance tracking and investment modules (Month 3)",
+                        "<strong>Integration:</strong> Third-party APIs and payment systems (Month 4)",
+                        "<strong>Testing & Polish:</strong> QA, bug fixes, and performance optimization (Month 5)",
+                        "<strong>Launch Preparation:</strong> App store submission and marketing (Month 6)"
+                    ],
+                    mission: "Track development progress using EVM, identify bottlenecks early, manage scope creep, and ensure the team delivers a high-quality product on time and within budget."
+                },
+                periods: [
+                    { month: 1, PV: 25000, EV: 28000, AC: 26000, event: "Excellent start! Design phase completed ahead of schedule. User research revealed additional feature opportunities that stakeholders want to explore." },
+                    { month: 2, PV: 55000, EV: 52000, AC: 58000, event: "Backend development is more complex than estimated. Two senior developers are working on architecture refactoring. Costs rising but necessary for scalability." },
+                    { month: 3, PV: 90000, EV: 82000, AC: 95000, event: "Feature development behind schedule. Client requested significant changes to investment tracking module. Team morale affected by constant changes." },
+                    { month: 4, PV: 125000, EV: 118000, AC: 128000, event: "Integration challenges with payment provider API. Security requirements more stringent than expected. Additional testing cycles required." },
+                    { month: 5, PV: 155000, EV: 153000, AC: 157000, event: "Great recovery! Team worked extra hours to catch up. Beta testing feedback is very positive. Minor performance issues being addressed." },
+                    { month: 6, PV: 180000, EV: 179000, AC: 180000, event: "Successful launch! Both iOS and Android apps approved by app stores. Initial user feedback excellent. Project delivered on time and within budget!" }
+                ]
+            },
+            {
+                name: "Manufacturing Plant Expansion",
+                BAC: 450000,
+                duration: 6,
+                industry: "Manufacturing / Industrial",
+                story: {
+                    challenge: "You are the Project Manager for a manufacturing plant expansion at AutoParts Inc. The company needs to increase production capacity by 40% to meet growing demand from automotive clients. This involves expanding the physical facility, installing new equipment, and training staff on new processes.",
+                    scope: [
+                        "<strong>Site Preparation:</strong> Construction of new facility wing (Month 1)",
+                        "<strong>Equipment Procurement:</strong> Ordering and delivery of machinery (Month 2)",
+                        "<strong>Installation:</strong> Installing and configuring production equipment (Month 3)",
+                        "<strong>Systems Integration:</strong> Connecting to existing production systems (Month 4)",
+                        "<strong>Staff Training:</strong> Training workforce on new equipment (Month 5)",
+                        "<strong>Production Ramp-up:</strong> Testing and full production startup (Month 6)"
+                    ],
+                    mission: "Use EVM to monitor construction and installation progress, manage vendor deliveries, control costs, and ensure the expansion comes online as scheduled to meet customer commitments."
+                },
+                periods: [
+                    { month: 1, PV: 70000, EV: 65000, AC: 75000, event: "Site preparation phase. Unexpected soil conditions discovered requiring additional foundation work. Environmental permits took longer than expected. Budget pressures mounting." },
+                    { month: 2, PV: 145000, EV: 135000, AC: 155000, event: "Equipment procurement delayed. Primary vendor has supply chain issues. Had to source alternative suppliers at premium prices. Construction continues but behind schedule." },
+                    { month: 3, PV: 225000, EV: 218000, AC: 235000, event: "Installation phase progressing. Some equipment arrived damaged requiring replacement. However, construction crew is working efficiently and catching up on delays." },
+                    { month: 4, PV: 305000, EV: 302000, AC: 310000, event: "Excellent progress! Systems integration going smoothly. IT team did great advance planning. Project getting back on track despite earlier setbacks." },
+                    { month: 5, PV: 380000, EV: 378000, AC: 382000, event: "Staff training proceeding well. Workers adapting quickly to new equipment. Minor safety concerns addressed immediately. Production tests exceeding expectations." },
+                    { month: 6, PV: 450000, EV: 448000, AC: 450000, event: "Plant expansion complete! New production line operational and meeting capacity targets. Project delivered on budget after rocky start. Management very pleased with recovery." }
+                ]
+            },
+            {
+                name: "Hospital Information System Upgrade",
+                BAC: 520000,
+                duration: 6,
+                industry: "Healthcare / Information Technology",
+                story: {
+                    challenge: "You are managing a critical upgrade to the Hospital Information System (HIS) at Metro General Hospital. The outdated system needs replacement to improve patient care, meet new regulatory requirements, and integrate with regional health information exchanges. The project must minimize disruption to hospital operations.",
+                    scope: [
+                        "<strong>Requirements Analysis:</strong> Document workflows and compliance needs (Month 1)",
+                        "<strong>System Configuration:</strong> Configure new HIS software (Month 2)",
+                        "<strong>Data Migration:</strong> Migrate 10 years of patient records (Month 3)",
+                        "<strong>Integration:</strong> Connect lab, pharmacy, and billing systems (Month 4)",
+                        "<strong>Training:</strong> Train 500+ staff members on new system (Month 5)",
+                        "<strong>Go-Live:</strong> Cutover to new system with 24/7 support (Month 6)"
+                    ],
+                    mission: "Apply EVM to track this high-stakes healthcare project, manage risks, ensure data integrity, coordinate with multiple departments, and deliver the upgrade with zero downtime to patient care."
+                },
+                periods: [
+                    { month: 1, PV: 80000, EV: 75000, AC: 85000, event: "Requirements analysis phase. Discovered more complex workflows than documented. Medical staff very concerned about system changes. Change management efforts intensified." },
+                    { month: 2, PV: 165000, EV: 155000, AC: 178000, event: "System configuration challenging. Customizations required for specialty departments. Vendor brought in additional consultants. Costs escalating but necessary for proper implementation." },
+                    { month: 3, PV: 260000, EV: 248000, AC: 275000, event: "Data migration issues encountered. Legacy data quality worse than expected. IT team working around the clock. Hospital leadership concerned about timeline and budget overruns." },
+                    { month: 4, PV: 355000, EV: 350000, AC: 365000, event: "Integration phase going better than expected! Lab and pharmacy systems connected successfully. Billing integration on track. Team morale improving with visible progress." },
+                    { month: 5, PV: 445000, EV: 442000, AC: 450000, event: "Training proceeding smoothly. Staff responding well to hands-on sessions. Super-users identified and trained. Go-live preparation comprehensive. Confidence increasing." },
+                    { month: 6, PV: 520000, EV: 518000, AC: 520000, event: "Successful go-live! New HIS system operational. Minimal issues during cutover. Patient care uninterrupted. Medical staff adapting well. Project success despite earlier challenges!" }
+                ]
+            }
+        ];
+
+        // State management
+        let currentScenario = 0;
+        let projectData = null;
+        let currentMonth = 1;
+        let periodResponses = {};
+        let userAnswers = {};
+        let performanceChart = null;
+        let cumulativeChart = null;
+        let studentName = '';
+
+        // Question types alternation
+        function getQuestionType(month) {
+            return month % 2 === 1 ? 'interpretation' : 'calculation';
+        }
+
+        // Initialize welcome screen
+        document.getElementById('studentNameInput').addEventListener('input', function(e) {
+            const btn = document.getElementById('startButton');
+            btn.disabled = e.target.value.trim() === '';
+        });
+
+        document.getElementById('startButton').disabled = true;
+
+        // Load scenario story
+        function loadScenarioStory() {
+            const scenarioIndex = parseInt(document.getElementById('scenarioSelect').value);
+            const scenario = projectScenarios[scenarioIndex];
+            const storySection = document.getElementById('storySection');
+            
+            storySection.innerHTML = `
+                <h2>📖 Project Background Story</h2>
+                
+                <div class="project-info-box">
+                    <p><strong>Project Name:</strong> ${scenario.name}</p>
+                    <p><strong>Total Budget (BAC):</strong> ${formatCurrency(scenario.BAC)}</p>
+                    <p><strong>Duration:</strong> ${scenario.duration} months</p>
+                    <p><strong>Industry:</strong> ${scenario.industry}</p>
+                </div>
+
+                <h3>The Challenge</h3>
+                <p>${scenario.story.challenge}</p>
+
+                <h3>Project Scope</h3>
+                <p>The project encompasses the following key phases:</p>
+                <ul>
+                    ${scenario.story.scope.map(item => `<li>${item}</li>`).join('')}
+                </ul>
+
+                <h3>Your Mission</h3>
+                <p>${scenario.story.mission}</p>
+
+                <h3>What to Expect</h3>
+                <p>Each month, you will receive updated project data showing the Planned Value (PV), Earned Value (EV), and Actual Cost (AC). Based on this information, you will need to:</p>
+                <ul>
+                    <li><strong>Odd Months (1, 3, 5):</strong> Answer interpretation questions about project performance and provide strategic recommendations</li>
+                    <li><strong>Even Months (2, 4, 6):</strong> Calculate specific EVM metrics including variances, performance indices, and forecasts</li>
+                </ul>
+
+                <p style="margin-top: 30px; font-size: 1.2em; text-align: center; color: #667eea; font-weight: bold;">
+                    Are you ready to successfully deliver the ${scenario.name} project?
+                </p>
+            `;
+        }
+
+        // Initialize with first scenario
+        loadScenarioStory();
+
+        // Start simulator
+        function startSimulator() {
+            const nameInput = document.getElementById('studentNameInput').value.trim();
+            if (!nameInput) {
+                alert('⚠️ Please enter your name before starting!');
+                return;
+            }
+
+            studentName = nameInput;
+            currentScenario = parseInt(document.getElementById('scenarioSelect').value);
+            projectData = projectScenarios[currentScenario];
+
+            document.getElementById('studentNameDisplay').textContent = studentName;
+            document.getElementById('scenarioNameDisplay').textContent = projectData.name;
+
+            // Hide welcome screen and show main app
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+
+            // Reset state for new scenario
+            periodResponses = {};
+            userAnswers = {};
+
+            // Initialize the app
+            init();
+        }
+
+        // Change scenario
+        function changeScenario() {
+            if (confirm('⚠️ Changing scenario will reset all progress. Are you sure?')) {
+                document.getElementById('mainApp').classList.add('hidden');
+                document.getElementById('welcomeScreen').classList.remove('hidden');
+                
+                // Reset
+                periodResponses = {};
+                userAnswers = {};
+                currentMonth = 1;
+            }
+        }
+
+        // Initialize application
+        function init() {
+            displayProjectInfo();
+            createPeriodButtons();
+            initializeCharts();
+            selectPeriod(1);
+        }
+
+        // Display project information
+        function displayProjectInfo() {
+            document.getElementById('projectName').textContent = projectData.name;
+            document.getElementById('projectBAC').textContent = formatCurrency(projectData.BAC);
+            document.getElementById('projectDuration').textContent = projectData.duration + ' months';
+        }
+
+        // Create period selection buttons
+        function createPeriodButtons() {
+            const container = document.getElementById('periodButtons');
+            container.innerHTML = '';
+            
+            projectData.periods.forEach(period => {
+                const btn = document.createElement('button');
+                btn.className = 'period-btn';
+                btn.textContent = `Month ${period.month}`;
+                btn.onclick = () => selectPeriod(period.month);
+                btn.id = `period-btn-${period.month}`;
+                container.appendChild(btn);
+            });
+        }
+
+        // Select a period for analysis
+        function selectPeriod(month) {
+            currentMonth = month;
+            
+            // Update button states
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`period-btn-${month}`).classList.add('active');
+            
+            // Update current period display
+            document.getElementById('currentPeriod').textContent = `Month ${month}`;
+            
+            // Show event modal
+            showEventModal(month);
+            
+            // Display metrics
+            displayPeriodMetrics(month);
+            
+            // Display questions based on type
+            displayQuestions(month);
+            
+            // Update charts
+            updateCharts();
+        }
+
+        // Show event modal
+        function showEventModal(month) {
+            const period = projectData.periods.find(p => p.month === month);
+            if (!period) return;
+            
+            const modal = document.getElementById('eventModal');
+            const title = document.getElementById('eventModalTitle');
+            const body = document.getElementById('eventModalBody');
+            
+            title.textContent = `Month ${month} - Project Update`;
+            body.innerHTML = `
+                <p><strong>Status Report:</strong></p>
+                <p>${period.event}</p>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                <p><strong>Current Metrics:</strong></p>
+                <p>• Planned Value (PV): ${formatCurrency(period.PV)}</p>
+                <p>• Earned Value (EV): ${formatCurrency(period.EV)}</p>
+                <p>• Actual Cost (AC): ${formatCurrency(period.AC)}</p>
+            `;
+            
+            modal.classList.remove('hidden');
+        }
+
+        // Close event modal
+        function closeEventModal() {
+            document.getElementById('eventModal').classList.add('hidden');
+        }
+
+        // Display period metrics
+        function displayPeriodMetrics(month) {
+            const period = projectData.periods.find(p => p.month === month);
+            if (!period) return;
+            
+            const questionType = getQuestionType(month);
+            const container = document.getElementById('currentMetricsDisplay');
+            
+            if (questionType === 'calculation') {
+                // For calculation months, show only basic data
+                container.innerHTML = `
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Budget at Completion (BAC)</h3>
+                            <div class="metric-value">${formatCurrency(projectData.BAC)}</div>
+                            <div class="metric-formula">Total project budget</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Planned Value (PV)</h3>
+                            <div class="metric-value">${formatCurrency(period.PV)}</div>
+                            <div class="metric-formula">Budgeted work scheduled</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Earned Value (EV)</h3>
+                            <div class="metric-value">${formatCurrency(period.EV)}</div>
+                            <div class="metric-formula">Budgeted work completed</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Actual Cost (AC)</h3>
+                            <div class="metric-value">${formatCurrency(period.AC)}</div>
+                            <div class="metric-formula">Actual cost incurred</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // For interpretation months, show all calculated metrics
+                const metrics = calculateMetrics(period);
+                
+                container.innerHTML = `
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Planned Value (PV)</h3>
+                            <div class="metric-value">${formatCurrency(period.PV)}</div>
+                            <div class="metric-formula">Budgeted work scheduled</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Earned Value (EV)</h3>
+                            <div class="metric-value">${formatCurrency(period.EV)}</div>
+                            <div class="metric-formula">Budgeted work completed</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Actual Cost (AC)</h3>
+                            <div class="metric-value">${formatCurrency(period.AC)}</div>
+                            <div class="metric-formula">Actual cost incurred</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Schedule Variance (SV)</h3>
+                            <div class="metric-value">${formatCurrency(metrics.SV)}</div>
+                            <div class="metric-formula">EV - PV</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Cost Variance (CV)</h3>
+                            <div class="metric-value">${formatCurrency(metrics.CV)}</div>
+                            <div class="metric-formula">EV - AC</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Schedule Performance Index (SPI)</h3>
+                            <div class="metric-value">${metrics.SPI.toFixed(3)}</div>
+                            <div class="metric-formula">EV / PV</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Cost Performance Index (CPI)</h3>
+                            <div class="metric-value">${metrics.CPI.toFixed(3)}</div>
+                            <div class="metric-formula">EV / AC</div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Estimate at Completion (EAC)</h3>
+                            <div class="metric-value">${formatCurrency(metrics.EAC1)}</div>
+                            <div class="metric-formula">BAC / CPI</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Display questions based on month type
+        function displayQuestions(month) {
+            const questionType = getQuestionType(month);
+            const container = document.getElementById('decisionSection');
+            const period = projectData.periods.find(p => p.month === month);
+            
+            if (questionType === 'interpretation') {
+                displayInterpretationQuestions(container, month, period);
+            } else {
+                displayCalculationQuestions(container, month, period);
+            }
+        }
+
+        // Display interpretation questions (odd months)
+        function displayInterpretationQuestions(container, month, period) {
+            const metrics = calculateMetrics(period);
+            
+            container.innerHTML = `
+                <h3>📝 Month ${month} - Interpretation & Analysis Questions</h3>
+                <p style="margin-bottom: 20px; font-style: italic;">
+                    Based on the current project data, answer the following questions to demonstrate your understanding of project performance.
+                </p>
+
+                <!-- Question 1: Schedule Performance -->
+                <div class="question">
+                    <h4>1. Based on the Schedule Variance (SV = ${formatCurrency(metrics.SV)}), what does this indicate about the project schedule?</h4>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(${month}, 1, 'ahead')" data-question="${month}-1" data-answer="ahead">
+                            The project is ahead of schedule
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 1, 'ontrack')" data-question="${month}-1" data-answer="ontrack">
+                            The project is on schedule
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 1, 'behind')" data-question="${month}-1" data-answer="behind">
+                            The project is behind schedule
+                        </button>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <label>Approximately how much ahead/behind (in dollars)?</label>
+                        <input type="text" class="text-input" id="scheduleVariance_${month}" placeholder="e.g., $5,000 behind">
+                    </div>
+                </div>
+
+                <!-- Question 2: Cost Performance -->
+                <div class="question">
+                    <h4>2. Based on the Cost Variance (CV = ${formatCurrency(metrics.CV)}), what does this indicate about the project budget?</h4>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(${month}, 2, 'under')" data-question="${month}-2" data-answer="under">
+                            The project is under budget
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 2, 'onbudget')" data-question="${month}-2" data-answer="onbudget">
+                            The project is on budget
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 2, 'over')" data-question="${month}-2" data-answer="over">
+                            The project is over budget
+                        </button>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <label>Approximately how much over/under budget (in dollars)?</label>
+                        <input type="text" class="text-input" id="costVariance_${month}" placeholder="e.g., $2,000 over">
+                    </div>
+                </div>
+
+                <!-- Question 3: Performance Indices Interpretation -->
+                <div class="question">
+                    <h4>3. The Cost Performance Index (CPI = ${metrics.CPI.toFixed(3)}) and Schedule Performance Index (SPI = ${metrics.SPI.toFixed(3)}). What do these values indicate about overall project health?</h4>
+                    <div class="options">
+                        <button class="option-btn" onclick="selectAnswer(${month}, 3, 'excellent')" data-question="${month}-3" data-answer="excellent">
+                            Both indices are excellent (>1.0), project is performing very well
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 3, 'good')" data-question="${month}-3" data-answer="good">
+                            Indices are acceptable (≥0.95), project health is good with minor concerns
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 3, 'concerning')" data-question="${month}-3" data-answer="concerning">
+                            Indices show concerns (<0.95), project requires corrective action
+                        </button>
+                        <button class="option-btn" onclick="selectAnswer(${month}, 3, 'critical')" data-question="${month}-3" data-answer="critical">
+                            Indices are critical (<0.90), project is in serious trouble
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Question 4: Strategic Recommendation -->
+                <div class="question">
+                    <h4>4. What corrective actions would you recommend to management?</h4>
+                    <textarea class="text-input" id="managementRecommendation_${month}" placeholder="Provide your strategic recommendations based on the current project performance. Consider schedule, cost, and resource implications..." rows="6"></textarea>
+                </div>
+
+                <!-- Question 5: Stakeholder Communication -->
+                <div class="question">
+                    <h4>5. How would you communicate the current project status to executive stakeholders?</h4>
+                    <textarea class="text-input" id="executiveCommunication_${month}" placeholder="Draft a brief executive summary highlighting key points, concerns, and proposed actions..." rows="6"></textarea>
+                </div>
+
+                <button class="submit-btn" onclick="submitInterpretationAnswers(${month})">Submit Answers</button>
+                <div id="feedback_${month}"></div>
+            `;
+        }
+
+        // Display calculation questions (even months)
+        function displayCalculationQuestions(container, month, period) {
+            const metrics = calculateMetrics(period);
+            
+            container.innerHTML = `
+                <h3>🔢 Month ${month} - EVM Metrics Calculations</h3>
+                <p style="margin-bottom: 20px; font-style: italic;">
+                    Calculate the following Earned Value Management metrics based on the current project data. Show your calculations.
+                </p>
+
+                <!-- Given Data -->
+                <div class="question">
+                    <h4>📊 Given Data for Month ${month}:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><strong>Budget at Completion (BAC):</strong> ${formatCurrency(projectData.BAC)}</li>
+                        <li><strong>Planned Value (PV):</strong> ${formatCurrency(period.PV)}</li>
+                        <li><strong>Earned Value (EV):</strong> ${formatCurrency(period.EV)}</li>
+                        <li><strong>Actual Cost (AC):</strong> ${formatCurrency(period.AC)}</li>
+                    </ul>
+                </div>
+
+                <!-- Question 1: Schedule Variance -->
+                <div class="question">
+                    <h4>1. Calculate the Schedule Variance (SV)</h4>
+                    <div class="formula-hint">Formula: SV = EV - PV</div>
+                    <div class="calculation-input-group">
+                        <label>Schedule Variance (SV):</label>
+                        <input type="number" class="text-input" id="calc_SV_${month}" placeholder="Enter calculated SV">
+                    </div>
+                </div>
+
+                <!-- Question 2: Cost Variance -->
+                <div class="question">
+                    <h4>2. Calculate the Cost Variance (CV)</h4>
+                    <div class="formula-hint">Formula: CV = EV - AC</div>
+                    <div class="calculation-input-group">
+                        <label>Cost Variance (CV):</label>
+                        <input type="number" class="text-input" id="calc_CV_${month}" placeholder="Enter calculated CV">
+                    </div>
+                </div>
+
+                <!-- Question 3: Schedule Performance Index -->
+                <div class="question">
+                    <h4>3. Calculate the Schedule Performance Index (SPI)</h4>
+                    <div class="formula-hint">Formula: SPI = EV / PV</div>
+                    <div class="calculation-input-group">
+                        <label>Schedule Performance Index (SPI):</label>
+                        <input type="number" step="0.001" class="text-input" id="calc_SPI_${month}" placeholder="Enter calculated SPI (3 decimal places)">
+                    </div>
+                </div>
+
+                <!-- Question 4: Cost Performance Index -->
+                <div class="question">
+                    <h4>4. Calculate the Cost Performance Index (CPI)</h4>
+                    <div class="formula-hint">Formula: CPI = EV / AC</div>
+                    <div class="calculation-input-group">
+                        <label>Cost Performance Index (CPI):</label>
+                        <input type="number" step="0.001" class="text-input" id="calc_CPI_${month}" placeholder="Enter calculated CPI (3 decimal places)">
+                    </div>
+                </div>
+
+                <!-- Question 5: Estimate at Completion -->
+                <div class="question">
+                    <h4>5. Calculate the Estimate at Completion (EAC) using CPI method</h4>
+                    <div class="formula-hint">Formula: EAC = BAC / CPI</div>
+                    <div class="calculation-input-group">
+                        <label>Estimate at Completion (EAC):</label>
+                        <input type="number" class="text-input" id="calc_EAC_${month}" placeholder="Enter calculated EAC">
+                    </div>
+                </div>
+
+                <!-- Question 6: Estimate to Complete -->
+                <div class="question">
+                    <h4>6. Calculate the Estimate to Complete (ETC)</h4>
+                    <div class="formula-hint">Formula: ETC = EAC - AC</div>
+                    <div class="calculation-input-group">
+                        <label>Estimate to Complete (ETC):</label>
+                        <input type="number" class="text-input" id="calc_ETC_${month}" placeholder="Enter calculated ETC">
+                    </div>
+                </div>
+
+                <!-- Question 7: Variance at Completion -->
+                <div class="question">
+                    <h4>7. Calculate the Variance at Completion (VAC)</h4>
+                    <div class="formula-hint">Formula: VAC = BAC - EAC</div>
+                    <div class="calculation-input-group">
+                        <label>Variance at Completion (VAC):</label>
+                        <input type="number" class="text-input" id="calc_VAC_${month}" placeholder="Enter calculated VAC">
+                    </div>
+                </div>
+
+                <!-- Question 8: TCPI based on BAC -->
+                <div class="question">
+                    <h4>8. Calculate the To-Complete Performance Index based on BAC (TCPI_BAC)</h4>
+                    <div class="formula-hint">Formula: TCPI_BAC = (BAC - EV) / (BAC - AC)</div>
+                    <div class="calculation-input-group">
+                        <label>TCPI_BAC:</label>
+                        <input type="number" step="0.001" class="text-input" id="calc_TCPI_BAC_${month}" placeholder="Enter calculated TCPI_BAC (3 decimal places)">
+                    </div>
+                </div>
+
+                <!-- Question 9: TCPI based on EAC -->
+                <div class="question">
+                    <h4>9. Calculate the To-Complete Performance Index based on EAC (TCPI_EAC)</h4>
+                    <div class="formula-hint">Formula: TCPI_EAC = (BAC - EV) / (EAC - AC)</div>
+                    <div class="calculation-input-group">
+                        <label>TCPI_EAC:</label>
+                        <input type="number" step="0.001" class="text-input" id="calc_TCPI_EAC_${month}" placeholder="Enter calculated TCPI_EAC (3 decimal places)">
+                    </div>
+                </div>
+
+                <button class="submit-btn" onclick="submitCalculationAnswers(${month})">Submit Calculations</button>
+                <div id="feedback_${month}"></div>
+            `;
+        }
+
+        // Select answer for interpretation questions
+        function selectAnswer(month, questionNum, answer) {
+            const key = `${month}-${questionNum}`;
+            
+            // Remove selected class from all options for this question
+            document.querySelectorAll(`[data-question="${key}"]`).forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.target.classList.add('selected');
+            
+            // Store answer
+            if (!userAnswers[month]) {
+                userAnswers[month] = {};
+            }
+            userAnswers[month][questionNum] = answer;
+        }
+
+        // Submit interpretation answers
+        function submitInterpretationAnswers(month) {
+            const answers = userAnswers[month] || {};
+            const period = projectData.periods.find(p => p.month === month);
+            const metrics = calculateMetrics(period);
+            
+            // Check if all questions are answered
+            if (!answers[1] || !answers[2] || !answers[3]) {
+                alert('⚠️ Please answer all multiple choice questions before submitting!');
+                return;
+            }
+            
+            const scheduleVariance = document.getElementById(`scheduleVariance_${month}`).value;
+            const costVariance = document.getElementById(`costVariance_${month}`).value;
+            const managementRec = document.getElementById(`managementRecommendation_${month}`).value;
+            const executiveComm = document.getElementById(`executiveCommunication_${month}`).value;
+            
+            if (!scheduleVariance || !costVariance || !managementRec || !executiveComm) {
+                alert('⚠️ Please complete all text inputs before submitting!');
+                return;
+            }
+            
+            // Grade the answers
+            let score = 0;
+            let feedback = [];
+            
+            // Question 1: Schedule interpretation
+            const correctSchedule = metrics.SV >= 0 ? 'ahead' : (metrics.SV > -1000 ? 'ontrack' : 'behind');
+            if (answers[1] === correctSchedule) {
+                score += 1;
+                feedback.push('✅ Question 1: Correct! Schedule interpretation is accurate.');
+            } else {
+                feedback.push(`❌ Question 1: Incorrect. SV = ${formatCurrency(metrics.SV)} means the project is ${correctSchedule} schedule.`);
+            }
+            
+            // Question 2: Cost interpretation
+            const correctCost = metrics.CV >= 0 ? 'under' : (metrics.CV > -1000 ? 'onbudget' : 'over');
+            if (answers[2] === correctCost) {
+                score += 1;
+                feedback.push('✅ Question 2: Correct! Cost interpretation is accurate.');
+            } else {
+                feedback.push(`❌ Question 2: Incorrect. CV = ${formatCurrency(metrics.CV)} means the project is ${correctCost} budget.`);
+            }
+            
+            // Question 3: Overall health
+            let correctHealth;
+            if (metrics.CPI > 1.0 && metrics.SPI > 1.0) correctHealth = 'excellent';
+            else if (metrics.CPI >= 0.95 && metrics.SPI >= 0.95) correctHealth = 'good';
+            else if (metrics.CPI >= 0.90 || metrics.SPI >= 0.90) correctHealth = 'concerning';
+            else correctHealth = 'critical';
+            
+            if (answers[3] === correctHealth) {
+                score += 1;
+                feedback.push('✅ Question 3: Correct! Overall health assessment is accurate.');
+            } else {
+                feedback.push(`❌ Question 3: Incorrect. With CPI=${metrics.CPI.toFixed(3)} and SPI=${metrics.SPI.toFixed(3)}, the project health is ${correctHealth}.`);
+            }
+            
+            // Questions 4-5: Text responses (always award points for completion)
+            score += 2;
+            feedback.push('✅ Questions 4-5: Thank you for your detailed responses.');
+            
+            // Store response
+            periodResponses[month] = {
+                type: 'interpretation',
+                answers: answers,
+                scheduleVariance: scheduleVariance,
+                costVariance: costVariance,
+                managementRecommendation: managementRec,
+                executiveCommunication: executiveComm,
+                rawScore: score,
+                finalScore: score,
+                attempts: 1,
+                penalty: 0
+            };
+            
+            // Display feedback
+            const feedbackDiv = document.getElementById(`feedback_${month}`);
+            feedbackDiv.innerHTML = `
+                <div class="score-display">
+                    <h3>Your Score</h3>
+                    <div class="score">${score} / 5</div>
+                    <p>${(score/5*100).toFixed(0)}%</p>
+                </div>
+                <div class="feedback">
+                    <h4>Detailed Feedback:</h4>
+                    ${feedback.map(f => `<p>${f}</p>`).join('')}
+                </div>
+            `;
+            
+            alert(`✅ Answers submitted! Your score: ${score}/5 (${(score/5*100).toFixed(0)}%)`);
+        }
+
+        // Submit calculation answers
+        function submitCalculationAnswers(month) {
+            const period = projectData.periods.find(p => p.month === month);
+            const metrics = calculateMetrics(period);
+            
+            // Get student's calculations
+            const calc_SV = parseFloat(document.getElementById(`calc_SV_${month}`).value);
+            const calc_CV = parseFloat(document.getElementById(`calc_CV_${month}`).value);
+            const calc_SPI = parseFloat(document.getElementById(`calc_SPI_${month}`).value);
+            const calc_CPI = parseFloat(document.getElementById(`calc_CPI_${month}`).value);
+            const calc_EAC = parseFloat(document.getElementById(`calc_EAC_${month}`).value);
+            const calc_ETC = parseFloat(document.getElementById(`calc_ETC_${month}`).value);
+            const calc_VAC = parseFloat(document.getElementById(`calc_VAC_${month}`).value);
+            const calc_TCPI_BAC = parseFloat(document.getElementById(`calc_TCPI_BAC_${month}`).value);
+            const calc_TCPI_EAC = parseFloat(document.getElementById(`calc_TCPI_EAC_${month}`).value);
+            
+            // Check if all fields are filled
+            if (isNaN(calc_SV) || isNaN(calc_CV) || isNaN(calc_SPI) || isNaN(calc_CPI) || 
+                isNaN(calc_EAC) || isNaN(calc_ETC) || isNaN(calc_VAC) || isNaN(calc_TCPI_BAC) || isNaN(calc_TCPI_EAC)) {
+                alert('⚠️ Please complete all calculations before submitting!');
+                return;
+            }
+            
+            // Grade the calculations (with tolerance for rounding)
+            let score = 0;
+            let feedback = [];
+            const tolerance = 0.01; // 1% tolerance
+            
+            // Correct answers
+            const correct_ETC = metrics.EAC1 - period.AC;
+            const correct_VAC = projectData.BAC - metrics.EAC1;
+            
+            // Question 1: SV
+            if (Math.abs(calc_SV - metrics.SV) <= Math.abs(metrics.SV * tolerance) + 1) {
+                score += 1;
+                feedback.push(`✅ Question 1 (SV): Correct! ${formatCurrency(metrics.SV)}`);
+            } else {
+                feedback.push(`❌ Question 1 (SV): Incorrect. Your answer: ${formatCurrency(calc_SV)}. Correct answer: ${formatCurrency(metrics.SV)}`);
+            }
+            
+            // Question 2: CV
+            if (Math.abs(calc_CV - metrics.CV) <= Math.abs(metrics.CV * tolerance) + 1) {
+                score += 1;
+                feedback.push(`✅ Question 2 (CV): Correct! ${formatCurrency(metrics.CV)}`);
+            } else {
+                feedback.push(`❌ Question 2 (CV): Incorrect. Your answer: ${formatCurrency(calc_CV)}. Correct answer: ${formatCurrency(metrics.CV)}`);
+            }
+            
+            // Question 3: SPI
+            if (Math.abs(calc_SPI - metrics.SPI) <= 0.005) {
+                score += 1;
+                feedback.push(`✅ Question 3 (SPI): Correct! ${metrics.SPI.toFixed(3)}`);
+            } else {
+                feedback.push(`❌ Question 3 (SPI): Incorrect. Your answer: ${calc_SPI.toFixed(3)}. Correct answer: ${metrics.SPI.toFixed(3)}`);
+            }
+            
+            // Question 4: CPI
+            if (Math.abs(calc_CPI - metrics.CPI) <= 0.005) {
+                score += 1;
+                feedback.push(`✅ Question 4 (CPI): Correct! ${metrics.CPI.toFixed(3)}`);
+            } else {
+                feedback.push(`❌ Question 4 (CPI): Incorrect. Your answer: ${calc_CPI.toFixed(3)}. Correct answer: ${metrics.CPI.toFixed(3)}`);
+            }
+            
+            // Question 5: EAC
+            if (Math.abs(calc_EAC - metrics.EAC1) <= Math.abs(metrics.EAC1 * tolerance) + 1) {
+                score += 1;
+                feedback.push(`✅ Question 5 (EAC): Correct! ${formatCurrency(metrics.EAC1)}`);
+            } else {
+                feedback.push(`❌ Question 5 (EAC): Incorrect. Your answer: ${formatCurrency(calc_EAC)}. Correct answer: ${formatCurrency(metrics.EAC1)}`);
+            }
+            
+            // Question 6: ETC
+            if (Math.abs(calc_ETC - correct_ETC) <= Math.abs(correct_ETC * tolerance) + 1) {
+                score += 1;
+                feedback.push(`✅ Question 6 (ETC): Correct! ${formatCurrency(correct_ETC)}`);
+            } else {
+                feedback.push(`❌ Question 6 (ETC): Incorrect. Your answer: ${formatCurrency(calc_ETC)}. Correct answer: ${formatCurrency(correct_ETC)}`);
+            }
+            
+            // Question 7: VAC
+            if (Math.abs(calc_VAC - correct_VAC) <= Math.abs(correct_VAC * tolerance) + 100) {
+                score += 1;
+                feedback.push(`✅ Question 7 (VAC): Correct! ${formatCurrency(correct_VAC)}`);
+            } else {
+                feedback.push(`❌ Question 7 (VAC): Incorrect. Your answer: ${formatCurrency(calc_VAC)}. Correct answer: ${formatCurrency(correct_VAC)}`);
+            }
+            
+            // Question 8: TCPI_BAC
+            if (Math.abs(calc_TCPI_BAC - metrics.TCPI_BAC) <= 0.005) {
+                score += 1;
+                feedback.push(`✅ Question 8 (TCPI_BAC): Correct! ${metrics.TCPI_BAC.toFixed(3)}`);
+            } else {
+                feedback.push(`❌ Question 8 (TCPI_BAC): Incorrect. Your answer: ${calc_TCPI_BAC.toFixed(3)}. Correct answer: ${metrics.TCPI_BAC.toFixed(3)}`);
+            }
+            
+            // Question 9: TCPI_EAC
+            if (Math.abs(calc_TCPI_EAC - metrics.TCPI_EAC) <= 0.005) {
+                score += 1;
+                feedback.push(`✅ Question 9 (TCPI_EAC): Correct! ${metrics.TCPI_EAC.toFixed(3)}`);
+            } else {
+                feedback.push(`❌ Question 9 (TCPI_EAC): Incorrect. Your answer: ${calc_TCPI_EAC.toFixed(3)}. Correct answer: ${metrics.TCPI_EAC.toFixed(3)}`);
+            }
+            
+            // Store response
+            periodResponses[month] = {
+                type: 'calculation',
+                calculations: {
+                    SV: calc_SV,
+                    CV: calc_CV,
+                    SPI: calc_SPI,
+                    CPI: calc_CPI,
+                    EAC: calc_EAC,
+                    ETC: calc_ETC,
+                    VAC: calc_VAC,
+                    TCPI_BAC: calc_TCPI_BAC,
+                    TCPI_EAC: calc_TCPI_EAC
+                },
+                rawScore: score,
+                finalScore: score,
+                attempts: 1,
+                penalty: 0
+            };
+            
+            // Display feedback
+            const feedbackDiv = document.getElementById(`feedback_${month}`);
+            feedbackDiv.innerHTML = `
+                <div class="score-display">
+                    <h3>Your Score</h3>
+                    <div class="score">${score} / 9</div>
+                    <p>${(score/9*100).toFixed(0)}%</p>
+                </div>
+                <div class="feedback">
+                    <h4>Detailed Feedback:</h4>
+                    ${feedback.map(f => `<p>${f}</p>`).join('')}
+                </div>
+            `;
+            
+            alert(`✅ Calculations submitted! Your score: ${score}/9 (${(score/9*100).toFixed(0)}%)`);
+        }
+
+        // Calculate metrics for a period
+        function calculateMetrics(period) {
+            const { PV, EV, AC } = period;
+            const BAC = projectData.BAC;
+            
+            const SV = EV - PV;
+            const CV = EV - AC;
+            const SPI = PV > 0 ? EV / PV : 0;
+            const CPI = AC > 0 ? EV / AC : 0;
+            const EAC1 = CPI > 0 ? BAC / CPI : 0;
+            const TCPI_BAC = (BAC - AC) > 0 ? (BAC - EV) / (BAC - AC) : 0;
+            const TCPI_EAC = (EAC1 - AC) > 0 ? (BAC - EV) / (EAC1 - AC) : 0;
+            
+            return { SV, CV, SPI, CPI, EAC1, TCPI_BAC, TCPI_EAC, BAC };
+        }
+
+        // Initialize charts
+        function initializeCharts() {
+            const perfCtx = document.getElementById('performanceChart');
+            const cumCtx = document.getElementById('cumulativeChart');
+            
+            performanceChart = new Chart(perfCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'CPI',
+                            data: [],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'SPI',
+                            data: [],
+                            borderColor: '#007bff',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Target (1.0)',
+                            data: [],
+                            borderColor: '#ffc107',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0.7,
+                            max: 1.3
+                        }
+                    }
+                }
+            });
+            
+            cumulativeChart = new Chart(cumCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'PV',
+                            data: [],
+                            borderColor: '#6c757d',
+                            backgroundColor: 'rgba(108, 117, 125, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'EV',
+                            data: [],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.4
+                        },
+                        {
+                            label: 'AC',
+                            data: [],
+                            borderColor: '#dc3545',
+                            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(0) + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Update charts with current data
+        function updateCharts() {
+            const months = [];
+            const cpiData = [];
+            const spiData = [];
+            const targetData = [];
+            const pvData = [];
+            const evData = [];
+            const acData = [];
+            
+            // Get data up to current month
+            for (let i = 0; i < currentMonth; i++) {
+                const period = projectData.periods[i];
+                const metrics = calculateMetrics(period);
+                
+                months.push(`Month ${period.month}`);
+                cpiData.push(metrics.CPI);
+                spiData.push(metrics.SPI);
+                targetData.push(1.0);
+                pvData.push(period.PV);
+                evData.push(period.EV);
+                acData.push(period.AC);
+            }
+            
+            // Update performance chart
+            performanceChart.data.labels = months;
+            performanceChart.data.datasets[0].data = cpiData;
+            performanceChart.data.datasets[1].data = spiData;
+            performanceChart.data.datasets[2].data = targetData;
+            performanceChart.update();
+            
+            // Update cumulative chart
+            cumulativeChart.data.labels = months;
+            cumulativeChart.data.datasets[0].data = pvData;
+            cumulativeChart.data.datasets[1].data = evData;
+            cumulativeChart.data.datasets[2].data = acData;
+            cumulativeChart.update();
+        }
+
+        // Save progress
+        function saveProgress() {
+            if (!studentName) {
+                alert('⚠️ Student name is missing!');
+                return;
+            }
+            
+            const saveData = {
+                studentName: studentName,
+                scenarioIndex: currentScenario,
+                timestamp: new Date().toISOString(),
+                currentMonth: currentMonth,
+                periodResponses: periodResponses,
+                userAnswers: userAnswers
+            };
+            
+            const blob = new Blob([JSON.stringify(saveData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `EVM_Progress_${studentName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ Progress saved successfully!');
+        }
+
+        // Load progress
+        function loadProgress(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const saveData = JSON.parse(e.target.result);
+                    
+                    studentName = saveData.studentName;
+                    currentScenario = saveData.scenarioIndex;
+                    projectData = projectScenarios[currentScenario];
+                    
+                    document.getElementById('studentNameDisplay').textContent = studentName;
+                    document.getElementById('scenarioNameDisplay').textContent = projectData.name;
+                    
+                    currentMonth = saveData.currentMonth;
+                    periodResponses = saveData.periodResponses;
+                    userAnswers = saveData.userAnswers;
+                    
+                    // Show main app
+                    document.getElementById('welcomeScreen').classList.add('hidden');
+                    document.getElementById('mainApp').classList.remove('hidden');
+                    
+                    init();
+                    selectPeriod(currentMonth);
+                    
+                    alert('✅ Progress loaded successfully!');
+                } catch (error) {
+                    alert('❌ Error loading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Export to PDF
+        async function exportToPDF() {
+            if (!studentName) {
+                alert('⚠️ Student name is missing!');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Title Page
+            doc.setFontSize(20);
+            doc.setTextColor(102, 126, 234);
+            doc.text('EVM Project Analysis Report', 105, 30, { align: 'center' });
+            
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Student: ${studentName}`, 105, 45, { align: 'center' });
+            doc.text(`Project: ${projectData.name}`, 105, 55, { align: 'center' });
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 105, 65, { align: 'center' });
+            doc.text(`BAC: ${formatCurrency(projectData.BAC)}`, 105, 75, { align: 'center' });
+            
+            let y = 95;
+            
+            // Summary
+            doc.setFontSize(14);
+            doc.setTextColor(102, 126, 234);
+            doc.text('Overall Summary', 20, y);
+            y += 10;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            const periodsAnalyzed = Object.keys(periodResponses).length;
+            let totalRawScore = 0;
+            let totalMaxScore = 0;
+            
+            Object.values(periodResponses).forEach(response => {
+                totalRawScore += response.rawScore || 0;
+                totalMaxScore += response.type === 'calculation' ? 9 : 5;
+            });
+            
+            doc.text(`Periods Analyzed: ${periodsAnalyzed}`, 20, y);
+            y += 6;
+            doc.text(`Total Score: ${totalRawScore.toFixed(1)} / ${totalMaxScore} (${(totalRawScore/totalMaxScore*100).toFixed(1)}%)`, 20, y);
+            
+            // Detailed period responses
+            const sortedMonths = Object.keys(periodResponses).sort((a, b) => parseInt(a) - parseInt(b));
+            
+            for (let monthStr of sortedMonths) {
+                const month = parseInt(monthStr);
+                const response = periodResponses[monthStr];
+                
+                doc.addPage();
+                y = 20;
+                
+                doc.setFontSize(16);
+                doc.setTextColor(102, 126, 234);
+                doc.text(`Month ${month} Analysis`, 20, y);
+                y += 10;
+                
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                doc.text(`Type: ${response.type}`, 20, y);
+                y += 6;
+                const maxScore = response.type === 'calculation' ? 9 : 5;
+                doc.text(`Score: ${response.rawScore} / ${maxScore} (${(response.rawScore/maxScore*100).toFixed(0)}%)`, 20, y);
+                y += 10;
+                
+                if (response.type === 'interpretation') {
+                    doc.text('Student provided interpretation-based answers', 20, y);
+                } else {
+                    doc.text('Student provided calculation-based answers', 20, y);
+                }
+            }
+            
+            doc.save(`EVM_Report_${studentName.replace(/\s+/g, '_')}_${projectData.name.replace(/\s+/g, '_')}.pdf`);
+            alert('✅ PDF report exported successfully!');
+        }
+
+        // Utility function
+        function formatCurrency(value) {
+            return '$' + Math.round(value).toLocaleString();
+        }
+    </script>
+</body>
+</html>

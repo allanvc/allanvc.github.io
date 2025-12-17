@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Estimation Workshop - Interactive Spreadsheet</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI', Calibri, Arial, sans-serif;background:#f0f0f0;padding:10px}
+    .excel-container{background:#fff;border:1px solid #d0d0d0;box-shadow:0 2px 4px rgba(0,0,0,.1);max-width:1400px;margin:0 auto}
+    .excel-header{background:#217346;color:#fff;padding:10px 20px;font-size:14px;font-weight:600}
+    .tabs-container{display:flex;background:#f5f5f5;border-bottom:2px solid #217346}
+    .tab{padding:8px 20px;background:#e0e0e0;border:1px solid #ccc;border-bottom:none;cursor:pointer;font-size:12px;margin-right:2px;transition:all .3s}
+    .tab.active{background:#fff;font-weight:600;color:#217346}
+    .tab:hover{background:#f8f8f8}
+    .content-area{padding:20px;min-height:600px;overflow-x:auto}
+    .sheet-content{display:none}
+    .sheet-content.active{display:block}
+    h2{color:#217346;margin-bottom:15px;font-size:18px;border-bottom:2px solid #217346;padding-bottom:5px}
+    h3{color:#444;margin:20px 0 10px;font-size:14px;font-weight:600}
+    .instruction-box{background:#f9f9f9;border-left:4px solid #217346;padding:15px;margin:15px 0;font-size:13px;line-height:1.6}
+    table{width:100%;border-collapse:collapse;margin:15px 0;font-size:12px}
+    th{background:#217346;color:#fff;padding:10px;text-align:left;font-weight:600}
+    td{border:1px solid #ddd;padding:8px;vertical-align:top}
+    input[type="number"],input[type="text"],select{width:100%;padding:5px;border:1px solid #ccc;font-size:12px;font-family:'Segoe UI', Calibri, Arial, sans-serif}
+    input[type="number"]:focus,input[type="text"]:focus{outline:2px solid #217346;border-color:#217346}
+    .calculated{background:#e8f5e9;font-weight:600;color:#1b5e20}
+    .total-row{background:#f0f0f0;font-weight:600}
+    .formula-display{background:#fff3e0;padding:8px;margin:10px 0;border:1px solid #ffb74d;font-family:'Courier New', monospace;font-size:11px}
+    .case-study{background:#f5f5f5;padding:20px;border-radius:5px;margin-bottom:20px}
+    .requirement-list{margin-left:20px;line-height:1.8}
+    .button{background:#217346;color:#fff;padding:8px 16px;border:none;cursor:pointer;margin:5px;font-size:12px;transition:background .3s}
+    .button:hover{background:#1b5e20}
+    .section{margin:30px 0}
+    .timer{position:fixed;top:20px;right:20px;background:#fff;padding:10px 20px;border:2px solid #217346;border-radius:5px;font-size:16px;font-weight:bold;box-shadow:0 2px 4px rgba(0,0,0,.2);z-index:1000}
+    .footer-note{text-align:center;font-size:11px;color:#667;padding:12px 0 4px;}
+    .mini{font-size:11px;color:#333;line-height:1.5}
+    .nowrap{white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="timer" id="timer">Time: 50:00</div>
+
+<div class="excel-container">
+  <div class="excel-header">PROJECT ESTIMATION WORKSHOP - CAMPUSEATS FOOD DELIVERY APP</div>
+
+  <div class="tabs-container">
+    <div class="tab active" onclick="switchTab(event,'instructions')">📋 Instructions</div>
+    <div class="tab" onclick="switchTab(event,'case')">📖 Case Study</div>
+    <div class="tab" onclick="switchTab(event,'topdown')">⬇️ Top-Down Estimation</div>
+    <div class="tab" onclick="switchTab(event,'functionpoints')">📊 Function Points</div>
+    <div class="tab" onclick="switchTab(event,'wbs')">🔨 WBS Bottom-Up</div>
+    <div class="tab" onclick="switchTab(event,'pert')">📈 PERT Analysis</div>
+    <div class="tab" onclick="switchTab(event,'costs')">💰 Cost Calculation</div>
+    <div class="tab" onclick="switchTab(event,'summary')">📑 Summary</div>
+  </div>
+
+  <div class="content-area">
+    <!-- Instructions -->
+    <div id="instructions" class="sheet-content active">
+      <h2>WORKSHOP INSTRUCTIONS (10 minutes to read)</h2>
+      <div class="instruction-box">
+        <strong>Welcome to the Project Estimation Workshop!</strong><br><br>
+        Duration: 50 minutes total<br>
+        Objective: Apply different estimation techniques to a real-world project scenario<br>
+        Tools: This interactive spreadsheet will calculate automatically as you input values
+      </div>
+      <h3>Workshop Timeline:</h3>
+      <table>
+        <tr><th>Time</th><th>Activity</th><th>Tab to Use</th></tr>
+        <tr><td>0-10 min</td><td>Read instructions and case study</td><td>Instructions & Case Study</td></tr>
+        <tr><td>10-20 min</td><td>Complete Top-Down estimates</td><td>Top-Down Estimation</td></tr>
+        <tr><td>20-25 min</td><td>Calculate Function Points</td><td>Function Points</td></tr>
+        <tr><td>25-35 min</td><td>Build WBS and Bottom-Up estimates</td><td>WBS Bottom-Up</td></tr>
+        <tr><td>35-40 min</td><td>Apply PERT estimation</td><td>PERT Analysis</td></tr>
+        <tr><td>40-45 min</td><td>Calculate total costs</td><td>Cost Calculation</td></tr>
+        <tr><td>45-50 min</td><td>Review and compare results</td><td>Summary</td></tr>
+      </table>
+      <h3>How to Use This Spreadsheet:</h3>
+      <ul class="requirement-list">
+        <li>Click on tabs to navigate between exercises</li>
+        <li>Yellow cells = Input your estimates</li>
+        <li>Green cells = Automatically calculated</li>
+        <li>Formulas are displayed for learning purposes</li>
+        <li>Work as a team - discuss before entering values</li>
+        <li>Save your work frequently (Ctrl+S)</li>
+      </ul>
+      <button class="button" onclick="switchTab(event,'case')">Start with Case Study →</button>
+    </div>
+
+    <!-- Case Study -->
+    <div id="case" class="sheet-content">
+      <h2>CASE STUDY: CAMPUSEATS DELIVERY APP</h2>
+      <div class="case-study">
+        <h3>Project Background</h3>
+        <p>The State University System (3 campuses, 45,000 students) needs a food delivery app for on-campus restaurants and approved vendors. Post-COVID, they want to reduce dining facility crowding while providing convenient food access.</p>
+
+        <h3>Your Company's Historical Projects:</h3>
+        <table>
+          <tr><th>Project</th><th>Duration</th><th>Cost</th><th>Team Size</th></tr>
+          <tr><td>Restaurant Reservation System</td><td>6 months</td><td>$400,000</td><td>8 developers</td></tr>
+          <tr><td>E-commerce Platform (Textbooks)</td><td>4 months</td><td>$250,000</td><td>5 developers</td></tr>
+          <tr><td>Campus Navigation App</td><td>3 months</td><td>$150,000</td><td>4 developers</td></tr>
+        </table>
+
+        <h3>Project Modules Required:</h3>
+        <ol class="requirement-list">
+          <li><strong>User Management:</strong> Registration, login, profiles, order history</li>
+          <li><strong>Restaurant Interface:</strong> Menus, hours, search, reviews</li>
+          <li><strong>Ordering System:</strong> Cart, group orders, tracking</li>
+          <li><strong>Payment Processing:</strong> Cards, meal plans, digital wallets</li>
+          <li><strong>Delivery Management:</strong> Zone mapping, GPS tracking, assignments</li>
+          <li><strong>Notifications:</strong> Email/SMS/Push for all stakeholders</li>
+          <li><strong>Admin Dashboard:</strong> Analytics, user management, configurations</li>
+          <li><strong>Support Features:</strong> Chat, FAQ, feedback system</li>
+        </ol>
+
+        <h3>Constraints:</h3>
+        <ul class="requirement-list">
+          <li>Budget ceiling: $750,000</li>
+          <li>Must launch by August 15 (Fall semester)</li>
+          <li>Development starts February 1</li>
+          <li>Maximum team size: 12 people</li>
+          <li>Must integrate with university LDAP</li>
+          <li>99.9% uptime requirement</li>
+          <li>Support 10,000 concurrent users</li>
+        </ul>
+      </div>
+      <button class="button" onclick="switchTab(event,'topdown')">Continue to Top-Down Estimation →</button>
+    </div>
+
+    <!-- Top-Down -->
+    <div id="topdown" class="sheet-content">
+      <h2>TOP-DOWN ESTIMATION METHODS</h2>
+
+      <div class="section">
+        <h3>1. Consensus Method - Team Discussion</h3>
+        <div class="instruction-box">Based on the historical projects, discuss and reach consensus on these estimates:</div>
+        <table>
+          <tr><th>Estimation Item</th><th>Your Initial Estimate</th><th>Team Consensus</th><th>Justification</th></tr>
+          <tr>
+            <td>Total Duration (months)</td>
+            <td><input type="number" id="duration1" placeholder="Enter months"></td>
+            <td><input type="number" id="duration2" placeholder="Final estimate"></td>
+            <td><input type="text" placeholder="Why this duration?"></td>
+          </tr>
+          <tr>
+            <td>Total Cost ($)</td>
+            <td><input type="number" id="cost1" placeholder="Enter dollars"></td>
+            <td><input type="number" id="cost2" placeholder="Final estimate"></td>
+            <td><input type="text" placeholder="Based on which project?"></td>
+          </tr>
+          <tr>
+            <td>Team Size (people)</td>
+            <td><input type="number" id="team1" placeholder="Enter number"></td>
+            <td><input type="number" id="team2" placeholder="Final estimate"></td>
+            <td><input type="text" placeholder="Why this size?"></td>
+          </tr>
+          <tr>
+            <td>Total Effort (person-months)</td>
+            <td class="calculated" id="effort1">Auto-calculated</td>
+            <td class="calculated" id="effort2">Auto-calculated</td>
+            <td>Duration × Team Size</td>
+          </tr>
+        </table>
+        <button class="button" onclick="recalcTopDown()">Recalculate Top-Down & Apportion</button>
+      </div>
+
+      <div class="section">
+        <h3>2. Apportion Method - Percentage Distribution</h3>
+        <div class="instruction-box">
+          Distribute the total cost across phases. Percentages must sum to 100%.<br><br>
+          <strong>Phase definitions:</strong><br>
+          • <em>Requirements & Design</em> – discovery workshops, requirements, wireframes, architecture decisions.<br>
+          • <em>Programming/Development</em> – application coding, integrations, code reviews.<br>
+          • <em>Testing & QA</em> – test planning, test execution, bug fixing cycles.<br>
+          • <em>Documentation</em> – user guides, technical docs, runbooks.<br>
+          • <em>Deployment & Training</em> – CI/CD, release activities, training sessions and materials.
+        </div>
+        <table>
+          <tr><th>Phase</th><th>Percentage (%)</th><th>Dollar Amount</th></tr>
+          <tr><td>Requirements & Design</td><td><input type="number" id="phase1pct" placeholder="%" onchange="calculateApportion()"></td><td class="calculated" id="phase1amt">$0</td></tr>
+          <tr><td>Programming/Development</td><td><input type="number" id="phase2pct" placeholder="%" onchange="calculateApportion()"></td><td class="calculated" id="phase2amt">$0</td></tr>
+          <tr><td>Testing & QA</td><td><input type="number" id="phase3pct" placeholder="%" onchange="calculateApportion()"></td><td class="calculated" id="phase3amt">$0</td></tr>
+          <tr><td>Documentation</td><td><input type="number" id="phase4pct" placeholder="%" onchange="calculateApportion()"></td><td class="calculated" id="phase4amt">$0</td></tr>
+          <tr><td>Deployment & Training</td><td><input type="number" id="phase5pct" placeholder="%" onchange="calculateApportion()"></td><td class="calculated" id="phase5amt">$0</td></tr>
+          <tr class="total-row"><td><strong>TOTAL</strong></td><td class="calculated" id="totalPct">0%</td><td class="calculated" id="totalAmt">$0</td></tr>
+        </table>
+      </div>
+
+      <!-- NEW: Historical apportion references (descriptive only) -->
+      <div class="section">
+        <h3>Historical Apportion References (use as guidance)</h3>
+        <div class="instruction-box mini">
+          The following are percentage distributions we actually used in prior projects. They differ on purpose—scope, novelty, and integration risk drive the shape.
+        </div>
+        <table>
+          <tr>
+            <th>Historical Project</th>
+            <th class="nowrap">Req & Design</th>
+            <th class="nowrap">Programming</th>
+            <th class="nowrap">Testing & QA</th>
+            <th class="nowrap">Documentation</th>
+            <th class="nowrap">Deploy & Training</th>
+            <th>Rationale</th>
+          </tr>
+          <tr>
+            <td>Restaurant Reservation System (6 mo / $400k)</td>
+            <td>20%</td><td>45%</td><td>20%</td><td>5%</td><td>10%</td>
+            <td>Complex booking rules required strong build-out; moderate testing and a structured rollout to multiple venues.</td>
+          </tr>
+          <tr>
+            <td>E-commerce Platform – Textbooks (4 mo / $250k)</td>
+            <td>15%</td><td>50%</td><td>20%</td><td>5%</td><td>10%</td>
+            <td>Heavy catalog & checkout development; known patterns reduced upfront design. Testing focused on payments and promos.</td>
+          </tr>
+          <tr>
+            <td>Campus Navigation App (3 mo / $150k)</td>
+            <td>25%</td><td>35%</td><td>25%</td><td>5%</td><td>10%</td>
+            <td>More discovery/design due to UX/wayfinding; higher QA for GPS accuracy across campuses.</td>
+          </tr>
+        </table>
+        <div class="mini">
+          <strong>Tip:</strong> If your project has many unknowns or stakeholder workshops, increase <em>Req & Design</em>. If it involves heavy integrations or new features, increase <em>Programming</em>. If reliability is critical or environments are fragmented, increase <em>Testing & QA</em>.
+        </div>
+      </div>
+
+      <button class="button" onclick="switchTab(event,'functionpoints')">Continue to Function Points →</button>
+    </div>
+
+    <!-- Function Points -->
+    <div id="functionpoints" class="sheet-content">
+      <h2>FUNCTION POINT ANALYSIS</h2>
+
+      <div class="instruction-box">
+        Use the detailed items below. For each, enter the <strong>count</strong> and choose a <strong>complexity</strong> that maps to the standard weights.<br><br>
+        <strong>What is an Input?</strong> External data entering the system: e.g., registration forms, order submission, payment authorization.<br>
+        <strong>What is an Output?</strong> Information leaving the system: e.g., receipts, notifications, administrative reports.<br>
+        <strong>What is an Inquiry?</strong> Request/response without significant internal update: e.g., menu search, order tracking queries.<br>
+        <strong>What is a File (ILF/EIF)?</strong> Logical data groups maintained or referenced: e.g., Users, Restaurants, Orders, Menus.<br>
+        <strong>What is an Interface?</strong> External interface files/APIs: e.g., payment gateway, LDAP, SMS/Email, GPS.
+      </div>
+
+      <div class="formula-display">
+        <strong>Complexity Weights (by element):</strong><br>
+        Inputs: 2 / 3 / 4 &nbsp; | &nbsp; Outputs: 3 / 6 / 9 &nbsp; | &nbsp; Inquiries: 2 / 4 / 6 &nbsp; | &nbsp; Files: 5 / 8 / 12 &nbsp; | &nbsp; Interfaces: 5 / 10 / 15
+      </div>
+
+      <table>
+        <tr>
+          <th>Element (detailed)</th>
+          <th>Count</th>
+          <th>Complexity</th>
+          <th>Weight</th>
+          <th>Function Points</th>
+        </tr>
+        <!-- INPUTS -->
+        <tr><td colspan="5"><strong>INPUTS</strong></td></tr>
+        <tr>
+          <td>User registration & login forms</td>
+          <td><input type="number" id="inp1count" value="2"></td>
+          <td>
+            <select id="inp1comp" onchange="calculateFP()">
+              <option value="2">Low</option>
+              <option value="3" selected>Average</option>
+              <option value="4">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="inp1weight">3</td>
+          <td class="calculated" id="inp1fp">6</td>
+        </tr>
+        <tr>
+          <td>Order placement (cart submission)</td>
+          <td><input type="number" id="inp2count" value="1"></td>
+          <td>
+            <select id="inp2comp" onchange="calculateFP()">
+              <option value="2">Low</option>
+              <option value="3">Average</option>
+              <option value="4" selected>High</option>
+            </select>
+          </td>
+          <td class="calculated" id="inp2weight">4</td>
+          <td class="calculated" id="inp2fp">4</td>
+        </tr>
+        <tr>
+          <td>Payment authorization (card/meal plan)</td>
+          <td><input type="number" id="inp3count" value="1"></td>
+          <td>
+            <select id="inp3comp" onchange="calculateFP()">
+              <option value="2">Low</option>
+              <option value="3">Average</option>
+              <option value="4" selected>High</option>
+            </select>
+          </td>
+          <td class="calculated" id="inp3weight">4</td>
+          <td class="calculated" id="inp3fp">4</td>
+        </tr>
+        <tr>
+          <td>Menu updates & reviews (vendor inputs)</td>
+          <td><input type="number" id="inp4count" value="3"></td>
+          <td>
+            <select id="inp4comp" onchange="calculateFP()">
+              <option value="2">Low</option>
+              <option value="3" selected>Average</option>
+              <option value="4">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="inp4weight">3</td>
+          <td class="calculated" id="inp4fp">9</td>
+        </tr>
+
+        <!-- OUTPUTS -->
+        <tr><td colspan="5"><strong>OUTPUTS</strong></td></tr>
+        <tr>
+          <td>Order confirmations & receipts</td>
+          <td><input type="number" id="out1count" value="2"></td>
+          <td>
+            <select id="out1comp" onchange="calculateFP()">
+              <option value="3">Low</option>
+              <option value="6" selected>Average</option>
+              <option value="9">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="out1weight">6</td>
+          <td class="calculated" id="out1fp">12</td>
+        </tr>
+        <tr>
+          <td>Operational reports & user notifications</td>
+          <td><input type="number" id="out2count" value="4"></td>
+          <td>
+            <select id="out2comp" onchange="calculateFP()">
+              <option value="3">Low</option>
+              <option value="6" selected>Average</option>
+              <option value="9">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="out2weight">6</td>
+          <td class="calculated" id="out2fp">24</td>
+        </tr>
+
+        <!-- INQUIRIES -->
+        <tr><td colspan="5"><strong>INQUIRIES</strong></td></tr>
+        <tr>
+          <td>Menu search & order tracking (read queries)</td>
+          <td><input type="number" id="inq1count" value="3"></td>
+          <td>
+            <select id="inq1comp" onchange="calculateFP()">
+              <option value="2">Low</option>
+              <option value="4" selected>Average</option>
+              <option value="6">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="inq1weight">4</td>
+          <td class="calculated" id="inq1fp">12</td>
+        </tr>
+
+        <!-- FILES -->
+        <tr><td colspan="5"><strong>FILES</strong></td></tr>
+        <tr>
+          <td>Users, Restaurants, Orders, Menus (logical files)</td>
+          <td><input type="number" id="file1count" value="4"></td>
+          <td>
+            <select id="file1comp" onchange="calculateFP()">
+              <option value="5">Low</option>
+              <option value="8">Average</option>
+              <option value="12" selected>High</option>
+            </select>
+          </td>
+          <td class="calculated" id="file1weight">12</td>
+          <td class="calculated" id="file1fp">48</td>
+        </tr>
+
+        <!-- INTERFACES -->
+        <tr><td colspan="5"><strong>INTERFACES</strong></td></tr>
+        <tr>
+          <td>Payment API, LDAP, SMS/Email, GPS</td>
+          <td><input type="number" id="int1count" value="4"></td>
+          <td>
+            <select id="int1comp" onchange="calculateFP()">
+              <option value="5">Low</option>
+              <option value="10" selected>Average</option>
+              <option value="15">High</option>
+            </select>
+          </td>
+          <td class="calculated" id="int1weight">10</td>
+          <td class="calculated" id="int1fp">40</td>
+        </tr>
+
+        <tr class="total-row">
+          <td><strong>TOTAL FUNCTION POINTS</strong></td><td></td><td></td><td></td>
+          <td class="calculated" id="totalFP">159</td>
+        </tr>
+      </table>
+
+      <div class="section">
+        <h3>Function Point Conversion</h3>
+        <div class="formula-display">Assumptions: 1 person-month = 5 function points</div>
+        <table>
+          <tr><th>Metric</th><th>Calculation</th><th>Result</th></tr>
+          <tr><td>Total Effort</td><td>Function Points ÷ 5</td><td class="calculated" id="fpEffort">32 person-months</td></tr>
+          <tr><td>Duration (10 people)</td><td>Effort ÷ 10</td><td class="calculated" id="fpDuration">3.2 months</td></tr>
+          <tr><td>Cost ($5000/person/month)</td><td>Effort × $5000</td><td class="calculated" id="fpCost">$160,000</td></tr>
+        </table>
+      </div>
+
+      <button class="button" onclick="calculateFP()">Recalculate Function Points</button>
+      <button class="button" onclick="switchTab(event,'wbs')">Continue to WBS →</button>
+    </div>
+
+    <!-- WBS -->
+    <div id="wbs" class="sheet-content">
+      <h2>WORK BREAKDOWN STRUCTURE - PAYMENT MODULE</h2>
+      <div class="instruction-box">Build bottom-up estimates for the Payment Processing Module</div>
+
+      <table>
+        <tr><th>WBS Code</th><th>Task Description</th><th>Estimated Days</th><th>Resources</th></tr>
+        <tr><td><strong>4.0</strong></td><td><strong>Payment Processing Module</strong></td><td class="calculated" id="wbsTotal">0</td><td></td></tr>
+        <tr><td>4.1</td><td><strong>User Interface Components</strong></td><td class="calculated" id="wbs41">0</td><td></td></tr>
+        <tr><td>4.1.1</td><td>Payment method selection screen</td><td><input type="number" id="wbs411" placeholder="Days"></td><td>UI Designer</td></tr>
+        <tr><td>4.1.2</td><td>Credit card entry form</td><td><input type="number" id="wbs412" placeholder="Days"></td><td>Frontend Dev</td></tr>
+        <tr><td>4.1.3</td><td>Billing address form</td><td><input type="number" id="wbs413" placeholder="Days"></td><td>Frontend Dev</td></tr>
+        <tr><td>4.1.4</td><td>Payment confirmation screen</td><td><input type="number" id="wbs414" placeholder="Days"></td><td>UI Designer</td></tr>
+        <tr><td>4.1.5</td><td>Receipt display screen</td><td><input type="number" id="wbs415" placeholder="Days"></td><td>Frontend Dev</td></tr>
+
+        <tr><td>4.2</td><td><strong>Payment Processing Logic</strong></td><td class="calculated" id="wbs42">0</td><td></td></tr>
+        <tr><td>4.2.1</td><td>Input validation routines</td><td><input type="number" id="wbs421" placeholder="Days"></td><td>Backend Dev</td></tr>
+        <tr><td>4.2.2</td><td>Payment gateway integration</td><td><input type="number" id="wbs422" placeholder="Days"></td><td>Sr Backend Dev</td></tr>
+        <tr><td>4.2.3</td><td>Transaction processing</td><td><input type="number" id="wbs423" placeholder="Days"></td><td>Backend Dev</td></tr>
+        <tr><td>4.2.4</td><td>Error handling</td><td><input type="number" id="wbs424" placeholder="Days"></td><td>Backend Dev</td></tr>
+        <tr><td>4.2.5</td><td>Retry logic</td><td><input type="number" id="wbs425" placeholder="Days"></td><td>Backend Dev</td></tr>
+
+        <tr><td>4.3</td><td><strong>Security Implementation</strong></td><td class="calculated" id="wbs43">0</td><td></td></tr>
+        <tr><td>4.3.1</td><td>SSL certificate setup</td><td><input type="number" id="wbs431" placeholder="Days"></td><td>DevOps</td></tr>
+        <tr><td>4.3.2</td><td>Data encryption routines</td><td><input type="number" id="wbs432" placeholder="Days"></td><td>Security Eng</td></tr>
+        <tr><td>4.3.3</td><td>PCI compliance implementation</td><td><input type="number" id="wbs433" placeholder="Days"></td><td>Security Eng</td></tr>
+        <tr><td>4.3.4</td><td>Fraud detection integration</td><td><input type="number" id="wbs434" placeholder="Days"></td><td>Sr Backend Dev</td></tr>
+        <tr><td>4.3.5</td><td>Security audit preparation</td><td><input type="number" id="wbs435" placeholder="Days"></td><td>Security Eng</td></tr>
+      </table>
+
+      <button class="button" onclick="calculateWBS()">Calculate WBS Totals</button>
+      <button class="button" onclick="switchTab(event,'pert')">Continue to PERT →</button>
+    </div>
+
+    <!-- PERT -->
+    <div id="pert" class="sheet-content">
+      <h2>THREE-POINT PERT ESTIMATION</h2>
+      <div class="instruction-box">For selected WBS items, provide optimistic, most likely, and pessimistic estimates.</div>
+      <div class="formula-display"><strong>PERT Formula:</strong> E = (O + 4M + P) / 6<br><strong>Triangular Formula:</strong> E = (O + M + P) / 3</div>
+
+      <table>
+        <tr><th>WBS Item</th><th>Optimistic (O)</th><th>Most Likely (M)</th><th>Pessimistic (P)</th><th>PERT Estimate</th><th>Triangular</th></tr>
+        <tr>
+          <td>4.1.2 Card entry form</td>
+          <td><input type="number" id="pert1o" placeholder="Days"></td>
+          <td><input type="number" id="pert1m" placeholder="Days"></td>
+          <td><input type="number" id="pert1p" placeholder="Days"></td>
+          <td class="calculated" id="pert1e">0</td>
+          <td class="calculated" id="pert1t">0</td>
+        </tr>
+        <tr>
+          <td>4.2.2 Gateway integration</td>
+          <td><input type="number" id="pert2o" placeholder="Days"></td>
+          <td><input type="number" id="pert2m" placeholder="Days"></td>
+          <td><input type="number" id="pert2p" placeholder="Days"></td>
+          <td class="calculated" id="pert2e">0</td>
+          <td class="calculated" id="pert2t">0</td>
+        </tr>
+        <tr>
+          <td>4.3.3 PCI compliance</td>
+          <td><input type="number" id="pert3o" placeholder="Days"></td>
+          <td><input type="number" id="pert3m" placeholder="Days"></td>
+          <td><input type="number" id="pert3p" placeholder="Days"></td>
+          <td class="calculated" id="pert3e">0</td>
+          <td class="calculated" id="pert3t">0</td>
+        </tr>
+        <tr>
+          <td>4.3.4 Fraud detection</td>
+          <td><input type="number" id="pert4o" placeholder="Days"></td>
+          <td><input type="number" id="pert4m" placeholder="Days"></td>
+          <td><input type="number" id="pert4p" placeholder="Days"></td>
+          <td class="calculated" id="pert4e">0</td>
+          <td class="calculated" id="pert4t">0</td>
+        </tr>
+        <tr class="total-row">
+          <td><strong>Total Days</strong></td><td></td><td></td><td></td>
+          <td class="calculated" id="pertTotalE">0</td>
+          <td class="calculated" id="pertTotalT">0</td>
+        </tr>
+      </table>
+
+      <button class="button" onclick="calculatePERT()">Calculate PERT</button>
+      <button class="button" onclick="switchTab(event,'costs')">Continue to Costs →</button>
+    </div>
+
+    <!-- Costs -->
+    <div id="costs" class="sheet-content">
+      <h2>COMPREHENSIVE COST ESTIMATION</h2>
+
+      <div class="section">
+        <h3>A. Direct Costs</h3>
+        <table>
+          <tr><th>Resource</th><th>Hours</th><th>Rate ($/hour)</th><th>Total Cost</th></tr>
+          <tr><td>Senior Developer</td><td><input type="number" id="srDevHours" placeholder="Hours"></td><td>$75</td><td class="calculated" id="srDevCost">$0</td></tr>
+          <tr><td>Junior Developer</td><td><input type="number" id="jrDevHours" placeholder="Hours"></td><td>$50</td><td class="calculated" id="jrDevCost">$0</td></tr>
+          <tr><td>UI/UX Designer</td><td><input type="number" id="uiHours" placeholder="Hours"></td><td>$65</td><td class="calculated" id="uiCost">$0</td></tr>
+          <tr><td>QA Tester</td><td><input type="number" id="qaHours" placeholder="Hours"></td><td>$55</td><td class="calculated" id="qaCost">$0</td></tr>
+          <tr><td>Database Admin</td><td><input type="number" id="dbaHours" placeholder="Hours"></td><td>$70</td><td class="calculated" id="dbaCost">$0</td></tr>
+          <tr><td>Software Licenses</td><td colspan="2"><input type="number" id="licenses" placeholder="Enter amount"></td><td class="calculated" id="licCost">$0</td></tr>
+          <tr><td>Cloud Services</td><td colspan="2"><input type="number" id="cloud" placeholder="Enter amount"></td><td class="calculated" id="cloudCost">$0</td></tr>
+          <tr class="total-row"><td colspan="3"><strong>Subtotal Direct Costs</strong></td><td class="calculated" id="directTotal">$0</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>B. Direct Project Overhead</h3>
+        <table>
+          <tr><th>Item</th><th>Amount</th></tr>
+          <tr><td>Project Manager (20% × 6 months × $8000)</td><td><input type="number" id="pmCost" value="9600"></td></tr>
+          <tr><td>Scrum Master (50% × 6 months × $7000)</td><td><input type="number" id="smCost" value="21000"></td></tr>
+          <tr><td>Project office space</td><td><input type="number" id="officeCost" placeholder="Enter amount"></td></tr>
+          <tr><td>Testing devices</td><td><input type="number" id="devicesCost" placeholder="Enter amount"></td></tr>
+          <tr><td>Test environment</td><td><input type="number" id="testEnvCost" placeholder="Enter amount"></td></tr>
+          <tr class="total-row"><td><strong>Subtotal Project Overhead</strong></td><td class="calculated" id="overheadTotal">$0</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>C. General & Administrative Overhead</h3>
+        <table>
+          <tr><th>Calculation</th><th>Amount</th></tr>
+          <tr><td>Direct Costs + Project Overhead</td><td class="calculated" id="subtotal">$0</td></tr>
+          <tr><td>G&A Rate (15%)</td><td>× 0.15</td></tr>
+          <tr class="total-row"><td><strong>G&A Overhead</strong></td><td class="calculated" id="gaTotal">$0</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <h3>D. Total Project Cost</h3>
+        <table>
+          <tr><th>Component</th><th>Amount</th></tr>
+          <tr><td>Direct Costs</td><td class="calculated" id="finalDirect">$0</td></tr>
+          <tr><td>Direct Project Overhead</td><td class="calculated" id="finalOverhead">$0</td></tr>
+          <tr><td>G&A Overhead</td><td class="calculated" id="finalGA">$0</td></tr>
+          <tr class="total-row"><td><strong>TOTAL PROJECT COST</strong></td><td class="calculated" id="finalTotal">$0</td></tr>
+        </table>
+      </div>
+
+      <button class="button" onclick="calculateCosts()">Calculate All Costs</button>
+      <button class="button" onclick="switchTab(event,'summary')">View Summary →</button>
+    </div>
+
+    <!-- Summary -->
+    <div id="summary" class="sheet-content">
+      <h2>ESTIMATION SUMMARY & COMPARISON</h2>
+      <div class="instruction-box">Compare your estimates across different methods to understand variances.</div>
+
+      <table>
+        <tr><th>Method</th><th>Duration (months)</th><th>Cost ($)</th><th>Variance from Average</th></tr>
+        <tr><td>Top-Down Consensus</td><td class="calculated" id="sumDur1">-</td><td class="calculated" id="sumCost1">-</td><td class="calculated" id="sumVar1">-</td></tr>
+        <tr><td>Function Points</td><td class="calculated" id="sumDur2">-</td><td class="calculated" id="sumCost2">-</td><td class="calculated" id="sumVar2">-</td></tr>
+        <tr><td>Bottom-Up (WBS)</td><td class="calculated" id="sumDur3">-</td><td class="calculated" id="sumCost3">-</td><td class="calculated" id="sumVar3">-</td></tr>
+        <tr><td>Detailed Cost Build</td><td class="calculated" id="sumDur4">-</td><td class="calculated" id="sumCost4">-</td><td class="calculated" id="sumVar4">-</td></tr>
+        <tr class="total-row"><td><strong>Average</strong></td><td class="calculated" id="avgDur">-</td><td class="calculated" id="avgCost">-</td><td>Baseline</td></tr>
+      </table>
+
+      <div class="section">
+        <h3>Key Observations</h3>
+        <textarea rows="6" style="width:100%" id="obsText" placeholder="What patterns do you see? Why do estimates differ? Which method was most accurate for this project?"></textarea>
+      </div>
+
+      <div class="section">
+        <h3>Lessons Learned</h3>
+        <textarea rows="6" style="width:100%" id="lessonsText" placeholder="What would you do differently? Which method works best for early vs. late project phases?"></textarea>
+      </div>
+
+      <button class="button" onclick="generateSummary()">Generate Final Summary</button>
+      <button class="button" onclick="exportResults()">Export Results</button>
+      <a id="downloadLink" style="display:none;"></a>
+    </div>
+  </div>
+  <div class="footer-note">© 2025 Allan Quadros, Ph.D. All rights reserved. v4.0 (September 2025).</div>
+</div>
+
+<script>
+  // ========= Helpers
+  const WORKDAYS_PER_MONTH = 20;
+  function toNumber(val){ if(typeof val==='number') return val; if(!val && val!==0) return 0; return Number(String(val).replace(/[^0-9.-]/g,''))||0; }
+  function fmtCurrency(n){ return '$'+(Number(n)||0).toLocaleString(undefined,{maximumFractionDigits:0}); }
+  function fmtMonths(n){ return (Number(n)||0).toFixed(1); }
+
+  // ========= Timer
+  let timeRemaining = 50*60;
+  function updateTimer(){
+    const m = Math.floor(timeRemaining/60);
+    const s = String(timeRemaining%60).padStart(2,'0');
+    document.getElementById('timer').innerText = `Time: ${m}:${s}`;
+    if(timeRemaining>0){ timeRemaining--; setTimeout(updateTimer,1000); }
+    else alert("Time's up! Please finalize your estimates.");
+  }
+
+  // ========= Tabs
+  function switchTab(event, tabName){
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.sheet-content');
+    tabs.forEach(t=>t.classList.remove('active'));
+    contents.forEach(c=>c.classList.remove('active'));
+    if(event && event.currentTarget) event.currentTarget.classList.add('active');
+    document.getElementById(tabName).classList.add('active');
+  }
+
+  // ========= Top-Down
+  function updateTopDownEffort(side){
+    const dur = toNumber(document.getElementById(`duration${side}`).value);
+    const team = toNumber(document.getElementById(`team${side}`).value);
+    const target = document.getElementById(`effort${side}`);
+    target.innerText = `${(dur*team).toFixed(0)} person-months`;
+  }
+  ['1','2'].forEach(side=>{
+    const d = document.getElementById(`duration${side}`);
+    const t = document.getElementById(`team${side}`);
+    if(d) d.addEventListener('input',()=>updateTopDownEffort(side));
+    if(t) t.addEventListener('input',()=>updateTopDownEffort(side));
+  });
+
+  function calculateApportion(){
+    const totalCost = toNumber(document.getElementById('cost2').value);
+    let totalPct = 0;
+    for(let i=1;i<=5;i++){
+      const pct = toNumber(document.getElementById(`phase${i}pct`).value);
+      totalPct += pct;
+      const amount = totalCost * pct/100;
+      document.getElementById(`phase${i}amt`).innerText = fmtCurrency(amount);
+    }
+    document.getElementById('totalPct').innerText = `${totalPct}%`;
+    document.getElementById('totalAmt').innerText = fmtCurrency(totalCost);
+  }
+
+  function recalcTopDown(){
+    updateTopDownEffort('1');
+    updateTopDownEffort('2');
+    calculateApportion();
+    alert('Top-Down and Apportion recalculated.');
+  }
+
+  // ========= Function Points (per detailed item)
+  function rowFP(countId, selectId, weightCellId, fpCellId){
+    const count = toNumber(document.getElementById(countId).value);
+    const weight = toNumber(document.getElementById(selectId).value);
+    document.getElementById(weightCellId).innerText = weight;
+    const fp = count * weight;
+    document.getElementById(fpCellId).innerText = fp.toFixed(0);
+    return fp;
+  }
+
+  function calculateFP(){
+    let totalFP = 0;
+    // Inputs
+    totalFP += rowFP('inp1count','inp1comp','inp1weight','inp1fp');
+    totalFP += rowFP('inp2count','inp2comp','inp2weight','inp2fp');
+    totalFP += rowFP('inp3count','inp3comp','inp3weight','inp3fp');
+    totalFP += rowFP('inp4count','inp4comp','inp4weight','inp4fp');
+    // Outputs
+    totalFP += rowFP('out1count','out1comp','out1weight','out1fp');
+    totalFP += rowFP('out2count','out2comp','out2weight','out2fp');
+    // Inquiries
+    totalFP += rowFP('inq1count','inq1comp','inq1weight','inq1fp');
+    // Files
+    totalFP += rowFP('file1count','file1comp','file1weight','file1fp');
+    // Interfaces
+    totalFP += rowFP('int1count','int1comp','int1weight','int1fp');
+
+    document.getElementById('totalFP').innerText = totalFP.toFixed(0);
+
+    const effort   = totalFP/5;
+    const duration = effort/10;
+    const cost     = effort*5000;
+
+    document.getElementById('fpEffort').innerText   = `${effort.toFixed(1)} person-months`;
+    document.getElementById('fpDuration').innerText = `${duration.toFixed(1)} months`;
+    document.getElementById('fpCost').innerText     = fmtCurrency(cost);
+  }
+
+  // ========= WBS
+  function calculateWBS(){
+    let total41=0,total42=0,total43=0;
+    for(let i=1;i<=5;i++){ total41 += toNumber(document.getElementById(`wbs41${i}`).value); }
+    document.getElementById('wbs41').innerText = total41;
+    for(let i=1;i<=5;i++){ total42 += toNumber(document.getElementById(`wbs42${i}`).value); }
+    document.getElementById('wbs42').innerText = total42;
+    for(let i=1;i<=5;i++){ total43 += toNumber(document.getElementById(`wbs43${i}`).value); }
+    document.getElementById('wbs43').innerText = total43;
+    document.getElementById('wbsTotal').innerText = (total41+total42+total43);
+  }
+
+  // ========= PERT
+  function calculatePERT(){
+    let totalPERT=0,totalTri=0;
+    for(let i=1;i<=4;i++){
+      const o=toNumber(document.getElementById(`pert${i}o`).value);
+      const m=toNumber(document.getElementById(`pert${i}m`).value);
+      const p=toNumber(document.getElementById(`pert${i}p`).value);
+      const pert=(o+4*m+p)/6;
+      const tri=(o+m+p)/3;
+      document.getElementById(`pert${i}e`).innerText = pert.toFixed(1);
+      document.getElementById(`pert${i}t`).innerText = tri.toFixed(1);
+      totalPERT += pert; totalTri += tri;
+    }
+    document.getElementById('pertTotalE').innerText = totalPERT.toFixed(1);
+    document.getElementById('pertTotalT').innerText = totalTri.toFixed(1);
+  }
+
+  // ========= Costs
+  function calculateCosts(){
+    const srDevCost = toNumber(document.getElementById('srDevHours').value)*75;
+    const jrDevCost = toNumber(document.getElementById('jrDevHours').value)*50;
+    const uiCost    = toNumber(document.getElementById('uiHours').value)*65;
+    const qaCost    = toNumber(document.getElementById('qaHours').value)*55;
+    const dbaCost   = toNumber(document.getElementById('dbaHours').value)*70;
+    const licCost   = toNumber(document.getElementById('licenses').value);
+    const cloudCost = toNumber(document.getElementById('cloud').value);
+
+    document.getElementById('srDevCost').innerText = fmtCurrency(srDevCost);
+    document.getElementById('jrDevCost').innerText = fmtCurrency(jrDevCost);
+    document.getElementById('uiCost').innerText    = fmtCurrency(uiCost);
+    document.getElementById('qaCost').innerText    = fmtCurrency(qaCost);
+    document.getElementById('dbaCost').innerText   = fmtCurrency(dbaCost);
+    document.getElementById('licCost').innerText   = fmtCurrency(licCost);
+    document.getElementById('cloudCost').innerText = fmtCurrency(cloudCost);
+
+    const directTotal = srDevCost+jrDevCost+uiCost+qaCost+dbaCost+licCost+cloudCost;
+    document.getElementById('directTotal').innerText = fmtCurrency(directTotal);
+
+    const pmCost = toNumber(document.getElementById('pmCost').value);
+    const smCost = toNumber(document.getElementById('smCost').value);
+    const officeCost = toNumber(document.getElementById('officeCost').value);
+    const devicesCost= toNumber(document.getElementById('devicesCost').value);
+    const testEnvCost= toNumber(document.getElementById('testEnvCost').value);
+
+    const overheadTotal = pmCost+smCost+officeCost+devicesCost+testEnvCost;
+    document.getElementById('overheadTotal').innerText = fmtCurrency(overheadTotal);
+
+    const subtotal = directTotal+overheadTotal;
+    const gaTotal = subtotal*0.15;
+
+    document.getElementById('subtotal').innerText = fmtCurrency(subtotal);
+    document.getElementById('gaTotal').innerText  = fmtCurrency(gaTotal);
+
+    const finalTotal = directTotal+overheadTotal+gaTotal;
+    document.getElementById('finalDirect').innerText   = fmtCurrency(directTotal);
+    document.getElementById('finalOverhead').innerText = fmtCurrency(overheadTotal);
+    document.getElementById('finalGA').innerText       = fmtCurrency(gaTotal);
+    document.getElementById('finalTotal').innerText    = fmtCurrency(finalTotal);
+  }
+
+  // ========= Summary
+  function readFunctionPointsResults(){
+    const dur = toNumber(document.getElementById('fpDuration').innerText);
+    const cost= toNumber(document.getElementById('fpCost').innerText);
+    return {duration:dur, cost:cost};
+  }
+  function readTopDownResults(){
+    const dur = toNumber(document.getElementById('duration2').value);
+    const cost= toNumber(document.getElementById('cost2').value);
+    return {duration:dur, cost:cost};
+  }
+  function readWBSResults(){
+    const totalDays = toNumber(document.getElementById('wbsTotal').innerText);
+    const months = totalDays/WORKDAYS_PER_MONTH;
+    return {duration:months, cost:null};
+  }
+  function readDetailedCostResults(){
+    const finalTotal = toNumber(document.getElementById('finalTotal').innerText);
+    const pertDays = toNumber(document.getElementById('pertTotalE').innerText);
+    const months = pertDays ? (pertDays/WORKDAYS_PER_MONTH) : 0;
+    return {duration:months, cost:finalTotal};
+  }
+  function generateSummary(){
+    calculateApportion();
+    calculateFP();
+    calculateWBS();
+    calculatePERT();
+    calculateCosts();
+
+    const topdown = readTopDownResults();
+    const fp      = readFunctionPointsResults();
+    const wbs     = readWBSResults();
+    const detailed= readDetailedCostResults();
+
+    document.getElementById('sumDur1').innerText = topdown.duration? fmtMonths(topdown.duration):'-';
+    document.getElementById('sumCost1').innerText= topdown.cost? fmtCurrency(topdown.cost):'-';
+
+    document.getElementById('sumDur2').innerText = fp.duration? fmtMonths(fp.duration):'-';
+    document.getElementById('sumCost2').innerText= fp.cost? fmtCurrency(fp.cost):'-';
+
+    document.getElementById('sumDur3').innerText = wbs.duration? fmtMonths(wbs.duration):'-';
+    document.getElementById('sumCost3').innerText= '-';
+
+    document.getElementById('sumDur4').innerText = detailed.duration? fmtMonths(detailed.duration):'-';
+    document.getElementById('sumCost4').innerText= detailed.cost? fmtCurrency(detailed.cost):'-';
+
+    const durValues = [topdown.duration, fp.duration, wbs.duration, detailed.duration].filter(Number.isFinite);
+    const costValues= [topdown.cost, fp.cost, detailed.cost].filter(Number.isFinite);
+
+    const avgDur = durValues.length? durValues.reduce((a,b)=>a+b,0)/durValues.length : 0;
+    const avgCost= costValues.length? costValues.reduce((a,b)=>a+b,0)/costValues.length : 0;
+
+    document.getElementById('avgDur').innerText  = durValues.length? fmtMonths(avgDur):'-';
+    document.getElementById('avgCost').innerText = costValues.length? fmtCurrency(avgCost):'-';
+
+    function relVar(v, avg){ if(!Number.isFinite(v) || !avg) return '-'; const r=(v-avg)/avg; return (r*100).toFixed(1)+'%'; }
+    document.getElementById('sumVar1').innerText = relVar(topdown.cost, avgCost);
+    document.getElementById('sumVar2').innerText = relVar(fp.cost, avgCost);
+    document.getElementById('sumVar3').innerText = '-';
+    document.getElementById('sumVar4').innerText = relVar(detailed.cost, avgCost);
+
+    alert('Summary generated! Review your results in the table above.');
+  }
+
+  function exportResults(){
+    generateSummary();
+    const rows = [];
+    function pushRow(k,v){ rows.push([k, v==null? '' : String(v)]); }
+
+    const td = readTopDownResults();
+    pushRow('Top-Down Duration (months)', td.duration);
+    pushRow('Top-Down Cost ($)', td.cost);
+
+    const fp = readFunctionPointsResults();
+    pushRow('Function Points Duration (months)', fp.duration);
+    pushRow('Function Points Cost ($)', fp.cost);
+    pushRow('Total Function Points', toNumber(document.getElementById('totalFP').innerText));
+    pushRow('FP Effort (person-months)', document.getElementById('fpEffort').innerText);
+
+    const w = readWBSResults();
+    pushRow('WBS Total (days)', toNumber(document.getElementById('wbsTotal').innerText));
+    pushRow('WBS Duration (months)', w.duration);
+
+    pushRow('PERT Total (E) days', toNumber(document.getElementById('pertTotalE').innerText));
+    pushRow('PERT Total (Triangular) days', toNumber(document.getElementById('pertTotalT').innerText));
+
+    const det = readDetailedCostResults();
+    pushRow('Direct Costs', toNumber(document.getElementById('finalDirect').innerText));
+    pushRow('Project Overhead', toNumber(document.getElementById('finalOverhead').innerText));
+    pushRow('G&A Overhead', toNumber(document.getElementById('finalGA').innerText));
+    pushRow('TOTAL PROJECT COST', det.cost);
+
+    pushRow('Avg Duration (months)', document.getElementById('avgDur').innerText);
+    pushRow('Avg Cost ($)', toNumber(document.getElementById('avgCost').innerText));
+    pushRow('Observations', document.getElementById('obsText').value.trim());
+    pushRow('Lessons Learned', document.getElementById('lessonsText').value.trim());
+
+    const header = ['Field','Value'];
+    const csv = [header].concat(rows).map(r => r.map(x => `"${String(x).replaceAll('"','""')}"`).join(',')).join('\r\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const link = document.getElementById('downloadLink');
+    link.href = url;
+    link.download = 'project_estimation_summary.csv';
+    link.style.display = 'inline-block';
+    link.textContent = 'Download CSV';
+    alert('CSV is ready. Click "Download CSV" to save your file.');
+  }
+
+  // Init
+  updateTimer();
+  calculateFP();
+</script>
+</body>
+</html>
