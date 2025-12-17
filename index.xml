@@ -56,7 +56,9 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       
       <guid>/contact/</guid>
       <description>Allan Vieira de Castro Quadros
- Email: allanvcq@gmail.com | allan.quadros@unf.edu Phone: +1(785)576-3130   Mailing Address  Department of Management - Coggin College of Business University of North Florida 1 UNF Dr, Building 42, Room 1011
+ Email: allanvcq@gmail.com | allan.quadros@unf.edu Phone: +1(785)576-3130   Mailing Address  Department of Management - Coggin College of Business
+University of North Florida
+1 UNF Dr, Building 42, Room 1011
 Jacksonville, FL 32224-7699
 United States
   Social  LinkedIn GitHub ResearchGate StackOverflow  </description>
@@ -68,13 +70,15 @@ United States
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/courses/</guid>
-      <description>Courses Here you find material for courses I taught in the past or have been teaching lately.
+      <description>Courses Here you&amp;rsquo;ll find material for courses I taught in the past or have been teaching lately.
  Data Analytics &amp;amp; Programming Books:
-  Introduction to Data Analysis with R and the Tidyverse (2025).
-  Introdução à Análise de Dados em R utilizando Tidyverse (2020). (Portuguese version)
-    Project Management Practice Apps:
-  Project Management Estimation App (2025)
-  Project Network App (2025)</description>
+[1] Introduction to Data Analysis with R and the Tidyverse (2025).
+[2] Introdução à Análise de Dados em R utilizando Tidyverse (2020). (Portuguese version)
+  Project Management Practice Apps:
+[1] Project Management Estimation App (2025)
+[2] Project Network App (2025)
+[3] Project Planner App (2025)
+[4] Earned Value Management Monitor App (2025)</description>
     </item>
     
     <item>
@@ -116,12 +120,12 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/talks/</guid>
-      <description>Recent &amp;amp; Upcoming Talks [7] O Potencial da IA na Gestão Pública
-Description: An invited lecture at UCB-Brasilia where I walked the audience trough the challenges of AI in the Public Sector in Brazil.
-Date: Oct 05, 2024 10:00 AM — 12:00 PM
-Event: Artificial Intelligence Course, Universidade Católica de Brasília - UCB
-Venue: Brasília, Brazil (remote)
- [6] Bayesian approach to estimate failure risk in the lack of previous failure data</description>
+      <description>Recent &amp;amp; Upcoming Talks [10] Bayesian Estimation of Equipment Failure Risk in the Absence of Historical Failure Data
+Description: Another seminar where I presented the project developed for the National Bio and Agro-Defense Facility (NBAF) project.
+Date: Oct 29, 2025 03:00 PM — 04:00 PM
+Event: Management Research Seminars, Coggin College of Business, University of North Florida
+Venue: Jacksonville, FL, USA
+ [9] Bayesian Estimation of Equipment Failure Risk in the Absence of Historical Failure Data</description>
     </item>
     
   </channel>
