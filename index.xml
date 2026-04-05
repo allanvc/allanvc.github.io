@@ -94,6 +94,16 @@ Examples:</description>
     </item>
     
     <item>
+      <title>Main Publications</title>
+      <link>/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/publications/</guid>
+      <description>In descending chronological order:
+1. Quadros A., Higgins M., Silverstein B. (2026) A Bayesian approach to generate distribution-based trading signals in pairs trading, Quantitative Finance, 1–21. [link]  2. Souza, P., A. Quadros, H. Dogan, Y. Li, Y.-C. Shi, and E. Karkle. (2026) Exploring Bread Quality through the Use of Commercial Bacterial and Fungal Xylanases: Effects on Dough Rheology, Loaf Volume, and Arabinoxylan Structure, Journal of Food Science, 91, no. 2: e70940.</description>
+    </item>
+    
+    <item>
       <title>Posts</title>
       <link>/posts_old/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -112,19 +122,6 @@ Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet
       <guid>/quant/</guid>
       <description>Quantitative Trading Below, find more information about some of the quantitative trading software I have developed.
  * This page is under construction. I will leave you with some screenshots of the quantitative trading software projects I have bee working on.</description>
-    </item>
-    
-    <item>
-      <title>Talks</title>
-      <link>/talks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/talks/</guid>
-      <description>Recent &amp;amp; Upcoming Talks [17] Interactive &amp;amp; Effective Data Visualization: Enhancing Engagement and Understanding Date: Mar 04, 2026 10:30 AM — 11:45 AM
-Event: Guest Lecture Venue: Herbert Wertheim College of Business, Department of Business Analytics, Information Systems &amp;amp; Supply Chain - Tallahassee, FL, USA
-[Slides]
- [16] mRpostman: Email as a Business Data Source. Applications in Operations Management and Marketing
-Date: Mar 03, 2026 03:00 PM — 04:00 PM</description>
     </item>
     
   </channel>
