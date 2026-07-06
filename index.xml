@@ -71,17 +71,6 @@ United States
     </item>
     
     <item>
-      <title>Data Science</title>
-      <link>/software/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/software/</guid>
-      <description>Software Below you will find more information about the main software projects I have been working on.
- R packages: [1] treeSS: Tree-Spatial Scan Statistic for Cluster Detection
-Description: treeSS detects clusters that combine spatial and hierarchical structure. It extends Kulldorff&amp;rsquo;s circular spatial scan statistic and the tree-based scan statistic by searching for anomalies across geographic regions and hierarchical tree branches simultaneously. The package ships standalone implementations of both methods and assesses statistical significance through Monte Carlo simulation under Poisson or binomial models, with optional OpenMP parallelization.</description>
-    </item>
-    
-    <item>
       <title>Main Publications</title>
       <link>/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -89,6 +78,17 @@ Description: treeSS detects clusters that combine spatial and hierarchical struc
       <guid>/publications/</guid>
       <description>Peer-Reviewed Papers In descending chronological order:
 1. Quadros A., Higgins M., Silverstein B. (2026) A Bayesian approach to generating distribution-based trading signals in pairs trading, Quantitative Finance, 1–21. [link]  2. Souza, P., A. Quadros, H. Dogan, Y. Li, Y.-C. Shi, and E. Karkle. (2026) Exploring Bread Quality through the Use of Commercial Bacterial and Fungal Xylanases: Effects on Dough Rheology, Loaf Volume, and Arabinoxylan Structure, Journal of Food Science, 91, no.</description>
+    </item>
+    
+    <item>
+      <title>Software</title>
+      <link>/software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/software/</guid>
+      <description>Software Below you will find more information about the main software projects I have been working on.
+ R packages: [1] treeSS: Tree-Spatial Scan Statistic for Cluster Detection
+Description: treeSS detects clusters that combine spatial and hierarchical structure. It extends Kulldorff&amp;rsquo;s circular spatial scan statistic and the tree-based scan statistic by searching for anomalies across geographic regions and hierarchical tree branches simultaneously. The package ships standalone implementations of both methods and assesses statistical significance through Monte Carlo simulation under Poisson or binomial models, with optional OpenMP parallelization.</description>
     </item>
     
     <item>
