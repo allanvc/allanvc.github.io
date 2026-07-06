@@ -39,17 +39,6 @@ You may notice, on the right side of the page, that we are using Google Chrome d
     </item>
     
     <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/about/</guid>
-      <description>About Me  This is a Hugo based resume template. You can find the full source code on GitHub.
-Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
-Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
-    </item>
-    
-    <item>
       <title>Contact</title>
       <link>/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -70,7 +59,7 @@ United States
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/courses/</guid>
-      <description>Courses Here you&amp;rsquo;ll find material for courses I taught in the past or have been teaching lately.
+      <description>Courses Here you&amp;rsquo;ll find materials for courses I have taught in the past or am currently teaching.
  Data Analytics &amp;amp; Programming Books:
 [1] Introduction to Data Analysis with R and the Tidyverse (2025).
 [2] Introdução à Análise de Dados em R utilizando Tidyverse (2020). (Portuguese version)
@@ -87,10 +76,9 @@ United States
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/software/</guid>
-      <description>Software Below you will find more information about the main software projects that I have been working on.
- R packages:  [1] mRpostman: An IMAP Client for R
-Description: mRpostman is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. [Official website] [CRAN] [Github]
-Examples:</description>
+      <description>Software Below you will find more information about the main software projects I have been working on.
+ R packages: [1] treeSS: Tree-Spatial Scan Statistic for Cluster Detection
+Description: treeSS detects clusters that combine spatial and hierarchical structure. It extends Kulldorff&amp;rsquo;s circular spatial scan statistic and the tree-based scan statistic by searching for anomalies across geographic regions and hierarchical tree branches simultaneously. The package ships standalone implementations of both methods and assesses statistical significance through Monte Carlo simulation under Poisson or binomial models, with optional OpenMP parallelization.</description>
     </item>
     
     <item>
@@ -104,24 +92,19 @@ Examples:</description>
     </item>
     
     <item>
-      <title>Posts</title>
-      <link>/posts_old/</link>
+      <title>Talks</title>
+      <link>/talks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/posts_old/</guid>
-      <description>Posts  [3] 2018-08-21 - Scraping Google News with rvest [link].
-Research Interest Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam finibus ipsum ac erat aliquam dapibus. Vestibulum vehicula placerat ex, a consectetur odio pharetra quis1. Mauris id urna ante.
-Fusce pharetra diam ac nisi aliquet, velegestas ex iaculis. Pellentesque laoreet cursus tellus sed pellentesque. Praesent a rhoncus elit2. Nunc ipsum nisl, consequat sit amet pretium quis, gravida id ipsum.</description>
-    </item>
-    
-    <item>
-      <title>Quantitative Trading</title>
-      <link>/quant/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/quant/</guid>
-      <description>Quantitative Trading Below, find more information about some of the quantitative trading software I have developed.
- * This page is under construction. I will leave you with some screenshots of the quantitative trading software projects I have bee working on.</description>
+      <guid>/talks/</guid>
+      <description>Recent &amp;amp; Upcoming Talks [17] Interactive &amp;amp; Effective Data Visualization: Enhancing Engagement and Understanding
+Description: Guest Lecture
+Date: Mar 04, 2026 10:30 AM — 11:45 AM
+Event: Campus Visit
+Venue: Herbert Wertheim College of Business, Department of Business Analytics, Information Systems &amp;amp; Supply Chain - Tallahassee, FL, USA
+[Slides]
+ [16] mRpostman: Email as a Business Data Source. Applications in Operations Management and Marketing
+Date: Mar 03, 2026 03:00 PM — 04:00 PM</description>
     </item>
     
   </channel>

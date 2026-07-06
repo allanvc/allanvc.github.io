@@ -83,14 +83,38 @@ if (!doNotTrack) {
 <div id="content">
 <div class="container">
     <h1 id="software">Software</h1>
-<p>Below you will find more information about the main software projects that I have been working on.</p>
+<p>Below you will find more information about the main software projects I have been working on.</p>
 <hr>
 <h2 id="r-packages">R packages:</h2>
+<p>[1] <strong>treeSS</strong>: Tree-Spatial Scan Statistic for Cluster Detection<br>
+Description: <code>treeSS</code> detects clusters that combine spatial and hierarchical structure. It extends Kulldorff&rsquo;s circular spatial scan statistic and the tree-based scan statistic by searching for anomalies across geographic regions and hierarchical tree branches simultaneously. The package ships standalone implementations of both methods and assesses statistical significance through Monte Carlo simulation under Poisson or binomial models, with optional OpenMP parallelization. <a href="https://CRAN.R-project.org/package=treeSS">[CRAN]</a> <a href="https://www.github.com/allanvc/treeSS">[Github]</a></p>
+<p>Examples:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># scanning for spatial-hierarchical clusters in the built-in London data:</span>
+<span style="color:#a6e22e">library</span>(treeSS)
+<span style="color:#a6e22e">data</span>(london_collisions)
+<span style="color:#a6e22e">data</span>(london_tree)
+
+result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">treespatial_scan</span>(
+  london_collisions,
+  cases      <span style="color:#f92672">=</span> cases,
+  population <span style="color:#f92672">=</span> population,
+  region_id  <span style="color:#f92672">=</span> region_id,
+  x          <span style="color:#f92672">=</span> x,
+  y          <span style="color:#f92672">=</span> y,
+  node_id    <span style="color:#f92672">=</span> node_id,
+  tree       <span style="color:#f92672">=</span> london_tree,
+  nsim       <span style="color:#f92672">=</span> <span style="color:#ae81ff">999</span>, seed <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>,
+  n_cores    <span style="color:#f92672">=</span> <span style="color:#ae81ff">4L</span>
+)
+
+<span style="color:#75715e"># extract the top 3 non-overlapping clusters for mapping:</span>
+cr <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">get_cluster_regions</span>(result, n_clusters <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, overlap <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><hr>
 <p><figure class="pkg">
     <img src="../img/mRpostman.png"/> 
 </figure>
  <!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --></p>
-<p>[1] <strong>mRpostman</strong>: An IMAP Client for R<br>
+<p>[2] <strong>mRpostman</strong>: An IMAP Client for R<br>
 Description: <code>mRpostman</code> is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R.  <a href="https://allanvc.github.io/mRpostman">[Official website]</a> <a href="https://CRAN.R-project.org/package=mRpostman">[CRAN]</a> <a href="https://www.github.com/allanvc/mRpostman">[Github]</a></p>
 <p>Examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to download attachment files of selected messages:</span>
@@ -111,7 +135,7 @@ con<span style="color:#f92672">$</span><span style="color:#a6e22e">search_on</sp
     <img src="../img/emstreeR.png"/> 
 </figure>
  <!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --></p>
-<p>[2] <strong>emstreeR</strong>: Tools for Fast Computing and Plotting Euclidean Minimum Spanning Trees<br>
+<p>[3] <strong>emstreeR</strong>: Tools for Fast Computing and Plotting Euclidean Minimum Spanning Trees<br>
 Description: <code>emstreeR</code> is a package for fast and easy computation of Euclidean Minimum Spanning Trees (EMST). It heavily relies on {RcppMLPACK} and {Rcpp}, working as a wrapper for the fast EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> implemented in <em>mlpack</em> - the C++ Machine Learning library (Curtin, 2013)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. The package also provides functions and an S3 method for readily plotting Minimum Spanning Trees (MST) using either R {base}, {scatterplot3d} or {ggplot2} style. <a href="https://CRAN.R-project.org/package=emstreeR">[CRAN]</a> <a href="https://www.github.com/allanvc/emstreeR">[Github]</a></p>
 <p>Examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># finding an EMST in 3D data:</span>
@@ -128,7 +152,7 @@ out <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Compute
 <span style="color:#75715e"># plot:</span>
 <span style="color:#a6e22e">plotMST3D</span>(out, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xaxis&#34;</span>, col.pts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;orange&#34;</span>, col.segts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a simple MST 3D plot&#34;</span>)
 </code></pre></div><hr>
-<p>[3] <strong>onlineretail</strong>: Online Retail Dataset<br>
+<p>[4] <strong>onlineretail</strong>: Online Retail Dataset<br>
 Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in this package with the donor&rsquo;s permission, Dr. Daqing Chen.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. <a href="https://CRAN.R-project.org/package=onlineretail">[CRAN]</a> <a href="https://www.github.com/allanvc/onlineretail">[Github]</a></p>
 <p>Examples:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to load the data:</span>
@@ -137,7 +161,7 @@ Description: Transactions occurring for a UK-based and registered, non-store onl
 </code></pre></div><hr>
 <hr>
 <h2 id="private-r-packages">Private R packages:</h2>
-<p>[4] <strong>proPNLD</strong>: An R package to forecast the number of students in all Brazilian schools and grades for the PNLD program<br>
+<p>[5] <strong>proPNLD</strong>: An R package to forecast the number of students in all Brazilian schools and grades for the PNLD program<br>
 Description: Execute the two-step-forecasting (h=2) on the number of students in each grade in every Brazilian public school, fitting more than 800,000 Holt-Winters Exponential Smoothing time-series models. <a href="https://www.github.com/allanvc/proPNLD">[Github]</a></p>
 <hr>
 <hr>
@@ -170,7 +194,7 @@ Awards: As a recognition for the aforementioned results, the software received t
 <p>D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. <a href="https://doi.org/10.1057/dbm.2012.17">doi:10.1057/dbm.2012.17</a>. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:4" role="doc-endnote">
-<p>Dr. Dqing´s ResearchGate <a href="https://www.researchgate.net/profile/Daqing_Chen">page</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Dr. Daqing&rsquo;s ResearchGate <a href="https://www.researchgate.net/profile/Daqing_Chen">page</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
