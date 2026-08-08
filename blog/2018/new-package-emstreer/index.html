@@ -1,0 +1,245 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Announcing the new 'emstreeR' package | Allan Quadros </title> <meta name="author" content="Allan Quadros"> <meta name="description" content="My personal website "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://allanvc.github.io/blog/2018/new-package-emstreer/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Allan</span> Quadros </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/software/">software </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/talks/">talks </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/contact/">contact </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Announcing the new 'emstreeR' package</h1> <p class="post-meta"> Created on December 10, 2018 by Allan Quadros </p> <p class="post-tags"> <a href="/blog/2018"> <i class="fa-solid fa-calendar fa-sm"></i> 2018 </a>   ·   <a href="/blog/tag/emstreer"> <i class="fa-solid fa-hashtag fa-sm"></i> emstreeR</a>   <a href="/blog/tag/minimum-spanning-trees"> <i class="fa-solid fa-hashtag fa-sm"></i> Minimum Spanning Trees</a>   <a href="/blog/tag/mlpack"> <i class="fa-solid fa-hashtag fa-sm"></i> mlpack</a>   ·   <a href="/blog/category/r"> <i class="fa-solid fa-tag fa-sm"></i> R</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <h2 id="announcing-the-new-emstreer-package-2020s-ggmap-update">Announcing the new ‘emstreeR’ package (2020’s {ggmap} update)</h2> <hr> <p>I am proud to announce <strong>emstreeR</strong> - my first <strong>R</strong> package available on CRAN.</p> <p><strong>emstreeR</strong> is a package for fast and easily computing Euclidean Minimum Spanning Trees (EMST). It heavily relies on RcppMLPACK and Rcpp to work as wrapper to the EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)^[March, W. B., and Ram, P., and Gray, A. G. (2010). <em>Fast euclidean minimum spanning tree: algorithm analysis, and applications</em>. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA. <a href="https://doi.org/10.1145/1835804.1835882" rel="external nofollow noopener" target="_blank">doi:10.1145/1835804.1835882</a>.] implemented in ‘mlpack’ - the C++ Machine Learning library (Curtin et al., 2013)^[Curtin, R. R. et al. (2013). Mlpack: A scalable C++ machine learning library. <em>Journal of Machine Learning Research</em>, v. 14, 2013.]. With <code class="language-plaintext highlighter-rouge">emstreeR</code>, R users have access to the C++ fast EMST algorithm without having to deal with the R-Rcpp-C++ integration. The package also provides functions and an S3 method for readily plotting the Minimum Spanning Trees (MST) using either {base}, {scatterplot3d} or {ggplot2} style.</p> <p>Working with <code class="language-plaintext highlighter-rouge">emstreeR</code> is easy because you just have to pass a matrix or data.frame of points as an argument to the main function <code class="language-plaintext highlighter-rouge">computeMST()</code> in order to get things working.</p> <hr> <p>But, before we begin, what exactly is a Minimum Spanning Tree?</p> <p>I will try to explain that without bringing any graph concept to the discussion.</p> <p>Imagine you have to connect a group of South American cities with pipelines in order to distribute the natural gas extracted from an offshore platform on the coast of Rio de Janeiro. To optimize your operations, you need to know the most efficient route, i.e. the route that connects all the cities within the minimum possible distance. That optimal route among the cities is a Minimum Spanning Tree. Therefore, the MST problem is, in its essence, an optimization problem.</p> <p>The distances between two points can be calculated using various methods, such as Manhattan, Euclidean, Minkowski, etc. This package uses Euclidean distances. Hence, the name Euclidean Minimum Spanning Trees.</p> <p>So, let’s try to reproduce the aforementioned example.</p> <p>First, we are going to use the {ggmap} package . We will pass the cities names as arguments to <code class="language-plaintext highlighter-rouge">ggmap::geocode()</code> function in order to get their latitude and longitude coordinates. For this, we need the <em>Geocoding Google API</em>. For more instructions on how to enable the API and how to obtain a API key, please refer to the documentation of the <code class="language-plaintext highlighter-rouge">ggmap::register_goole()</code> function.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">library</span><span class="p">(</span><span class="n">ggmap</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">## cities:</span><span class="w">
+</span><span class="n">cities_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Passo Fundo, Brazil"</span><span class="p">,</span><span class="w"> 
+                                           </span><span class="s2">"Buenos Aires, Argentina"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Assuncion, Paraguay"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Campinas, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Cubatao, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Mendoza, Argentina"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Corrientes, Argentina"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Porto Velho, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Manaus, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Santa Cruz de La Sierra, Bolivia"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Belo Horizonte, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Brasília, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Rio de Janeiro, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Campo Grande, Brazil"</span><span class="p">,</span><span class="w">
+                                           </span><span class="s2">"Recife, Brazil"</span><span class="p">),</span><span class="w"> 
+                              </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning in readLines(con &lt;- file("../../../API_key.txt")): cannot open file '../../../API_key.txt': No such file or directory</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in readLines(con &lt;- file("../../../API_key.txt")): cannot open the connection</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'API_key' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## register your Google API</span><span class="w">
+</span><span class="n">register_google</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rstudio</span><span class="o">::</span><span class="s2">"AIza...8RLaPBOQ"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## get latitude and longitude</span><span class="w">
+</span><span class="n">geo_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geocode</span><span class="p">(</span><span class="n">cities_location</span><span class="o">$</span><span class="n">location</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `geocode()`:
+## ! Google now requires an API key; see `ggmap::register_google()`.</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## combine data:</span><span class="w">
+</span><span class="n">df_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">cities_location</span><span class="p">,</span><span class="w"> </span><span class="n">geo_location</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'geo_location' not found</code></pre></figure> <p>Let’s plot the map, so we can have an initial idea about what we are dealing with.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># coordinates for South America</span><span class="w">
+</span><span class="n">map_grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-80</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-40</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-20</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> 
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># we wanna use pipes</span><span class="w">
+
+</span><span class="n">get_stamenmap</span><span class="p">(</span><span class="n">map_grid</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggmap</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_location</span><span class="p">,</span><span class="w">
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Now is when <code class="language-plaintext highlighter-rouge">emstreeR</code> comes in handy. We pass the point columns as argument to <code class="language-plaintext highlighter-rouge">computeMST()</code> and it calculates the minimum route connecting all the points, i.e. the Euclidean Minimum Spanning Tree.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## MST:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">emstreeR</span><span class="p">)</span><span class="w">
+</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">df_location</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">])</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'df_location' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">out</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## [1] "0.1.8 | 3 vignette(s)"</code></pre></figure> <p>As a result, we have a data.frame containing our original data and three more columns: <code class="language-plaintext highlighter-rouge">from</code>, <code class="language-plaintext highlighter-rouge">to</code>, and <code class="language-plaintext highlighter-rouge">distance</code>. This information is the Minimum Spanning Tree and will be used for plotting.</p> <p>You can silence the output of the algorithm by setting <code class="language-plaintext highlighter-rouge">verbose=FALSE</code> in <code class="language-plaintext highlighter-rouge">computeMST()</code>.</p> <p>To better visualize the result, we plot the map again, but now using the {ggplot2}’s extension provided in <code class="language-plaintext highlighter-rouge">emstreeR</code>: <code class="language-plaintext highlighter-rouge">stat_MST()</code>.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## Plot:</span><span class="w">
+</span><span class="c1"># we use the same grid map    </span><span class="w">
+</span><span class="n">get_stamenmap</span><span class="p">(</span><span class="n">map_grid</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggmap</span><span class="p">()</span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w">
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="o">=</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="o">=</span><span class="n">to</span><span class="p">),</span><span class="w"> 
+           </span><span class="n">colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Once you have the information about the minimum route, it is easy to see that you will have to install gas distribution hubs in cities that will have more than two incoming or outgoing links, such as Assuncion in Paraguay. Based on that information or other criteria such as connectivity or even by cutting the largest edge, you can also define or separate regions of operations. What I mean by this is that you can also use Minimum Spanning Trees in clustering problems. Nonetheless, let’s save that topic for another post.</p> <p>Below, I will present other things you can do with ‘emstreeR’.</p> <p>‘emstreeR’ provides an S3 method for the {base} function <code class="language-plaintext highlighter-rouge">plot()</code>. It is easy to make simple 2D plots with that.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artifical data for 2D plots:</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w">
+</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">15</span><span class="w">
+</span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-0.2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">0.2</span><span class="p">))</span><span class="w">
+</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-1.1</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">0.15</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">0.3</span><span class="p">))</span><span class="w"> 
+</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">)</span><span class="w">
+</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w">
+  
+</span><span class="c1">## MST:</span><span class="w">
+</span><span class="c1">#library(emstreeR)</span><span class="w">
+</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">  </span></code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## simple 2D plot:</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">col.pts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">col.segts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">)</span></code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-9-1.png" alt="plot of chunk unnamed-chunk-9"></p> <p>The <code class="language-plaintext highlighter-rouge">stat_MST()</code> extension also makes it easy plotting 2D plots, but using {ggplot2} as we showed before.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## 2D plot with ggplot2:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to</span><span class="p">))</span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p> <p>If you want something fancier, you can use the <code class="language-plaintext highlighter-rouge">geom=curve</code> argument:</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## 2D plot with ggplot2:</span><span class="w">
+</span><span class="c1">#library(ggplot2)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="o">=</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="o">=</span><span class="n">to</span><span class="p">))</span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s2">"curve"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p> <p>You can also make 3D MST plots with <code class="language-plaintext highlighter-rouge">emstreeR</code>. It provides a wrapper for plotting 3D scatter plots, using the {scatterplot3d} package.</p> <p>Let’s create 3D artificial data and compute the MST.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artificial data for 3D plots:</span><span class="w">
+</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">99</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w">
+</span><span class="n">d1</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">-2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">.5</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="c1"># 3d</span><span class="w">
+</span><span class="n">d2</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">.3</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">d3</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">.4</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">d</span><span class="o">&lt;-</span><span class="n">rbind</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">d3</span><span class="p">)</span><span class="w"> </span><span class="c1"># just to show a matrix input</span><span class="w">
+  
+</span><span class="c1">## MST:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">emstreeR</span><span class="p">)</span><span class="w">
+</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span></code></pre></figure> <p>We can do a simple 3D plot using the function <code class="language-plaintext highlighter-rouge">plotMST3D()</code>.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## simple 3D plot:</span><span class="w">
+</span><span class="n">plotMST3D</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xaxis"</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s2">"A simple MST 3D plot"</span><span class="p">)</span></code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-13-1.png" alt="plot of chunk unnamed-chunk-13"></p> <p>But, again, if you like fancier plots, we can also make an interactive 3D MST plot using {plotly}:</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># some adjustments needed</span><span class="w">
+</span><span class="n">ord_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Reduce</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">out</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"from"</span><span class="p">,</span><span class="w"> </span><span class="s2">"to"</span><span class="p">)]),</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w">
+</span><span class="n">ord_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">out</span><span class="p">[</span><span class="n">ord_id</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"V1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"V2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"V3"</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># we will use pipes</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">plotly</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot_ly</span><span class="p">(</span><span class="n">showlegend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">add_markers</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ord_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V2</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V3</span><span class="p">,</span><span class="w">
+              </span><span class="n">marker</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2.5</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">"points"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">add_paths</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ord_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V2</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V3</span><span class="p">,</span><span class="w">
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="s2">"red"</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">"edges"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in loadNamespace(name): there is no package called 'webshot'</code></pre></figure> <p>That’s all!</p> <ul> <li>CRAN version: https://cran.r-project.org/package=emstreeR</li> <li>Dev version: https://github.com/allanvc/emstreeR</li> </ul> <hr> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2019/new-package-mrpostman/">'mRpostman' - IMAP Tools for R in a Tidy Way</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2018/google-news-scraping/">Scraping Google News with 'rvest'</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Allan Quadros. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Built from R with <a href="https://github.com/allanvc/jekylldown" target="_blank" rel="external nofollow noopener">jekylldown</a> 0.3.0. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-software",
+          title: "software",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/software/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-teaching",
+          title: "teaching",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-contact",
+          title: "contact",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/contact/";
+          },
+        },{id: "post-39-mrpostman-39-imap-tools-for-r-in-a-tidy-way",
+        
+          title: "&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/new-package-mrpostman/";
+          
+        },
+      },{id: "post-announcing-the-new-39-emstreer-39-package",
+        
+          title: "Announcing the new &#39;emstreeR&#39; package",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2018/new-package-emstreer/";
+          
+        },
+      },{id: "post-scraping-google-news-with-39-rvest-39",
+        
+          title: "Scraping Google News with &#39;rvest&#39;",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2018/google-news-scraping/";
+          
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/allanvc", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/allan-vieira", "_blank");
+        },
+      },{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-researchgate',
+        title: 'ResearchGate',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.researchgate.net/profile/Allan_Quadros/", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=allanvcq", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>

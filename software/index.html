@@ -1,189 +1,212 @@
-<!DOCTYPE html>
-<html><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> software | Allan Quadros </title> <meta name="author" content="Allan Quadros"> <meta name="description" content="My personal website "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?v=3116ba77db9ee1581d05bb3e86fbf7f1"> <link rel="canonical" href="https://allanvc.github.io/software/"> <script src="/assets/js/theme.js?v=5286c3e4c334d0ecb8fc0c40ff4fa7ec"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Allan</span> Quadros </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item active"> <a class="nav-link" href="/software/">software <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/talks/">talks </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">teaching </a> </li> <li class="nav-item "> <a class="nav-link" href="/contact/">contact </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">software</h1> <p class="post-description"></p> </header> <article> <p>Below you will find more information about the main software projects I have been working on.</p> <hr> <h2 id="r-packages">R packages:</h2> <p>[1] <strong>treeSS</strong>: Tree-Spatial Scan Statistic for Cluster Detection<br> Description: <code class="language-plaintext highlighter-rouge">treeSS</code> detects clusters that combine spatial and hierarchical structure. It extends Kulldorff’s circular spatial scan statistic and the tree-based scan statistic by searching for anomalies across geographic regions and hierarchical tree branches simultaneously. The package ships standalone implementations of both methods and assesses statistical significance through Monte Carlo simulation under Poisson or binomial models, with optional OpenMP parallelization. <a href="https://CRAN.R-project.org/package=treeSS" rel="external nofollow noopener" target="_blank">[CRAN]</a> <a href="https://www.github.com/allanvc/treeSS" rel="external nofollow noopener" target="_blank">[Github]</a></p> <p>Examples:</p> <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># scanning for spatial-hierarchical clusters in the built-in London data:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">treeSS</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">london_collisions</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">london_tree</span><span class="p">)</span><span class="w">
 
-    <title>Data Science</title>
-    <meta name="description" content="My personal website">
-    <meta name="author" content='Allan Quadros'>
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">treespatial_scan</span><span class="p">(</span><span class="w">
+  </span><span class="n">london_collisions</span><span class="p">,</span><span class="w">
+  </span><span class="n">cases</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">cases</span><span class="p">,</span><span class="w">
+  </span><span class="n">population</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">population</span><span class="p">,</span><span class="w">
+  </span><span class="n">region_id</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">region_id</span><span class="p">,</span><span class="w">
+  </span><span class="n">x</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w">
+  </span><span class="n">y</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w">
+  </span><span class="n">node_id</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">node_id</span><span class="p">,</span><span class="w">
+  </span><span class="n">tree</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">london_tree</span><span class="p">,</span><span class="w">
+  </span><span class="n">nsim</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="m">999</span><span class="p">,</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w">
+  </span><span class="n">n_cores</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">4L</span><span class="w">
+</span><span class="p">)</span><span class="w">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</span><span class="c1"># extract the top 3 non-overlapping clusters for mapping:</span><span class="w">
+</span><span class="n">cr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get_cluster_regions</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">n_clusters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">overlap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div> <hr> <p><img src="/img/mRpostman.png" alt="" class="pkg"> </p> <p>[2] <strong>mRpostman</strong>: An IMAP Client for R<br> Description: <code class="language-plaintext highlighter-rouge">mRpostman</code> is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R. <a href="https://allanvc.github.io/mRpostman">[Official website]</a> <a href="https://CRAN.R-project.org/package=mRpostman" rel="external nofollow noopener" target="_blank">[CRAN]</a> <a href="https://www.github.com/allanvc/mRpostman" rel="external nofollow noopener" target="_blank">[Github]</a></p> <p>Examples:</p> <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># how to download attachment files of selected messages:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">mRpostman</span><span class="p">)</span><span class="w">
+</span><span class="c1"># configure the IMAP connection:</span><span class="w">
+</span><span class="n">con</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">configure_imap</span><span class="p">(</span><span class="w">
+  </span><span class="n">url</span><span class="o">=</span><span class="s2">"imaps://outlook.office365.com"</span><span class="p">,</span><span class="w">
+  </span><span class="n">username</span><span class="o">=</span><span class="s2">"user@company.com"</span><span class="p">,</span><span class="w">
+  </span><span class="n">password</span><span class="o">=</span><span class="n">rstudioapi</span><span class="o">::</span><span class="n">askForPassword</span><span class="p">()</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="c1"># select folder</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">select_folder</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"INBOX"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># search by date and fetch messages</span><span class="w">
+</span><span class="n">con</span><span class="o">$</span><span class="n">search_on</span><span class="p">(</span><span class="n">date_char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"24-Nov-2020"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">con</span><span class="o">$</span><span class="n">fetch_attachments</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div> <hr> <p><img src="/img/emstreeR.png" alt="" class="pkg"> </p> <p>[3] <strong>emstreeR</strong>: Tools for Fast Computing and Plotting Euclidean Minimum Spanning Trees<br> Description: <code class="language-plaintext highlighter-rouge">emstreeR</code> is a package for fast and easy computation of Euclidean Minimum Spanning Trees (EMST). It heavily relies on {RcppMLPACK} and {Rcpp}, working as a wrapper for the fast EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> implemented in <em>mlpack</em> - the C++ Machine Learning library (Curtin, 2013)<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>. The package also provides functions and an S3 method for readily plotting Minimum Spanning Trees (MST) using either R {base}, {scatterplot3d} or {ggplot2} style. <a href="https://CRAN.R-project.org/package=emstreeR" rel="external nofollow noopener" target="_blank">[CRAN]</a> <a href="https://www.github.com/allanvc/emstreeR" rel="external nofollow noopener" target="_blank">[Github]</a></p> <p>Examples:</p> <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># finding an EMST in 3D data:</span><span class="w">
+</span><span class="c1"># generating artificial data</span><span class="w">
+</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">99</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w">
+</span><span class="n">d1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.5</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="c1"># 3d</span><span class="w">
+</span><span class="n">d2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.3</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">d3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.4</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span><span class="n">d2</span><span class="p">,</span><span class="n">d3</span><span class="p">)</span><span class="w"> </span><span class="c1"># showing a matrix input</span><span class="w">
+</span><span class="c1"># MST:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">emstreeR</span><span class="p">)</span><span class="w">
+</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="c1"># plot:</span><span class="w">
+</span><span class="n">plotMST3D</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xaxis"</span><span class="p">,</span><span class="w"> </span><span class="n">col.pts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"orange"</span><span class="p">,</span><span class="w"> </span><span class="n">col.segts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"a simple MST 3D plot"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div> <hr> <p>[4] <strong>onlineretail</strong>: Online Retail Dataset<br> Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in this package with the donor’s permission, Dr. Daqing Chen.<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> <sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup>. <a href="https://CRAN.R-project.org/package=onlineretail" rel="external nofollow noopener" target="_blank">[CRAN]</a> <a href="https://www.github.com/allanvc/onlineretail" rel="external nofollow noopener" target="_blank">[Github]</a></p> <p>Examples:</p> <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># how to load the data:</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">onlineretail</span><span class="p">)</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="n">onlineretail</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div> <hr> <hr> <h2 id="private-r-packages">Private R packages:</h2> <p>[5] <strong>proPNLD</strong>: An R package to forecast the number of students in all Brazilian schools and grades for the PNLD program<br> Description: Execute the two-step-forecasting (h=2) on the number of students in each grade in every Brazilian public school, fitting more than 800,000 Holt-Winters Exponential Smoothing time-series models. <a href="https://www.github.com/allanvc/proPNLD" rel="external nofollow noopener" target="_blank">[Github]</a></p> <hr> <hr> <h2 id="other-software">Other software:</h2> <p>[1] <strong>FisFa</strong>: Fiscaliza Fatura - contract invoice analysis automation (discontinued) Description: FisFa is a software developed (mostly) in R and Python. Its aim is to automate contract management tasks in Fies - the Brazilian Higher Education Fund. Previously to FisFa, contract invoices from banks used to take more than two weeks to be analyzed by the Fund staff. After FisFa, this time has dropped to roughly 1 minute. The quality of the analysis also has considerably improved. FisFa provides several reports about the invoice and also indicates possible errors in data. Due to monthly errors found by FisFa in the invoices, the Brazilian Government saved more than US$50 million between 2016 and 2018.<br> License: FisFa is registered under the Brazilian Patent <strong>BR 51 2016 000212 3</strong>. Awards: As a recognition for the aforementioned results, the software received two national recognition awards:</p> <ul> <li>Standout Project in Contract Management. 4th ANGC Awards - Best Initiatives Of The Year on Contract Management, Sep. 2018.</li> <li>1st Place, Strengthening Internal Controls in the Public Administration. CGU’s 4th Good Practices Award, Dec. 2016.</li> </ul> <p><img src="/img/fisfa.jpg" alt="FisFa screenshot" class="regimg"> </p> <div class="footnotes" role="doc-endnotes"> <ol> <li id="fn:1"> <p>WB.March, P.Ram, AG.Gray (2010). Fast Euclidian minimum spanning tree: algorithm analysis, and applications. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA, <a href="https://doi.org/10.1145/1835804.1835882" rel="external nofollow noopener" target="_blank">doi:10.1145/1835804.1835882</a>. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p> </li> <li id="fn:2"> <p>RR.Curtin <em>et al.</em> (2013). Mlpack: A scalable C++ machine learning library. Journal of Machine Learning Research, v. 14, 2013. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p> </li> <li id="fn:3"> <p>D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. <a href="https://doi.org/10.1057/dbm.2012.17" rel="external nofollow noopener" target="_blank">doi:10.1057/dbm.2012.17</a>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p> </li> <li id="fn:4"> <p>Dr. Daqing’s ResearchGate <a href="https://www.researchgate.net/profile/Daqing_Chen" rel="external nofollow noopener" target="_blank">page</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p> </li> </ol> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Allan Quadros. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Built from R with <a href="https://github.com/allanvc/jekylldown" target="_blank" rel="external nofollow noopener">jekylldown</a> 0.3.0. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/al_math/js/mathjax-setup.js"></script> <script src="/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/al_img_tools/js/zoom.js"></script> <script defer src="/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
 
-    
-    <link rel="stylesheet" href="../sass/researcher.min.css">
-
-    
-        <link rel="icon" type="image/ico" href="../favicon.ico">
-    
-
-    
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/";
+    },
+  },{id: "nav-publications",
+          title: "publications",
+          description: "publications by categories in reversed chronological order. generated by jekyll-scholar.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-software",
+          title: "software",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/software/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-talks",
+          title: "talks",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/talks/";
+          },
+        },{id: "nav-teaching",
+          title: "teaching",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
+          },
+        },{id: "nav-contact",
+          title: "contact",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/contact/";
+          },
+        },{id: "post-39-mrpostman-39-imap-tools-for-r-in-a-tidy-way",
         
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131372002-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+          title: "&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2019/new-package-mrpostman/";
+          
+        },
+      },{id: "post-announcing-the-new-39-emstreer-39-package",
+        
+          title: "Announcing the new &#39;emstreeR&#39; package",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2018/new-package-emstreer/";
+          
+        },
+      },{id: "post-scraping-google-news-with-39-rvest-39",
+        
+          title: "Scraping Google News with &#39;rvest&#39;",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2018/google-news-scraping/";
+          
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/allanvc", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/allan-vieira", "_blank");
+        },
+      },{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/assets/pdf/cv.pdf", "_blank");
+        },
+      },{
+        id: 'social-researchgate',
+        title: 'ResearchGate',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.researchgate.net/profile/Allan_Quadros/", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=allanvcq", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
 
-    
-</head>
-
-    <body><div class="container mt-5">
-    <nav class="navbar navbar-expand-sm flex-column flex-sm-row p-0">
-        <a class="navbar-brand mr-sm-auto" href="../">Allan Quadros</a>
-        <div class="navbar-nav flex-row">
-            
-                
-                
-                    <a class="nav-item nav-link" href="../">🏛︎</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../publications">Publications</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../software">Software</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../post">Posts</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../talks">Talks</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../courses">Courses</a>
-                    
-                        <span class="nav-item navbar-text mx-1">/</span>
-                    
-                
-                    <a class="nav-item nav-link" href="../contact">Contact</a>
-                    
-                
-            
-        </div>
-    </nav>
-</div>
-<hr>
-<div id="content">
-<div class="container">
-    <h1 id="software">Software</h1>
-<p>Below you will find more information about the main software projects that I have been working on.</p>
-<hr>
-<h2 id="r-packages">R packages:</h2>
-<p><figure class="pkg">
-    <img src="../img/mRpostman.png"/> 
-</figure>
- <!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --></p>
-<p>[1] <strong>mRpostman</strong>: An IMAP Client for R<br>
-Description: <code>mRpostman</code> is an easy-to-use IMAP client that provides tools for message searching, selective fetching of message attributes, mailbox management, attachment extraction, and several other IMAP features, paving the way for email data analysis in R.  <a href="https://allanvc.github.io/mRpostman">[Official website]</a> <a href="https://CRAN.R-project.org/package=mRpostman">[CRAN]</a> <a href="https://www.github.com/allanvc/mRpostman">[Github]</a></p>
-<p>Examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to download attachment files of selected messages:</span>
-<span style="color:#a6e22e">library</span>(mRpostman)
-<span style="color:#75715e"># configure the IMAP connection:</span>
-con <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">configure_imap</span>(
-  url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;imaps://outlook.office365.com&#34;</span>,
-  username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user@company.com&#34;</span>,
-  password<span style="color:#f92672">=</span>rstudioapi<span style="color:#f92672">::</span><span style="color:#a6e22e">askForPassword</span>()
-)
-<span style="color:#75715e"># select folder</span>
-con<span style="color:#f92672">$</span><span style="color:#a6e22e">select_folder</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;INBOX&#34;</span>)
-<span style="color:#75715e"># search by date and fetch messages</span>
-con<span style="color:#f92672">$</span><span style="color:#a6e22e">search_on</span>(date_char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;24-Nov-2020&#34;</span>) <span style="color:#f92672">%&gt;%</span>
-  con<span style="color:#f92672">$</span><span style="color:#a6e22e">fetch_attachments</span>()
-</code></pre></div><hr>
-<p><figure class="pkg">
-    <img src="../img/emstreeR.png"/> 
-</figure>
- <!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --></p>
-<p>[2] <strong>emstreeR</strong>: Tools for Fast Computing and Plotting Euclidean Minimum Spanning Trees<br>
-Description: <code>emstreeR</code> is a package for fast and easy computation of Euclidean Minimum Spanning Trees (EMST). It heavily relies on {RcppMLPACK} and {Rcpp}, working as a wrapper for the fast EMST Dual-Tree Boruvka algorithm (March, Ram, Gray, 2010)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> implemented in <em>mlpack</em> - the C++ Machine Learning library (Curtin, 2013)<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>. The package also provides functions and an S3 method for readily plotting Minimum Spanning Trees (MST) using either R {base}, {scatterplot3d} or {ggplot2} style. <a href="https://CRAN.R-project.org/package=emstreeR">[CRAN]</a> <a href="https://www.github.com/allanvc/emstreeR">[Github]</a></p>
-<p>Examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># finding an EMST in 3D data:</span>
-<span style="color:#75715e"># generating artificial data</span>
-n <span style="color:#f92672">=</span> <span style="color:#ae81ff">99</span>
-<span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1984</span>)
-d1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">rnorm</span>(n, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">-2</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">.5</span>), n<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>) <span style="color:#75715e"># 3d</span>
-d2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">rnorm</span>(n, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">.3</span>), n<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
-d3 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">rnorm</span>(n, mean <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, sd <span style="color:#f92672">=</span> <span style="color:#ae81ff">.4</span>), n<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
-d <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rbind</span>(d1,d2,d3) <span style="color:#75715e"># showing a matrix input</span>
-<span style="color:#75715e"># MST:</span>
-<span style="color:#a6e22e">library</span>(emstreeR)
-out <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ComputeMST</span>(d, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
-<span style="color:#75715e"># plot:</span>
-<span style="color:#a6e22e">plotMST3D</span>(out, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xaxis&#34;</span>, col.pts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;orange&#34;</span>, col.segts <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>, main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a simple MST 3D plot&#34;</span>)
-</code></pre></div><hr>
-<p>[3] <strong>onlineretail</strong>: Online Retail Dataset<br>
-Description: Transactions occurring for a UK-based and registered, non-store online retail between 01/12/2010 and 09/12/2011. The dataset is included in this package with the donor&rsquo;s permission, Dr. Daqing Chen.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> <sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>. <a href="https://CRAN.R-project.org/package=onlineretail">[CRAN]</a> <a href="https://www.github.com/allanvc/onlineretail">[Github]</a></p>
-<p>Examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># how to load the data:</span>
-<span style="color:#a6e22e">library</span>(onlineretail)
-<span style="color:#a6e22e">data</span>(onlineretail)
-</code></pre></div><hr>
-<hr>
-<h2 id="private-r-packages">Private R packages:</h2>
-<p>[4] <strong>proPNLD</strong>: An R package to forecast the number of students in all Brazilian schools and grades for the PNLD program<br>
-Description: Execute the two-step-forecasting (h=2) on the number of students in each grade in every Brazilian public school, fitting more than 800,000 Holt-Winters Exponential Smoothing time-series models. <a href="https://www.github.com/allanvc/proPNLD">[Github]</a></p>
-<hr>
-<hr>
-<h2 id="other-software">Other software:</h2>
-<p>[1] <strong>FisFa</strong>:  Fiscaliza Fatura - contract invoice analysis automation (discontinued)
-Description: FisFa is a software developed (mostly) in R and Python. Its aim is to automate contract management tasks in Fies - the Brazilian Higher Education Fund. Previously to FisFa, contract invoices from banks used to take more than two weeks to be analyzed by the Fund staff. After FisFa, this time has dropped to roughly 1 minute. The quality of the analysis also has considerably improved. FisFa provides several reports about the invoice and also indicates possible errors in data. Due to monthly errors found by FisFa in the invoices, the Brazilian Government saved more than US$50 million between 2016 and 2018.<br>
-License: FisFa is registered under the Brazilian Patent <strong>BR 51 2016 000212 3</strong>.
-Awards: As a recognition for the aforementioned results, the software received two national recognition awards:</p>
-<ul>
-<li>Standout Project in Contract Management. 4th ANGC Awards - Best Initiatives Of The Year on Contract Management, Sep. 2018.</li>
-<li>1st Place, Strengthening Internal Controls in the Public Administration. CGU’s 4th Good Practices Award, Dec. 2016.</li>
-</ul>
-<p><figure class="regimg">
-    <img src="../img/fisfa.jpg"
-         alt="FisFa screenshot"/> <figcaption>
-            <p>FisFa screenshot</p>
-        </figcaption>
-</figure>
- <!-- incluida a classe pkg no arquivo theme/hugo-researcher/assets/sass/researcher.css --></p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>WB.March, P.Ram, AG.Gray (2010). Fast Euclidian minimum spanning tree: algorithm analysis, and applications. 16th ACM SIGKDD International Conference on Knowledge Discovery and Data mining, July 25-28 2010. Washington, DC, USA, <a href="https://doi.org/10.1145/1835804.1835882">doi:10.1145/1835804.1835882</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>RR.Curtin <em>et al.</em> (2013). Mlpack: A scalable C++ machine learning library. Journal of Machine Learning Research, v. 14, 2013. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3" role="doc-endnote">
-<p>D.Chen, S.Sain, K.Guo (2012), Data mining for the online retail industry: A case study of RFM model-based customer segmentation using data mining, Journal of Database Marketing and Customer Strategy Management, Vol. 19, No. 3, pp. 197-208, 2012 (Published online before print: 27 August 2012. <a href="https://doi.org/10.1057/dbm.2012.17">doi:10.1057/dbm.2012.17</a>. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:4" role="doc-endnote">
-<p>Dr. Dqing´s ResearchGate <a href="https://www.researchgate.net/profile/Daqing_Chen">page</a> <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-
-</div>
-
-        </div>
-    <div id="footer">
-        <hr>
-        <div class="container text-center mb-2">
-            <a href="https://github.com/ojroques/hugo-researcher"><small>Powered by {pkgdown}, based on the Hugo Researcher theme</small></a>
-        </div>
-    </div>
-
-</body>
-</html>
+</script> <script src="/assets/al_search/js/shortcut-key.js"></script> </body> </html>
