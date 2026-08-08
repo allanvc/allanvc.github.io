@@ -21,7 +21,7 @@ Allan Quadros
 > Jacksonville, FL 32224-7699  
 > United States
 
----
+<!-- ---
 
 ## Social
 
@@ -29,3 +29,5 @@ Allan Quadros
 3. [GitHub](https://github.com/allanvc)
 3. [ResearchGate](https://www.researchgate.net/profile/Allan_Quadros)
 4. [StackOverflow](https://stackoverflow.com/users/8287109/allanvc)
+
+-->
