@@ -29,7 +29,7 @@ latest_posts:
 
 I'm an Instructor of Operations Management and Information Systems at the Coggin College of Business, [University of North Florida](https://www.unf.edu/coggin/), where I teach operations management and data analytics courses. I previously completed my Ph.D. in Statistics at [Kansas State University](https://www.k-state.edu/stats/). I'm largely interested in Bayesian modeling, computational statistics, reliability modelling, financial econometrics and their applications.
 
-Prior to graduate school, I spent several years at Brazil's National Fund for Educational Development, Ministry of Education, where I founded and led the agency's first data science team, delivering fraud-detection and forecasting systems — including FisFa, credited with over US$50 million in savings to the Brazilian federal government. You can find more about my research interests and publications on my [here](/publications/) and [here](/software/). 
+Prior to graduate school, I spent several years at Brazil's National Fund for Educational Development, Ministry of Education, where I founded and led the agency's first data science team, delivering fraud-detection and forecasting systems — including FisFa, credited with over US$50 million in savings to the Brazilian federal government. You can find more about my research interests and publications [here](/publications/) and [here](/software/). 
 
 <!-- I also hold a B.Sc. in Statistics from the University of Brasilia and an M.Sc. in Economic Development from Unicamp. -->
 
