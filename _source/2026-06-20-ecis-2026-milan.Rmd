@@ -1,0 +1,61 @@
+---
+layout: post
+title: ECIS 2026 in Milan - Spatiotemporal Patterns of Chronic Care Delivery
+date: '2026-06-20'
+author: Allan Quadros
+tags:
+- spatial statistics
+- healthcare
+- conference
+- ECIS
+categories: Conferences
+---
+
+## ECIS 2026 - Bocconi University, Milan
+
+Between June 11 and 17, 2026, I attended the **34th European Conference on Information Systems (ECIS 2026)**, hosted by Bocconi University in Milan, Italy, under the theme "Reimagining Digital Technology for Business, Management, and Society". On Monday, June 15, I presented our poster at the **TREO Forum** (Technology, Research, Education, Opinion):
+
+> **Spatiotemporal Patterns of Chronic Care Delivery Before and During the Pandemic**
+> Di (Richard) Shang (University of North Florida), Allan Quadros (University of North Florida) and Cynthia Williams (University of Central Florida)
+
+<div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+<img alt="ECIS 2026 registration desks at Bocconi" style="max-width:100%; width:48%; min-width:280px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/ecis1.jpg" />
+<img alt="In front of the ECIS 2026 sign" style="max-width:100%; width:48%; min-width:280px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/ecis3.jpg" />
+</div>
+<center><em>Registration desks in the main hall of Bocconi's new campus, and the ECIS 2026 sign at the entrance.</em></center>
+
+### The paper
+
+**Abstract.** The COVID-19 pandemic disrupted healthcare delivery worldwide, yet the extent to which chronic care continuity was affected across geographic regions remains poorly understood. This study analyzes Medicaid clinical encounter data for patients with chronic obstructive pulmonary disease, heart failure, and diabetes across all 67 Florida counties (2019-2020) to examine spatiotemporal patterns of care delivery before and during the pandemic. Using nonparametric tests, linear mixed models, and Cochran-Mantel-Haenszel analysis, we find that visit intervals increased approximately 37% during the pandemic, and the odds of a clinically meaningful care gap exceeding six months more than doubled (OR = 2.14). Network analysis of inter-county patient flows reveals that rural counties systematically depend on urban providers for chronic disease care, with outflow rates exceeding 70%. Despite this structural dependence, the pandemic's impact on care continuity was geographically uniform across urban and rural settings.
+
+The study uses 574,880 chronic disease-related encounters from 40,975 Medicaid/Medicare patients across the 67 Florida counties (39 urban, 28 rural). Care continuity is assessed on the 35,033 patients with at least two visits (351,284 inter-visit intervals), comparing a pre-pandemic period (January 2019 to February 2020) to the period from March 2020 onward. Continuity is measured through visit spacing (median inter-visit intervals, Wilcoxon tests and a linear mixed model on log-intervals with patients nested within counties) and clinically meaningful care gaps (intervals above 180 days, compared with a CMH test stratified by county and per-county tests under Benjamini-Hochberg correction). Network analysis then characterizes inter-county care dependence through county-level outflow rates and the in-degree centrality of provider counties, with separate networks for in-person and telehealth visits.
+
+The TREO Forum is a lively format: a poster session with open discussion, meant for research in progress. The feedback we received from the information systems community was very useful for the next steps of this project.
+
+<center>
+<img alt="Poster session at the ECIS 2026 TREO Forum" style="max-width: 100%; width: 700px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/ecis-poster.jpg" />
+<br><em>The TREO Forum poster session at Bocconi University; our poster is the one on the right.</em>
+</center>
+
+* Paper in the AIS eLibrary: [https://aisel.aisnet.org/treos_ecis2026/87/](https://aisel.aisnet.org/treos_ecis2026/87/){:target="_blank"}
+* Conference website: [ECIS 2026](https://ecis2026.it/){:target="_blank"}
+
+### About Bocconi and Milan
+
+Bocconi University is one of the leading business and economics schools in Europe. The conference took place in its new campus, designed by the Japanese studio SANAA: a set of flowing glass and concrete buildings that looks like nothing else in the neighborhood. The letters spelling "Knowledge that matters", the university's motto, greet you at the entrance.
+
+<div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:flex-start;">
+<img alt="Knowledge that matters - Bocconi's motto at the new campus" style="max-width:100%; width:58%; min-width:280px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/ecis2.jpg" />
+<img alt="Courtyard of Bocconi's SANAA campus, under the canopy with the university's departments and research centers written on the ceiling" style="max-width:100%; width:38%; min-width:240px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/bocconi-courtyard.jpg" />
+</div>
+<center><em>"Knowledge that matters" at the SANAA campus of Bocconi University, and the courtyard under the canopy, with the departments and research centers lettered across the concrete ceiling.</em></center>
+
+Milan is Italy's financial and design capital, and it manages to be a very functional modern city while keeping its historical core intact. The Duomo, the Gothic cathedral that took almost six centuries to complete, sits at the center of everything; right next to it, the Galleria Vittorio Emanuele II, from the 1860s, is one of the oldest shopping arcades in the world, with its iron-and-glass dome and mosaic floors. In June, the city is warm and busy, and the long evenings are perfect for walking between the two.
+
+<div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+<img alt="Duomo di Milano" style="max-width:100%; width:48%; min-width:280px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/milan2.jpg" />
+<img alt="Galleria Vittorio Emanuele II" style="max-width:100%; width:48%; min-width:280px;" src="{{ site.baseurl }}/assets/img/posts/2026-06-20-ecis-2026-milan/milan1.jpg" />
+</div>
+<center><em>The Duomo di Milano and the glass dome of the Galleria Vittorio Emanuele II.</em></center>
+
+Next stop: Zakynthos, Greece, for QFRA 2026.

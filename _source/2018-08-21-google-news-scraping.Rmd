@@ -19,7 +19,7 @@ This is an enhanced and substantially different version of the original article 
 
 This is an example of how to scrape Google News website with the `rvest` package. 
 
-First off, you should take a look at the Google News website [HERE](https://news.google.com/){target="_blank"}, which I reproduce below:
+First off, you should take a look at the Google News website [HERE](https://news.google.com/){:target="_blank"}, which I reproduce below:
 
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
 

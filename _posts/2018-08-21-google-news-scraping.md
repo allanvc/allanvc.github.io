@@ -12,14 +12,14 @@ categories: R
 
 ## Scraping Google News with `rvest` (2020's update)
 
-Updated on 2026-08-06.
+Updated on 2026-08-25.
 This is an enhanced and substantially different version of the original article published in R-Bloggers in 2018.
 
 ---
 
 This is an example of how to scrape Google News website with the `rvest` package. 
 
-First off, you should take a look at the Google News website [HERE](https://news.google.com/){target="_blank"}, which I reproduce below:
+First off, you should take a look at the Google News website [HERE](https://news.google.com/){:target="_blank"}, which I reproduce below:
 
 <!-- ![](/post/web-scrap/![](/web-scrap/2018-08-21-google_news_scraping_files/google_news_screenshot.png)2018-08-21-google_news_scraping_files/google_news_screenshot.png) -->
 

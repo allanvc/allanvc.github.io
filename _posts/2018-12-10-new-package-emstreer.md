@@ -59,19 +59,22 @@ cities_location <- data.frame(location = c("Passo Fundo, Brazil",
 
 
 {% highlight text %}
-## Warning in readLines(con <- file("../../../API_key.txt")): cannot open file '../../../API_key.txt': No such file or directory
+## Warning in readLines(con <- file("../../../API_key.txt")): cannot open file
+## '../../../API_key.txt': No such file or directory
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## Error in readLines(con <- file("../../../API_key.txt")): cannot open the connection
+## Error in `readLines()`:
+## ! cannot open the connection
 {% endhighlight %}
 
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): object 'API_key' not found
+## Error:
+## ! object 'API_key' not found
 {% endhighlight %}
 
 
@@ -103,7 +106,8 @@ df_location <- cbind(cities_location, geo_location)
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): object 'geo_location' not found
+## Error:
+## ! object 'geo_location' not found
 {% endhighlight %}
 
 Let's plot the map, so we can have an initial idea about what we are dealing with.
@@ -123,7 +127,8 @@ get_stamenmap(map_grid, zoom = 5) %>% ggmap()+
 
 
 {% highlight text %}
-## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.
+## Error in `get_stamenmap()`:
+## ! Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.
 {% endhighlight %}
 
 
@@ -140,7 +145,8 @@ out <- ComputeMST(df_location[,2:3])
 
 
 {% highlight text %}
-## Error in eval(expr, envir, enclos): object 'df_location' not found
+## Error:
+## ! object 'df_location' not found
 {% endhighlight %}
 
 
@@ -152,7 +158,8 @@ out
 
 
 {% highlight text %}
-## [1] "0.1.8 | 3 vignette(s)"
+## Error:
+## ! object 'out' not found
 {% endhighlight %}
 
 As a result, we have a data.frame containing our original data and three more columns: `from`, `to`, and `distance`. This information is the Minimum Spanning Tree and will be used for plotting.
@@ -175,7 +182,8 @@ get_stamenmap(map_grid, zoom = 5) %>% ggmap()+
 
 
 {% highlight text %}
-## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.
+## Error in `get_stamenmap()`:
+## ! Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.
 {% endhighlight %}
 
 Once you have the information about the minimum route, it is easy to see that you will have to install gas distribution hubs in cities that will have more than two incoming or outgoing links, such as Assuncion in Paraguay. Based on that information or other criteria such as connectivity or even by cutting the largest edge, you can also define or separate regions of operations. What I mean by this is that you can also use Minimum Spanning Trees in clustering problems. Nonetheless, let's save that topic for another post.
@@ -221,9 +229,12 @@ ggplot(data = out, aes(x = x, y = y, from = from, to = to))+
 
 
 {% highlight text %}
-## Warning: The following aesthetics were dropped during statistical transformation: from and to.
-## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
-## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?
+## Warning: The following aesthetics were dropped during statistical transformation: from
+## and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-10]({{ site.baseurl }}/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-10-1.png)
@@ -242,9 +253,12 @@ ggplot(data = out, aes(x = x, y = y, from=from, to=to))+
 
 
 {% highlight text %}
-## Warning: The following aesthetics were dropped during statistical transformation: from and to.
-## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
-## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?
+## Warning: The following aesthetics were dropped during statistical transformation: from
+## and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?
 {% endhighlight %}
 
 ![plot of chunk unnamed-chunk-11]({{ site.baseurl }}/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-11-1.png)
@@ -299,7 +313,8 @@ plot_ly(showlegend = T) %>%
 
 
 {% highlight text %}
-## Error in loadNamespace(name): there is no package called 'webshot'
+## Error in `loadNamespace()`:
+## ! there is no package called 'webshot'
 {% endhighlight %}
 
 That's all!
