@@ -22,26 +22,34 @@
                                            </span><span class="s2">"Rio de Janeiro, Brazil"</span><span class="p">,</span><span class="w">
                                            </span><span class="s2">"Campo Grande, Brazil"</span><span class="p">,</span><span class="w">
                                            </span><span class="s2">"Recife, Brazil"</span><span class="p">),</span><span class="w"> 
-                              </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning in readLines(con &lt;- file("../../../API_key.txt")): cannot open file '../../../API_key.txt': No such file or directory</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in readLines(con &lt;- file("../../../API_key.txt")): cannot open the connection</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'API_key' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## register your Google API</span><span class="w">
+                              </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning in readLines(con &lt;- file("../../../API_key.txt")): cannot open file
+## '../../../API_key.txt': No such file or directory</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `readLines()`:
+## ! cannot open the connection</code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error:
+## ! object 'API_key' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## register your Google API</span><span class="w">
 </span><span class="n">register_google</span><span class="p">(</span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rstudio</span><span class="o">::</span><span class="s2">"AIza...8RLaPBOQ"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## get latitude and longitude</span><span class="w">
 </span><span class="n">geo_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geocode</span><span class="p">(</span><span class="n">cities_location</span><span class="o">$</span><span class="n">location</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `geocode()`:
 ## ! Google now requires an API key; see `ggmap::register_google()`.</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## combine data:</span><span class="w">
-</span><span class="n">df_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">cities_location</span><span class="p">,</span><span class="w"> </span><span class="n">geo_location</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'geo_location' not found</code></pre></figure> <p>Let’s plot the map, so we can have an initial idea about what we are dealing with.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># coordinates for South America</span><span class="w">
+</span><span class="n">df_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">cities_location</span><span class="p">,</span><span class="w"> </span><span class="n">geo_location</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error:
+## ! object 'geo_location' not found</code></pre></figure> <p>Let’s plot the map, so we can have an initial idea about what we are dealing with.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># coordinates for South America</span><span class="w">
 </span><span class="n">map_grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-80</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-40</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-20</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> 
 
 </span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># we wanna use pipes</span><span class="w">
 
 </span><span class="n">get_stamenmap</span><span class="p">(</span><span class="n">map_grid</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggmap</span><span class="p">()</span><span class="o">+</span><span class="w">
   </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_location</span><span class="p">,</span><span class="w">
-           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Now is when <code class="language-plaintext highlighter-rouge">emstreeR</code> comes in handy. We pass the point columns as argument to <code class="language-plaintext highlighter-rouge">computeMST()</code> and it calculates the minimum route connecting all the points, i.e. the Euclidean Minimum Spanning Tree.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## MST:</span><span class="w">
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `get_stamenmap()`:
+## ! Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Now is when <code class="language-plaintext highlighter-rouge">emstreeR</code> comes in handy. We pass the point columns as argument to <code class="language-plaintext highlighter-rouge">computeMST()</code> and it calculates the minimum route connecting all the points, i.e. the Euclidean Minimum Spanning Tree.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## MST:</span><span class="w">
 </span><span class="n">library</span><span class="p">(</span><span class="n">emstreeR</span><span class="p">)</span><span class="w">
-</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">df_location</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">])</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in eval(expr, envir, enclos): object 'df_location' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">out</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## [1] "0.1.8 | 3 vignette(s)"</code></pre></figure> <p>As a result, we have a data.frame containing our original data and three more columns: <code class="language-plaintext highlighter-rouge">from</code>, <code class="language-plaintext highlighter-rouge">to</code>, and <code class="language-plaintext highlighter-rouge">distance</code>. This information is the Minimum Spanning Tree and will be used for plotting.</p> <p>You can silence the output of the algorithm by setting <code class="language-plaintext highlighter-rouge">verbose=FALSE</code> in <code class="language-plaintext highlighter-rouge">computeMST()</code>.</p> <p>To better visualize the result, we plot the map again, but now using the {ggplot2}’s extension provided in <code class="language-plaintext highlighter-rouge">emstreeR</code>: <code class="language-plaintext highlighter-rouge">stat_MST()</code>.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## Plot:</span><span class="w">
+</span><span class="n">out</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ComputeMST</span><span class="p">(</span><span class="n">df_location</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">])</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error:
+## ! object 'df_location' not found</code></pre></figure> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">out</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error:
+## ! object 'out' not found</code></pre></figure> <p>As a result, we have a data.frame containing our original data and three more columns: <code class="language-plaintext highlighter-rouge">from</code>, <code class="language-plaintext highlighter-rouge">to</code>, and <code class="language-plaintext highlighter-rouge">distance</code>. This information is the Minimum Spanning Tree and will be used for plotting.</p> <p>You can silence the output of the algorithm by setting <code class="language-plaintext highlighter-rouge">verbose=FALSE</code> in <code class="language-plaintext highlighter-rouge">computeMST()</code>.</p> <p>To better visualize the result, we plot the map again, but now using the {ggplot2}’s extension provided in <code class="language-plaintext highlighter-rouge">emstreeR</code>: <code class="language-plaintext highlighter-rouge">stat_MST()</code>.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## Plot:</span><span class="w">
 </span><span class="c1"># we use the same grid map    </span><span class="w">
 </span><span class="n">get_stamenmap</span><span class="p">(</span><span class="n">map_grid</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggmap</span><span class="p">()</span><span class="o">+</span><span class="w">
   </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w">
            </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="o">=</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="o">=</span><span class="n">to</span><span class="p">),</span><span class="w"> 
            </span><span class="n">colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="o">+</span><span class="w">
-  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in get_stamenmap(map_grid, zoom = 5): Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Once you have the information about the minimum route, it is easy to see that you will have to install gas distribution hubs in cities that will have more than two incoming or outgoing links, such as Assuncion in Paraguay. Based on that information or other criteria such as connectivity or even by cutting the largest edge, you can also define or separate regions of operations. What I mean by this is that you can also use Minimum Spanning Trees in clustering problems. Nonetheless, let’s save that topic for another post.</p> <p>Below, I will present other things you can do with ‘emstreeR’.</p> <p>‘emstreeR’ provides an S3 method for the {base} function <code class="language-plaintext highlighter-rouge">plot()</code>. It is easy to make simple 2D plots with that.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artifical data for 2D plots:</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `get_stamenmap()`:
+## ! Stamen map tiles are now hosted by Stadia Maps, use `get_stadiamap()`.</code></pre></figure> <p>Once you have the information about the minimum route, it is easy to see that you will have to install gas distribution hubs in cities that will have more than two incoming or outgoing links, such as Assuncion in Paraguay. Based on that information or other criteria such as connectivity or even by cutting the largest edge, you can also define or separate regions of operations. What I mean by this is that you can also use Minimum Spanning Trees in clustering problems. Nonetheless, let’s save that topic for another post.</p> <p>Below, I will present other things you can do with ‘emstreeR’.</p> <p>‘emstreeR’ provides an S3 method for the {base} function <code class="language-plaintext highlighter-rouge">plot()</code>. It is easy to make simple 2D plots with that.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artifical data for 2D plots:</span><span class="w">
 </span><span class="n">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w">
 </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">15</span><span class="w">
 </span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-0.2</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="m">0.2</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">0.2</span><span class="p">))</span><span class="w">
@@ -56,15 +64,21 @@
 </span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
 </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to</span><span class="p">))</span><span class="o">+</span><span class="w"> 
   </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w"> 
-  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from and to.
-## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
-## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p> <p>If you want something fancier, you can use the <code class="language-plaintext highlighter-rouge">geom=curve</code> argument:</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## 2D plot with ggplot2:</span><span class="w">
+  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from
+## and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10"></p> <p>If you want something fancier, you can use the <code class="language-plaintext highlighter-rouge">geom=curve</code> argument:</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## 2D plot with ggplot2:</span><span class="w">
 </span><span class="c1">#library(ggplot2)</span><span class="w">
 </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="o">=</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="o">=</span><span class="n">to</span><span class="p">))</span><span class="o">+</span><span class="w"> 
   </span><span class="n">geom_point</span><span class="p">()</span><span class="o">+</span><span class="w"> 
-  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s2">"curve"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from and to.
-## ℹ This can happen when ggplot fails to infer the correct grouping structure in the data.
-## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p> <p>You can also make 3D MST plots with <code class="language-plaintext highlighter-rouge">emstreeR</code>. It provides a wrapper for plotting 3D scatter plots, using the {scatterplot3d} package.</p> <p>Let’s create 3D artificial data and compute the MST.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artificial data for 3D plots:</span><span class="w">
+  </span><span class="n">stat_MST</span><span class="p">(</span><span class="n">geom</span><span class="o">=</span><span class="s2">"curve"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Warning: The following aesthetics were dropped during statistical transformation: from
+## and to.
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
+##   the data.
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+##   variable into a factor?</code></pre></figure> <p><img src="/assets/img/posts/2018-12-10-new-package-emstreer/unnamed-chunk-11-1.png" alt="plot of chunk unnamed-chunk-11"></p> <p>You can also make 3D MST plots with <code class="language-plaintext highlighter-rouge">emstreeR</code>. It provides a wrapper for plotting 3D scatter plots, using the {scatterplot3d} package.</p> <p>Let’s create 3D artificial data and compute the MST.</p> <figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1">## artificial data for 3D plots:</span><span class="w">
 </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">99</span><span class="w">
 </span><span class="n">set.seed</span><span class="p">(</span><span class="m">1984</span><span class="p">)</span><span class="w">
 </span><span class="n">d1</span><span class="o">&lt;-</span><span class="n">matrix</span><span class="p">(</span><span class="n">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">-2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">.5</span><span class="p">),</span><span class="w"> </span><span class="n">n</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="c1"># 3d</span><span class="w">
@@ -86,7 +100,8 @@
   </span><span class="n">add_markers</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ord_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V2</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V3</span><span class="p">,</span><span class="w">
               </span><span class="n">marker</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">2.5</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">"points"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
   </span><span class="n">add_paths</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ord_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V2</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">V3</span><span class="p">,</span><span class="w">
-            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="s2">"red"</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">"edges"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in loadNamespace(name): there is no package called 'webshot'</code></pre></figure> <p>That’s all!</p> <ul> <li>CRAN version: https://cran.r-project.org/package=emstreeR</li> <li>Dev version: https://github.com/allanvc/emstreeR</li> </ul> <hr> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2019/new-package-mrpostman/">'mRpostman' - IMAP Tools for R in a Tidy Way</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2018/google-news-scraping/">Scraping Google News with 'rvest'</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Allan Quadros. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Built from R with <a href="https://github.com/allanvc/jekylldown" target="_blank" rel="external nofollow noopener">jekylldown</a> 0.3.2. </div> </footer> <script>
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I</span><span class="p">(</span><span class="s2">"red"</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s2">"edges"</span><span class="p">)</span></code></pre></figure> <figure class="highlight"><pre><code class="language-text" data-lang="text">## Error in `loadNamespace()`:
+## ! there is no package called 'webshot'</code></pre></figure> <p>That’s all!</p> <ul> <li>CRAN version: https://cran.r-project.org/package=emstreeR</li> <li>Dev version: https://github.com/allanvc/emstreeR</li> </ul> <hr> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/mrpostman-1-4-0/">'mRpostman' 1.4.0 is on CRAN</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/new-package-treess/">'treeSS' - Tree-spatial scan statistics in R</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/qfra-2026-zakynthos/">QFRA 2026 in Zakynthos - Distribution-Based Algorithms for Pairs Trading</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/ecis-2026-milan/">ECIS 2026 in Milan - Spatiotemporal Patterns of Chronic Care Delivery</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/bayesian-pairs-trading-quantitative-finance/">A Bayesian approach to distribution-based signals in pairs trading</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2026/bread-xylanases-journal-of-food-science/">A collaboration in food science - xylanases and bread quality in the Journal of Food Science</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2025/siam-fm25-miami/">Presenting at the SIAM Conference on Financial Mathematics and Engineering (FM25)</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2025/tree-spatial-scan-statistic/">A tree-spatial scan statistic - new paper in Environmental and Ecological Statistics</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/gsc-award-excellence-in-teaching/">GSC Award for Excellence in Teaching at K-State</a> </li> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/blog/2024/mrpostman-journal-of-open-research-software/">'mRpostman: An IMAP Client for R' published in the Journal of Open Research Software</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Allan Quadros. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Built from R with <a href="https://github.com/allanvc/jekylldown" target="_blank" rel="external nofollow noopener">jekylldown</a> 0.3.2. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
@@ -146,7 +161,161 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/contact/";
           },
-        },{id: "post-39-mrpostman-39-imap-tools-for-r-in-a-tidy-way",
+        },{id: "post-39-mrpostman-39-1-4-0-is-on-cran",
+        
+          title: "&#39;mRpostman&#39; 1.4.0 is on CRAN",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/mrpostman-1-4-0/";
+          
+        },
+      },{id: "post-39-treess-39-tree-spatial-scan-statistics-in-r",
+        
+          title: "&#39;treeSS&#39; - Tree-spatial scan statistics in R",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/new-package-treess/";
+          
+        },
+      },{id: "post-qfra-2026-in-zakynthos-distribution-based-algorithms-for-pairs-trading",
+        
+          title: "QFRA 2026 in Zakynthos - Distribution-Based Algorithms for Pairs Trading",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/qfra-2026-zakynthos/";
+          
+        },
+      },{id: "post-ecis-2026-in-milan-spatiotemporal-patterns-of-chronic-care-delivery",
+        
+          title: "ECIS 2026 in Milan - Spatiotemporal Patterns of Chronic Care Delivery",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ecis-2026-milan/";
+          
+        },
+      },{id: "post-a-bayesian-approach-to-distribution-based-signals-in-pairs-trading",
+        
+          title: "A Bayesian approach to distribution-based signals in pairs trading",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/bayesian-pairs-trading-quantitative-finance/";
+          
+        },
+      },{id: "post-a-collaboration-in-food-science-xylanases-and-bread-quality-in-the-journal-of-food-science",
+        
+          title: "A collaboration in food science - xylanases and bread quality in the Journal...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/bread-xylanases-journal-of-food-science/";
+          
+        },
+      },{id: "post-presenting-at-the-siam-conference-on-financial-mathematics-and-engineering-fm25",
+        
+          title: "Presenting at the SIAM Conference on Financial Mathematics and Engineering (FM25)",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/siam-fm25-miami/";
+          
+        },
+      },{id: "post-a-tree-spatial-scan-statistic-new-paper-in-environmental-and-ecological-statistics",
+        
+          title: "A tree-spatial scan statistic - new paper in Environmental and Ecological Statistics",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/tree-spatial-scan-statistic/";
+          
+        },
+      },{id: "post-gsc-award-for-excellence-in-teaching-at-k-state",
+        
+          title: "GSC Award for Excellence in Teaching at K-State",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/gsc-award-excellence-in-teaching/";
+          
+        },
+      },{id: "post-39-mrpostman-an-imap-client-for-r-39-published-in-the-journal-of-open-research-software",
+        
+          title: "&#39;mRpostman: An IMAP Client for R&#39; published in the Journal of Open Research...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/mrpostman-journal-of-open-research-software/";
+          
+        },
+      },{id: "post-william-l-stamey-teaching-award",
+        
+          title: "William L. Stamey Teaching Award",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/stamey-teaching-award/";
+          
+        },
+      },{id: "post-roc-app-an-application-to-understand-roc-curves-new-paper-in-the-brazilian-journal-of-biometrics",
+        
+          title: "ROC App: an application to understand ROC curves - new paper in the...",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2022/roc-app-brazilian-journal-of-biometrics/";
+          
+        },
+      },{id: "post-starting-my-ph-d-in-statistics-at-kansas-state-university",
+        
+          title: "Starting my Ph.D. in Statistics at Kansas State University",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2021/starting-phd-kansas-state/";
+          
+        },
+      },{id: "post-first-astrostatistics-paper-accepted-by-mnras-agn-dichotomy-beyond-radio-loudness",
+        
+          title: "First astrostatistics paper accepted by MNRAS - AGN dichotomy beyond radio loudness",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2020/agn-dichotomy-mnras/";
+          
+        },
+      },{id: "post-39-mrpostman-39-imap-tools-for-r-in-a-tidy-way",
         
           title: "&#39;mRpostman&#39; - IMAP Tools for R in a Tidy Way",
         
