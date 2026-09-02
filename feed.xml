@@ -1,0 +1,8 @@
+---
+# Main Atom feed (all posts). Uses the site-level template in _includes/atom-feed.xml
+# instead of jekyll-feed's built-in one so the feed title is the author's name.
+layout: null
+sitemap: false
+collection: posts
+---
+{%- include atom-feed.xml -%}

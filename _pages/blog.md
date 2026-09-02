@@ -29,6 +29,14 @@ pagination:
   </div>
   {% endif %}
 
+<p class="text-center r-bloggers-link">
+  <i class="fa-brands fa-r-project fa-sm"></i>
+  Posts in the <a href="{{ '/blog/category/r/' | relative_url }}">R</a> category are syndicated on
+  <a href="https://www.r-bloggers.com/" target="_blank" rel="external nofollow noopener">R-Bloggers</a>
+  &bull; <a href="{{ '/feed/R.xml' | relative_url }}"><i class="fa-solid fa-rss fa-sm"></i> R feed</a>
+  &bull; <a href="{{ '/feed.xml' | relative_url }}"><i class="fa-solid fa-rss fa-sm"></i> all posts</a>
+</p>
+
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
   <div class="tag-category-list">

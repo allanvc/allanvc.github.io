@@ -1,0 +1,10 @@
+---
+# Atom feed with only the posts in the "R" category. This is the feed
+# submitted to R-Bloggers (https://www.r-bloggers.com/add-your-blog/), which
+# requires an R-only, full-text feed.
+layout: null
+sitemap: false
+collection: posts
+category: R
+---
+{%- include atom-feed.xml -%}
