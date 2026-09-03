@@ -29,6 +29,15 @@ pagination:
   </div>
   {% endif %}
 
+<!-- >>> jekylldown r-bloggers -->
+<p class="text-center jekylldown-r-bloggers">
+  <i class="fa-brands fa-r-project fa-sm"></i>
+  Posts in the <a href="{{ '/blog/category/r/' | relative_url }}">R</a> category are syndicated on
+  <a href="https://www.r-bloggers.com/" target="_blank" rel="noopener">R-Bloggers</a>
+  &bull; <a href="{{ '/feed/R.xml' | relative_url }}"><i class="fa-solid fa-rss fa-sm"></i> R feed</a>
+</p>
+<!-- <<< jekylldown r-bloggers -->
+
 <p class="text-center r-bloggers-link">
   <i class="fa-brands fa-r-project fa-sm"></i>
   Posts in the <a href="{{ '/blog/category/r/' | relative_url }}">R</a> category are syndicated on

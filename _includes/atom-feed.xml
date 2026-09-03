@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+{% comment %}jekylldown: rendered from jekyll-feed 0.17.0 (gem). Regenerate with jekylldown::add_feed(force = TRUE); edits here are lost then.{% endcomment %}
 {% if page.xsl %}
   <?xml-stylesheet type="text/xml" href="{{ '/feed.xslt.xml' | absolute_url }}"?>
 {% endif %}
@@ -10,9 +11,8 @@
   <id>{{ page.url | absolute_url | xml_escape }}</id>
 
   {% comment %}
-    Site-level copy of jekyll-feed's template (v0.17.0). The only change is
-    below: al-folio uses `title: blank` to mean "use the author's full name",
-    which jekyll-feed does not understand (the feed title came out as "blank").
+    jekylldown: al-folio sets `title: blank` to mean "use the author's
+    name"; jekyll-feed alone prints the literal "blank" as the title.
   {% endcomment %}
   {% if site.title == 'blank' %}
     {% capture title %}{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}{% endcapture %}
@@ -73,7 +73,18 @@
       <id>{{ post.id | absolute_url | xml_escape }}</id>
       {% assign excerpt_only = post.feed.excerpt_only | default: site.feed.excerpt_only %}
       {% unless excerpt_only %}
-        <content type="html" xml:base="{{ post.url | absolute_url | xml_escape }}"><![CDATA[{{ post.content | strip }}]]></content>
+        {% comment %}
+          jekylldown: root-relative src/href in the post body become absolute
+          (from `url:` in _config.yml), as aggregators such as R-Bloggers ask.
+        {% endcomment %}
+        {% assign jd_host = site.url | default: "" | split: "/" | join: "/" %}
+        {% capture jd_src %}src="{{ jd_host }}/{% endcapture %}
+        {% capture jd_href %}href="{{ jd_host }}/{% endcapture %}
+        {% assign jd_content = post.content | strip %}
+        {% if jd_host != empty %}
+          {% assign jd_content = jd_content | replace: 'src="//', 'src="jd:proto//' | replace: 'href="//', 'href="jd:proto//' | replace: 'src="/', jd_src | replace: 'href="/', jd_href | replace: 'src="jd:proto//', 'src="//' | replace: 'href="jd:proto//', 'href="//' %}
+        {% endif %}
+        <content type="html" xml:base="{{ post.url | absolute_url | xml_escape }}"><![CDATA[{{ jd_content }}]]></content>
       {% endunless %}
 
       {% assign post_author = post.author | default: post.authors[0] | default: site.author %}
